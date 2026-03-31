@@ -231,17 +231,17 @@ const Team = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-navy">
+      <section className="py-24 bg-surface-alt">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-display text-3xl md:text-5xl font-extrabold text-primary-foreground mb-6">
+            <h2 className="font-display text-3xl md:text-5xl font-extrabold text-primary mb-6">
               Want to join the mission?
             </h2>
-            <p className="text-primary-foreground/50 max-w-xl mx-auto">
+            <p className="text-muted-foreground max-w-xl mx-auto">
               We are always looking for exceptional talent to join our investment and platform teams. Reach out to us at <a href="mailto:info@qualgro.com" className="text-emerald hover:underline">info@qualgro.com</a>.
             </p>
           </motion.div>
