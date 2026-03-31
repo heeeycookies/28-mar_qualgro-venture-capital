@@ -76,8 +76,8 @@ const WhyQualgro = () => {
       {/* Hero */}
       <PageHero
         tagline="Investment Thesis"
-        title={<>AI · Data · <span className="text-investment-blue">Impact</span></>}
-        description="Qualgro invests at the intersection of artificial intelligence, data infrastructure, and measurable impact — backing Series A founders in Southeast Asia building technology that scales globally."
+        title={<>AI & Data · <span className="text-investment-blue">Impact</span></>}
+        description="Qualgro invests at the intersection of artificial intelligence, data infrastructure, and measurable impact. We back Series A founders in Southeast Asia building technology that scales globally."
       >
         <button
           onClick={() => setContactOpen(true)}
