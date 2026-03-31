@@ -17,46 +17,26 @@ const StatsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-24 bg-surface-alt" ref={ref}>
+    <section id="about" className="py-16 bg-background" ref={ref}>
       <div className="container mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3 text-emerald">
-            Asset Momentum
-          </p>
-          <h2 className="font-display text-3xl font-bold md:text-5xl text-primary">
-            Quality & Growth
-          </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            We look for entrepreneurs with the mindset and capabilities to build
-            regional or global companies, with technology advantages, fast
-            execution and agility.
-          </p>
-        </motion.div>
-
-        {/* Top row: large cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          {/* Left large card */}
+        {/* Top row: two large cards */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+          {/* Left large card — spans 3 */}
           <motion.div
             custom={0}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="bg-card rounded-2xl border border-border p-10 flex flex-col justify-end"
+            className="md:col-span-3 bg-surface-alt rounded-2xl p-10 flex flex-col justify-end"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald mb-4">
-              Institutional Backing
+              Asset Momentum
             </p>
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-primary leading-tight mb-2">
-              Backed by world-class LPs and family offices.
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-primary leading-tight mb-1">
+              Institutional backing from world-class LPs and family offices.
             </h3>
             <div className="flex items-end gap-3 mt-4">
-              <p className="font-display text-5xl md:text-6xl font-extrabold text-primary">
+              <p className="font-display text-5xl md:text-7xl font-extrabold text-primary">
                 $800M+
               </p>
               <p className="text-sm text-muted-foreground pb-2">
@@ -65,15 +45,15 @@ const StatsSection = () => {
             </div>
           </motion.div>
 
-          {/* Right large card - dark */}
+          {/* Right dark card — spans 2 */}
           <motion.div
             custom={1}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="bg-navy rounded-2xl p-10 flex flex-col items-start justify-between"
+            className="md:col-span-2 bg-navy rounded-2xl p-10 flex flex-col items-start justify-between min-h-[280px]"
           >
-            <TrendingUp className="text-emerald mb-6" size={32} />
+            <TrendingUp className="text-emerald" size={28} />
             <div>
               <p className="font-display text-5xl md:text-6xl font-extrabold text-primary-foreground">
                 35+
@@ -86,20 +66,19 @@ const StatsSection = () => {
         </div>
 
         {/* Bottom row: 3 smaller cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <motion.div
             custom={2}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="bg-card rounded-2xl border border-border p-8"
+            className="bg-surface-alt rounded-2xl p-8"
           >
             <p className="font-display text-3xl md:text-4xl font-extrabold text-investment-blue mb-3">
-              10%
+              85%
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Unicorn hit rate — among the highest conviction rates for a
-              Series&nbsp;A focused fund in Southeast Asia.
+              Of our portfolio companies have successfully raised follow-on rounds from global Tier-1 VCs.
             </p>
           </motion.div>
 
@@ -111,11 +90,10 @@ const StatsSection = () => {
             className="bg-emerald rounded-2xl p-8"
           >
             <p className="font-display text-3xl md:text-4xl font-extrabold text-emerald-foreground mb-3">
-              9 Exits
+              Series B
             </p>
             <p className="text-sm text-emerald-foreground/80 leading-relaxed">
-              Highest number of full exits by a Series&nbsp;A VC in Southeast
-              Asia, delivering consistent alpha for institutional investors.
+              Our sweet spot for high-conviction deployment where we provide maximum scaling value.
             </p>
           </motion.div>
 
@@ -124,14 +102,13 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="bg-card rounded-2xl border border-border p-8"
+            className="bg-surface-alt rounded-2xl p-8"
           >
-            <p className="font-display text-3xl md:text-4xl font-extrabold text-investment-blue mb-3">
-              Series A
+            <p className="font-display text-3xl md:text-4xl font-extrabold text-primary mb-3">
+              12+
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Leading expert in B2B enterprise technology, scaling founders
-              cross-border across Southeast Asia &amp; Australia.
+              Strategic exit events, delivering consistent alpha for our institutional investors.
             </p>
           </motion.div>
         </div>
