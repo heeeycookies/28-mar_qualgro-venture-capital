@@ -90,7 +90,7 @@ const ContactSection = () => {
             </div>
             <button
               type="submit"
-              className="w-full py-3.5 rounded-lg bg-navy text-primary-foreground font-display font-semibold text-sm hover:bg-navy-light transition-colors"
+              className="w-full py-3.5 rounded-lg bg-primary text-primary-foreground font-display font-semibold text-sm hover:bg-primary/90 transition-colors"
             >
               Send Message
             </button>

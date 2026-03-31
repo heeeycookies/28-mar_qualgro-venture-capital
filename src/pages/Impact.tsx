@@ -211,23 +211,22 @@ const Impact = () => {
       </section>
 
       {/* CTA */}
-      <section className="relative py-28 bg-navy overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-emerald/8 blur-[120px]" />
+      <section className="relative py-28 bg-surface-alt overflow-hidden">
         <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-display text-3xl md:text-5xl font-extrabold text-primary-foreground mb-6">
+            <h2 className="font-display text-3xl md:text-5xl font-extrabold text-primary mb-6">
               Building the future is a collaborative effort.
             </h2>
-            <p className="text-primary-foreground/50 max-w-xl mx-auto mb-10">
+            <p className="text-muted-foreground max-w-xl mx-auto mb-10">
               Download our full ESG & Impact Report 2024 to learn more about our methodology and performance metrics.
             </p>
             <a
               href="#"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-emerald to-emerald/80 text-emerald-foreground font-display font-semibold text-sm hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald text-emerald-foreground font-display font-semibold text-sm hover:bg-emerald/90 transition-all duration-300"
             >
               Download Report
               <ArrowRight size={16} />
