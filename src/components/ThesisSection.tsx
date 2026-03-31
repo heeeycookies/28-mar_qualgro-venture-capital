@@ -1,0 +1,111 @@
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { Brain, Database, BarChart3, Sparkles } from "lucide-react";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.1 },
+  }),
+};
+
+const themes = [
+  {
+    icon: Brain,
+    label: "AI",
+    title: "Artificial Intelligence",
+    desc: "Backing founders building AI-native products — from enterprise automation and intelligent workflows to generative AI applications solving real business problems.",
+  },
+  {
+    icon: Database,
+    label: "Data",
+    title: "Data Infrastructure",
+    desc: "Investing in the data backbone — analytics platforms, MLOps tooling, and data pipelines that power the next generation of intelligent enterprises.",
+  },
+  {
+    icon: BarChart3,
+    label: "Impact",
+    title: "Measurable Impact",
+    desc: "Every investment must create lasting value — for founders, for communities, and for the broader ecosystem. We measure what matters beyond financial returns.",
+  },
+  {
+    icon: Sparkles,
+    label: "Innovation",
+    title: "Deep Tech Innovation",
+    desc: "Supporting breakthrough technologies in fintech, cybersecurity, and vertical SaaS that are reshaping how businesses operate across Asia-Pacific.",
+  },
+];
+
+const ThesisSection = () => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section className="py-20 bg-surface-alt" ref={ref}>
+      <div className="container mx-auto px-6">
+        <div className="max-w-2xl mb-14">
+          <motion.p
+            custom={0}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={fadeUp}
+            className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald mb-4"
+          >
+            Investment Thesis
+          </motion.p>
+          <motion.h2
+            custom={1}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={fadeUp}
+            className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-investment-blue leading-tight mb-5"
+          >
+            What We Look For
+          </motion.h2>
+          <motion.p
+            custom={2}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={fadeUp}
+            className="text-muted-foreground text-base leading-relaxed"
+          >
+            We invest at the intersection of <strong className="text-investment-blue">AI</strong>, <strong className="text-investment-blue">Data</strong>, and <strong className="text-investment-blue">Impact</strong> — backing Series A founders in Southeast Asia who are building technology that scales globally.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {themes.map((theme, i) => (
+            <motion.div
+              key={theme.title}
+              custom={i + 3}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              variants={fadeUp}
+              className="bg-card rounded-2xl p-7 border border-border hover:shadow-lg hover:border-investment-blue/20 transition-all group"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-investment-blue/10 flex items-center justify-center">
+                  <theme.icon className="text-investment-blue" size={20} />
+                </div>
+                <span className="text-xs font-bold uppercase tracking-wider text-investment-blue">
+                  {theme.label}
+                </span>
+              </div>
+              <h4 className="font-display text-base font-bold text-primary mb-2">
+                {theme.title}
+              </h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {theme.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ThesisSection;
