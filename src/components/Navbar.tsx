@@ -19,10 +19,6 @@ const Navbar = () => {
   const [contactOpen, setContactOpen] = useState(false);
   const location = useLocation();
 
-  const darkHeroPages = ["/", "/team", "/impact", "/news", "/why-qualgro", "/portfolio"];
-  const hasDarkHero = darkHeroPages.includes(location.pathname);
-  const showLight = hasDarkHero && !scrolled;
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll);
@@ -51,11 +47,7 @@ const Navbar = () => {
               <Link
                 key={link.label}
                 to={link.href}
-                className={`text-sm transition-colors font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full ${
-                  showLight
-                    ? "text-primary-foreground/80 hover:text-primary-foreground after:bg-primary-foreground"
-                    : "text-foreground/80 hover:text-foreground after:bg-foreground"
-                } ${
+                className={`text-sm transition-colors font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full text-foreground/80 hover:text-foreground after:bg-foreground ${
                   location.pathname === link.href ? "after:w-full" : ""
                 }`}
               >
@@ -66,17 +58,13 @@ const Navbar = () => {
 
           <button
             onClick={() => setContactOpen(true)}
-            className={`hidden md:inline-flex items-center justify-center px-5 py-2 rounded text-sm font-semibold transition-colors ${
-              showLight
-                ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                : "bg-foreground text-background hover:bg-foreground/90"
-            }`}
+            className="hidden md:inline-flex items-center justify-center px-5 py-2 rounded text-sm font-semibold transition-colors bg-primary text-primary-foreground hover:bg-primary/90"
           >
             Contact
           </button>
 
           <button
-            className={`md:hidden ${showLight ? "text-primary-foreground" : "text-foreground"}`}
+            className="md:hidden text-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -88,7 +76,7 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="md:hidden bg-navy/95 backdrop-blur-md"
+            className="md:hidden bg-white/95 backdrop-blur-md border-t border-border"
           >
             <div className="flex flex-col items-center gap-4 py-6">
               {navLinks.map((link) => (
@@ -96,7 +84,7 @@ const Navbar = () => {
                   key={link.label}
                   to={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                  className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </Link>

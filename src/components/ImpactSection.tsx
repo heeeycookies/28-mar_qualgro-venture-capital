@@ -32,10 +32,8 @@ const ImpactSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="impact" className="relative overflow-hidden bg-navy" ref={ref}>
-      {/* Subtle gradient orbs */}
-      <div className="absolute top-0 right-[10%] w-[600px] h-[600px] rounded-full bg-emerald/8 blur-[180px]" />
-      <div className="absolute bottom-0 left-[5%] w-[400px] h-[400px] rounded-full bg-investment-blue/10 blur-[140px]" />
+    <section id="impact" className="relative overflow-hidden bg-background" ref={ref}>
+      <div className="absolute top-0 right-[10%] w-[600px] h-[600px] rounded-full opacity-20" style={{ background: "radial-gradient(circle, hsl(111 37% 85%) 0%, transparent 70%)" }} />
 
       <div className="relative z-10 py-28">
         <div className="container mx-auto px-6">
@@ -49,7 +47,7 @@ const ImpactSection = () => {
             <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.25em] mb-4">
               Impact & Sustainability
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground leading-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-primary leading-tight">
               Building companies that
               <br />
               <span className="text-gradient-emerald">create lasting change.</span>
@@ -68,39 +66,38 @@ const ImpactSection = () => {
               >
                 <div className="flex items-center gap-2 mb-3">
                   <metric.icon className="text-emerald" size={18} />
-                  <span className="text-primary-foreground/40 text-xs font-medium uppercase tracking-wider">
+                  <span className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                     {metric.label}
                   </span>
                 </div>
-                <p className="font-display text-4xl md:text-5xl font-extrabold text-primary-foreground">
+                <p className="font-display text-4xl md:text-5xl font-extrabold text-primary">
                   {metric.value}
                 </p>
-                <p className="mt-1 text-primary-foreground/30 text-sm">
+                <p className="mt-1 text-muted-foreground text-sm">
                   {metric.sub}
                 </p>
-                {/* Bottom accent line */}
                 <div className="mt-4 h-px w-12 bg-emerald/30 group-hover:w-full transition-all duration-500" />
               </motion.div>
             ))}
           </div>
 
           {/* Pillars */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-primary-foreground/5 rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {pillars.map((pillar, i) => (
               <motion.div
                 key={pillar.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
-                className="bg-navy p-10 hover:bg-primary-foreground/[0.03] transition-colors duration-300"
+                className="bg-card rounded-2xl border border-border p-10 hover:shadow-lg hover:border-emerald/20 transition-all duration-300"
               >
                 <p className="font-display text-3xl font-extrabold text-emerald mb-1">
                   {pillar.stat}
                 </p>
-                <h3 className="font-display text-lg font-bold text-primary-foreground mb-3">
+                <h3 className="font-display text-lg font-bold text-primary mb-3">
                   {pillar.title}
                 </h3>
-                <p className="text-primary-foreground/40 text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {pillar.description}
                 </p>
               </motion.div>
