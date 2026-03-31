@@ -177,22 +177,22 @@ const WhyQualgro = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-navy rounded-2xl p-10 text-center"
+              className="bg-card rounded-2xl border border-border p-10 text-center"
             >
-              <p className="font-display text-6xl font-extrabold text-primary-foreground mb-2">33+</p>
-              <p className="text-primary-foreground/60 mb-6">Companies backed across 2 funds</p>
+              <p className="font-display text-6xl font-extrabold text-primary mb-2">33+</p>
+              <p className="text-muted-foreground mb-6">Companies backed across 2 funds</p>
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <p className="font-display text-2xl font-bold text-emerald">4</p>
-                  <p className="text-xs text-primary-foreground/50">Unicorns</p>
+                  <p className="text-xs text-muted-foreground">Unicorns</p>
                 </div>
                 <div>
                   <p className="font-display text-2xl font-bold text-emerald">9</p>
-                  <p className="text-xs text-primary-foreground/50">Exits</p>
+                  <p className="text-xs text-muted-foreground">Exits</p>
                 </div>
                 <div>
                   <p className="font-display text-2xl font-bold text-emerald">7</p>
-                  <p className="text-xs text-primary-foreground/50">Sectors</p>
+                  <p className="text-xs text-muted-foreground">Sectors</p>
                 </div>
               </div>
             </motion.div>
