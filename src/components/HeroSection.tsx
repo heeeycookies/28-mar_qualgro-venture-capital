@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section className="relative pt-28 pb-16 bg-background overflow-hidden">
+    <section className="relative pt-28 pb-16 bg-navy overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(217,91%,11%)] to-[hsl(217,50%,20%)]" />
       <div className="relative z-10 container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left column */}
@@ -20,11 +22,11 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-primary"
+              className="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-primary-foreground"
             >
               Architecting
               <br />
-              <span className="text-muted-foreground/50">Global Winners.</span>
+              <span className="text-primary-foreground/40">Global Winners.</span>
             </motion.h1>
           </div>
 
@@ -35,8 +37,8 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="lg:pt-16"
           >
-            <div className="border-l-2 border-border pl-6">
-              <p className="text-muted-foreground text-base leading-relaxed">
+            <div className="border-l-2 border-primary-foreground/20 pl-6">
+              <p className="text-primary-foreground/70 text-base leading-relaxed">
                 We don't just invest capital; we engineer growth. By combining deep regional expertise with a global scaling framework, Qualgro transforms ambitious Southeast Asian startups into international category leaders.
               </p>
             </div>
