@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Globe, Target, TrendingUp, Award, Briefcase } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -39,7 +38,6 @@ const StatsSection = () => {
             variants={fadeUp}
             className="md:col-span-3 bg-surface-alt rounded-2xl p-10 flex flex-col justify-end"
           >
-            <Globe className="text-investment-blue mb-4" size={28} />
             <h3 className="font-display text-2xl md:text-3xl font-bold text-investment-blue leading-tight mb-2">
               Scaling Cross Border
             </h3>
@@ -56,7 +54,9 @@ const StatsSection = () => {
             variants={fadeUp}
             className="md:col-span-2 bg-navy rounded-2xl p-10 flex flex-col items-start justify-between min-h-[280px]"
           >
-            <Target className="text-emerald" size={28} />
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald">
+              Conviction
+            </p>
             <div>
               <p className="font-display text-5xl md:text-6xl font-extrabold text-primary-foreground">
                 10%
@@ -81,7 +81,6 @@ const StatsSection = () => {
             variants={fadeUp}
             className="bg-surface-alt rounded-2xl p-8"
           >
-            <TrendingUp className="text-investment-blue mb-3" size={24} />
             <p className="font-display text-3xl md:text-4xl font-extrabold text-investment-blue mb-1">
               9 Full Exits
             </p>
@@ -101,7 +100,6 @@ const StatsSection = () => {
             variants={fadeUp}
             className="bg-emerald rounded-2xl p-8"
           >
-            <Briefcase className="text-emerald-foreground/80 mb-3" size={24} />
             <p className="font-display text-3xl md:text-4xl font-extrabold text-emerald-foreground mb-1">
               Series A
             </p>
@@ -121,7 +119,6 @@ const StatsSection = () => {
             variants={fadeUp}
             className="bg-surface-alt rounded-2xl p-8"
           >
-            <Award className="text-investment-blue mb-3" size={24} />
             <p className="font-display text-3xl md:text-4xl font-extrabold text-investment-blue mb-1">
               B2B Expert
             </p>

@@ -116,22 +116,22 @@ const Portfolio = () => {
       >
         <div className="flex gap-8 mt-10">
           <div>
-            <p className="font-display text-3xl font-extrabold text-primary-foreground">{companies.length}</p>
-            <p className="text-primary-foreground/40 text-sm mt-1">Total Investments</p>
+            <p className="font-display text-3xl font-extrabold text-investment-blue">{companies.length}</p>
+            <p className="text-muted-foreground text-sm mt-1">Total Investments</p>
           </div>
-          <div className="w-px bg-primary-foreground/10" />
+          <div className="w-px bg-border" />
           <div>
-            <p className="font-display text-3xl font-extrabold text-primary-foreground">
+            <p className="font-display text-3xl font-extrabold text-investment-blue">
               {companies.filter((c) => c.status === "Active").length}
             </p>
-            <p className="text-primary-foreground/40 text-sm mt-1">Active</p>
+            <p className="text-muted-foreground text-sm mt-1">Active</p>
           </div>
-          <div className="w-px bg-primary-foreground/10" />
+          <div className="w-px bg-border" />
           <div>
             <p className="font-display text-3xl font-extrabold text-emerald">
               {companies.filter((c) => c.status === "Exited").length}
             </p>
-            <p className="text-primary-foreground/40 text-sm mt-1">Exited</p>
+            <p className="text-muted-foreground text-sm mt-1">Exited</p>
           </div>
         </div>
       </PageHero>

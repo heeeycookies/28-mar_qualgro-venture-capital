@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Brain, Database, BarChart3, Sparkles } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -14,25 +13,21 @@ const fadeUp = {
 
 const themes = [
   {
-    icon: Brain,
     label: "AI",
     title: "Artificial Intelligence",
     desc: "Backing founders building AI-native products — from enterprise automation and intelligent workflows to generative AI applications solving real business problems.",
   },
   {
-    icon: Database,
     label: "Data",
     title: "Data Infrastructure",
     desc: "Investing in the data backbone — analytics platforms, MLOps tooling, and data pipelines that power the next generation of intelligent enterprises.",
   },
   {
-    icon: BarChart3,
     label: "Impact",
     title: "Measurable Impact",
     desc: "Every investment must create lasting value — for founders, for communities, and for the broader ecosystem. We measure what matters beyond financial returns.",
   },
   {
-    icon: Sparkles,
     label: "Innovation",
     title: "Deep Tech Innovation",
     desc: "Supporting breakthrough technologies in fintech, cybersecurity, and vertical SaaS that are reshaping how businesses operate across Asia-Pacific.",
@@ -86,14 +81,9 @@ const ThesisSection = () => {
               variants={fadeUp}
               className="bg-card rounded-2xl p-7 border border-border hover:shadow-lg hover:border-investment-blue/20 transition-all group"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-investment-blue/10 flex items-center justify-center">
-                  <theme.icon className="text-investment-blue" size={20} />
-                </div>
-                <span className="text-xs font-bold uppercase tracking-wider text-investment-blue">
-                  {theme.label}
-                </span>
-              </div>
+              <span className="inline-block text-xs font-bold uppercase tracking-wider text-investment-blue bg-investment-blue/10 px-3 py-1 rounded-full mb-4">
+                {theme.label}
+              </span>
               <h4 className="font-display text-base font-bold text-primary mb-2">
                 {theme.title}
               </h4>
