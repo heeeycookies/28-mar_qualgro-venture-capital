@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { TrendingUp } from "lucide-react";
+import { Globe, Target, TrendingUp, Award, Briefcase } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -19,9 +19,19 @@ const StatsSection = () => {
   return (
     <section id="about" className="py-16 bg-background" ref={ref}>
       <div className="container mx-auto px-6">
-        {/* Top row: two large cards */}
+        <motion.p
+          custom={0}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeUp}
+          className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald mb-6"
+        >
+          Our Track Record
+        </motion.p>
+
+        {/* Top row */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
-          {/* Left large card — spans 3 */}
+          {/* Scaling Cross Border */}
           <motion.div
             custom={0}
             initial="hidden"
@@ -29,23 +39,16 @@ const StatsSection = () => {
             variants={fadeUp}
             className="md:col-span-3 bg-surface-alt rounded-2xl p-10 flex flex-col justify-end"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald mb-4">
-              Asset Momentum
-            </p>
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-primary leading-tight mb-1">
-              Institutional backing from world-class LPs and family offices.
+            <Globe className="text-emerald mb-4" size={28} />
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-primary leading-tight mb-2">
+              Scaling Cross Border
             </h3>
-            <div className="flex items-end gap-3 mt-4">
-              <p className="font-display text-5xl md:text-7xl font-extrabold text-primary">
-                $800M+
-              </p>
-              <p className="text-sm text-muted-foreground pb-2">
-                Assets Under Management
-              </p>
-            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+              We help founders break out of their home markets and scale across Southeast Asia and into global markets with hands-on operational support.
+            </p>
           </motion.div>
 
-          {/* Right dark card — spans 2 */}
+          {/* Unicorn Hit Rate */}
           <motion.div
             custom={1}
             initial="hidden"
@@ -53,20 +56,21 @@ const StatsSection = () => {
             variants={fadeUp}
             className="md:col-span-2 bg-navy rounded-2xl p-10 flex flex-col items-start justify-between min-h-[280px]"
           >
-            <TrendingUp className="text-emerald" size={28} />
+            <Target className="text-emerald" size={28} />
             <div>
               <p className="font-display text-5xl md:text-6xl font-extrabold text-primary-foreground">
-                35+
+                10%
               </p>
               <p className="text-primary-foreground/60 mt-2 text-sm max-w-xs">
-                Technology leaders scaled across regional borders since 2015.
+                Unicorn hit rate — among the highest conviction rates for any SEA-focused fund.
               </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom row: 3 smaller cards */}
+        {/* Bottom row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* 9 Full Exits */}
           <motion.div
             custom={2}
             initial="hidden"
@@ -74,14 +78,16 @@ const StatsSection = () => {
             variants={fadeUp}
             className="bg-surface-alt rounded-2xl p-8"
           >
-            <p className="font-display text-3xl md:text-4xl font-extrabold text-investment-blue mb-3">
-              85%
+            <TrendingUp className="text-investment-blue mb-3" size={24} />
+            <p className="font-display text-3xl md:text-4xl font-extrabold text-investment-blue mb-1">
+              9 Full Exits
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Of our portfolio companies have successfully raised follow-on rounds from global Tier-1 VCs.
+              The highest number of full exits by any venture fund in Southeast Asia.
             </p>
           </motion.div>
 
+          {/* Series A */}
           <motion.div
             custom={3}
             initial="hidden"
@@ -89,14 +95,16 @@ const StatsSection = () => {
             variants={fadeUp}
             className="bg-emerald rounded-2xl p-8"
           >
-            <p className="font-display text-3xl md:text-4xl font-extrabold text-emerald-foreground mb-3">
-              Series B
+            <Briefcase className="text-emerald-foreground/80 mb-3" size={24} />
+            <p className="font-display text-3xl md:text-4xl font-extrabold text-emerald-foreground mb-1">
+              Series A
             </p>
             <p className="text-sm text-emerald-foreground/80 leading-relaxed">
-              Our sweet spot for high-conviction deployment where we provide maximum scaling value.
+              Sweet spot for high-conviction deployment where we provide maximum scaling value.
             </p>
           </motion.div>
 
+          {/* B2B Expert */}
           <motion.div
             custom={4}
             initial="hidden"
@@ -104,11 +112,12 @@ const StatsSection = () => {
             variants={fadeUp}
             className="bg-surface-alt rounded-2xl p-8"
           >
-            <p className="font-display text-3xl md:text-4xl font-extrabold text-primary mb-3">
-              12+
+            <Award className="text-primary mb-3" size={24} />
+            <p className="font-display text-3xl md:text-4xl font-extrabold text-primary mb-1">
+              B2B Expert
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Strategic exit events, delivering consistent alpha for our institutional investors.
+              Leading expert in B2B enterprise technology across Southeast Asia and beyond.
             </p>
           </motion.div>
         </div>
