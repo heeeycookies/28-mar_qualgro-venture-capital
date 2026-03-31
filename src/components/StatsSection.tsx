@@ -39,8 +39,8 @@ const StatsSection = () => {
             variants={fadeUp}
             className="md:col-span-3 bg-surface-alt rounded-2xl p-10 flex flex-col justify-end"
           >
-            <Globe className="text-emerald mb-4" size={28} />
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-primary leading-tight mb-2">
+            <Globe className="text-investment-blue mb-4" size={28} />
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-investment-blue leading-tight mb-2">
               Scaling Cross Border
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
@@ -61,8 +61,11 @@ const StatsSection = () => {
               <p className="font-display text-5xl md:text-6xl font-extrabold text-primary-foreground">
                 10%
               </p>
-              <p className="text-primary-foreground/60 mt-2 text-sm max-w-xs">
-                Unicorn hit rate — among the highest conviction rates for any SEA-focused fund.
+              <p className="text-sm font-semibold text-primary-foreground/80 mt-1">
+                Unicorn Hit Rate
+              </p>
+              <p className="text-primary-foreground/60 mt-1 text-sm max-w-xs">
+                Among the highest conviction rates for any SEA-focused fund.
               </p>
             </div>
           </motion.div>
@@ -82,8 +85,11 @@ const StatsSection = () => {
             <p className="font-display text-3xl md:text-4xl font-extrabold text-investment-blue mb-1">
               9 Full Exits
             </p>
+            <p className="text-sm font-semibold text-primary mb-1">
+              Highest in Southeast Asia
+            </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              The highest number of full exits by any venture fund in Southeast Asia.
+              The most full exits by any venture fund in the region — a testament to our disciplined approach.
             </p>
           </motion.div>
 
@@ -99,8 +105,11 @@ const StatsSection = () => {
             <p className="font-display text-3xl md:text-4xl font-extrabold text-emerald-foreground mb-1">
               Series A
             </p>
+            <p className="text-sm font-semibold text-emerald-foreground/90 mb-1">
+              Sweet Spot for Conviction
+            </p>
             <p className="text-sm text-emerald-foreground/80 leading-relaxed">
-              Sweet spot for high-conviction deployment where we provide maximum scaling value.
+              Where we deploy capital with highest conviction and provide maximum scaling value.
             </p>
           </motion.div>
 
@@ -112,12 +121,15 @@ const StatsSection = () => {
             variants={fadeUp}
             className="bg-surface-alt rounded-2xl p-8"
           >
-            <Award className="text-primary mb-3" size={24} />
-            <p className="font-display text-3xl md:text-4xl font-extrabold text-primary mb-1">
+            <Award className="text-investment-blue mb-3" size={24} />
+            <p className="font-display text-3xl md:text-4xl font-extrabold text-investment-blue mb-1">
               B2B Expert
             </p>
+            <p className="text-sm font-semibold text-primary mb-1">
+              Leading Expert in B2B
+            </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Leading expert in B2B enterprise technology across Southeast Asia and beyond.
+              Deep specialisation in enterprise technology across Southeast Asia and beyond.
             </p>
           </motion.div>
         </div>
