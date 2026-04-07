@@ -21,10 +21,10 @@ const PageHero = ({ tagline, title, description, children }: PageHeroProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-emerald font-display font-semibold text-sm uppercase tracking-[0.2em] mb-4 inline-block">
+          <p className="text-emerald font-display font-bold text-sm uppercase tracking-[0.2em] mb-4 inline-block">
             {tagline}
           </p>
-          <h1 className="font-display text-4xl md:text-6xl font-extrabold text-primary leading-tight max-w-3xl">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-black text-primary leading-tight max-w-3xl">
             {title}
           </h1>
           <p className="mt-6 text-muted-foreground max-w-2xl text-lg">

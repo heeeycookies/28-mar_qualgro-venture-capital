@@ -24,7 +24,7 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald mb-6 text-center"
+            className="text-xs font-bold uppercase tracking-[0.2em] text-emerald mb-6 text-center"
           >
             Our Track Record
           </motion.p>
@@ -37,13 +37,13 @@ const StatsSection = () => {
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={fadeUp}
-              className="bg-navy rounded-2xl p-10 flex flex-col justify-between min-h-[240px]"
+              className="bg-navy rounded-2xl p-10 flex flex-col justify-between min-h-[260px]"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald">
                 Conviction
               </p>
               <div>
-                <p className="font-display text-6xl md:text-7xl font-extrabold text-primary-foreground">
+                <p className="font-display text-7xl md:text-8xl font-black text-primary-foreground">
                   10%
                 </p>
                 <p className="text-lg font-bold text-primary-foreground/80 mt-1">
@@ -61,13 +61,13 @@ const StatsSection = () => {
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={fadeUp}
-              className="bg-surface-alt rounded-2xl p-10 flex flex-col justify-between min-h-[240px]"
+              className="bg-surface-alt rounded-2xl p-10 flex flex-col justify-between min-h-[260px]"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-investment-blue">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-investment-blue">
                 Returns
               </p>
               <div>
-                <p className="font-display text-6xl md:text-7xl font-extrabold text-investment-blue">
+                <p className="font-display text-7xl md:text-8xl font-black text-investment-blue">
                   9
                 </p>
                 <p className="text-lg font-bold text-primary mt-1">
@@ -90,7 +90,7 @@ const StatsSection = () => {
               variants={fadeUp}
               className="bg-surface-alt rounded-2xl p-8"
             >
-              <p className="font-display text-3xl font-extrabold text-investment-blue mb-2">
+              <p className="font-display text-3xl font-black text-investment-blue mb-2">
                 Cross Border
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -106,7 +106,7 @@ const StatsSection = () => {
               variants={fadeUp}
               className="bg-emerald rounded-2xl p-8"
             >
-              <p className="font-display text-3xl font-extrabold text-emerald-foreground mb-2">
+              <p className="font-display text-3xl font-black text-emerald-foreground mb-2">
                 Series A
               </p>
               <p className="text-sm text-emerald-foreground/80 leading-relaxed">
@@ -122,7 +122,7 @@ const StatsSection = () => {
               variants={fadeUp}
               className="bg-surface-alt rounded-2xl p-8"
             >
-              <p className="font-display text-3xl font-extrabold text-investment-blue mb-2">
+              <p className="font-display text-3xl font-black text-investment-blue mb-2">
                 B2B Expert
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
