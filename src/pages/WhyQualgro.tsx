@@ -99,7 +99,7 @@ const WhyQualgro = () => {
             <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3">
               Where We Invest
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-investment-blue">
+            <h2 className="font-display text-3xl md:text-5xl font-black text-investment-blue">
               Our Thesis Pillars
             </h2>
           </motion.div>
@@ -146,7 +146,7 @@ const WhyQualgro = () => {
             <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3">
               Investment Criteria
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-primary">
+            <h2 className="font-display text-3xl md:text-5xl font-black text-primary">
               What We Look For
             </h2>
           </motion.div>
@@ -186,7 +186,7 @@ const WhyQualgro = () => {
               <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3">
                 Post-Investment
               </p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-6">
+              <h2 className="font-display text-3xl md:text-4xl font-black text-primary mb-6">
                 How We Support Our Founders
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-8">
@@ -207,19 +207,19 @@ const WhyQualgro = () => {
               viewport={{ once: true }}
               className="bg-card rounded-2xl border border-border p-10 text-center"
             >
-              <p className="font-display text-6xl font-extrabold text-investment-blue mb-2">33+</p>
+              <p className="font-display text-7xl font-black text-investment-blue mb-2">33+</p>
               <p className="text-muted-foreground mb-6">Companies backed across 2 funds</p>
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <p className="font-display text-2xl font-bold text-investment-blue">4</p>
+                  <p className="font-display text-3xl font-black text-investment-blue">4</p>
                   <p className="text-xs text-muted-foreground">Unicorns</p>
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-bold text-investment-blue">9</p>
+                  <p className="font-display text-3xl font-black text-investment-blue">9</p>
                   <p className="text-xs text-muted-foreground">Full Exits</p>
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-bold text-investment-blue">10%</p>
+                  <p className="font-display text-3xl font-black text-investment-blue">10%</p>
                   <p className="text-xs text-muted-foreground">Hit Rate</p>
                 </div>
               </div>
@@ -239,7 +239,7 @@ const WhyQualgro = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-display text-3xl md:text-5xl font-extrabold text-investment-blue mb-6">
+            <h2 className="font-display text-3xl md:text-5xl font-black text-investment-blue mb-6">
               Ready to build something extraordinary?
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto mb-8">
