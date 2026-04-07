@@ -47,7 +47,7 @@ const ThesisSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald mb-4"
+            className="text-xs font-bold uppercase tracking-[0.2em] text-emerald mb-4"
           >
             Investment Thesis
           </motion.p>
@@ -56,7 +56,7 @@ const ThesisSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-investment-blue leading-tight mb-5"
+            className="font-display text-3xl md:text-4xl lg:text-5xl font-black text-investment-blue leading-tight mb-5"
           >
             What We Look For
           </motion.h2>
@@ -67,7 +67,7 @@ const ThesisSection = () => {
             variants={fadeUp}
             className="text-muted-foreground text-base leading-relaxed"
           >
-            We invest at the intersection of <strong className="text-investment-blue">AI</strong>, <strong className="text-investment-blue">Data</strong>, and <strong className="text-investment-blue">Impact</strong> — backing Series A founders in Southeast Asia who are building technology that scales globally.
+            We invest at the intersection of <strong className="text-investment-blue font-bold">AI</strong>, <strong className="text-investment-blue font-bold">Data</strong>, and <strong className="text-investment-blue font-bold">Impact</strong> — backing Series A founders in Southeast Asia who are building technology that scales globally.
           </motion.p>
         </div>
 
@@ -81,7 +81,7 @@ const ThesisSection = () => {
               variants={fadeUp}
               className="bg-card rounded-2xl p-7 border border-border hover:shadow-lg hover:border-investment-blue/20 transition-all group"
             >
-              <span className="inline-block text-xs font-bold uppercase tracking-wider text-investment-blue bg-investment-blue/10 px-3 py-1 rounded-full mb-4">
+              <span className="inline-block text-xs font-black uppercase tracking-wider text-investment-blue bg-investment-blue/10 px-3 py-1 rounded-full mb-4">
                 {theme.label}
               </span>
               <h4 className="font-display text-base font-bold text-primary mb-2">
