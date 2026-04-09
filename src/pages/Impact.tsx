@@ -6,6 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { impactHero, qualgroSupport, prioritySDGs } from "@/data/impact";
 
+import sdg4 from "@/assets/sdg-4.png";
+import sdg5 from "@/assets/sdg-5.png";
+import sdg8 from "@/assets/sdg-8.png";
+import sdg9 from "@/assets/sdg-9.png";
+import sdg10 from "@/assets/sdg-10.png";
+
+const sdgImages: Record<number, string> = { 4: sdg4, 5: sdg5, 8: sdg8, 9: sdg9, 10: sdg10 };
+
 const iconMap: Record<string, React.ElementType> = {
   users: Users,
   "shield-check": ShieldCheck,
