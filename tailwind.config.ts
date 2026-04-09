@@ -23,8 +23,8 @@ export default {
         '10xl': ['10rem', { lineHeight: '1' }],
       },
       fontFamily: {
-        display: ['"Merriweather Sans"', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Roboto', 'system-ui', 'sans-serif'],
+        body: ['Lato', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
