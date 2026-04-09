@@ -43,13 +43,13 @@ const StatsSection = () => {
                 Conviction
               </p>
               <div>
-                <p className="font-display text-7xl md:text-8xl font-black text-primary-foreground">
+              <p className="font-display text-8xl md:text-9xl font-black text-primary-foreground leading-none">
                   10%
                 </p>
-                <p className="text-lg font-bold text-primary-foreground/80 mt-1">
+                <p className="text-xl font-extrabold text-primary-foreground/90 mt-2">
                   Unicorn Hit Rate
                 </p>
-                <p className="text-primary-foreground/50 mt-1 text-sm">
+                <p className="text-primary-foreground/60 mt-1 text-sm font-semibold">
                   Among the highest for any SEA-focused fund.
                 </p>
               </div>
@@ -67,13 +67,13 @@ const StatsSection = () => {
                 Returns
               </p>
               <div>
-                <p className="font-display text-7xl md:text-8xl font-black text-investment-blue">
+                <p className="font-display text-8xl md:text-9xl font-black text-investment-blue leading-none">
                   9
                 </p>
-                <p className="text-lg font-bold text-primary mt-1">
+                <p className="text-xl font-extrabold text-primary mt-2">
                   Full Exits
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground font-semibold">
                   Highest number of full exits in Southeast Asia.
                 </p>
               </div>
@@ -90,10 +90,10 @@ const StatsSection = () => {
               variants={fadeUp}
               className="bg-surface-alt rounded-2xl p-8"
             >
-              <p className="font-display text-3xl font-black text-investment-blue mb-2">
+              <p className="font-display text-4xl font-black text-investment-blue mb-2">
                 Cross Border
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-base text-muted-foreground font-semibold leading-relaxed">
                 Scaling founders from home markets into Southeast Asia and global markets.
               </p>
             </motion.div>
@@ -106,10 +106,10 @@ const StatsSection = () => {
               variants={fadeUp}
               className="bg-emerald rounded-2xl p-8"
             >
-              <p className="font-display text-3xl font-black text-emerald-foreground mb-2">
+              <p className="font-display text-4xl font-black text-emerald-foreground mb-2">
                 Series A
               </p>
-              <p className="text-sm text-emerald-foreground/80 leading-relaxed">
+              <p className="text-base text-emerald-foreground/80 font-semibold leading-relaxed">
                 Sweet spot for high-conviction deployment and maximum scaling value.
               </p>
             </motion.div>
@@ -122,10 +122,10 @@ const StatsSection = () => {
               variants={fadeUp}
               className="bg-surface-alt rounded-2xl p-8"
             >
-              <p className="font-display text-3xl font-black text-investment-blue mb-2">
+              <p className="font-display text-4xl font-black text-investment-blue mb-2">
                 B2B Expert
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-base text-muted-foreground font-semibold leading-relaxed">
                 Leading expertise in enterprise technology across Southeast Asia and beyond.
               </p>
             </motion.div>
