@@ -20,11 +20,11 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="font-display text-6xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.02] text-investment-blue"
+              className="font-display text-6xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.02] text-navy"
             >
               Architecting
               <br />
-              <span className="text-investment-blue/35">Global Winners.</span>
+              <span className="text-muted-foreground/40">Global Winners.</span>
             </motion.h1>
           </div>
 
