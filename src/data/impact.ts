@@ -3,13 +3,98 @@ export const impactHero = {
   titleLine1: "Investing for",
   titleLine2: "Generational Impact.",
   description:
-    "Qualgro creates socio-economic impact across Southeast Asia through our portfolio companies, aligned with five priority UN Sustainable Development Goals. Sustainable value creation is inseparable from ethical stewardship — and from hands-on support to the founders we back.",
-  stats: [
-    { label: "JOBS CREATED", value: "350K+", sublabel: "across Southeast Asia via Funding Societies–financed MSMEs" },
-    { label: "MSMES EMPOWERED", value: "2M+", sublabel: "served through Ralali's B2B marketplace" },
-    { label: "MOTHERS SUPPORTED", value: "10M+", sublabel: "on Supermom's platform across SEA" },
-    { label: "CONSUMER SAVINGS", value: "$120M", sublabel: "disbursed via ShopBack cashback" },
+    "At Qualgro, we believe sustainable value creation is inseparable from ethical stewardship. We back founders across Southeast Asia whose businesses generate measurable socio-economic impact — and we partner with them hands-on to scale responsibly.",
+  scrollCue: "Explore our impact framework",
+};
+
+export const investmentPrinciples = {
+  sectionEyebrow: "OUR COMMITMENTS",
+  sectionTitle: "Principles That Guide Every Investment",
+  sectionSubtitle:
+    "Four non-negotiables that shape how we source, diligence, and support the companies in our portfolio.",
+  principles: [
+    {
+      number: "01",
+      title: "Impact by Design, Not by Accident",
+      description:
+        "We invest in businesses where commercial success and socio-economic impact are structurally aligned — not bolted on as an afterthought.",
+    },
+    {
+      number: "02",
+      title: "Hands-On Partnership",
+      description:
+        "Capital is the starting point. We work closely with founders on talent, governance, strategy, and scaling — as a long-term partner, not a passive shareholder.",
+    },
+    {
+      number: "03",
+      title: "Southeast Asia First",
+      description:
+        "We focus on markets we know deeply. Our network, insights, and operating experience are concentrated where they create the most value for founders.",
+    },
+    {
+      number: "04",
+      title: "Ethical Stewardship of LP Capital",
+      description:
+        "We hold ourselves to institutional standards of transparency, reporting, and fiduciary duty — every decision answers to the trust our LPs place in us.",
+    },
   ],
+};
+
+export const methodology = {
+  sectionEyebrow: "HOW WE MEASURE",
+  sectionTitle: "A Framework Built on Rigour",
+  sectionSubtitle:
+    "We measure what matters — and we're transparent about how we do it.",
+  steps: [
+    {
+      step: "01",
+      title: "Screen",
+      description:
+        "Every prospective investment is screened against our ESG framework during diligence, covering environmental, social, and governance risk factors.",
+    },
+    {
+      step: "02",
+      title: "Map",
+      description:
+        "We map each portfolio company to the UN SDGs most relevant to their business model, identifying primary and secondary impact pathways.",
+    },
+    {
+      step: "03",
+      title: "Track",
+      description:
+        "We track a concise set of company-reported impact KPIs annually, focused on outcomes rather than vanity metrics.",
+    },
+    {
+      step: "04",
+      title: "Report",
+      description:
+        "We share findings transparently with our LPs and publish aggregated impact narratives alongside financial reporting.",
+    },
+  ],
+  disclaimer:
+    "All portfolio company metrics referenced on this page are reported by the companies themselves and reflect cumulative progress since inception, not attribution to Qualgro's investment alone.",
+};
+
+export const featuredSpotlight = {
+  sectionEyebrow: "PORTFOLIO SPOTLIGHT",
+  sectionTitle: "Impact in Action",
+  sectionSubtitle:
+    "A closer look at how one of our portfolio companies is creating change.",
+  company: {
+    name: "Supermom",
+    tagline:
+      "Empowering mothers across Southeast Asia to earn income and raise children with confidence.",
+    description:
+      "Supermom is the largest community of mothers in Southeast Asia — a platform where mothers connect, access parenting guidance, and earn income through quick daily tasks. Qualgro has supported the team on scaling talent, international expansion into Indonesia and Malaysia, and building an AI-first product strategy.",
+    sdgs: [5, 8, 10],
+    highlights: [
+      { label: "Mothers on platform", value: "10M+" },
+      { label: "Online communities", value: "7K+" },
+      { label: "Markets served", value: "3" },
+    ],
+    qualgroSupport:
+      "Team scaled from 20 to 60 in year one post-investment; successful expansion into Indonesia and Malaysia; AI-driven conversational platform with 1.6M+ conversations to date.",
+  },
 };
 
 export const qualgroSupport = {
