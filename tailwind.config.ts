@@ -18,6 +18,10 @@ export default {
       },
     },
     extend: {
+      fontSize: {
+        '9xl': ['8rem', { lineHeight: '1' }],
+        '10xl': ['10rem', { lineHeight: '1' }],
+      },
       fontFamily: {
         display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],

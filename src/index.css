@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 210 40% 99%;
+    --background: 210 20% 96%;
     --foreground: 222 84% 5%;
 
     --card: 0 0% 100%;
@@ -42,7 +42,7 @@
     --emerald: 111 37% 39%;
     --emerald-foreground: 0 0% 100%;
     --investment-blue: 202 64% 35%;
-    --surface-alt: 210 40% 97%;
+    --surface-alt: 210 15% 93%;
     --hero-text-light: 214 47% 90%;
     --hero-highlight-green: 90 36% 81%;
 
