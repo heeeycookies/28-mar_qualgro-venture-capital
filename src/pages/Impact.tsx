@@ -127,12 +127,11 @@ const Impact = () => {
                   />
                   <CardContent className="p-6 sm:p-8">
                     <div className="flex items-start gap-4 mb-4">
-                      <div
-                        className="flex items-center justify-center w-12 h-12 rounded-full shrink-0 text-white font-display font-extrabold text-lg"
-                        style={{ backgroundColor: sdg.color }}
-                      >
-                        {sdg.number}
-                      </div>
+                      <img
+                        src={sdgImages[sdg.number]}
+                        alt={`SDG ${sdg.number} - ${sdg.title}`}
+                        className="w-16 h-16 rounded-lg shrink-0 object-cover"
+                      />
                       <div>
                         <h3 className="font-display text-lg font-bold text-primary leading-snug">
                           {sdg.title}
