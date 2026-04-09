@@ -6,6 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { impactHero, qualgroSupport, prioritySDGs } from "@/data/impact";
 
+import sdg4 from "@/assets/sdg-4.png";
+import sdg5 from "@/assets/sdg-5.png";
+import sdg8 from "@/assets/sdg-8.png";
+import sdg9 from "@/assets/sdg-9.png";
+import sdg10 from "@/assets/sdg-10.png";
+
+const sdgImages: Record<number, string> = { 4: sdg4, 5: sdg5, 8: sdg8, 9: sdg9, 10: sdg10 };
+
 const iconMap: Record<string, React.ElementType> = {
   users: Users,
   "shield-check": ShieldCheck,
@@ -119,12 +127,11 @@ const Impact = () => {
                   />
                   <CardContent className="p-6 sm:p-8">
                     <div className="flex items-start gap-4 mb-4">
-                      <div
-                        className="flex items-center justify-center w-12 h-12 rounded-full shrink-0 text-white font-display font-extrabold text-lg"
-                        style={{ backgroundColor: sdg.color }}
-                      >
-                        {sdg.number}
-                      </div>
+                      <img
+                        src={sdgImages[sdg.number]}
+                        alt={`SDG ${sdg.number} - ${sdg.title}`}
+                        className="w-16 h-16 rounded-lg shrink-0 object-cover"
+                      />
                       <div>
                         <h3 className="font-display text-lg font-bold text-primary leading-snug">
                           {sdg.title}
