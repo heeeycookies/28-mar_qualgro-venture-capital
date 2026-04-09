@@ -30,7 +30,7 @@ const StatsSection = () => {
           </motion.p>
 
           {/* Top row: 2 cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-3 sm:gap-4 mb-3 sm:mb-4">
             {/* Unicorn Hit Rate */}
             <motion.div
               custom={0}
