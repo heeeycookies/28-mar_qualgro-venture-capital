@@ -23,7 +23,7 @@ export default {
         '10xl': ['10rem', { lineHeight: '1' }],
       },
       fontFamily: {
-        display: ['Outfit', 'system-ui', 'sans-serif'],
+        display: ['"Archivo Black"', 'Outfit', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
