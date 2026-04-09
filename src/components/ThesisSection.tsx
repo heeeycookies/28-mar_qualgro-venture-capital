@@ -39,9 +39,9 @@ const ThesisSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 bg-surface-alt" ref={ref}>
-      <div className="container mx-auto px-6">
-        <div className="max-w-2xl mb-14">
+    <section className="py-12 sm:py-20 bg-surface-alt" ref={ref}>
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="max-w-2xl mb-8 sm:mb-14">
           <motion.p
             custom={0}
             initial="hidden"
@@ -56,7 +56,7 @@ const ThesisSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="font-display text-3xl md:text-4xl lg:text-5xl font-black text-investment-blue leading-tight mb-5"
+            className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-investment-blue leading-tight mb-3 sm:mb-5"
           >
             What We Look For
           </motion.h2>
@@ -65,13 +65,13 @@ const ThesisSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="text-muted-foreground text-base leading-relaxed"
+            className="text-muted-foreground text-sm sm:text-base leading-relaxed"
           >
             We invest at the intersection of <strong className="text-investment-blue font-bold">AI</strong>, <strong className="text-investment-blue font-bold">Data</strong>, and <strong className="text-investment-blue font-bold">Impact</strong> — backing Series A founders in Southeast Asia who are building technology that scales globally.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {themes.map((theme, i) => (
             <motion.div
               key={theme.title}
@@ -79,7 +79,7 @@ const ThesisSection = () => {
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={fadeUp}
-              className="bg-card rounded-2xl p-7 border border-border hover:shadow-lg hover:border-investment-blue/20 transition-all group"
+              className="bg-card rounded-2xl p-5 sm:p-7 border border-border hover:shadow-lg hover:border-investment-blue/20 transition-all group"
             >
               <span className="inline-block text-xs font-black uppercase tracking-wider text-investment-blue bg-investment-blue/10 px-3 py-1 rounded-full mb-4">
                 {theme.label}
