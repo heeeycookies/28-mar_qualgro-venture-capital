@@ -56,11 +56,19 @@ const fadeUp = {
 };
 
 const Impact = () => {
+  const [spotlightIndex, setSpotlightIndex] = useState(0);
+  const currentCompany = featuredSpotlight.companies[spotlightIndex];
+
   const scrollToNext = () => {
     document
       .getElementById("principles")
       ?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const nextSpotlight = () =>
+    setSpotlightIndex((i) => (i + 1) % featuredSpotlight.companies.length);
+  const prevSpotlight = () =>
+    setSpotlightIndex((i) => (i - 1 + featuredSpotlight.companies.length) % featuredSpotlight.companies.length);
 
   return (
     <div className="min-h-screen bg-background">
