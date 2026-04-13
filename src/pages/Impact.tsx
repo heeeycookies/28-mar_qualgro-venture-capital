@@ -64,7 +64,7 @@ const Impact = () => {
       <Navbar />
 
       {/* ───────── 1. HERO ───────── */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
+      <section className="relative min-h-[75vh] flex flex-col justify-center overflow-hidden">
         <div
           className="absolute inset-0"
           style={{
@@ -73,7 +73,7 @@ const Impact = () => {
           }}
         />
 
-        <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
+        <div className="relative z-10 container mx-auto px-6 pt-28 pb-14">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -266,7 +266,7 @@ const Impact = () => {
                           key={c}
                           className="text-[10px] font-display font-semibold uppercase tracking-wider px-2 py-0.5 rounded"
                           style={{
-                            backgroundColor: sdg.color + "12",
+                            backgroundColor: "#F3F5F7",
                             color: sdg.color,
                           }}
                         >
