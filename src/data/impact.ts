@@ -42,7 +42,7 @@ export const investmentPrinciples = {
 
 export const methodology = {
   sectionEyebrow: "HOW WE MEASURE",
-  sectionTitle: "A Framework Built on Rigour",
+  sectionTitle: "A Framework Built on Rigor",
   sectionSubtitle:
     "We measure what matters — and we're transparent about how we do it.",
   steps: [
@@ -79,22 +79,54 @@ export const featuredSpotlight = {
   sectionEyebrow: "PORTFOLIO SPOTLIGHT",
   sectionTitle: "Impact in Action",
   sectionSubtitle:
-    "A closer look at how one of our portfolio companies is creating change.",
-  company: {
-    name: "Supermom",
-    tagline:
-      "Empowering mothers across Southeast Asia to earn income and raise children with confidence.",
-    description:
-      "Supermom is the largest community of mothers in Southeast Asia — a platform where mothers connect, access parenting guidance, and earn income through quick daily tasks. Qualgro has supported the team on scaling talent, international expansion into Indonesia and Malaysia, and building an AI-first product strategy.",
-    sdgs: [5, 8, 10],
-    highlights: [
-      { label: "Mothers on platform", value: "10M+" },
-      { label: "Online communities", value: "7K+" },
-      { label: "Markets served", value: "3" },
-    ],
-    qualgroSupport:
-      "Team scaled from 20 to 60 in year one post-investment; successful expansion into Indonesia and Malaysia; AI-driven conversational platform with 1.6M+ conversations to date.",
-  },
+    "A closer look at how our portfolio companies are creating change.",
+  companies: [
+    {
+      name: "Supermom",
+      tagline:
+        "Empowering mothers across Southeast Asia to earn income and raise children with confidence.",
+      description:
+        "Supermom is the largest community of mothers in Southeast Asia — a platform where mothers connect, access parenting guidance, and earn income through quick daily tasks. Qualgro has supported the team on scaling talent, international expansion into Indonesia and Malaysia, and building an AI-first product strategy.",
+      sdgs: [5, 8, 10],
+      highlights: [
+        { label: "Mothers on platform", value: "10M+" },
+        { label: "Online communities", value: "7K+" },
+        { label: "Markets served", value: "3" },
+      ],
+      qualgroSupport:
+        "Team scaled from 20 to 60 in year one post-investment; successful expansion into Indonesia and Malaysia; AI-driven conversational platform with 1.6M+ conversations to date.",
+    },
+    {
+      name: "Patsnap",
+      tagline:
+        "Connecting innovators worldwide through AI-powered intellectual property intelligence.",
+      description:
+        "Patsnap is a global innovation intelligence platform that uses AI to help R&D teams, IP professionals, and enterprises make smarter decisions. With access to 115+ patent databases, Patsnap accelerates innovation cycles and reduces R&D risk for companies worldwide.",
+      sdgs: [9],
+      highlights: [
+        { label: "Patent databases", value: "115+" },
+        { label: "Team scaled to", value: "1,000+" },
+        { label: "Global markets", value: "10+" },
+      ],
+      qualgroSupport:
+        "Supported team scaling from 200 to 1,000; expansion into Japan and new enterprise markets; strategic product positioning in AI-driven innovation.",
+    },
+    {
+      name: "Funding Societies",
+      tagline:
+        "Democratising access to financing for underserved SMEs across Southeast Asia.",
+      description:
+        "Funding Societies is Southeast Asia's largest SME digital financing platform, providing fast, flexible, and accessible business financing to small and medium enterprises that are underserved by traditional banks. The platform has disbursed over $3B in business financing across multiple markets.",
+      sdgs: [8, 9, 10],
+      highlights: [
+        { label: "Jobs created", value: "350K+" },
+        { label: "MSMEs financed", value: "100K+" },
+        { label: "First-time borrowers", value: "71%" },
+      ],
+      qualgroSupport:
+        "Guided expansion across Singapore, Indonesia, Malaysia, and Thailand; supported governance frameworks and credit scoring institutionalisation.",
+    },
+  ],
 };
 
 export const qualgroSupport = {

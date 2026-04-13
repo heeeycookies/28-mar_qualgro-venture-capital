@@ -231,29 +231,6 @@ const WhyQualgro = () => {
       {/* Founder Testimonials */}
       <FounderTestimonials />
 
-      {/* CTA */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-display text-3xl md:text-5xl font-black text-investment-blue mb-6">
-              Ready to build something extraordinary?
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-              If you're a founder building category-defining technology in Southeast Asia or Australia, we'd love to hear from you.
-            </p>
-            <button
-              onClick={() => setContactOpen(true)}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-investment-blue text-primary-foreground font-display font-semibold text-sm hover:bg-investment-blue/90 transition-colors"
-            >
-              Get in Touch <ArrowRight size={16} />
-            </button>
-          </motion.div>
-        </div>
-      </section>
 
       <Footer />
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
