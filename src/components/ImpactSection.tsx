@@ -1,30 +1,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { TrendingUp, Users, Zap, GraduationCap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const impactMetrics = [
-  { icon: Users, value: "10K+", label: "Jobs Created", sub: "across Southeast Asia" },
-  { icon: TrendingUp, value: "50K+", label: "SMEs Enabled", sub: "with digital financing" },
-  { icon: Zap, value: "50K+", label: "Households", sub: "accessing sustainable energy" },
-  { icon: GraduationCap, value: "10K+", label: "Students", sub: "accessing further education" },
-];
-
-const pillars = [
-  {
-    title: "Embracing Diversity",
-    stat: "30%+",
-    description: "Portfolio companies founded or co-founded by women. 8 nationalities on our team with a 50-50 female-male ratio.",
-  },
-  {
-    title: "Empowering Communities",
-    stat: "50K+",
-    description: "SMEs and individuals supported through innovative financing, upskilling, and digital enablement across the region.",
-  },
-  {
-    title: "Preserving the Planet",
-    stat: "50K+",
-    description: "Households accessing sustainable energy through portfolio companies driving environmental impact.",
-  },
+const highlights = [
+  { value: "350K+", label: "Jobs created across Southeast Asia" },
+  { value: "10M+", label: "Mothers empowered on Supermom" },
+  { value: "$60M", label: "Tuition fees disbursed via ErudiFi" },
+  { value: "2M+", label: "MSMEs digitally enabled" },
 ];
 
 const ImpactSection = () => {
@@ -32,76 +15,62 @@ const ImpactSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="impact" className="relative overflow-hidden bg-background" ref={ref}>
-      <div className="absolute top-0 right-[10%] w-[600px] h-[600px] rounded-full opacity-20" style={{ background: "radial-gradient(circle, hsl(111 37% 85%) 0%, transparent 70%)" }} />
-
-      <div className="relative z-10 py-28">
-        <div className="container mx-auto px-6">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl mb-20"
-          >
-            <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.25em] mb-4">
-              Impact & Sustainability
-            </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-primary leading-tight">
-              Building companies that
-              <br />
-              <span className="text-gradient-emerald">create lasting change.</span>
-            </h2>
-          </motion.div>
-
-          {/* Metrics row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mb-24">
-            {impactMetrics.map((metric, i) => (
-              <motion.div
-                key={metric.label}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                className="relative group"
+    <section id="impact" className="bg-background" ref={ref}>
+      <div className="py-24 sm:py-28">
+        <div className="mx-auto px-6" style={{ maxWidth: "1320px" }}>
+          {/* Two-column layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+            {/* Left — headline + link */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              <p className="text-[13px] font-semibold uppercase tracking-[1.8px] text-emerald mb-5">
+                Impact & ESG
+              </p>
+              <h2 className="font-display text-3xl md:text-5xl font-extrabold text-primary leading-[1.1]">
+                Building companies that{" "}
+                <span className="text-gradient-emerald">
+                  create lasting change.
+                </span>
+              </h2>
+              <p className="text-muted-foreground mt-5 text-base leading-relaxed max-w-lg">
+                Our portfolio companies have collectively created hundreds of
+                thousands of jobs, empowered millions of underserved communities,
+                and driven measurable social impact across Southeast Asia.
+              </p>
+              <Link
+                to="/impact"
+                className="inline-flex items-center gap-2 mt-8 font-display text-sm font-semibold text-emerald hover:text-primary transition-colors group"
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <metric.icon className="text-emerald" size={18} />
-                  <span className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
-                    {metric.label}
-                  </span>
-                </div>
-                <p className="font-display text-4xl md:text-5xl font-extrabold text-primary">
-                  {metric.value}
-                </p>
-                <p className="mt-1 text-muted-foreground text-sm">
-                  {metric.sub}
-                </p>
-                <div className="mt-4 h-px w-12 bg-emerald/30 group-hover:w-full transition-all duration-500" />
-              </motion.div>
-            ))}
-          </div>
+                Explore our impact framework
+                <ArrowRight
+                  size={15}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </Link>
+            </motion.div>
 
-          {/* Pillars */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {pillars.map((pillar, i) => (
-              <motion.div
-                key={pillar.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
-                className="bg-card rounded-2xl border border-border p-10 hover:shadow-lg hover:border-emerald/20 transition-all duration-300"
-              >
-                <p className="font-display text-3xl font-extrabold text-emerald mb-1">
-                  {pillar.stat}
-                </p>
-                <h3 className="font-display text-lg font-bold text-primary mb-3">
-                  {pillar.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {pillar.description}
-                </p>
-              </motion.div>
-            ))}
+            {/* Right — stat grid */}
+            <div className="grid grid-cols-2 gap-x-10 gap-y-10">
+              {highlights.map((h, i) => (
+                <motion.div
+                  key={h.label}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.15 + i * 0.1 }}
+                >
+                  <p className="font-display text-4xl md:text-5xl font-extrabold text-primary leading-none">
+                    {h.value}
+                  </p>
+                  <p className="text-muted-foreground text-sm mt-2 leading-snug">
+                    {h.label}
+                  </p>
+                  <div className="mt-3 h-px w-10 bg-emerald/30" />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
