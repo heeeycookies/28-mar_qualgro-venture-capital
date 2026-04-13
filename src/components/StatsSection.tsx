@@ -38,9 +38,10 @@ const StatsSection = () => {
                 defining companies<br />
                 across Southeast Asia.
               </p>
-              <p className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[90px] font-extrabold text-primary leading-none mt-4 sm:mt-6 mb-2 sm:mb-3">
-                <span className="block lg:inline">10% Unicorn</span>
-                <span className="block lg:inline lg:before:content-['\00a0']">Hit Rate</span>
+              <p className="font-display font-extrabold text-primary leading-none mt-4 sm:mt-6 mb-2 sm:mb-3">
+                <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[112px]">10%</span>
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[72px] mt-1">Unicorn</span>
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[72px]">Hit Rate</span>
               </p>
               <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-md">
                 Top decile performance across early-stage venture portfolios.
