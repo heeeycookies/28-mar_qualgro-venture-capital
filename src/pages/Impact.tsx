@@ -3,17 +3,12 @@ import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import {
-  Users,
-  ShieldCheck,
-  TrendingUp,
-  Compass,
   ArrowRight,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   Mail,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   impactHero,
@@ -21,7 +16,6 @@ import {
   methodology,
   prioritySDGs,
   featuredSpotlight,
-  qualgroSupport,
 } from "@/data/impact";
 
 import sdg4 from "@/assets/sdg-4.png";
@@ -36,13 +30,6 @@ const sdgImages: Record<number, string> = {
   8: sdg8,
   9: sdg9,
   10: sdg10,
-};
-
-const iconMap: Record<string, React.ElementType> = {
-  users: Users,
-  "shield-check": ShieldCheck,
-  "trending-up": TrendingUp,
-  compass: Compass,
 };
 
 const staggerContainer = {
@@ -222,12 +209,10 @@ const Impact = () => {
             {prioritySDGs.map((sdg) => (
               <motion.div key={sdg.number} variants={fadeUp}>
                 <Card className="group border-border hover:shadow-md transition-all duration-300 overflow-hidden h-full relative">
-                  {/* Bold color strip — always visible */}
                   <div
                     className="h-1.5 w-full"
                     style={{ backgroundColor: sdg.color }}
                   />
-
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4 mb-4">
                       <img
@@ -244,42 +229,26 @@ const Impact = () => {
                         </p>
                       </div>
                     </div>
-
-                    {/* Thin separator in SDG color */}
                     <div
                       className="h-px w-full mb-4 opacity-25"
                       style={{ backgroundColor: sdg.color }}
                     />
-
                     <div className="space-y-2">
                       {sdg.stats.map((stat) => (
-                        <div
-                          key={stat.label}
-                          className="flex items-baseline gap-2 text-xs"
-                        >
-                          <span
-                            className="font-display font-extrabold shrink-0"
-                            style={{ color: sdg.color }}
-                          >
+                        <div key={stat.label} className="flex items-baseline gap-2 text-xs">
+                          <span className="font-display font-extrabold shrink-0" style={{ color: sdg.color }}>
                             {stat.value}
                           </span>
-                          <span className="text-muted-foreground">
-                            {stat.label}
-                          </span>
+                          <span className="text-muted-foreground">{stat.label}</span>
                         </div>
                       ))}
                     </div>
-
-                    {/* Company tags */}
                     <div className="flex flex-wrap gap-1.5 mt-4">
                       {sdg.companies.map((c) => (
                         <span
                           key={c}
                           className="text-[10px] font-display font-semibold uppercase tracking-wider px-2 py-0.5 rounded"
-                          style={{
-                            backgroundColor: "#F3F5F7",
-                            color: sdg.color,
-                          }}
+                          style={{ backgroundColor: "#F3F5F7", color: sdg.color }}
                         >
                           {c}
                         </span>
@@ -332,12 +301,10 @@ const Impact = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
           >
-            {/* Connecting line (desktop) */}
             <div
               className="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-px"
               style={{ backgroundColor: "hsl(var(--emerald) / 0.25)" }}
             />
-
             {methodology.steps.map((s) => (
               <motion.div
                 key={s.step}
@@ -405,124 +372,90 @@ const Impact = () => {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative rounded-xl border border-border bg-card overflow-hidden"
-          >
-            <div className="absolute top-0 left-0 w-1 h-full bg-emerald" />
-
-            <div className="grid grid-cols-1 lg:grid-cols-5">
-              <div className="lg:col-span-3 p-8 md:p-10 lg:p-12">
-                <h3 className="font-display text-2xl md:text-3xl font-extrabold text-primary">
-                  {featuredSpotlight.company.name}
-                </h3>
-                <p
-                  className="font-display text-sm font-semibold mt-2"
-                  style={{ color: "hsl(140 45% 35%)" }}
-                >
-                  {featuredSpotlight.company.tagline}
-                </p>
-                <p className="text-muted-foreground text-sm mt-5 leading-relaxed">
-                  {featuredSpotlight.company.description}
-                </p>
-
-                <div className="mt-6 pt-5 border-t border-border">
-                  <p className="font-display text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
-                    Qualgro's Support
-                  </p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {featuredSpotlight.company.qualgroSupport}
-                  </p>
-                </div>
-              </div>
-
-              <div className="lg:col-span-2 bg-muted/30 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-                <div className="grid grid-cols-1 gap-6">
-                  {featuredSpotlight.company.highlights.map((h) => (
-                    <div key={h.label}>
-                      <p className="font-display text-3xl md:text-4xl font-extrabold text-primary">
-                        {h.value}
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={spotlightIndex}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.35 }}
+                className="relative rounded-xl border border-border bg-card overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 w-1 h-full bg-emerald" />
+                <div className="grid grid-cols-1 lg:grid-cols-5">
+                  <div className="lg:col-span-3 p-8 md:p-10 lg:p-12">
+                    <h3 className="font-display text-2xl md:text-3xl font-extrabold text-primary">
+                      {currentCompany.name}
+                    </h3>
+                    <p className="font-display text-sm font-semibold mt-2" style={{ color: "hsl(140 45% 35%)" }}>
+                      {currentCompany.tagline}
+                    </p>
+                    <p className="text-muted-foreground text-sm mt-5 leading-relaxed">
+                      {currentCompany.description}
+                    </p>
+                    <div className="mt-6 pt-5 border-t border-border">
+                      <p className="font-display text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                        Qualgro's Support
                       </p>
-                      <p className="text-muted-foreground text-xs mt-1">
-                        {h.label}
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {currentCompany.qualgroSupport}
                       </p>
                     </div>
-                  ))}
-                </div>
-
-                <div className="mt-8 pt-5 border-t border-border">
-                  <p className="font-display text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
-                    SDG Alignment
-                  </p>
-                  <div className="flex gap-2">
-                    {featuredSpotlight.company.sdgs.map((n) => (
-                      <img
-                        key={n}
-                        src={sdgImages[n]}
-                        alt={`SDG ${n}`}
-                        className="w-10 h-10 rounded object-cover"
-                      />
-                    ))}
+                  </div>
+                  <div className="lg:col-span-2 bg-muted/30 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+                    <div className="grid grid-cols-1 gap-6">
+                      {currentCompany.highlights.map((h) => (
+                        <div key={h.label}>
+                          <p className="font-display text-3xl md:text-4xl font-extrabold text-primary">{h.value}</p>
+                          <p className="text-muted-foreground text-xs mt-1">{h.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-8 pt-5 border-t border-border">
+                      <p className="font-display text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">SDG Alignment</p>
+                      <div className="flex gap-2">
+                        {currentCompany.sdgs.map((n) => (
+                          <img key={n} src={sdgImages[n]} alt={`SDG ${n}`} className="w-10 h-10 rounded object-cover" />
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation */}
+            <div className="flex items-center justify-between mt-6">
+              <div className="flex gap-2">
+                {featuredSpotlight.companies.map((c, i) => (
+                  <button
+                    key={c.name}
+                    onClick={() => setSpotlightIndex(i)}
+                    className={`px-4 py-1.5 rounded-full text-xs font-display font-semibold transition-all ${
+                      i === spotlightIndex
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    }`}
+                  >
+                    {c.name}
+                  </button>
+                ))}
+              </div>
+              <div className="flex gap-2">
+                <button onClick={prevSpotlight} className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors">
+                  <ChevronLeft size={16} className="text-muted-foreground" />
+                </button>
+                <button onClick={nextSpotlight} className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors">
+                  <ChevronRight size={16} className="text-muted-foreground" />
+                </button>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* ───────── 6. HOW WE SUPPORT OUR FOUNDERS ───────── */}
-      <section className="py-24 lg:py-32 bg-background">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary mb-3">
-              {qualgroSupport.sectionTitle}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              {qualgroSupport.sectionSubtitle}
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-5"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            {qualgroSupport.pillars.map((pillar) => {
-              const Icon = iconMap[pillar.icon] || Users;
-              return (
-                <motion.div
-                  key={pillar.title}
-                  variants={fadeUp}
-                  className="group relative rounded-xl border border-border p-8 bg-card hover:shadow-md transition-all duration-300 overflow-hidden"
-                >
-                  <div className="absolute top-0 left-0 w-full h-px bg-emerald scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
-                  <div className="w-10 h-10 rounded-full bg-emerald/10 flex items-center justify-center mb-4">
-                    <Icon className="text-emerald" size={18} />
-                  </div>
-                  <h3 className="font-display text-lg font-extrabold text-primary mb-2">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {pillar.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ───────── 7. CTA ───────── */}
+      {/* ───────── 6. CTA ───────── */}
       <section
         className="relative py-24 lg:py-32 overflow-hidden"
         style={{
