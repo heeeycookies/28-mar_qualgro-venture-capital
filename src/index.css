@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,45 +6,46 @@
 
 @layer base {
   :root {
-    --background: 210 20% 96%;
-    --foreground: 222 84% 5%;
+    --background: 200 14% 97%;
+    --foreground: 202 73% 21%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 84% 5%;
+    --card-foreground: 202 73% 21%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 84% 5%;
+    --popover-foreground: 202 73% 21%;
 
-    --primary: 217 91% 11%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 202 73% 21%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 97%;
-    --secondary-foreground: 217 91% 11%;
+    --secondary: 200 12% 93%;
+    --secondary-foreground: 202 73% 21%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 200 12% 93%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 217 91% 60%;
+    --accent: 163 59% 30%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 210 14% 89%;
+    --input: 210 14% 89%;
+    --ring: 163 59% 30%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
     /* Custom tokens */
-    --navy: 202 64% 33%;
-    --navy-light: 202 50% 25%;
-    --emerald: 111 37% 39%;
+    --navy: 200 75% 24%;
+    --navy-light: 200 60% 28%;
+    --emerald: 163 59% 30%;
     --emerald-foreground: 0 0% 100%;
-    --investment-blue: 202 64% 35%;
-    --surface-alt: 210 15% 93%;
-    --hero-text-light: 214 47% 90%;
-    --hero-highlight-green: 90 36% 81%;
+    --investment-blue: 200 75% 24%;
+    --surface-alt: 200 12% 93%;
+    --hero-text-light: 212 10% 81%;
+    --hero-highlight-green: 163 59% 70%;
+    --headline-grey: 212 10% 81%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -53,9 +54,8 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 163 59% 30%;
   }
-
   .dark {
     --background: 222 84% 5%;
     --foreground: 210 40% 98%;
