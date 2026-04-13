@@ -72,6 +72,7 @@ export default {
         "surface-alt": "hsl(var(--surface-alt))",
         "hero-text-light": "hsl(var(--hero-text-light))",
         "hero-highlight-green": "hsl(var(--hero-highlight-green))",
+        "headline-grey": "hsl(var(--headline-grey))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
