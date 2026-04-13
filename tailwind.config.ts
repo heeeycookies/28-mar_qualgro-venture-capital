@@ -8,13 +8,13 @@ export default {
     container: {
       center: true,
       padding: {
-        DEFAULT: "2rem",
+        DEFAULT: "1.5rem",
         md: "4rem",
         lg: "7rem",
         xl: "8rem",
       },
       screens: {
-        "2xl": "1280px",
+        "2xl": "1240px",
       },
     },
     extend: {
@@ -23,8 +23,8 @@ export default {
         '10xl': ['10rem', { lineHeight: '1' }],
       },
       fontFamily: {
-        display: ['Roboto', 'system-ui', 'sans-serif'],
-        body: ['Lato', 'system-ui', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
