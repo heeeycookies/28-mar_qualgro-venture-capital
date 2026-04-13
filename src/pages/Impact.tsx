@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import {
   Users,
   ShieldCheck,
@@ -8,6 +9,8 @@ import {
   Compass,
   ArrowRight,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Mail,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
