@@ -135,7 +135,7 @@ const teamMembers: TeamMember[] = [
     role: "Finance & Ops Analyst",
     category: "operations",
     bio: "Laetitia is a Finance and Operations Analyst at Qualgro, helping ensure smooth day-to-day operations and investor reporting across the firm's funds.",
-    photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/qualgro-team-laetitia-chia-min-qk84p6ckv5wp6v3lei3tnfchtjliegbk9q14qum026.jpg",
+    photo: "/images/team/laetitia-chia.png",
   },
   {
     name: "Shimin Cai",
