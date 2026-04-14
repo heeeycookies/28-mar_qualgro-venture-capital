@@ -16,7 +16,7 @@ const StatsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-12 sm:py-20 md:py-24" ref={ref}>
+    <section id="about" className="!py-12 sm:!py-20 md:!py-24" ref={ref}>
       <div className="mx-auto px-4 sm:px-6" style={{ maxWidth: "1320px" }}>
         {/* Top row: 2 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-[2.2fr_1fr] gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6 md:mb-8">
