@@ -39,7 +39,7 @@ const ThesisSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-28 sm:py-[120px] bg-surface-alt" ref={ref}>
+    <section className="py-20 sm:py-[120px] bg-surface-alt" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-2xl mb-8 sm:mb-14">
           <motion.p

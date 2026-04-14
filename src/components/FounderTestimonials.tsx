@@ -38,7 +38,7 @@ const FounderTestimonials = () => {
   const doubled = [...testimonials, ...testimonials];
 
   return (
-    <section className="py-28 sm:py-[120px] bg-surface-alt overflow-hidden">
+    <section className="py-20 sm:py-[120px] bg-surface-alt overflow-hidden">
       <div className="container mx-auto px-6 mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
