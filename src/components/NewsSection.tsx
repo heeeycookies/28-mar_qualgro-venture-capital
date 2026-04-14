@@ -32,7 +32,7 @@ const NewsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="news" className="py-24 bg-surface-alt" ref={ref}>
+    <section id="news" className="py-28 sm:py-[120px] bg-surface-alt" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

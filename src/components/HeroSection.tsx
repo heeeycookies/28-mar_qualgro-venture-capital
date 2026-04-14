@@ -6,7 +6,7 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start">
           {/* Left column */}
-          <div>
+          <div className="max-w-[560px]">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ const HeroSection = () => {
             className="lg:pt-20"
           >
             <div className="border-l-[3px] border-emerald pl-5 sm:pl-7">
-              <p className="text-foreground/60 text-sm sm:text-lg leading-relaxed font-medium">
+              <p className="text-foreground/60 text-sm sm:text-lg leading-relaxed font-medium max-w-[520px]">
                 We don't just invest capital; we engineer growth. By combining deep regional expertise with a global scaling framework, Qualgro transforms ambitious Southeast Asian startups into international category leaders.
               </p>
             </div>

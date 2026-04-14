@@ -13,7 +13,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background" ref={ref}>
+    <section id="contact" className="py-28 sm:py-[120px] bg-background" ref={ref}>
       <div className="container mx-auto px-6 max-w-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
