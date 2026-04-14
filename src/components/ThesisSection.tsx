@@ -40,7 +40,7 @@ const ThesisSection = () => {
 
   return (
     <section className="py-20 sm:py-[120px] bg-surface-alt" ref={ref}>
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="mx-auto px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
         <div className="max-w-2xl mb-8 sm:mb-14">
           <motion.p
             custom={0}
