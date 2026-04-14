@@ -42,7 +42,7 @@
     --emerald: 163 59% 30%;
     --emerald-foreground: 0 0% 100%;
     --investment-blue: 200 75% 24%;
-    --surface-alt: 200 14% 97%;
+    --surface-alt: 24 20% 95%;
     --hero-text-light: 212 10% 81%;
     --hero-highlight-green: 163 59% 70%;
     --headline-grey: 212 10% 81%;
@@ -92,15 +92,6 @@
     @apply font-display;
   }
 
-
-  main > section p,
-  section p {
-    max-width: 520px;
-  }
-
-  .card p, [class*="rounded-"] > p {
-    max-width: 420px;
-  }
 }
 
 @layer utilities {
