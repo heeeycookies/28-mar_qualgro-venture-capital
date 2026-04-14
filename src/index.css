@@ -92,9 +92,6 @@
     @apply font-display;
   }
 
-  main > section {
-    @apply py-24 sm:py-[120px];
-  }
 
   main > section p,
   section p {
