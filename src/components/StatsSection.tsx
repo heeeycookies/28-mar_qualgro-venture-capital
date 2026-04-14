@@ -66,7 +66,7 @@ const StatsSection = () => {
             </p>
             <div>
               <p className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[96px] font-extrabold text-white leading-none mt-4 sm:mt-6 mb-2 sm:mb-3">
-                35+
+                33+
               </p>
               <p className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-white/90 leading-tight">
                 Companies Backed
