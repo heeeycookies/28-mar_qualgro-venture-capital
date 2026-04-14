@@ -36,7 +36,7 @@ const HeroSection = () => {
             className="lg:pt-20"
           >
             <div className="border-l-[3px] border-emerald pl-5 sm:pl-7">
-              <p className="text-foreground/60 text-sm sm:text-lg leading-relaxed font-medium">
+              <p className="text-foreground/60 text-sm sm:text-lg leading-relaxed font-medium max-w-[520px]">
                 We don't just invest capital; we engineer growth. By combining deep regional expertise with a global scaling framework, Qualgro transforms ambitious Southeast Asian startups into international category leaders.
               </p>
             </div>
