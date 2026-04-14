@@ -16,8 +16,8 @@ const StatsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-12 sm:py-20 md:py-24" ref={ref}>
-      <div className="mx-auto px-4 sm:px-6" style={{ maxWidth: "1320px" }}>
+    <section id="about" className="py-20 sm:py-[120px]" ref={ref}>
+      <div className="mx-auto px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
         {/* Top row: 2 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-[2.2fr_1fr] gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6 md:mb-8">
           {/* Left — Track Record headline card */}
@@ -26,8 +26,8 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col justify-between min-h-[280px] sm:min-h-[340px] md:min-h-[380px]"
-            style={{ background: "#FBF9F8" }}
+            className="stat-card rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col justify-between min-h-[280px] sm:min-h-[340px] md:min-h-[380px]"
+            style={{ background: "#F8F3F2" }}
           >
             <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#006D4E" }}>
               Track Record
@@ -58,7 +58,7 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col justify-between min-h-[280px] sm:min-h-[340px] md:min-h-[380px]"
+            className="stat-card-dark rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col justify-between min-h-[280px] sm:min-h-[340px] md:min-h-[380px]"
             style={{ background: "#004971" }}
           >
             <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#4ECBA0" }}>
@@ -86,7 +86,7 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12"
+            className="stat-card rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12"
             style={{ background: "#F8F3F2" }}
           >
             <p className="font-display text-4xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
@@ -103,7 +103,7 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12"
+            className="stat-card-dark rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12"
             style={{ background: "#006D4E" }}
           >
             <p className="font-display text-3xl sm:text-4xl md:text-[52px] font-extrabold text-white leading-tight mb-2 sm:mb-3">
@@ -120,7 +120,7 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12"
+            className="stat-card rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12"
             style={{ background: "#EAE8E7" }}
           >
             <p className="font-display text-4xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
