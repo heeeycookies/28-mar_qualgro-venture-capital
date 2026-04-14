@@ -92,15 +92,16 @@
     @apply font-display;
   }
 
-  section {
-    @apply py-[120px];
+  main > section {
+    @apply py-24 sm:py-[120px];
   }
 
+  main > section p,
   section p {
     max-width: 520px;
   }
 
-  .card p, [class*="rounded"] p {
+  .card p, [class*="rounded-"] > p {
     max-width: 420px;
   }
 }
