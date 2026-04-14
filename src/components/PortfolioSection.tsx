@@ -95,7 +95,7 @@ const PortfolioSection = () => {
 
         <div
           ref={scrollContainerRef}
-          className="overflow-x-hidden overflow-y-visible scrollbar-hide py-[10px] bg-surface-alt"
+          className="overflow-x-hidden overflow-y-visible scrollbar-hide py-[10px] bg-background"
           style={{ paddingLeft: "50vw", paddingRight: "50vw" }}
         >
           <div className="flex gap-[6px] pb-4" style={{ width: "max-content" }}>
