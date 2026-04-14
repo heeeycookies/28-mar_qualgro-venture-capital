@@ -12,7 +12,7 @@ const SDGGrid = () => {
     setExpandedId((prev) => (prev === id ? null : id));
 
   return (
-    <section className="py-28 bg-background">
+    <section className="py-28 sm:py-[120px] bg-background">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
