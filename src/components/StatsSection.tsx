@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -14,20 +14,26 @@ const fadeUp = {
 const StatsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y1 = useTransform(scrollYProgress, [0, 1], [40, -20]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [60, -10]);
 
   return (
     <section id="about" className="py-20 sm:py-[120px]" ref={ref}>
       <div className="mx-auto px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
         {/* Top row: 2 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-[2.2fr_1fr] gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6 md:mb-8">
-          {/* Left — Track Record headline card */}
           <motion.div
             custom={0}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
+            style={{ y: y1 }}
             className="stat-card rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col justify-between min-h-[280px] sm:min-h-[340px] md:min-h-[380px]"
-            style={{ background: "#F8F3F2" }}
+            {...{ style: { background: "#F8F3F2", y: y1 } }}
           >
             <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#006D4E" }}>
               Track Record
@@ -52,14 +58,14 @@ const StatsSection = () => {
             </div>
           </motion.div>
 
-          {/* Right — 35+ */}
           <motion.div
             custom={1}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
+            style={{ y: y2 }}
             className="stat-card-dark rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col justify-between min-h-[280px] sm:min-h-[340px] md:min-h-[380px]"
-            style={{ background: "#004971" }}
+            {...{ style: { background: "#004971", y: y2 } }}
           >
             <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#4ECBA0" }}>
               Portfolio
@@ -80,7 +86,6 @@ const StatsSection = () => {
 
         {/* Bottom row: 3 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-          {/* 85% */}
           <motion.div
             custom={2}
             initial="hidden"
@@ -97,7 +102,6 @@ const StatsSection = () => {
             </p>
           </motion.div>
 
-          {/* Series B Focus */}
           <motion.div
             custom={3}
             initial="hidden"
@@ -114,7 +118,6 @@ const StatsSection = () => {
             </p>
           </motion.div>
 
-          {/* 12+ */}
           <motion.div
             custom={4}
             initial="hidden"

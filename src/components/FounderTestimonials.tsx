@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Quote } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const testimonials = [
   {
@@ -36,14 +36,21 @@ const testimonials = [
 const FounderTestimonials = () => {
   const [isPaused, setIsPaused] = useState(false);
   const doubled = [...testimonials, ...testimonials];
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const headingY = useTransform(scrollYProgress, [0, 1], [30, -15]);
 
   return (
-    <section className="py-20 sm:py-[120px] bg-surface-alt overflow-hidden">
+    <section ref={sectionRef} className="py-20 sm:py-[120px] bg-surface-alt overflow-hidden">
       <div className="container mx-auto px-6 mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          style={{ y: headingY }}
           className="text-center"
         >
           <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4">

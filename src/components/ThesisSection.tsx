@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -37,11 +37,16 @@ const themes = [
 const ThesisSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const headlineY = useTransform(scrollYProgress, [0, 1], [30, -15]);
 
   return (
     <section className="py-20 sm:py-[120px] bg-surface-alt" ref={ref}>
       <div className="mx-auto px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
-        <div className="max-w-2xl mb-8 sm:mb-14">
+        <motion.div style={{ y: headlineY }} className="max-w-2xl mb-8 sm:mb-14">
           <motion.p
             custom={0}
             initial="hidden"
@@ -69,7 +74,7 @@ const ThesisSection = () => {
           >
             We invest at the intersection of <strong className="text-investment-blue font-bold">AI</strong>, <strong className="text-investment-blue font-bold">Data</strong>, and <strong className="text-investment-blue font-bold">Impact</strong> — backing Series A founders in Southeast Asia who are building technology that scales globally.
           </motion.p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {themes.map((theme, i) => (

@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -13,18 +13,23 @@ const highlights = [
 const ImpactSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const leftY = useTransform(scrollYProgress, [0, 1], [40, -20]);
+  const rightY = useTransform(scrollYProgress, [0, 1], [60, -10]);
 
   return (
     <section id="impact" className="bg-background" ref={ref}>
       <div className="py-20 sm:py-[120px]">
         <div className="mx-auto px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
-          {/* Two-column layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
-            {/* Left — headline + link */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
+              style={{ y: leftY }}
             >
               <p className="text-[13px] font-semibold uppercase tracking-[1.8px] text-emerald mb-5">
                 Impact & ESG
@@ -52,8 +57,7 @@ const ImpactSection = () => {
               </Link>
             </motion.div>
 
-            {/* Right — stat grid */}
-            <div className="grid grid-cols-2 gap-x-10 gap-y-10">
+            <motion.div style={{ y: rightY }} className="grid grid-cols-2 gap-x-10 gap-y-10">
               {highlights.map((h, i) => (
                 <motion.div
                   key={h.label}
@@ -70,7 +74,7 @@ const ImpactSection = () => {
                   <div className="mt-3 h-px w-10 bg-emerald/30" />
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
