@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -30,6 +30,11 @@ const news = [
 const NewsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const headingY = useTransform(scrollYProgress, [0, 1], [25, -10]);
 
   return (
     <section id="news" className="py-20 sm:py-[120px] bg-surface-alt" ref={ref}>
@@ -38,6 +43,7 @@ const NewsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
+          style={{ y: headingY }}
           className="text-center mb-16"
         >
           <p className="text-emerald font-display font-semibold text-sm uppercase tracking-[0.2em] mb-3">

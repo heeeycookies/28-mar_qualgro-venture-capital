@@ -1,8 +1,18 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const HeroSection = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const descY = useTransform(scrollYProgress, [0, 1], [0, 40]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
+
   return (
-    <section className="relative pt-20 sm:pt-28 pb-10 sm:pb-16 bg-background overflow-hidden">
+    <section ref={ref} className="relative pt-20 sm:pt-28 pb-10 sm:pb-16 bg-background overflow-hidden">
       <div className="relative z-10 container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start">
           {/* Left column */}
@@ -20,6 +30,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
+              style={{ y: textY }}
               className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.02] text-navy"
             >
               Architecting
@@ -33,6 +44,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
+            style={{ y: descY, opacity: bgOpacity }}
             className="lg:pt-20"
           >
             <div className="border-l-[3px] border-emerald pl-5 sm:pl-7 mx-0 sm:mx-[25px] px-0 sm:px-[90px]">

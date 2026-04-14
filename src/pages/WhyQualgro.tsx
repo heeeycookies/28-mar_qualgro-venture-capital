@@ -1,11 +1,10 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import PageHero from "@/components/PageHero";
 import FounderTestimonials from "@/components/FounderTestimonials";
 import ContactModal from "@/components/ContactModal";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Target, Users, Globe, TrendingUp, ArrowRight, CheckCircle, Brain, Database, BarChart3, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const thesisThemes = [
   {
@@ -69,56 +68,117 @@ const supportAreas = [
 const WhyQualgro = () => {
   const [contactOpen, setContactOpen] = useState(false);
 
+  // Parallax refs
+  const heroRef = useRef<HTMLDivElement>(null);
+  const thesisRef = useRef<HTMLDivElement>(null);
+  const criteriaRef = useRef<HTMLDivElement>(null);
+  const supportRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroTextY = useTransform(heroProgress, [0, 1], [0, 60]);
+  const heroBgY = useTransform(heroProgress, [0, 1], [0, 80]);
+  const heroOpacity = useTransform(heroProgress, [0, 0.7], [1, 0.3]);
+
+  const { scrollYProgress: thesisProgress } = useScroll({
+    target: thesisRef,
+    offset: ["start end", "end start"],
+  });
+  const thesisHeadY = useTransform(thesisProgress, [0, 1], [30, -15]);
+
+  const { scrollYProgress: criteriaProgress } = useScroll({
+    target: criteriaRef,
+    offset: ["start end", "end start"],
+  });
+  const criteriaHeadY = useTransform(criteriaProgress, [0, 1], [25, -12]);
+
+  const { scrollYProgress: supportProgress } = useScroll({
+    target: supportRef,
+    offset: ["start end", "end start"],
+  });
+  const supportLeftY = useTransform(supportProgress, [0, 1], [40, -15]);
+  const supportRightY = useTransform(supportProgress, [0, 1], [60, -10]);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero */}
-      <PageHero
-        tagline="Investment Thesis"
-        title={<>AI & Data · <span className="text-investment-blue">Impact</span></>}
-        description="Qualgro invests at the intersection of artificial intelligence, data infrastructure, and measurable impact. We back Series A founders in Southeast Asia building technology that scales globally."
-      >
-        <button
-          onClick={() => setContactOpen(true)}
-          className="mt-8 inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-investment-blue text-primary-foreground font-display font-semibold text-sm hover:bg-investment-blue/90 transition-colors"
+      {/* Hero — full reimagine */}
+      <section ref={heroRef} className="relative pt-28 sm:pt-36 pb-20 sm:pb-28 overflow-hidden">
+        {/* Gradient background */}
+        <motion.div
+          style={{ y: heroBgY }}
+          className="absolute inset-0 -z-10"
+          aria-hidden
         >
-          Get in Touch <ArrowRight size={16} />
-        </button>
-      </PageHero>
+          <div className="absolute inset-0" style={{ background: "linear-gradient(170deg, hsl(200 30% 95%) 0%, hsl(24 33% 97.6%) 50%, hsl(160 20% 94%) 100%)" }} />
+          <div className="absolute top-[15%] right-[10%] w-[500px] h-[500px] rounded-full blur-[140px] opacity-40" style={{ background: "hsl(204 63% 85%)" }} />
+          <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full blur-[120px] opacity-30" style={{ background: "hsl(163 59% 80%)" }} />
+        </motion.div>
+
+        <div className="relative z-10 container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            style={{ y: heroTextY, opacity: heroOpacity }}
+            className="max-w-3xl"
+          >
+            <p className="text-emerald font-display font-bold text-xs sm:text-sm uppercase tracking-[0.25em] mb-4">
+              Investment Thesis
+            </p>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-primary leading-[1.05]">
+              AI & Data ·{" "}
+              <span className="text-gradient-emerald">Impact</span>
+            </h1>
+            <p className="mt-6 sm:mt-8 text-muted-foreground text-sm sm:text-lg leading-relaxed max-w-2xl">
+              Qualgro invests at the intersection of artificial intelligence, data infrastructure, and measurable impact. We back Series A founders in Southeast Asia building technology that scales globally.
+            </p>
+            <button
+              onClick={() => setContactOpen(true)}
+              className="mt-8 sm:mt-10 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-lg bg-investment-blue text-primary-foreground font-display font-semibold text-sm hover:bg-investment-blue/90 transition-all hover:translate-y-[-1px] hover:shadow-lg"
+            >
+              Get in Touch <ArrowRight size={16} />
+            </button>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Thesis Themes */}
-      <section className="py-24 bg-surface-alt">
+      <section ref={thesisRef} className="py-24 sm:py-32 bg-background">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            style={{ y: thesisHeadY }}
+            className="text-center mb-16 sm:mb-20"
           >
             <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3">
               Where We Invest
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-black text-investment-blue">
+            <h2 className="font-display text-3xl md:text-5xl font-black text-primary">
               Our Thesis Pillars
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {thesisThemes.map((theme, i) => (
               <motion.div
                 key={theme.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-card rounded-xl border border-border p-8 hover:shadow-lg hover:border-investment-blue/20 transition-all"
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="group bg-card rounded-2xl border border-border p-7 sm:p-8 hover:shadow-xl hover:border-investment-blue/20 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-investment-blue/10 flex items-center justify-center">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-investment-blue/8 flex items-center justify-center group-hover:bg-investment-blue/15 transition-colors">
                     <theme.icon className="text-investment-blue" size={20} />
                   </div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-investment-blue">
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-investment-blue">
                     {theme.label}
                   </span>
                 </div>
@@ -135,13 +195,14 @@ const WhyQualgro = () => {
       </section>
 
       {/* What We Look For */}
-      <section className="py-24 bg-background">
+      <section ref={criteriaRef} className="py-24 sm:py-32 bg-surface-alt">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            style={{ y: criteriaHeadY }}
+            className="text-center mb-16 sm:mb-20"
           >
             <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3">
               Investment Criteria
@@ -151,17 +212,19 @@ const WhyQualgro = () => {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 max-w-4xl mx-auto">
             {criteria.map((item, i) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-card rounded-xl border border-border p-8 hover:shadow-lg transition-all"
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="group relative bg-card rounded-2xl border border-border p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
-                <item.icon className="text-investment-blue mb-4" size={28} />
+                {/* Accent line on hover */}
+                <div className="absolute top-0 left-0 w-full h-[3px] bg-emerald scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
+                <item.icon className="text-investment-blue mb-5" size={26} />
                 <h3 className="font-display text-lg font-bold text-primary mb-3">
                   {item.title}
                 </h3>
@@ -175,13 +238,14 @@ const WhyQualgro = () => {
       </section>
 
       {/* How We Support */}
-      <section className="py-24 bg-surface-alt">
+      <section ref={supportRef} className="py-24 sm:py-32 bg-background">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              style={{ y: supportLeftY }}
             >
               <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3">
                 Post-Investment
@@ -189,38 +253,50 @@ const WhyQualgro = () => {
               <h2 className="font-display text-3xl md:text-4xl font-black text-primary mb-6">
                 How We Support Our Founders
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-8">
+              <p className="text-muted-foreground leading-relaxed mb-8 max-w-lg">
                 Beyond capital, we roll up our sleeves and work alongside you. Our team and network are designed to help you navigate the unique challenges of scaling in Southeast Asia and beyond.
               </p>
               <ul className="space-y-4">
-                {supportAreas.map((area) => (
-                  <li key={area} className="flex items-start gap-3">
+                {supportAreas.map((area, i) => (
+                  <motion.li
+                    key={area}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.06 }}
+                    className="flex items-start gap-3"
+                  >
                     <CheckCircle className="text-emerald mt-0.5 flex-shrink-0" size={18} />
                     <span className="text-sm text-foreground">{area}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-card rounded-2xl border border-border p-10 text-center"
+              style={{ y: supportRightY }}
+              className="bg-card rounded-2xl border border-border p-10 sm:p-12"
             >
-              <p className="font-display text-7xl font-black text-investment-blue mb-2">33+</p>
-              <p className="text-muted-foreground mb-6">Companies backed across 2 funds</p>
-              <div className="grid grid-cols-3 gap-4">
-                <div>
-                  <p className="font-display text-3xl font-black text-investment-blue">4</p>
-                  <p className="text-xs text-muted-foreground">Unicorns</p>
+              <div className="text-center mb-8">
+                <p className="font-display text-7xl sm:text-8xl font-black text-investment-blue leading-none">33+</p>
+                <p className="text-muted-foreground mt-2 text-sm">Companies backed across 2 funds</p>
+              </div>
+              <div className="h-px w-full bg-border mb-8" />
+              <div className="grid grid-cols-3 gap-6">
+                <div className="text-center">
+                  <p className="font-display text-3xl sm:text-4xl font-black text-investment-blue">4</p>
+                  <p className="text-xs text-muted-foreground mt-1">Unicorns</p>
                 </div>
-                <div>
-                  <p className="font-display text-5xl font-black text-investment-blue">9</p>
-                  <p className="text-[10px] text-muted-foreground">Full Exits</p>
+                <div className="text-center">
+                  <p className="font-display text-5xl sm:text-6xl font-black text-investment-blue leading-none">9</p>
+                  <p className="text-[10px] text-muted-foreground mt-1">Full Exits</p>
                 </div>
-                <div>
-                  <p className="font-display text-3xl font-black text-investment-blue">10%</p>
-                  <p className="text-xs text-muted-foreground">Hit Rate</p>
+                <div className="text-center">
+                  <p className="font-display text-3xl sm:text-4xl font-black text-investment-blue">10%</p>
+                  <p className="text-xs text-muted-foreground mt-1">Hit Rate</p>
                 </div>
               </div>
             </motion.div>
@@ -230,7 +306,6 @@ const WhyQualgro = () => {
 
       {/* Founder Testimonials */}
       <FounderTestimonials />
-
 
       <Footer />
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
