@@ -215,8 +215,8 @@ const WhyQualgro = () => {
                   <p className="text-xs text-muted-foreground">Unicorns</p>
                 </div>
                 <div>
-                  <p className="font-display text-3xl font-black text-investment-blue">9</p>
-                  <p className="text-xs text-muted-foreground">Full Exits</p>
+                  <p className="font-display text-5xl font-black text-investment-blue">9</p>
+                  <p className="text-[10px] text-muted-foreground">Full Exits</p>
                 </div>
                 <div>
                   <p className="font-display text-3xl font-black text-investment-blue">10%</p>
