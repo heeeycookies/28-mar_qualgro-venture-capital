@@ -42,10 +42,11 @@ const ThesisSection = () => {
     offset: ["start end", "end start"],
   });
   const headlineY = useTransform(scrollYProgress, [0, 1], [30, -15]);
+  const cardScale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.92, 1, 1, 0.96]);
 
   return (
-    <section className="py-20 sm:py-[120px] bg-surface-alt" ref={ref}>
-      <div className="mx-auto px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
+    <section className="py-16 sm:py-[100px] bg-surface-alt" ref={ref}>
+      <div className="mx-auto px-6 sm:px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
         <motion.div style={{ y: headlineY }} className="max-w-2xl mb-8 sm:mb-14">
           <motion.p
             custom={0}
@@ -76,7 +77,7 @@ const ThesisSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <motion.div style={{ scale: cardScale }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {themes.map((theme, i) => (
             <motion.div
               key={theme.title}
@@ -89,15 +90,15 @@ const ThesisSection = () => {
               <span className="inline-block text-xs font-black uppercase tracking-wider text-investment-blue bg-investment-blue/10 px-3 py-1 rounded-full mb-4">
                 {theme.label}
               </span>
-              <h4 className="font-display text-base font-bold text-primary mb-2">
+              <h4 className="font-display text-sm sm:text-base font-bold text-primary mb-2">
                 {theme.title}
               </h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                 {theme.desc}
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

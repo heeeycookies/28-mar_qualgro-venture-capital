@@ -8,8 +8,8 @@ import ContactModal from "@/components/ContactModal";
 const navLinks = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "Team", href: "/team" },
-  { label: "News", href: "/news" },
   { label: "Impact", href: "/impact" },
+  { label: "News", href: "/news" },
   { label: "Why Qualgro", href: "/why-qualgro" },
 ];
 

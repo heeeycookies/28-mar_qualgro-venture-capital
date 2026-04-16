@@ -20,10 +20,11 @@ const StatsSection = () => {
   });
   const y1 = useTransform(scrollYProgress, [0, 1], [40, -20]);
   const y2 = useTransform(scrollYProgress, [0, 1], [60, -10]);
+  const sectionScale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.93, 1, 1, 0.97]);
 
   return (
-    <section id="about" className="py-20 sm:py-[120px]" ref={ref}>
-      <div className="mx-auto px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
+    <motion.section id="about" className="py-20 sm:py-[120px]" ref={ref} style={{ scale: sectionScale }}>
+      <div className="mx-auto px-6 sm:px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
         {/* Top row: 2 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-[2.2fr_1fr] gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6 md:mb-8">
           <motion.div
@@ -31,28 +32,27 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            style={{ y: y1 }}
-            className="stat-card rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col justify-between min-h-[280px] sm:min-h-[340px] md:min-h-[380px]"
-            {...{ style: { background: "#F8F3F2", y: y1 } }}
+            style={{ background: "#F8F3F2", y: y1 }}
+            className="stat-card rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col justify-between min-h-[260px] sm:min-h-[340px] md:min-h-[380px]"
           >
             <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#006D4E" }}>
               Track Record
             </p>
             <div>
-              <p className="font-display text-lg sm:text-xl md:text-2xl lg:text-[28px] font-bold text-primary leading-snug mt-4 sm:mt-6">
+              <p className="font-display text-base sm:text-xl md:text-2xl lg:text-[28px] font-bold text-primary leading-snug mt-4 sm:mt-6">
                 Partnering with<br />
                 exceptional founders<br />
                 across Southeast Asia.
               </p>
-              <div className="mt-6 sm:mt-8 mb-2 sm:mb-3">
+              <div className="mt-4 sm:mt-8 mb-2 sm:mb-3">
                 <p className="font-display font-extrabold text-primary leading-none">
-                  <span className="text-[72px] sm:text-[80px] md:text-[90px] lg:text-[100px]">10%</span>
+                  <span className="text-[56px] sm:text-[80px] md:text-[90px] lg:text-[100px]">10%</span>
                 </p>
-                <p className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[46px] font-extrabold text-primary leading-tight mt-1">
+                <p className="font-display text-xl sm:text-3xl md:text-4xl lg:text-[46px] font-extrabold text-primary leading-tight mt-1">
                   Unicorn Hit Rate
                 </p>
               </div>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-md mt-3">
+              <p className="text-muted-foreground text-xs sm:text-base leading-relaxed max-w-md mt-3">
                 Top decile performance across early-stage venture portfolios.
               </p>
             </div>
@@ -63,21 +63,20 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            style={{ y: y2 }}
-            className="stat-card-dark rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col justify-between min-h-[280px] sm:min-h-[340px] md:min-h-[380px]"
-            {...{ style: { background: "#004971", y: y2 } }}
+            style={{ background: "#004971", y: y2 }}
+            className="stat-card-dark rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col justify-between min-h-[260px] sm:min-h-[340px] md:min-h-[380px]"
           >
             <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#4ECBA0" }}>
               Portfolio
             </p>
             <div>
-              <p className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[96px] font-extrabold text-white leading-none mt-4 sm:mt-6 mb-2 sm:mb-3">
+              <p className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[96px] font-extrabold text-white leading-none mt-4 sm:mt-6 mb-2 sm:mb-3">
                 30+
               </p>
-              <p className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-white/90 leading-tight">
+              <p className="font-display text-lg sm:text-2xl md:text-3xl font-bold text-white/90 leading-tight">
                 Companies Backed
               </p>
-              <p className="text-white/60 mt-3 text-sm sm:text-base leading-relaxed">
+              <p className="text-white/60 mt-3 text-xs sm:text-base leading-relaxed">
                 High-conviction investments across Southeast Asia's most promising ventures.
               </p>
             </div>
@@ -91,13 +90,13 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="stat-card rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12"
+            className="stat-card rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12"
             style={{ background: "#F8F3F2" }}
           >
-            <p className="font-display text-4xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
+            <p className="font-display text-3xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
               85%
             </p>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
               Follow-on rate from top-tier co-investors across portfolio rounds.
             </p>
           </motion.div>
@@ -107,13 +106,13 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="stat-card-dark rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12"
+            className="stat-card-dark rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12"
             style={{ background: "#006D4E" }}
           >
-            <p className="font-display text-3xl sm:text-4xl md:text-[52px] font-extrabold text-white leading-tight mb-2 sm:mb-3">
+            <p className="font-display text-2xl sm:text-4xl md:text-[52px] font-extrabold text-white leading-tight mb-2 sm:mb-3">
               Series B Focus
             </p>
-            <p className="text-sm sm:text-base text-white/80 leading-relaxed">
+            <p className="text-xs sm:text-base text-white/80 leading-relaxed">
               Sweet spot for high-conviction deployment and maximum scaling value.
             </p>
           </motion.div>
@@ -123,19 +122,19 @@ const StatsSection = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
-            className="stat-card rounded-[14px] sm:rounded-2xl p-8 sm:p-10 md:p-12"
+            className="stat-card rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12"
             style={{ background: "#EAE8E7" }}
           >
-            <p className="font-display text-4xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
+            <p className="font-display text-3xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
               12+
             </p>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
               Full exits delivered — among the highest for any SEA-focused fund.
             </p>
           </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
