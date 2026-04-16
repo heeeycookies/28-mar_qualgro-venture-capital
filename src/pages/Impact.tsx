@@ -213,66 +213,77 @@ const Impact = () => {
             </h2>
           </motion.div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {prioritySDGs.map((sdg) => (
-              <motion.div key={sdg.number} variants={fadeUp}>
-                <Card className="group border-border hover:shadow-md transition-all duration-300 overflow-hidden h-full relative">
-                  <div
-                    className="h-1.5 w-full"
-                    style={{ backgroundColor: sdg.color }}
+          {/* Masonry-style SDG cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {prioritySDGs.map((sdg, i) => {
+              const isLarge = i === 0 || i === 3;
+              return (
+                <motion.div
+                  key={sdg.number}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className={`group relative rounded-2xl overflow-hidden cursor-default ${
+                    isLarge ? "md:row-span-2 min-h-[420px]" : "min-h-[280px]"
+                  }`}
+                >
+                  {/* Background photo */}
+                  <img
+                    src={sdgPhotos[sdg.number]}
+                    alt={sdg.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4 mb-4">
+                  {/* Dark gradient overlay */}
+                  <div
+                    className="absolute inset-0 transition-opacity duration-500"
+                    style={{
+                      background: `linear-gradient(to top, ${sdg.color}dd 0%, ${sdg.color}88 40%, transparent 100%)`,
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500" />
+
+                  {/* Content */}
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-8">
+                    {/* SDG icon badge */}
+                    <div className="absolute top-5 right-5">
                       <img
                         src={sdgImages[sdg.number]}
-                        alt={`SDG ${sdg.number} – ${sdg.title}`}
-                        className="w-14 h-14 rounded-md shrink-0 object-cover"
+                        alt={`SDG ${sdg.number}`}
+                        className="w-12 h-12 rounded-lg shadow-lg opacity-90"
                       />
-                      <div className="min-w-0">
-                        <h3 className="font-display text-base font-extrabold text-primary leading-snug">
-                          {sdg.title}
-                        </h3>
-                        <p className="text-muted-foreground text-xs mt-1 leading-relaxed line-clamp-3">
-                          {sdg.description}
-                        </p>
+                    </div>
+
+                    <div>
+                      <h3 className="font-display text-xl sm:text-2xl font-extrabold text-white leading-snug mb-2">
+                        {sdg.title}
+                      </h3>
+                      <p className="text-white/75 text-sm leading-relaxed mb-5 max-w-sm">
+                        {sdg.description}
+                      </p>
+
+                      {/* Company tags */}
+                      <div className="flex flex-wrap gap-2">
+                        {sdg.companies.map((c) => (
+                          <span
+                            key={c}
+                            className="text-[11px] font-display font-semibold tracking-wide px-3 py-1.5 rounded-full backdrop-blur-sm transition-colors duration-300"
+                            style={{
+                              backgroundColor: "rgba(255,255,255,0.15)",
+                              color: "rgba(255,255,255,0.9)",
+                              border: "1px solid rgba(255,255,255,0.2)",
+                            }}
+                          >
+                            {c}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                    <div
-                      className="h-px w-full mb-4 opacity-25"
-                      style={{ backgroundColor: sdg.color }}
-                    />
-                    <div className="space-y-2">
-                      {sdg.stats.map((stat) => (
-                        <div key={stat.label} className="flex items-baseline gap-2 text-xs">
-                          <span className="font-display font-extrabold shrink-0" style={{ color: sdg.color }}>
-                            {stat.value}
-                          </span>
-                          <span className="text-muted-foreground">{stat.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex flex-wrap gap-1.5 mt-4">
-                      {sdg.companies.map((c) => (
-                        <span
-                          key={c}
-                          className="text-[10px] font-display font-semibold uppercase tracking-wider px-2 py-0.5 rounded"
-                          style={{ backgroundColor: "#F3F5F7", color: sdg.color }}
-                        >
-                          {c}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
