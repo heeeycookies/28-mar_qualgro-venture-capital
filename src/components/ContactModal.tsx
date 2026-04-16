@@ -1,14 +1,19 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { Send, X } from "lucide-react";
+import { useState, useRef } from "react";
+import { Send, X, Paperclip, FileText, Trash2 } from "lucide-react";
 
 interface ContactModalProps {
   open: boolean;
   onClose: () => void;
 }
 
+const MAX_FILES = 5;
+const MAX_SIZE_MB = 10;
+
 const ContactModal = ({ open, onClose }: ContactModalProps) => {
   const [submitted, setSubmitted] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,14 +22,35 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
 
   const handleClose = () => {
     onClose();
-    setTimeout(() => setSubmitted(false), 300);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFiles([]);
+    }, 300);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    const newFiles = Array.from(e.target.files).filter(
+      (f) => f.size <= MAX_SIZE_MB * 1024 * 1024
+    );
+    setFiles((prev) => [...prev, ...newFiles].slice(0, MAX_FILES));
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const removeFile = (index: number) => {
+    setFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   };
 
   return (
     <AnimatePresence>
       {open && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -33,7 +59,6 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
             onClick={handleClose}
           />
 
-          {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -41,8 +66,7 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="fixed inset-0 z-[101] flex items-center justify-center p-4"
           >
-            <div className="bg-card rounded-2xl shadow-2xl border border-border w-full max-w-lg relative overflow-hidden">
-              {/* Decorative top bar */}
+            <div className="bg-card rounded-2xl shadow-2xl border border-border w-full max-w-lg relative overflow-hidden max-h-[90vh] overflow-y-auto">
               <div className="h-1 bg-gradient-to-r from-emerald to-investment-blue" />
 
               <button
@@ -122,6 +146,60 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
                           placeholder="How can we help?"
                         />
                       </div>
+
+                      {/* Attachments */}
+                      <div>
+                        <label className="block text-sm font-medium text-muted-foreground mb-2">
+                          Attachments <span className="text-xs italic font-normal">· optional</span>
+                        </label>
+
+                        {files.length > 0 && (
+                          <div className="space-y-2 mb-3">
+                            {files.map((file, i) => (
+                              <div
+                                key={`${file.name}-${i}`}
+                                className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-muted/50 border border-border text-sm"
+                              >
+                                <FileText size={14} className="text-investment-blue flex-shrink-0" />
+                                <span className="truncate flex-1 text-foreground">{file.name}</span>
+                                <span className="text-xs text-muted-foreground flex-shrink-0">{formatSize(file.size)}</span>
+                                <button
+                                  type="button"
+                                  onClick={() => removeFile(i)}
+                                  className="p-0.5 rounded hover:bg-background transition-colors text-muted-foreground hover:text-foreground flex-shrink-0"
+                                >
+                                  <Trash2 size={13} />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {files.length < MAX_FILES && (
+                          <button
+                            type="button"
+                            onClick={() => fileInputRef.current?.click()}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-dashed border-border text-sm text-muted-foreground hover:text-foreground hover:border-investment-blue/40 transition-colors"
+                          >
+                            <Paperclip size={14} />
+                            Attach file
+                          </button>
+                        )}
+
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          multiple
+                          onChange={handleFileChange}
+                          accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.csv,.jpg,.jpeg,.png,.webp"
+                          className="hidden"
+                        />
+
+                        <p className="text-[11px] text-muted-foreground mt-1.5">
+                          PDF, Office docs, or images · Max {MAX_SIZE_MB}MB each · Up to {MAX_FILES} files
+                        </p>
+                      </div>
+
                       <button
                         type="submit"
                         className="w-full py-3 rounded-lg bg-navy text-primary-foreground font-display font-semibold text-sm hover:bg-navy-light transition-colors"
