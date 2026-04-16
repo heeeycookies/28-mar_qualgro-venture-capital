@@ -213,10 +213,11 @@ const Impact = () => {
             </h2>
           </motion.div>
 
-          {/* Masonry-style SDG cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* 3-2 grid: top row 3 cards, bottom row 2 wider cards */}
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
             {prioritySDGs.map((sdg, i) => {
-              const isLarge = i === 0 || i === 3;
+              // First 3 cards span 2 cols each (fills 6), last 2 span 3 cols each
+              const colSpan = i < 3 ? "md:col-span-2" : "md:col-span-3";
               return (
                 <motion.div
                   key={sdg.number}
@@ -224,9 +225,7 @@ const Impact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className={`group relative rounded-2xl overflow-hidden cursor-default ${
-                    isLarge ? "md:row-span-2 min-h-[420px]" : "min-h-[280px]"
-                  }`}
+                  className={`group relative rounded-2xl overflow-hidden cursor-default h-[340px] ${colSpan}`}
                 >
                   {/* Background photo */}
                   <img
@@ -234,44 +233,43 @@ const Impact = () => {
                     alt={sdg.title}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  {/* Dark gradient overlay */}
+                  {/* Subtle bottom gradient only — keeps photo visible */}
                   <div
-                    className="absolute inset-0 transition-opacity duration-500"
+                    className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(to top, ${sdg.color}dd 0%, ${sdg.color}88 40%, transparent 100%)`,
+                      background: `linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)`,
                     }}
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500" />
 
                   {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-8">
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-7">
                     {/* SDG icon badge */}
                     <div className="absolute top-5 right-5">
                       <img
                         src={sdgImages[sdg.number]}
                         alt={`SDG ${sdg.number}`}
-                        className="w-12 h-12 rounded-lg shadow-lg opacity-90"
+                        className="w-11 h-11 rounded-lg shadow-lg"
                       />
                     </div>
 
                     <div>
-                      <h3 className="font-display text-xl sm:text-2xl font-extrabold text-white leading-snug mb-2">
+                      <h3 className="font-display text-lg sm:text-xl font-extrabold text-white leading-snug mb-1.5 drop-shadow-sm">
                         {sdg.title}
                       </h3>
-                      <p className="text-white/75 text-sm leading-relaxed mb-5 max-w-sm">
+                      <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-4 max-w-md line-clamp-2">
                         {sdg.description}
                       </p>
 
                       {/* Company tags */}
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1.5">
                         {sdg.companies.map((c) => (
                           <span
                             key={c}
-                            className="text-[11px] font-display font-semibold tracking-wide px-3 py-1.5 rounded-full backdrop-blur-sm transition-colors duration-300"
+                            className="text-[10px] font-display font-semibold tracking-wide px-2.5 py-1 rounded-full backdrop-blur-md"
                             style={{
-                              backgroundColor: "rgba(255,255,255,0.15)",
-                              color: "rgba(255,255,255,0.9)",
-                              border: "1px solid rgba(255,255,255,0.2)",
+                              backgroundColor: "rgba(255,255,255,0.2)",
+                              color: "rgba(255,255,255,0.95)",
+                              border: "1px solid rgba(255,255,255,0.25)",
                             }}
                           >
                             {c}
