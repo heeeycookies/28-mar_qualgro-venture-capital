@@ -24,12 +24,26 @@ import sdg8 from "@/assets/sdg-8.png";
 import sdg9 from "@/assets/sdg-9.png";
 import sdg10 from "@/assets/sdg-10.png";
 
+import photoSdg4 from "@/assets/sdg/quality_educ.avif";
+import photoSdg5 from "@/assets/sdg/2_girls.avif";
+import photoSdg8 from "@/assets/sdg/city_sg.avif";
+import photoSdg9 from "@/assets/sdg/mrt.avif";
+import photoSdg10 from "@/assets/sdg/classroom.avif";
+
 const sdgImages: Record<number, string> = {
   4: sdg4,
   5: sdg5,
   8: sdg8,
   9: sdg9,
   10: sdg10,
+};
+
+const sdgPhotos: Record<number, string> = {
+  4: photoSdg4,
+  5: photoSdg5,
+  8: photoSdg8,
+  9: photoSdg9,
+  10: photoSdg10,
 };
 
 const staggerContainer = {
