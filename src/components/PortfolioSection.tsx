@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
@@ -55,7 +55,15 @@ const companies = [
 
 const PortfolioSection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const sectionScale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 0.98]);
+  const sectionOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.7]);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollContainerRef.current) return;
@@ -71,9 +79,13 @@ const PortfolioSection = () => {
   };
 
   return (
-    <section id="portfolio" className="relative z-30 pb-8 bg-background">
+    <motion.section
+      ref={sectionRef}
+      id="portfolio"
+      className="relative z-30 pb-8 bg-background"
+      style={{ scale: sectionScale, opacity: sectionOpacity }}
+    >
       <div className="relative">
-        {/* Left/right fades */}
         <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 z-20 bg-gradient-to-r from-background to-transparent pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 z-20 bg-gradient-to-l from-background to-transparent pointer-events-none" />
 
@@ -124,10 +136,10 @@ const PortfolioSection = () => {
                 >
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/8 transition-all duration-500" />
 
-                  <div className="relative z-10 h-full flex flex-col justify-between p-4">
+                  <div className="relative z-10 h-full flex flex-col justify-between p-3 sm:p-4">
                     <div>
                       <div className="flex items-start justify-between">
-                        <h3 className="font-display text-xs sm:text-lg font-bold text-white tracking-tight">
+                        <h3 className="font-display text-[11px] sm:text-lg font-bold text-white tracking-tight leading-tight">
                           {company.name}
                         </h3>
                         {isExpanded && (
@@ -146,7 +158,7 @@ const PortfolioSection = () => {
                       </div>
                       <div className="mt-2 flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-emerald animate-pulse" />
-                        <span className="text-[10px] sm:text-xs font-semibold text-white/70 uppercase tracking-wider">
+                        <span className="text-[9px] sm:text-xs font-semibold text-white/70 uppercase tracking-wider">
                           {company.sector}
                         </span>
                       </div>
@@ -162,7 +174,7 @@ const PortfolioSection = () => {
                           className="mt-4 flex-1 flex flex-col justify-center"
                         >
                           <div className="w-10 h-[1px] bg-white/40 mb-4" />
-                          <p className="text-sm leading-relaxed text-white/85">
+                          <p className="text-xs sm:text-sm leading-relaxed text-white/85">
                             {company.description}
                           </p>
                         </motion.div>
@@ -170,13 +182,13 @@ const PortfolioSection = () => {
                     </AnimatePresence>
 
                     {!isExpanded && (
-                      <div className="absolute left-4 top-[70px] bottom-[50px] w-[1px] bg-white/15 group-hover:bg-white/30 transition-colors duration-500" />
+                      <div className="absolute left-3 sm:left-4 top-[60px] sm:top-[70px] bottom-[50px] w-[1px] bg-white/15 group-hover:bg-white/30 transition-colors duration-500" />
                     )}
 
                     <div className="mt-auto">
                       <div className="w-8 h-[1px] bg-white/30 group-hover:w-12 group-hover:bg-white/60 transition-all duration-500" />
                       {!isExpanded && (
-                        <p className="mt-2 text-[10px] sm:text-xs text-white/40 group-hover:text-white/70 transition-colors duration-300 hidden sm:block">
+                        <p className="mt-2 text-[9px] sm:text-xs text-white/40 group-hover:text-white/70 transition-colors duration-300 hidden sm:block">
                           Click to expand →
                         </p>
                       )}
@@ -188,7 +200,7 @@ const PortfolioSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
