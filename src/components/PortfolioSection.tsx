@@ -1,6 +1,12 @@
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import shopbackImg from "@/assets/portfolio/shopback.jpg";
+import patsnapImg from "@/assets/portfolio/patsnap.jpg";
+import fundingSocietiesImg from "@/assets/portfolio/funding-societies.jpg";
+import appierImg from "@/assets/portfolio/appier.avif";
+import sirionImg from "@/assets/portfolio/sirion.jpg";
+import wavecellImg from "@/assets/portfolio/wavecell.jpg";
 
 const companies = [
   {
@@ -9,8 +15,8 @@ const companies = [
       "Largest commerce and rewards platform across Southeast Asia, serving more than 10 countries.",
     latestStage: "Series F",
     investedAt: "Series B",
-    gradient: "from-[#FF5B4A] to-[#E63946]",
-    accent: "#FFD7D2",
+    image: shopbackImg,
+    brand: "#E63946", // red
   },
   {
     name: "Patsnap",
@@ -18,8 +24,8 @@ const companies = [
       "AI-enabled IP intelligence platform trusted by 12,000+ enterprises globally.",
     latestStage: "Series E",
     investedAt: "Series C",
-    gradient: "from-[#1B3A8B] to-[#3B5BDB]",
-    accent: "#C8D4FF",
+    image: patsnapImg,
+    brand: "#3B5BDB", // blue
   },
   {
     name: "Funding Societies",
@@ -27,8 +33,8 @@ const companies = [
       "Largest SME digital financing platform across Southeast Asia.",
     latestStage: "Series E",
     investedAt: "Series B",
-    gradient: "from-[#0E7C5A] to-[#13A370]",
-    accent: "#BFEBD8",
+    image: fundingSocietiesImg,
+    brand: "#5B2A86", // purple
   },
   {
     name: "Appier",
@@ -36,8 +42,8 @@ const companies = [
       "AI-powered marketing intelligence platform listed on the Tokyo Stock Exchange.",
     latestStage: "IPO",
     investedAt: "Series B",
-    gradient: "from-[#2D2D7A] to-[#5A4FCF]",
-    accent: "#D6D3FF",
+    image: appierImg,
+    brand: "#5A4FCF", // indigo
   },
   {
     name: "Sirion",
@@ -45,8 +51,8 @@ const companies = [
       "Contract intelligence platform trusted by 200+ global enterprises.",
     latestStage: "Exited at USD 1 Bil Valuation",
     investedAt: "Series B",
-    gradient: "from-[#0A4D68] to-[#088395]",
-    accent: "#B8E5EE",
+    image: sirionImg,
+    brand: "#13A370", // emerald
   },
   {
     name: "Wavecell",
@@ -54,8 +60,8 @@ const companies = [
       "Singapore CPaaS platform serving enterprises across 175+ countries.",
     latestStage: "Exited at USD 125 Mil",
     investedAt: "Series A",
-    gradient: "from-[#6B2D5C] to-[#A5325A]",
-    accent: "#F4C8D9",
+    image: wavecellImg,
+    brand: "#0EA5E9", // cyan blue
   },
 ];
 
@@ -134,18 +140,37 @@ const PortfolioSection = () => {
                   }}
                   whileHover={!isExpanded ? { y: -8, transition: { duration: 0.3 } } : undefined}
                   onClick={() => handleCardClick(i)}
-                  className={`group relative flex-shrink-0 overflow-hidden cursor-pointer rounded-2xl bg-gradient-to-br ${company.gradient} border border-white/10 shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out`}
+                  className="group relative flex-shrink-0 overflow-hidden cursor-pointer rounded-2xl bg-neutral-900 border border-white/10 shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out"
                   style={{
                     width: isExpanded ? "min(32rem, 88vw)" : "clamp(180px, 22vw, 240px)",
                     height: "clamp(360px, 56vh, 580px)",
                   }}
                 >
-                  {/* Decorative gradient overlay */}
+                  {/* Background image */}
+                  <img
+                    src={company.image}
+                    alt={company.name}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  {/* Brand color highlight (top) */}
                   <div
-                    className="absolute inset-0 opacity-60 mix-blend-overlay pointer-events-none"
+                    className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-40"
                     style={{
-                      background: `radial-gradient(circle at 80% 0%, ${company.accent}40, transparent 60%)`,
+                      background: `linear-gradient(180deg, ${company.brand} 0%, transparent 55%)`,
                     }}
+                  />
+                  {/* Readability gradient (bottom — stronger so text stays legible) */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: `linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.85) 100%)`,
+                    }}
+                  />
+                  {/* Brand accent bar at top */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-1 z-10"
+                    style={{ backgroundColor: company.brand }}
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500" />
 
