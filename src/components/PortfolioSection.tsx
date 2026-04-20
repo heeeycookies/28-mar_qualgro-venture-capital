@@ -27,7 +27,7 @@ const companies = [
     investedAt: "Series C",
     image: patsnapImg,
     brand: "#3B5BDB", // blue
-    objectPosition: "center 25%",
+    objectPosition: "65% 25%",
   },
   {
     name: "Funding Societies",
