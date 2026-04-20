@@ -57,7 +57,7 @@ const HeroSection = () => {
             >
               BUILDING
               <br />
-              <span className="text-muted-foreground/40 font-black text-[32px] sm:text-5xl md:text-6xl lg:text-7xl leading-[1]">
+              <span className="text-muted-foreground/40 font-black text-[20px] sm:text-3xl md:text-4xl lg:text-5xl leading-[1.1]">
                 REGIONAL AND GLOBAL
                 <br />
                 WINNERS EARLY
