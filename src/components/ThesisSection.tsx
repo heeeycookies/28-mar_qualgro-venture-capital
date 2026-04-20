@@ -15,22 +15,22 @@ const themes = [
   {
     label: "AI",
     title: "Artificial Intelligence",
-    desc: "Backing founders building AI-native products — from enterprise automation and intelligent workflows to generative AI applications solving real business problems.",
+    desc: "Investing across the AI value chain from compute infrastructure, data pipelines, orchestration and observability systems, to AI applications embedded upon data-rich workflows to solve real world problems​.",
   },
   {
-    label: "Data",
-    title: "Data Infrastructure",
-    desc: "Investing in the data backbone — analytics platforms, MLOps tooling, and data pipelines that power the next generation of intelligent enterprises.",
+    label: "SOFTWARE",
+    title: "Software",
+    desc: "Backing innovation across the full software stack.. We like software that are deeply embedded in customer workflows with a naturally compounding advantage built over time​.",
   },
   {
-    label: "Impact",
+    label: "DATA",
+    title: "Proprietary Data",
+    desc: "We invest in companies built on valuable data that is structurally difficult to assemble — proprietary and accumulated through networks and workflows that cannot be easily replicated. ​",
+  },
+  {
+    label: "IMPACT",
     title: "Measurable Impact",
-    desc: "Every investment must create lasting value — for founders, for communities, and for the broader ecosystem. We measure what matters beyond financial returns.",
-  },
-  {
-    label: "Innovation",
-    title: "Deep Tech Innovation",
-    desc: "Supporting breakthrough technologies in fintech, cybersecurity, and vertical SaaS that are reshaping how businesses operate across Asia-Pacific.",
+    desc: "Supporting platforms that create value beyond financial bottom lines — technologies that measurably improves livelihoods, expands access to opportunity, and delivers financial outcomes to deserving communities​.",
   },
 ];
 
@@ -73,7 +73,7 @@ const ThesisSection = () => {
             variants={fadeUp}
             className="text-muted-foreground text-sm sm:text-base leading-relaxed"
           >
-            We invest at the intersection of <strong className="text-investment-blue font-bold">AI</strong>, <strong className="text-investment-blue font-bold">Data</strong>, and <strong className="text-investment-blue font-bold">Impact</strong> — backing Series A founders in Southeast Asia who are building technology that scales globally.
+            We invest at the intersection of <strong className="text-investment-blue font-bold">AI</strong>, <strong className="text-investment-blue font-bold">Software, Data</strong>, and <strong className="text-investment-blue font-bold">Impact</strong>, primarily across Southeast Asia. We target companies built from first principles – where privilege and proprietary data forms compounding advantage, where innovative breakthroughs deliver true value, and where scalability meets measurable impact. We seek founders who are agile-thinkers that can move fast and are relentless in their execution.​
           </motion.p>
         </motion.div>
 
