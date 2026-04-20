@@ -73,7 +73,7 @@ const ThesisSection = () => {
             variants={fadeUp}
             className="text-muted-foreground text-sm sm:text-base leading-relaxed"
           >
-            We invest at the intersection of <strong className="text-investment-blue font-bold">AI</strong>, <strong className="text-investment-blue font-bold">Software, Data</strong>, and <strong className="text-investment-blue font-bold">Impact</strong>, primarily across Southeast Asia. We target companies built from first principles – where privilege and proprietary data forms compounding advantage, where innovative breakthroughs deliver true value, and where scalability meets measurable impact. We seek founders who are agile-thinkers that can move fast and are relentless in their execution.​
+            We invest at the intersection of AI, Software, Data, and Impact, primarily across Southeast Asia. We target companies built from first principles – where privilege and proprietary data forms compounding advantage, where innovative breakthroughs deliver true value, and where scalability meets measurable impact. We seek founders who are agile-thinkers that can move fast and are relentless in their execution.
           </motion.p>
         </motion.div>
 
