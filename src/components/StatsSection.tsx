@@ -108,8 +108,12 @@ const StatsSection = () => {
             className="stat-card-dark rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12"
             style={{ background: "#006D4E" }}
           >
-            <p className="font-display text-2xl sm:text-4xl md:text-7xl font-extrabold text-white leading-tight mb-2 sm:mb-3">
-              12 Global<br />13 Regional
+            <p className="font-display font-extrabold text-white leading-[1.05] mb-2 sm:mb-3">
+              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">12</span>
+              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl ml-2">Global</span>
+              <br />
+              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">13</span>
+              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl ml-2">Regional</span>
             </p>
             <p className="text-xs sm:text-base text-white/80 leading-relaxed">
               High-conviction investments across Southeast Asia's most promising ventures.
