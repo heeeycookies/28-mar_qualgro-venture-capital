@@ -18,7 +18,7 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative pt-24 sm:pt-28 pb-2 sm:pb-4 bg-background overflow-hidden"
+      className="relative pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14 lg:pb-16 bg-background overflow-hidden"
     >
       {/* Parallax background orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -44,7 +44,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 max-w-[1320px]">
+      <div className="relative z-10 container mx-auto px-6 sm:px-10 lg:px-14 max-w-[1320px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
           {/* Left column — headline */}
           <div className="lg:col-span-8">
