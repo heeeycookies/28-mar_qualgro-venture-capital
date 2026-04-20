@@ -17,7 +17,7 @@ const companies = [
     investedAt: "Series B",
     image: shopbackImg,
     brand: "#E63946", // red
-    objectPosition: "center 30%",
+    objectPosition: "30% 30%",
   },
   {
     name: "Patsnap",
