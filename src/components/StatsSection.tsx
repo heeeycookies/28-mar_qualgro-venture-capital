@@ -36,13 +36,12 @@ const StatsSection = () => {
             className="stat-card rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col justify-between min-h-[260px] sm:min-h-[340px] md:min-h-[380px]"
           >
             <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#006D4E" }}>
-              Track Record
+              OUR PERFORMANCE
             </p>
             <div>
               <p className="font-display text-base sm:text-xl md:text-2xl lg:text-[28px] font-bold text-primary leading-snug mt-4 sm:mt-6">
-                Partnering with<br />
-                exceptional founders<br />
-                across Southeast Asia.
+                Proven track record of<br />
+                backing unicorns early​
               </p>
               <div className="mt-4 sm:mt-8 mb-2 sm:mb-3">
                 <p className="font-display font-extrabold text-primary leading-none">
@@ -71,13 +70,13 @@ const StatsSection = () => {
             </p>
             <div>
               <p className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[96px] font-extrabold text-white leading-none mt-4 sm:mt-6 mb-2 sm:mb-3">
-                30+
+                US<br />$7B+
               </p>
               <p className="font-display text-lg sm:text-2xl md:text-3xl font-bold text-white/90 leading-tight">
-                Companies Backed
+                Valuation
               </p>
               <p className="text-white/60 mt-3 text-xs sm:text-base leading-relaxed">
-                High-conviction investments across Southeast Asia's most promising ventures.
+                Combined Valuation of our portfolio companies.
               </p>
             </div>
           </motion.div>
@@ -109,11 +108,11 @@ const StatsSection = () => {
             className="stat-card-dark rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12"
             style={{ background: "#006D4E" }}
           >
-            <p className="font-display text-2xl sm:text-4xl md:text-[52px] font-extrabold text-white leading-tight mb-2 sm:mb-3">
-              Series B Focus
+            <p className="font-display text-2xl sm:text-4xl md:text-7xl font-extrabold text-white leading-tight mb-2 sm:mb-3">
+              12 Global<br />13 Regional
             </p>
             <p className="text-xs sm:text-base text-white/80 leading-relaxed">
-              Sweet spot for high-conviction deployment and maximum scaling value.
+              High-conviction investments across Southeast Asia's most promising ventures.
             </p>
           </motion.div>
 
@@ -126,10 +125,10 @@ const StatsSection = () => {
             style={{ background: "#EAE8E7" }}
           >
             <p className="font-display text-3xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
-              12+
+              9 Full Exits
             </p>
             <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-              Full exits delivered — among the highest for any SEA-focused fund.
+              Among the highest for any SEA-focused fund.
             </p>
           </motion.div>
         </div>
