@@ -17,6 +17,7 @@ const companies = [
     investedAt: "Series B",
     image: shopbackImg,
     brand: "#E63946", // red
+    objectPosition: "center 30%",
   },
   {
     name: "Patsnap",
@@ -26,6 +27,7 @@ const companies = [
     investedAt: "Series C",
     image: patsnapImg,
     brand: "#3B5BDB", // blue
+    objectPosition: "center 25%",
   },
   {
     name: "Funding Societies",
@@ -35,6 +37,7 @@ const companies = [
     investedAt: "Series B",
     image: fundingSocietiesImg,
     brand: "#5B2A86", // purple
+    objectPosition: "center 30%",
   },
   {
     name: "Appier",
@@ -44,6 +47,7 @@ const companies = [
     investedAt: "Series B",
     image: appierImg,
     brand: "#5A4FCF", // indigo
+    objectPosition: "center 30%",
   },
   {
     name: "Sirion",
@@ -53,6 +57,7 @@ const companies = [
     investedAt: "Series B",
     image: sirionImg,
     brand: "#13A370", // emerald
+    objectPosition: "center 35%",
   },
   {
     name: "Wavecell",
@@ -62,6 +67,7 @@ const companies = [
     investedAt: "Series A",
     image: wavecellImg,
     brand: "#0EA5E9", // cyan blue
+    objectPosition: "center 40%",
   },
 ];
 
@@ -151,6 +157,7 @@ const PortfolioSection = () => {
                     src={company.image}
                     alt={company.name}
                     loading="lazy"
+                    style={{ objectPosition: company.objectPosition }}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   {/* Brand color highlight (top) */}
