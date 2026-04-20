@@ -45,7 +45,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-emerald font-display font-bold text-[10px] sm:text-xs uppercase tracking-[0.3em] mb-3 sm:mb-5"
             >
-              The Qualgro Advantage
+              ​
             </motion.p>
 
             <motion.h1
@@ -53,11 +53,11 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
               style={{ y: textY }}
-              className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.02] text-navy"
+              className="text-8xl font-extrabold"
             >
-              Architecting
+              BUILDING
               <br />
-              <span className="text-muted-foreground/40">Global Winners.</span>
+              <span className="text-muted-foreground/40 font-extrabold text-6xl">REGIONAL AND GLOBAL WINNERS EARLY​</span>
             </motion.h1>
           </div>
 
@@ -71,7 +71,7 @@ const HeroSection = () => {
           >
             <div className="border-l-[3px] border-emerald pl-5 sm:pl-7 mx-0 sm:mx-[25px] sm:px-[90px]">
               <p className="text-foreground/60 text-[13px] sm:text-lg leading-relaxed font-medium max-w-[520px]">
-                We don't just invest capital; we engineer growth. By combining deep regional expertise with a global scaling framework, Qualgro transforms ambitious Southeast Asian startups into international category leaders.
+                We support exceptional founders with{"\n"}conviction capital and deep expertise in{"\n"}scaling across Southeast Asia and global{"\n"}markets, building category leaders together.​
               </p>
             </div>
           </motion.div>
