@@ -47,7 +47,7 @@ const companies = [
     investedAt: "Series B",
     image: appierImg,
     brand: "#5A4FCF", // indigo
-    objectPosition: "center 30%",
+    objectPosition: "44% 30%",
   },
   {
     name: "Sirion",
