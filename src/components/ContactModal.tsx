@@ -214,7 +214,7 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
               </div>
             </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );
