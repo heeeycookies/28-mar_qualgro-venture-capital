@@ -50,12 +50,14 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
   return (
     <AnimatePresence>
       {open && (
-        <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-navy/60 backdrop-blur-sm"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[100]"
+        >
+          <div
+            className="absolute inset-0 bg-navy/60 backdrop-blur-sm"
             onClick={handleClose}
           />
 
@@ -64,7 +66,7 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 z-[101] flex items-center justify-center p-4"
+            className="absolute inset-0 z-[101] flex items-center justify-center p-4"
           >
             <div className="bg-card rounded-2xl shadow-2xl border border-border w-full max-w-lg relative overflow-hidden max-h-[90vh] overflow-y-auto">
               <div className="h-1 bg-gradient-to-r from-emerald to-investment-blue" />
@@ -212,7 +214,7 @@ const ContactModal = ({ open, onClose }: ContactModalProps) => {
               </div>
             </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );
