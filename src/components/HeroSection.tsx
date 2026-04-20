@@ -44,7 +44,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 sm:px-10 lg:px-14 max-w-[1320px]">
+      <div className="relative z-10 mx-auto px-6 sm:px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
           {/* Left column — headline */}
           <div className="lg:col-span-8">
@@ -53,11 +53,10 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               style={{ y: textY }}
-              className="font-display font-black tracking-tight leading-[0.95] text-navy text-[44px] sm:text-6xl md:text-7xl lg:text-8xl"
+              className="font-display font-black tracking-tight leading-[0.85] text-navy text-[44px] sm:text-6xl md:text-7xl lg:text-8xl"
             >
               BUILDING
-              <br />
-              <span className="text-muted-foreground/40 font-black text-[20px] sm:text-3xl md:text-4xl lg:text-5xl leading-[1.1]">
+              <span className="block mt-2 sm:mt-3 text-muted-foreground/40 font-black text-[20px] sm:text-3xl md:text-4xl lg:text-5xl leading-[1]">
                 REGIONAL AND GLOBAL
                 <br />
                 WINNERS EARLY
