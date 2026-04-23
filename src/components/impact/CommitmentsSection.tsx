@@ -15,6 +15,22 @@ import sdg11 from "@/assets/impact/sdg-icons/sdg-11.png";
 import sdg12 from "@/assets/impact/sdg-icons/sdg-12.png";
 import sdg13 from "@/assets/impact/sdg-icons/sdg-13.png";
 
+import logoFundingSocieties from "@/assets/impact/logos/funding-societies.png";
+import logoRalali from "@/assets/impact/logos/ralali.png";
+import logoSupermom from "@/assets/impact/logos/supermom.png";
+import logoBizzi from "@/assets/impact/logos/bizzi.png";
+import logoBrighte from "@/assets/impact/logos/brighte.png";
+import logoPatsnap from "@/assets/impact/logos/patsnap.png";
+
+const companyLogos: Record<string, string> = {
+  "Funding Societies": logoFundingSocieties,
+  "Ralali": logoRalali,
+  "Supermom": logoSupermom,
+  "Bizzi": logoBizzi,
+  "Brighte": logoBrighte,
+  "Patsnap": logoPatsnap,
+};
+
 const sdgImages: Record<number, string> = {
   1: sdg1, 4: sdg4, 5: sdg5, 7: sdg7, 8: sdg8, 9: sdg9, 10: sdg10,
   11: sdg11, 12: sdg12, 13: sdg13,
