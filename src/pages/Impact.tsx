@@ -9,9 +9,9 @@ import {
   ChevronRight,
   Mail,
 } from "lucide-react";
+
 import {
   impactHero,
-  methodology,
   prioritySDGs,
   featuredSpotlight,
 } from "@/data/impact";
