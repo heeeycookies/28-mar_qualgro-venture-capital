@@ -114,14 +114,14 @@ export const featuredSpotlight = {
     {
       name: "Funding Societies",
       tagline:
-        "Democratising access to financing for underserved SMEs across Southeast Asia.",
+        "Built For Financial Inclusion In Southeast Asia",
       description:
         "Funding Societies is Southeast Asia's largest SME digital financing platform, providing fast, flexible, and accessible business financing to small and medium enterprises that are underserved by traditional banks. The platform has disbursed over $3B in business financing across multiple markets.",
       sdgs: [8, 9, 10],
       highlights: [
         { label: "Jobs created", value: "350K+" },
-        { label: "MSMEs financed", value: "100K+" },
-        { label: "First-time borrowers", value: "71%" },
+        { label: "USD business loans disbursed since 2015", value: ">$3B" },
+        { label: "Countries of operations — Singapore, Malaysia, Vietnam, Thailand, Indonesia", value: "5" },
       ],
       qualgroSupport:
         "Guided expansion across Singapore, Indonesia, Malaysia, and Thailand; supported governance frameworks and credit scoring institutionalisation.",
