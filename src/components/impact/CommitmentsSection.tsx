@@ -202,6 +202,8 @@ function CommunitiesContent({ active }: { active: typeof commitments[0] }) {
   const sdgs = [
     { num: 8, label: "Decent Work & Economic Growth" },
     { num: 9, label: "Industry, Innovation & Infrastructure" },
+    { num: 11, label: "Sustainable Cities & Communities" },
+    { num: 12, label: "Responsible Consumption & Production" },
     { num: 1, label: "No Poverty" },
     { num: 4, label: "Quality Education" },
     { num: 5, label: "Gender Equality" },
@@ -212,26 +214,23 @@ function CommunitiesContent({ active }: { active: typeof commitments[0] }) {
   return (
     <div className="space-y-8">
       <div
-        className="rounded-xl p-8 flex flex-col md:flex-row items-center justify-center gap-6"
+        className="rounded-xl p-8 flex flex-col md:flex-row items-center justify-center gap-8"
         style={{ background: "hsl(200 30% 95%)" }}
       >
         <p className="font-display text-3xl md:text-4xl font-extrabold" style={{ color: active.color }}>
           SMEs +
         </p>
-        <div className="text-center px-6">
-          <p className="font-display text-xs uppercase tracking-[0.2em] font-bold text-muted-foreground">
-            Sustainable Development
-          </p>
-          <p className="font-display text-2xl font-extrabold" style={{ color: "hsl(199 89% 38%)" }}>
-            GOALS
-          </p>
-        </div>
+        <img
+          src={sdgLogo}
+          alt="UN Sustainable Development Goals"
+          className="h-20 md:h-24 object-contain"
+        />
         <p className="font-display text-3xl md:text-4xl font-extrabold" style={{ color: active.color }}>
           People +
         </p>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-4">
+      <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-4">
         {sdgs.map((sdg) => (
           <div key={sdg.num} className="flex flex-col items-center gap-2">
             <img
