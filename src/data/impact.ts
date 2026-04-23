@@ -1,17 +1,17 @@
 export const impactHero = {
   eyebrow: "ENVIRONMENTAL · SOCIAL · GOVERNANCE",
   titleLine1: "Investing for",
-  titleLine2: "Generational Impact.",
+  titleLine2: "A Better Tomorrow",
   description:
-    "At Qualgro, we believe sustainable value creation is inseparable from ethical stewardship. We back founders across Southeast Asia whose businesses generate measurable socio-economic impact — and we partner with them hands-on to scale responsibly.",
-  scrollCue: "Explore our impact framework",
+    "At Qualgro, we are committed to making a positive impact on the world through our capabilities and our investments, partnering with visionary entrepreneurs, to build innovative companies that create lasting and positive change on the societies and economies in which they operate.",
+  scrollCue: "Discover More",
 };
 
 export const investmentPrinciples = {
   sectionEyebrow: "OUR COMMITMENTS",
   sectionTitle: "Principles That Guide Every Investment",
   sectionSubtitle:
-    "Four non-negotiables that shape how we source, diligence, and support the companies in our portfolio.",
+    "​",
   principles: [
     {
       number: "01",
