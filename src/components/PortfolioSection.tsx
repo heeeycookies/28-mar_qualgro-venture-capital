@@ -206,7 +206,7 @@ const PortfolioSection = () => {
                       <div className="mt-3 flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" />
                         <span className="text-[10px] sm:text-xs font-semibold text-white/75 uppercase tracking-[0.15em]">
-                          Portfolio
+                          {company.latestStage.includes("Exited") || company.latestStage === "IPO" ? "Exited" : "Portfolio"}
                         </span>
                       </div>
                     </div>
