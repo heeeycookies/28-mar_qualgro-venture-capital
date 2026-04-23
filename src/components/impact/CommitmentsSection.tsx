@@ -252,6 +252,9 @@ function PlanetContent({ active }: { active: typeof commitments[0] }) {
   const sdgs = [
     { num: 7, label: "Affordable & Clean Energy" },
     { num: 9, label: "Industry, Innovation & Infrastructure" },
+    { num: 11, label: "Sustainable Cities & Communities" },
+    { num: 12, label: "Responsible Consumption & Production" },
+    { num: 13, label: "Climate Action" },
   ];
 
   return (
