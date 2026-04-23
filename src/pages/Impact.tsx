@@ -9,41 +9,32 @@ import {
   ChevronRight,
   Mail,
 } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   impactHero,
-  investmentPrinciples,
   methodology,
   prioritySDGs,
   featuredSpotlight,
 } from "@/data/impact";
+import CommitmentsSection from "@/components/impact/CommitmentsSection";
 
-import sdg4 from "@/assets/sdg-4.png";
-import sdg5 from "@/assets/sdg-5.png";
-import sdg8 from "@/assets/sdg-8.png";
-import sdg9 from "@/assets/sdg-9.png";
-import sdg10 from "@/assets/sdg-10.png";
+import sdg4 from "@/assets/impact/sdg-icons/sdg-4.png";
+import sdg5 from "@/assets/impact/sdg-icons/sdg-5.png";
+import sdg8 from "@/assets/impact/sdg-icons/sdg-8.png";
+import sdg9 from "@/assets/impact/sdg-icons/sdg-9.png";
+import sdg10 from "@/assets/impact/sdg-icons/sdg-10.png";
 
-import photoSdg4 from "@/assets/sdg/quality_educ.avif";
-import photoSdg5 from "@/assets/sdg/2_girls.avif";
-import photoSdg8 from "@/assets/sdg/city_sg.avif";
-import photoSdg9 from "@/assets/sdg/mrt.avif";
-import photoSdg10 from "@/assets/sdg/classroom.avif";
+import photoSdg4 from "@/assets/impact/sdg-photos/quality_educ.avif";
+import photoSdg5 from "@/assets/impact/sdg-photos/2_girls.avif";
+import photoSdg8 from "@/assets/impact/sdg-photos/city_sg.avif";
+import photoSdg9 from "@/assets/impact/sdg-photos/mrt.avif";
+import photoSdg10 from "@/assets/impact/sdg-photos/classroom.avif";
 
 const sdgImages: Record<number, string> = {
-  4: sdg4,
-  5: sdg5,
-  8: sdg8,
-  9: sdg9,
-  10: sdg10,
+  4: sdg4, 5: sdg5, 8: sdg8, 9: sdg9, 10: sdg10,
 };
 
 const sdgPhotos: Record<number, string> = {
-  4: photoSdg4,
-  5: photoSdg5,
-  8: photoSdg8,
-  9: photoSdg9,
-  10: photoSdg10,
+  4: photoSdg4, 5: photoSdg5, 8: photoSdg8, 9: photoSdg9, 10: photoSdg10,
 };
 
 const staggerContainer = {
@@ -61,9 +52,7 @@ const Impact = () => {
   const currentCompany = featuredSpotlight.companies[spotlightIndex];
 
   const scrollToNext = () => {
-    document
-      .getElementById("principles")
-      ?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("spotlight")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const nextSpotlight = () =>
@@ -84,7 +73,6 @@ const Impact = () => {
               "linear-gradient(160deg, hsl(160 20% 95%) 0%, hsl(150 15% 92%) 40%, hsl(200 15% 94%) 100%)",
           }}
         />
-
         <div className="relative z-10 container mx-auto px-6 pt-28 pb-14">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -98,18 +86,14 @@ const Impact = () => {
             >
               {impactHero.eyebrow}
             </p>
-
             <h1
               className="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08]"
               style={{ color: "hsl(217 91% 11%)" }}
             >
               {impactHero.titleLine1}
               <br />
-              <span className="text-gradient-emerald">
-                {impactHero.titleLine2}
-              </span>
+              <span className="text-gradient-emerald">{impactHero.titleLine2}</span>
             </h1>
-
             <p
               className="mt-7 max-w-2xl text-base md:text-lg leading-relaxed"
               style={{ color: "hsl(217 25% 40%)" }}
@@ -118,7 +102,6 @@ const Impact = () => {
             </p>
           </motion.div>
         </div>
-
         <motion.button
           onClick={scrollToNext}
           initial={{ opacity: 0 }}
@@ -129,251 +112,14 @@ const Impact = () => {
           <span className="text-xs tracking-wider uppercase text-muted-foreground group-hover:text-primary transition-colors">
             {impactHero.scrollCue}
           </span>
-          <motion.div
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
+          <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
             <ChevronDown size={18} className="text-muted-foreground" />
           </motion.div>
         </motion.button>
       </section>
 
-      {/* ───────── 2. INVESTMENT PRINCIPLES ───────── */}
-      <section id="principles" className="py-24 lg:py-32 bg-background">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <p
-              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
-              style={{ color: "hsl(140 45% 35%)" }}
-            >
-              {investmentPrinciples.sectionEyebrow}
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
-              {investmentPrinciples.sectionTitle}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
-              {investmentPrinciples.sectionSubtitle}
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-5"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            {investmentPrinciples.principles.map((p) => (
-              <motion.div key={p.number} variants={fadeUp}>
-                <Card className="group relative border-border hover:shadow-md transition-all duration-300 overflow-hidden h-full">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-emerald scale-y-0 group-hover:scale-y-100 transition-transform duration-400 origin-top" />
-                  <CardContent className="p-8">
-                    <span className="font-display text-4xl font-extrabold text-muted-foreground/15 leading-none">
-                      {p.number}
-                    </span>
-                    <h3 className="font-display text-lg md:text-xl font-extrabold text-primary mt-2 mb-2">
-                      {p.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {p.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ───────── 3. PRIORITY SDGS ───────── */}
-      <section className="py-24 lg:py-32 bg-card">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <p
-              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
-              style={{ color: "hsl(140 45% 35%)" }}
-            >
-              Impact Framework
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
-              Aligned with the{" "}
-              <span className="text-gradient-emerald">
-                UN Sustainable Development Goals
-              </span>
-            </h2>
-          </motion.div>
-
-          {/* 3-2 grid: top row 3 cards, bottom row 2 wider cards */}
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
-            {prioritySDGs.map((sdg, i) => {
-              // First 3 cards span 2 cols each (fills 6), last 2 span 3 cols each
-              const colSpan = i < 3 ? "md:col-span-2" : "md:col-span-3";
-              return (
-                <motion.div
-                  key={sdg.number}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className={`group relative rounded-2xl overflow-hidden cursor-default h-[340px] ${colSpan}`}
-                >
-                  {/* Background photo */}
-                  <img
-                    src={sdgPhotos[sdg.number]}
-                    alt={sdg.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Subtle bottom gradient only — keeps photo visible */}
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)`,
-                    }}
-                  />
-
-                  {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-7">
-                    {/* SDG icon badge */}
-                    <div className="absolute top-5 right-5">
-                      <img
-                        src={sdgImages[sdg.number]}
-                        alt={`SDG ${sdg.number}`}
-                        className="w-11 h-11 rounded-lg shadow-lg"
-                      />
-                    </div>
-
-                    <div>
-                      <h3 className="font-display text-lg sm:text-xl font-extrabold text-white leading-snug mb-1.5 drop-shadow-sm">
-                        {sdg.title}
-                      </h3>
-                      <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-4 max-w-md line-clamp-2">
-                        {sdg.description}
-                      </p>
-
-                      {/* Company tags */}
-                      <div className="flex flex-wrap gap-1.5">
-                        {sdg.companies.map((c) => (
-                          <span
-                            key={c}
-                            className="text-[10px] font-display font-semibold tracking-wide px-2.5 py-1 rounded-full backdrop-blur-md"
-                            style={{
-                              backgroundColor: "rgba(255,255,255,0.2)",
-                              color: "rgba(255,255,255,0.95)",
-                              border: "1px solid rgba(255,255,255,0.25)",
-                            }}
-                          >
-                            {c}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── 4. METHODOLOGY ───────── */}
-      <section
-        className="py-24 lg:py-32 relative overflow-hidden"
-        style={{ background: "hsl(217 91% 11%)" }}
-      >
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <p
-              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
-              style={{ color: "hsl(var(--emerald))" }}
-            >
-              {methodology.sectionEyebrow}
-            </p>
-            <h2
-              className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight"
-              style={{ color: "hsl(210 40% 98%)" }}
-            >
-              {methodology.sectionTitle}
-            </h2>
-            <p
-              className="max-w-2xl mx-auto mt-4"
-              style={{ color: "hsl(215 20% 65%)" }}
-            >
-              {methodology.sectionSubtitle}
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="relative grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            <div
-              className="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-px"
-              style={{ backgroundColor: "hsl(var(--emerald) / 0.25)" }}
-            />
-            {methodology.steps.map((s) => (
-              <motion.div
-                key={s.step}
-                variants={fadeUp}
-                className="flex flex-col items-center text-center relative"
-              >
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center font-display text-sm font-extrabold mb-4 relative z-10"
-                  style={{
-                    backgroundColor: "hsl(var(--emerald))",
-                    color: "hsl(var(--emerald-foreground))",
-                  }}
-                >
-                  {s.step}
-                </div>
-                <h3
-                  className="font-display text-lg font-extrabold mb-2"
-                  style={{ color: "hsl(210 40% 98%)" }}
-                >
-                  {s.title}
-                </h3>
-                <p
-                  className="text-sm leading-relaxed max-w-[260px]"
-                  style={{ color: "hsl(215 20% 65%)" }}
-                >
-                  {s.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="mt-16 text-center text-xs italic max-w-3xl mx-auto"
-            style={{ color: "hsl(215 20% 45%)" }}
-          >
-            {methodology.disclaimer}
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ───────── 5. FEATURED PORTFOLIO SPOTLIGHT ───────── */}
-      <section className="py-24 lg:py-32 bg-surface-alt">
+      {/* ───────── 2. PORTFOLIO SPOTLIGHT ───────── */}
+      <section id="spotlight" className="py-24 lg:py-32 bg-card">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -448,9 +194,8 @@ const Impact = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation */}
             <div className="flex items-center justify-between mt-6">
-              <div className="flex gap-2">
+              <div className="flex gap-2 flex-wrap">
                 {featuredSpotlight.companies.map((c, i) => (
                   <button
                     key={c.name}
@@ -478,12 +223,177 @@ const Impact = () => {
         </div>
       </section>
 
+      {/* ───────── 3. OUR COMMITMENTS ───────── */}
+      <CommitmentsSection />
+
+      {/* ───────── 4. IMPACT FRAMEWORK (SDGs) ───────── */}
+      <section className="py-24 lg:py-32 bg-card">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p
+              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
+              style={{ color: "hsl(140 45% 35%)" }}
+            >
+              Impact Framework
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
+              Aligned with the{" "}
+              <span className="text-gradient-emerald">
+                UN Sustainable Development Goals
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
+            {prioritySDGs.map((sdg, i) => {
+              const colSpan = i < 3 ? "md:col-span-2" : "md:col-span-3";
+              return (
+                <motion.div
+                  key={sdg.number}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className={`group relative rounded-2xl overflow-hidden cursor-default h-[340px] ${colSpan}`}
+                >
+                  <img
+                    src={sdgPhotos[sdg.number]}
+                    alt={sdg.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)`,
+                    }}
+                  />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-7">
+                    <div className="absolute top-5 right-5">
+                      <img
+                        src={sdgImages[sdg.number]}
+                        alt={`SDG ${sdg.number}`}
+                        className="w-11 h-11 rounded-lg shadow-lg"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg sm:text-xl font-extrabold text-white leading-snug mb-1.5 drop-shadow-sm">
+                        {sdg.title}
+                      </h3>
+                      <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-4 max-w-md line-clamp-2">
+                        {sdg.description}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {sdg.companies.map((c) => (
+                          <span
+                            key={c}
+                            className="text-[10px] font-display font-semibold tracking-wide px-2.5 py-1 rounded-full backdrop-blur-md"
+                            style={{
+                              backgroundColor: "rgba(255,255,255,0.2)",
+                              color: "rgba(255,255,255,0.95)",
+                              border: "1px solid rgba(255,255,255,0.25)",
+                            }}
+                          >
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 5. METHODOLOGY ───────── */}
+      <section
+        className="py-24 lg:py-32 relative overflow-hidden"
+        style={{ background: "hsl(217 91% 11%)" }}
+      >
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p
+              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
+              style={{ color: "hsl(var(--emerald))" }}
+            >
+              {methodology.sectionEyebrow}
+            </p>
+            <h2
+              className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight"
+              style={{ color: "hsl(210 40% 98%)" }}
+            >
+              {methodology.sectionTitle}
+            </h2>
+            <p className="max-w-2xl mx-auto mt-4" style={{ color: "hsl(215 20% 65%)" }}>
+              {methodology.sectionSubtitle}
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="relative grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+          >
+            <div
+              className="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-px"
+              style={{ backgroundColor: "hsl(var(--emerald) / 0.25)" }}
+            />
+            {methodology.steps.map((s) => (
+              <motion.div
+                key={s.step}
+                variants={fadeUp}
+                className="flex flex-col items-center text-center relative"
+              >
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center font-display text-sm font-extrabold mb-4 relative z-10"
+                  style={{
+                    backgroundColor: "hsl(var(--emerald))",
+                    color: "hsl(var(--emerald-foreground))",
+                  }}
+                >
+                  {s.step}
+                </div>
+                <h3 className="font-display text-lg font-extrabold mb-2" style={{ color: "hsl(210 40% 98%)" }}>
+                  {s.title}
+                </h3>
+                <p className="text-sm leading-relaxed max-w-[260px]" style={{ color: "hsl(215 20% 65%)" }}>
+                  {s.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="mt-16 text-center text-xs italic max-w-3xl mx-auto"
+            style={{ color: "hsl(215 20% 45%)" }}
+          >
+            {methodology.disclaimer}
+          </motion.p>
+        </div>
+      </section>
+
       {/* ───────── 6. CTA ───────── */}
       <section
         className="relative py-24 lg:py-32 overflow-hidden"
         style={{
-          background:
-            "linear-gradient(135deg, hsl(217 91% 11%) 0%, hsl(217 80% 18%) 100%)",
+          background: "linear-gradient(135deg, hsl(217 91% 11%) 0%, hsl(217 80% 18%) 100%)",
         }}
       >
         <div className="relative z-10 container mx-auto px-6 text-center">
@@ -498,12 +408,8 @@ const Impact = () => {
             >
               Building the future is a collaborative effort.
             </h2>
-            <p
-              className="max-w-xl mx-auto mb-8"
-              style={{ color: "hsl(215 20% 65%)" }}
-            >
-              Download our full ESG & Impact Report 2024 to learn more about our
-              methodology and performance metrics.
+            <p className="max-w-xl mx-auto mb-8" style={{ color: "hsl(215 20% 65%)" }}>
+              Download our full ESG & Impact Report 2024 to learn more about our methodology and performance metrics.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
@@ -516,10 +422,7 @@ const Impact = () => {
               <a
                 href="#"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg border font-display font-semibold text-sm transition-colors"
-                style={{
-                  borderColor: "hsl(215 20% 30%)",
-                  color: "hsl(210 40% 98%)",
-                }}
+                style={{ borderColor: "hsl(215 20% 30%)", color: "hsl(210 40% 98%)" }}
               >
                 <Mail size={15} />
                 Contact Us
