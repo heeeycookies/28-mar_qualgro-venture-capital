@@ -37,15 +37,6 @@ const sdgPhotos: Record<number, string> = {
   4: photoSdg4, 5: photoSdg5, 8: photoSdg8, 9: photoSdg9, 10: photoSdg10,
 };
 
-const staggerContainer = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
 
 const Impact = () => {
   const [spotlightIndex, setSpotlightIndex] = useState(0);
@@ -311,85 +302,8 @@ const Impact = () => {
         </div>
       </section>
 
-      {/* ───────── 5. METHODOLOGY ───────── */}
-      <section
-        className="py-24 lg:py-32 relative overflow-hidden"
-        style={{ background: "hsl(217 91% 11%)" }}
-      >
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <p
-              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
-              style={{ color: "hsl(var(--emerald))" }}
-            >
-              {methodology.sectionEyebrow}
-            </p>
-            <h2
-              className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight"
-              style={{ color: "hsl(210 40% 98%)" }}
-            >
-              {methodology.sectionTitle}
-            </h2>
-            <p className="max-w-2xl mx-auto mt-4" style={{ color: "hsl(215 20% 65%)" }}>
-              {methodology.sectionSubtitle}
-            </p>
-          </motion.div>
 
-          <motion.div
-            className="relative grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            <div
-              className="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-px"
-              style={{ backgroundColor: "hsl(var(--emerald) / 0.25)" }}
-            />
-            {methodology.steps.map((s) => (
-              <motion.div
-                key={s.step}
-                variants={fadeUp}
-                className="flex flex-col items-center text-center relative"
-              >
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center font-display text-sm font-extrabold mb-4 relative z-10"
-                  style={{
-                    backgroundColor: "hsl(var(--emerald))",
-                    color: "hsl(var(--emerald-foreground))",
-                  }}
-                >
-                  {s.step}
-                </div>
-                <h3 className="font-display text-lg font-extrabold mb-2" style={{ color: "hsl(210 40% 98%)" }}>
-                  {s.title}
-                </h3>
-                <p className="text-sm leading-relaxed max-w-[260px]" style={{ color: "hsl(215 20% 65%)" }}>
-                  {s.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="mt-16 text-center text-xs italic max-w-3xl mx-auto"
-            style={{ color: "hsl(215 20% 45%)" }}
-          >
-            {methodology.disclaimer}
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ───────── 6. CTA ───────── */}
+      {/* ───────── 5. CTA ───────── */}
       <section
         className="relative py-24 lg:py-32 overflow-hidden"
         style={{
