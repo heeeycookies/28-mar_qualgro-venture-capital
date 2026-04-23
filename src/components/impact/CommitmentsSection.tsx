@@ -15,6 +15,22 @@ import sdg11 from "@/assets/impact/sdg-icons/sdg-11.png";
 import sdg12 from "@/assets/impact/sdg-icons/sdg-12.png";
 import sdg13 from "@/assets/impact/sdg-icons/sdg-13.png";
 
+import logoFundingSocieties from "@/assets/impact/logos/funding-societies.png";
+import logoRalali from "@/assets/impact/logos/ralali.png";
+import logoSupermom from "@/assets/impact/logos/supermom.png";
+import logoBizzi from "@/assets/impact/logos/bizzi.png";
+import logoBrighte from "@/assets/impact/logos/brighte.png";
+import logoPatsnap from "@/assets/impact/logos/patsnap.png";
+
+const companyLogos: Record<string, string> = {
+  "Funding Societies": logoFundingSocieties,
+  "Ralali": logoRalali,
+  "Supermom": logoSupermom,
+  "Bizzi": logoBizzi,
+  "Brighte": logoBrighte,
+  "Patsnap": logoPatsnap,
+};
+
 const sdgImages: Record<number, string> = {
   1: sdg1, 4: sdg4, 5: sdg5, 7: sdg7, 8: sdg8, 9: sdg9, 10: sdg10,
   11: sdg11, 12: sdg12, 13: sdg13,
@@ -183,13 +199,14 @@ function DiversityContent({ active }: { active: typeof commitments[0] }) {
         <p className="text-center text-muted-foreground text-xs uppercase tracking-[0.2em] font-display font-semibold mb-4">
           Illustrated by some of our portfolio companies
         </p>
-        <div className="flex justify-center gap-8">
+        <div className="flex justify-center gap-10">
           {active.companies.map((c) => (
             <div key={c.name} className="flex flex-col items-center gap-2">
-              <div className="w-16 h-16 rounded-full border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
-                <span className="font-display text-xs font-bold text-primary">{c.name.charAt(0)}</span>
-              </div>
-              <span className="text-xs font-display font-semibold text-primary">{c.name}</span>
+              {companyLogos[c.name] ? (
+                <img src={companyLogos[c.name]} alt={c.name} className="h-12 object-contain" />
+              ) : (
+                <span className="font-display text-sm font-bold text-primary">{c.name}</span>
+              )}
             </div>
           ))}
         </div>
@@ -283,7 +300,13 @@ function PlanetContent({ active }: { active: typeof commitments[0] }) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {active.companies.map((company) => (
           <div key={company.name} className="border border-border rounded-xl p-6 bg-card">
-            <h4 className="font-display text-xl font-extrabold text-primary mb-1">{company.name}</h4>
+            <div className="flex items-center gap-3 mb-3">
+              {companyLogos[company.name] ? (
+                <img src={companyLogos[company.name]} alt={company.name} className="h-8 object-contain" />
+              ) : (
+                <h4 className="font-display text-xl font-extrabold text-primary">{company.name}</h4>
+              )}
+            </div>
             <p className="text-muted-foreground text-xs mb-5 leading-relaxed">{company.description}</p>
             <div className="space-y-3">
               {company.stats.map((stat, si) => (
