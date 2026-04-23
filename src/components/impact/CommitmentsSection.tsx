@@ -1,7 +1,19 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Users, Globe } from "lucide-react";
+import { Users, Heart, Globe } from "lucide-react";
 import { commitments } from "@/data/commitments";
+
+import sdg1 from "@/assets/impact/sdg-icons/sdg-1.png";
+import sdg4 from "@/assets/impact/sdg-icons/sdg-4.png";
+import sdg5 from "@/assets/impact/sdg-icons/sdg-5.png";
+import sdg7 from "@/assets/impact/sdg-icons/sdg-7.png";
+import sdg8 from "@/assets/impact/sdg-icons/sdg-8.png";
+import sdg9 from "@/assets/impact/sdg-icons/sdg-9.png";
+import sdg10 from "@/assets/impact/sdg-icons/sdg-10.png";
+
+const sdgImages: Record<number, string> = {
+  1: sdg1, 4: sdg4, 5: sdg5, 7: sdg7, 8: sdg8, 9: sdg9, 10: sdg10,
+};
 
 const tabIcons = [
   <Users size={20} />,
@@ -47,10 +59,7 @@ const CommitmentsSection = () => {
               }`}
               style={
                 i === activeTab
-                  ? {
-                      background: c.color,
-                      color: "white",
-                    }
+                  ? { background: c.color, color: "white" }
                   : {}
               }
             >
@@ -68,15 +77,13 @@ const CommitmentsSection = () => {
               >
                 {c.title}
               </span>
+              {/* Active indicator dot */}
               {i === activeTab && (
                 <motion.div
-                  layoutId="commitment-indicator"
-                  className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0"
-                  style={{
-                    borderLeft: "8px solid transparent",
-                    borderRight: "8px solid transparent",
-                    borderTop: `8px solid ${c.color}`,
-                  }}
+                  layoutId="commitment-dot"
+                  className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full"
+                  style={{ background: c.color }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               )}
             </button>
@@ -114,216 +121,19 @@ const CommitmentsSection = () => {
               </p>
             )}
 
-            {/* Diversity tab content */}
+            {/* Diversity tab */}
             {active.id === "diversity" && (
-              <div className="space-y-8">
-                {/* Stats row */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {active.stats.map((stat, i) => (
-                    <div
-                      key={i}
-                      className="text-center p-6 rounded-xl border border-border bg-card"
-                    >
-                      <p
-                        className="font-display text-4xl md:text-5xl font-extrabold mb-2"
-                        style={{ color: active.color }}
-                      >
-                        {stat.value}
-                      </p>
-                      <p className="text-muted-foreground text-xs uppercase tracking-wider font-display font-semibold leading-snug">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Bullet points */}
-                <div className="space-y-4 max-w-2xl mx-auto">
-                  {active.bullets.map((b, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div
-                        className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                        style={{ background: active.color }}
-                      >
-                        <span className="text-white text-xs font-bold">Q</span>
-                      </div>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {b.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Companies */}
-                <div className="pt-6 border-t border-border">
-                  <p className="text-center text-muted-foreground text-xs uppercase tracking-[0.2em] font-display font-semibold mb-4">
-                    Illustrated by some of our portfolio companies
-                  </p>
-                  <div className="flex justify-center gap-8">
-                    {active.companies.map((c) => (
-                      <div
-                        key={c.name}
-                        className="flex flex-col items-center gap-2"
-                      >
-                        <div className="w-16 h-16 rounded-full border-2 border-dashed border-emerald/40 flex items-center justify-center">
-                          <span className="font-display text-xs font-bold text-primary">
-                            {c.name.charAt(0)}
-                          </span>
-                        </div>
-                        <span className="text-xs font-display font-semibold text-primary">
-                          {c.name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <DiversityContent active={active} />
             )}
 
-            {/* Communities tab content */}
+            {/* Communities tab */}
             {active.id === "communities" && (
-              <div className="space-y-8">
-                {/* SDG visual */}
-                <div
-                  className="rounded-xl p-8 flex flex-col md:flex-row items-center justify-center gap-6"
-                  style={{ background: "hsl(200 30% 95%)" }}
-                >
-                  <div className="text-center">
-                    <p
-                      className="font-display text-3xl md:text-4xl font-extrabold"
-                      style={{ color: active.color }}
-                    >
-                      SMEs +
-                    </p>
-                  </div>
-                  <div className="text-center px-6">
-                    <p className="font-display text-xs uppercase tracking-[0.2em] font-bold text-muted-foreground">
-                      Sustainable Development
-                    </p>
-                    <p
-                      className="font-display text-2xl font-extrabold"
-                      style={{ color: "hsl(199 89% 38%)" }}
-                    >
-                      GOALS
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <p
-                      className="font-display text-3xl md:text-4xl font-extrabold"
-                      style={{ color: active.color }}
-                    >
-                      People +
-                    </p>
-                  </div>
-                </div>
-
-                {/* SDG icons row */}
-                <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-3">
-                  {[
-                    { num: 8, label: "Decent Work & Economic Growth", color: "#A21942" },
-                    { num: 9, label: "Industry, Innovation & Infrastructure", color: "#FD6925" },
-                    { num: 11, label: "Sustainable Cities & Communities", color: "#FD9D24" },
-                    { num: 12, label: "Responsible Consumption & Production", color: "#BF8B2E" },
-                    { num: 1, label: "No Poverty", color: "#E5243B" },
-                    { num: 4, label: "Quality Education", color: "#C5192D" },
-                    { num: 5, label: "Gender Equality", color: "#FF3A21" },
-                    { num: 7, label: "Affordable & Clean Energy", color: "#FCC30B" },
-                    { num: 10, label: "Reduced Inequalities", color: "#DD1367" },
-                  ].map((sdg) => (
-                    <div
-                      key={sdg.num}
-                      className="flex flex-col items-center gap-1 p-2 rounded-lg"
-                    >
-                      <div
-                        className="w-10 h-10 rounded flex items-center justify-center"
-                        style={{ background: sdg.color }}
-                      >
-                        <span className="text-white font-display font-extrabold text-sm">
-                          {sdg.num}
-                        </span>
-                      </div>
-                      <p className="text-[9px] text-muted-foreground text-center leading-tight font-display font-semibold">
-                        {sdg.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <CommunitiesContent active={active} />
             )}
 
-            {/* Planet tab content */}
+            {/* Planet tab */}
             {active.id === "planet" && (
-              <div className="space-y-8">
-                {/* SDG row for climate */}
-                <div className="flex flex-wrap justify-center gap-4">
-                  {[
-                    { num: 7, label: "Affordable & Clean Energy", color: "#FCC30B" },
-                    { num: 9, label: "Industry, Innovation & Infrastructure", color: "#FD6925" },
-                    { num: 11, label: "Sustainable Cities & Communities", color: "#FD9D24" },
-                    { num: 12, label: "Responsible Consumption & Production", color: "#BF8B2E" },
-                    { num: 13, label: "Climate Action", color: "#3F7E44" },
-                  ].map((sdg) => (
-                    <div
-                      key={sdg.num}
-                      className="flex flex-col items-center gap-1.5 p-3"
-                    >
-                      <div
-                        className="w-12 h-12 rounded-lg flex items-center justify-center"
-                        style={{ background: sdg.color }}
-                      >
-                        <span className="text-white font-display font-extrabold text-base">
-                          {sdg.num}
-                        </span>
-                      </div>
-                      <p className="text-[10px] text-muted-foreground text-center leading-tight font-display font-semibold max-w-[80px]">
-                        {sdg.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Companies banner */}
-                <div
-                  className="rounded-xl px-6 py-3 text-center"
-                  style={{ background: active.color }}
-                >
-                  <p className="text-white font-display text-xs uppercase tracking-[0.25em] font-bold">
-                    Examples of portfolio companies impacting climate change
-                  </p>
-                </div>
-
-                {/* Company cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                  {active.companies.map((company) => (
-                    <div
-                      key={company.name}
-                      className="border border-border rounded-xl p-6 bg-card"
-                    >
-                      <h4 className="font-display text-xl font-extrabold text-primary mb-1">
-                        {company.name}
-                      </h4>
-                      <p className="text-muted-foreground text-xs mb-5 leading-relaxed">
-                        {company.description}
-                      </p>
-                      <div className="space-y-3">
-                        {company.stats.map((stat, si) => (
-                          <div key={si} className="flex items-baseline gap-2">
-                            <span
-                              className="font-display text-lg font-extrabold"
-                              style={{ color: active.color }}
-                            >
-                              {stat.value}
-                            </span>
-                            <span className="text-muted-foreground text-xs">
-                              {stat.label}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <PlanetContent active={active} />
             )}
           </motion.div>
         </AnimatePresence>
@@ -331,5 +141,158 @@ const CommitmentsSection = () => {
     </section>
   );
 };
+
+/* ── Sub-components ── */
+
+function DiversityContent({ active }: { active: typeof commitments[0] }) {
+  return (
+    <div className="space-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {active.stats.map((stat, i) => (
+          <div key={i} className="text-center p-6 rounded-xl border border-border bg-card">
+            <p className="font-display text-4xl md:text-5xl font-extrabold mb-2" style={{ color: active.color }}>
+              {stat.value}
+            </p>
+            <p className="text-muted-foreground text-xs uppercase tracking-wider font-display font-semibold leading-snug">
+              {stat.label}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="space-y-4 max-w-2xl mx-auto">
+        {active.bullets.map((b, i) => (
+          <div key={i} className="flex items-start gap-3">
+            <div
+              className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+              style={{ background: active.color }}
+            >
+              <span className="text-white text-xs font-bold">Q</span>
+            </div>
+            <p className="text-muted-foreground text-sm leading-relaxed">{b.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="pt-6 border-t border-border">
+        <p className="text-center text-muted-foreground text-xs uppercase tracking-[0.2em] font-display font-semibold mb-4">
+          Illustrated by some of our portfolio companies
+        </p>
+        <div className="flex justify-center gap-8">
+          {active.companies.map((c) => (
+            <div key={c.name} className="flex flex-col items-center gap-2">
+              <div className="w-16 h-16 rounded-full border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
+                <span className="font-display text-xs font-bold text-primary">{c.name.charAt(0)}</span>
+              </div>
+              <span className="text-xs font-display font-semibold text-primary">{c.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CommunitiesContent({ active }: { active: typeof commitments[0] }) {
+  const sdgs = [
+    { num: 8, label: "Decent Work & Economic Growth" },
+    { num: 9, label: "Industry, Innovation & Infrastructure" },
+    { num: 1, label: "No Poverty" },
+    { num: 4, label: "Quality Education" },
+    { num: 5, label: "Gender Equality" },
+    { num: 7, label: "Affordable & Clean Energy" },
+    { num: 10, label: "Reduced Inequalities" },
+  ];
+
+  return (
+    <div className="space-y-8">
+      <div
+        className="rounded-xl p-8 flex flex-col md:flex-row items-center justify-center gap-6"
+        style={{ background: "hsl(200 30% 95%)" }}
+      >
+        <p className="font-display text-3xl md:text-4xl font-extrabold" style={{ color: active.color }}>
+          SMEs +
+        </p>
+        <div className="text-center px-6">
+          <p className="font-display text-xs uppercase tracking-[0.2em] font-bold text-muted-foreground">
+            Sustainable Development
+          </p>
+          <p className="font-display text-2xl font-extrabold" style={{ color: "hsl(199 89% 38%)" }}>
+            GOALS
+          </p>
+        </div>
+        <p className="font-display text-3xl md:text-4xl font-extrabold" style={{ color: active.color }}>
+          People +
+        </p>
+      </div>
+
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-4">
+        {sdgs.map((sdg) => (
+          <div key={sdg.num} className="flex flex-col items-center gap-2">
+            <img
+              src={sdgImages[sdg.num]}
+              alt={`SDG ${sdg.num}: ${sdg.label}`}
+              className="w-16 h-16 rounded-lg object-cover"
+            />
+            <p className="text-[9px] text-muted-foreground text-center leading-tight font-display font-semibold">
+              {sdg.label}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PlanetContent({ active }: { active: typeof commitments[0] }) {
+  const sdgs = [
+    { num: 7, label: "Affordable & Clean Energy" },
+    { num: 9, label: "Industry, Innovation & Infrastructure" },
+  ];
+
+  return (
+    <div className="space-y-8">
+      <div className="flex flex-wrap justify-center gap-6">
+        {sdgs.map((sdg) => (
+          <div key={sdg.num} className="flex flex-col items-center gap-2">
+            <img
+              src={sdgImages[sdg.num]}
+              alt={`SDG ${sdg.num}: ${sdg.label}`}
+              className="w-16 h-16 rounded-lg object-cover"
+            />
+            <p className="text-[10px] text-muted-foreground text-center leading-tight font-display font-semibold max-w-[80px]">
+              {sdg.label}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="rounded-xl px-6 py-3 text-center" style={{ background: active.color }}>
+        <p className="text-white font-display text-xs uppercase tracking-[0.25em] font-bold">
+          Examples of portfolio companies impacting climate change
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {active.companies.map((company) => (
+          <div key={company.name} className="border border-border rounded-xl p-6 bg-card">
+            <h4 className="font-display text-xl font-extrabold text-primary mb-1">{company.name}</h4>
+            <p className="text-muted-foreground text-xs mb-5 leading-relaxed">{company.description}</p>
+            <div className="space-y-3">
+              {company.stats.map((stat, si) => (
+                <div key={si} className="flex items-baseline gap-2">
+                  <span className="font-display text-lg font-extrabold" style={{ color: active.color }}>
+                    {stat.value}
+                  </span>
+                  <span className="text-muted-foreground text-xs">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default CommitmentsSection;
