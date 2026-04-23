@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Users, Heart, Globe } from "lucide-react";
 import { commitments } from "@/data/commitments";
 
+import sdgLogo from "@/assets/impact/sdg-icons/sdg-logo.png";
 import sdg1 from "@/assets/impact/sdg-icons/sdg-1.png";
 import sdg4 from "@/assets/impact/sdg-icons/sdg-4.png";
 import sdg5 from "@/assets/impact/sdg-icons/sdg-5.png";
@@ -10,9 +11,13 @@ import sdg7 from "@/assets/impact/sdg-icons/sdg-7.png";
 import sdg8 from "@/assets/impact/sdg-icons/sdg-8.png";
 import sdg9 from "@/assets/impact/sdg-icons/sdg-9.png";
 import sdg10 from "@/assets/impact/sdg-icons/sdg-10.png";
+import sdg11 from "@/assets/impact/sdg-icons/sdg-11.png";
+import sdg12 from "@/assets/impact/sdg-icons/sdg-12.png";
+import sdg13 from "@/assets/impact/sdg-icons/sdg-13.png";
 
 const sdgImages: Record<number, string> = {
   1: sdg1, 4: sdg4, 5: sdg5, 7: sdg7, 8: sdg8, 9: sdg9, 10: sdg10,
+  11: sdg11, 12: sdg12, 13: sdg13,
 };
 
 const tabIcons = [
@@ -197,6 +202,8 @@ function CommunitiesContent({ active }: { active: typeof commitments[0] }) {
   const sdgs = [
     { num: 8, label: "Decent Work & Economic Growth" },
     { num: 9, label: "Industry, Innovation & Infrastructure" },
+    { num: 11, label: "Sustainable Cities & Communities" },
+    { num: 12, label: "Responsible Consumption & Production" },
     { num: 1, label: "No Poverty" },
     { num: 4, label: "Quality Education" },
     { num: 5, label: "Gender Equality" },
@@ -207,26 +214,23 @@ function CommunitiesContent({ active }: { active: typeof commitments[0] }) {
   return (
     <div className="space-y-8">
       <div
-        className="rounded-xl p-8 flex flex-col md:flex-row items-center justify-center gap-6"
+        className="rounded-xl p-8 flex flex-col md:flex-row items-center justify-center gap-8"
         style={{ background: "hsl(200 30% 95%)" }}
       >
         <p className="font-display text-3xl md:text-4xl font-extrabold" style={{ color: active.color }}>
           SMEs +
         </p>
-        <div className="text-center px-6">
-          <p className="font-display text-xs uppercase tracking-[0.2em] font-bold text-muted-foreground">
-            Sustainable Development
-          </p>
-          <p className="font-display text-2xl font-extrabold" style={{ color: "hsl(199 89% 38%)" }}>
-            GOALS
-          </p>
-        </div>
+        <img
+          src={sdgLogo}
+          alt="UN Sustainable Development Goals"
+          className="h-20 md:h-24 object-contain"
+        />
         <p className="font-display text-3xl md:text-4xl font-extrabold" style={{ color: active.color }}>
           People +
         </p>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-4">
+      <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-4">
         {sdgs.map((sdg) => (
           <div key={sdg.num} className="flex flex-col items-center gap-2">
             <img
@@ -248,6 +252,9 @@ function PlanetContent({ active }: { active: typeof commitments[0] }) {
   const sdgs = [
     { num: 7, label: "Affordable & Clean Energy" },
     { num: 9, label: "Industry, Innovation & Infrastructure" },
+    { num: 11, label: "Sustainable Cities & Communities" },
+    { num: 12, label: "Responsible Consumption & Production" },
+    { num: 13, label: "Climate Action" },
   ];
 
   return (
