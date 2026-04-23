@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Users, Heart, Globe } from "lucide-react";
 import { commitments } from "@/data/commitments";
 
+import sdgLogo from "@/assets/impact/sdg-icons/sdg-logo.png";
 import sdg1 from "@/assets/impact/sdg-icons/sdg-1.png";
 import sdg4 from "@/assets/impact/sdg-icons/sdg-4.png";
 import sdg5 from "@/assets/impact/sdg-icons/sdg-5.png";
@@ -10,9 +11,13 @@ import sdg7 from "@/assets/impact/sdg-icons/sdg-7.png";
 import sdg8 from "@/assets/impact/sdg-icons/sdg-8.png";
 import sdg9 from "@/assets/impact/sdg-icons/sdg-9.png";
 import sdg10 from "@/assets/impact/sdg-icons/sdg-10.png";
+import sdg11 from "@/assets/impact/sdg-icons/sdg-11.png";
+import sdg12 from "@/assets/impact/sdg-icons/sdg-12.png";
+import sdg13 from "@/assets/impact/sdg-icons/sdg-13.png";
 
 const sdgImages: Record<number, string> = {
   1: sdg1, 4: sdg4, 5: sdg5, 7: sdg7, 8: sdg8, 9: sdg9, 10: sdg10,
+  11: sdg11, 12: sdg12, 13: sdg13,
 };
 
 const tabIcons = [
