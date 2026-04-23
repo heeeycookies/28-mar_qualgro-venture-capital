@@ -17,6 +17,16 @@ import {
 } from "@/data/impact";
 import CommitmentsSection from "@/components/impact/CommitmentsSection";
 
+import logoSupermom from "@/assets/impact/logos/supermom.png";
+import logoPatsnap from "@/assets/impact/logos/patsnap.png";
+import logoFundingSocieties from "@/assets/impact/logos/funding-societies.png";
+
+const spotlightLogos: Record<string, string> = {
+  "Supermom": logoSupermom,
+  "Patsnap": logoPatsnap,
+  "Funding Societies": logoFundingSocieties,
+};
+
 import sdg4 from "@/assets/impact/sdg-icons/sdg-4.png";
 import sdg5 from "@/assets/impact/sdg-icons/sdg-5.png";
 import sdg8 from "@/assets/impact/sdg-icons/sdg-8.png";
