@@ -155,9 +155,14 @@ const Impact = () => {
                 <div className="absolute top-0 left-0 w-1 h-full bg-emerald" />
                 <div className="grid grid-cols-1 lg:grid-cols-5">
                   <div className="lg:col-span-3 p-8 md:p-10 lg:p-12">
-                    <h3 className="font-display text-2xl md:text-3xl font-extrabold text-primary">
-                      {currentCompany.name}
-                    </h3>
+                    <div className="flex items-center gap-4">
+                      {spotlightLogos[currentCompany.name] && (
+                        <img src={spotlightLogos[currentCompany.name]} alt={currentCompany.name} className="h-10 object-contain" />
+                      )}
+                      <h3 className="font-display text-2xl md:text-3xl font-extrabold text-primary">
+                        {currentCompany.name}
+                      </h3>
+                    </div>
                     <p className="font-display text-sm font-semibold mt-2" style={{ color: "hsl(140 45% 35%)" }}>
                       {currentCompany.tagline}
                     </p>
