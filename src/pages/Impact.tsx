@@ -26,7 +26,7 @@ import {
 import { twoXOverview, twoXCriteria, twoXPrerequisites } from "@/data/two-x-data";
 import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
 
-const twoXIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const twoXIcons: Record<string, React.ElementType> = {
   Users, Award, Briefcase, Link: LinkIcon, Heart, PieChart,
 };
 
