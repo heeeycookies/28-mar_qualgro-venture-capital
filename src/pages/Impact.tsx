@@ -609,6 +609,14 @@ const Impact = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 h-full">
                     {/* LEFT */}
                     <div className="lg:col-span-3 p-8 md:p-10">
+                      <div className="h-12 md:h-14 mb-5 flex items-center">
+                        <img
+                          src={c.logo}
+                          alt={`${c.name} logo`}
+                          draggable={false}
+                          className="max-h-full max-w-[180px] object-contain pointer-events-none"
+                        />
+                      </div>
                       <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-extrabold text-primary leading-tight">
                         {c.name}
                       </h3>
