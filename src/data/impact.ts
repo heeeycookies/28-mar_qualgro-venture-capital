@@ -7,222 +7,174 @@ export const impactHero = {
   scrollCue: "Discover More",
 };
 
-export const investmentPrinciples = {
-  sectionEyebrow: "OUR COMMITMENTS",
-  sectionTitle: "Principles That Guide Every Investment",
-  sectionSubtitle:
-    "​",
-  principles: [
-    {
-      number: "01",
-      title: "Impact by Design, Not by Accident",
-      description:
-        "We invest in businesses where commercial success and socio-economic impact are structurally aligned — not bolted on as an afterthought.",
-    },
-    {
-      number: "02",
-      title: "Hands-On Partnership",
-      description:
-        "Capital is the starting point. We work closely with founders on talent, governance, strategy, and scaling — as a long-term partner, not a passive shareholder.",
-    },
-    {
-      number: "03",
-      title: "Southeast Asia First",
-      description:
-        "We focus on markets we know deeply. Our network, insights, and operating experience are concentrated where they create the most value for founders.",
-    },
-    {
-      number: "04",
-      title: "Ethical Stewardship of LP Capital",
-      description:
-        "We hold ourselves to institutional standards of transparency, reporting, and fiduciary duty — every decision answers to the trust our LPs place in us.",
-    },
-  ],
-};
-
-export const methodology = {
-  sectionEyebrow: "HOW WE MEASURE",
-  sectionTitle: "A Framework Built on Rigor",
-  sectionSubtitle:
-    "We measure what matters — and we're transparent about how we do it.",
-  steps: [
-    {
-      step: "01",
-      title: "Screen",
-      description:
-        "Every prospective investment is screened against our ESG framework during diligence, covering environmental, social, and governance risk factors.",
-    },
-    {
-      step: "02",
-      title: "Map",
-      description:
-        "We map each portfolio company to the UN SDGs most relevant to their business model, identifying primary and secondary impact pathways.",
-    },
-    {
-      step: "03",
-      title: "Track",
-      description:
-        "We track a concise set of company-reported impact KPIs annually, focused on outcomes rather than vanity metrics.",
-    },
-    {
-      step: "04",
-      title: "Report",
-      description:
-        "We share findings transparently with our LPs and publish aggregated impact narratives alongside financial reporting.",
-    },
-  ],
-  disclaimer:
-    "All portfolio company metrics referenced on this page are reported by the companies themselves and reflect cumulative progress since inception, not attribution to Qualgro's investment alone.",
-};
-
-export const featuredSpotlight = {
-  sectionEyebrow: "PORTFOLIO SPOTLIGHT",
-  sectionTitle: "Impact in Action",
-  sectionSubtitle:
-    "A closer look at how our portfolio companies are creating change.",
-  companies: [
-    {
-      name: "Supermom",
-      tagline:
-        "Empowering mothers across Southeast Asia to earn income and raise children with confidence.",
-      description:
-        "Supermom is the largest community of mothers in Southeast Asia — a platform where mothers connect, access parenting guidance, and earn income through quick daily tasks. Qualgro has supported the team on scaling talent, international expansion into Indonesia and Malaysia, and building an AI-first product strategy.",
-      sdgs: [5, 8, 10],
-      highlights: [
-        { label: "Mothers on platform", value: "10M+" },
-        { label: "Online communities", value: "7K+" },
-        { label: "Markets served", value: "3" },
-      ],
-      qualgroSupport:
-        "Team scaled from 20 to 60 in year one post-investment; successful expansion into Indonesia and Malaysia; AI-driven conversational platform with 1.6M+ conversations to date.",
-    },
-    {
-      name: "Patsnap",
-      tagline:
-        "Connecting innovators worldwide through AI-powered intellectual property intelligence.",
-      description:
-        "Patsnap is a global innovation intelligence platform that uses AI to help R&D teams, IP professionals, and enterprises make smarter decisions. With access to 115+ patent databases, Patsnap accelerates innovation cycles and reduces R&D risk for companies worldwide.",
-      sdgs: [9],
-      highlights: [
-        { label: "Patent databases", value: "115+" },
-        { label: "Team scaled to", value: "1,000+" },
-        { label: "Global markets", value: "10+" },
-      ],
-      qualgroSupport:
-        "Supported team scaling from 200 to 1,000; expansion into Japan and new enterprise markets; strategic product positioning in AI-driven innovation.",
-    },
-    {
-      name: "Funding Societies",
-      tagline:
-        "Built For Financial Inclusion In Southeast Asia",
-      description:
-        "Funding Societies is Southeast Asia's largest SME digital financing platform, providing fast, flexible, and accessible business financing to small and medium enterprises that are underserved by traditional banks. The platform has disbursed over $3B in business financing across multiple markets.",
-      sdgs: [8, 9, 10],
-      highlights: [
-        { label: "Jobs created", value: "350K+" },
-        { label: "USD business loans disbursed since 2015", value: ">$3B" },
-        { label: "Countries of operations — Singapore, Malaysia, Vietnam, Thailand, Indonesia", value: "5" },
-      ],
-      qualgroSupport:
-        "Guided expansion across Singapore, Indonesia, Malaysia, and Thailand; supported governance frameworks and credit scoring institutionalisation.",
-    },
-  ],
-};
-
-export const qualgroSupport = {
-  sectionTitle: "How We Support Our Founders",
-  sectionSubtitle:
-    "Beyond capital, Qualgro partners hands-on with founders to scale talent, governance, and strategy.",
-  pillars: [
-    {
-      title: "Talent & Organisation Scaling",
-      description:
-        "Coaching CEOs on senior hiring, team structure, and scaling culture. Supermom grew from 20 to 60 in year one; ShopBack from 56 to 560; Patsnap from 200 to 1,000.",
-      icon: "users",
-    },
-    {
-      title: "Governance & Operational Discipline",
-      description:
-        "Institutionalising credit scoring, reporting, audit practices, and KPI dashboards. ErudiFi's non-performing loans in Indonesia and the Philippines dropped from ~30% in 2021 to ~6% in 2024.",
-      icon: "shield-check",
-    },
-    {
-      title: "Strategic Pivots & Market Expansion",
-      description:
-        "Advising on business model shifts and geographic expansion. Supported ErudiFi's pivot from B2C to B2B2C, Supermom's entry into Indonesia and Malaysia, and ShopBack's regional rollout.",
-      icon: "trending-up",
-    },
-    {
-      title: "Fundraising & Leadership Coaching",
-      description:
-        "Acting as a strategic sounding board to founders on fundraising, product, and vision. Ralali raised ~USD 40M across two rounds; Patsnap reached clients across multiple new markets including Japan.",
-      icon: "compass",
-    },
-  ],
-};
+export const portfolioCompanies = [
+  {
+    id: "supermom",
+    name: "Supermom",
+    tagline: "Empowering mothers across Southeast Asia to earn income and raise children with confidence.",
+    aiAngle: "AI-powered companion bot with 1.6M+ personalised conversations to date.",
+    sdgs: [5, 8, 10],
+    highlights: [
+      { value: "10M+", label: "Mothers on platform" },
+      { value: "7K+", label: "Online communities" },
+      { value: "3", label: "Markets served" },
+    ],
+  },
+  {
+    id: "erudifi",
+    name: "ErudiFi",
+    tagline: "Enabling students in Southeast Asia to access quality education through affordable financing.",
+    aiAngle: "Data-driven credit scoring model improving repayment rates and extending to new loan products.",
+    sdgs: [4, 5, 8],
+    highlights: [
+      { value: "$60M", label: "Tuition disbursed" },
+      { value: "55K+", label: "Students financed" },
+      { value: "170", label: "Partner schools" },
+    ],
+  },
+  {
+    id: "ralali",
+    name: "Ralali",
+    tagline: "Empowering Indonesia's MSMEs to grow through a B2B marketplace.",
+    aiAngle: "AI-powered procurement with automated supplier matching and logistics optimisation.",
+    sdgs: [8, 9],
+    highlights: [
+      { value: "2M+", label: "MSMEs served" },
+      { value: "$1B+", label: "Sales generated" },
+      { value: "~700K", label: "Tasks created" },
+    ],
+  },
+  {
+    id: "edmicro",
+    name: "Edmicro",
+    tagline: "Making quality education accessible to every student in Vietnam.",
+    aiAngle: "Machine learning-driven personalised practice and real-time mastery tracking for K-12.",
+    sdgs: [4, 8, 9],
+    highlights: [
+      { value: "500K+", label: "Learners reached" },
+      { value: "800+", label: "Schools integrated" },
+      { value: "89%", label: "Improved learning" },
+    ],
+  },
+  {
+    id: "funding-societies",
+    name: "Funding Societies",
+    tagline: "Unlocking financing for underserved MSMEs across Southeast Asia.",
+    aiAngle: "AI-driven risk assessment maintaining ~2% cumulative default rates.",
+    sdgs: [5, 8, 9],
+    highlights: [
+      { value: "350K+", label: "Jobs created" },
+      { value: "100K+", label: "MSMEs financed" },
+      { value: "30K", label: "Women-led MSMEs" },
+    ],
+  },
+  {
+    id: "shopback",
+    name: "ShopBack",
+    tagline: "Helping consumers maximise savings and shop smarter online.",
+    aiAngle: "AI-powered product discovery connecting consumers with personalised deals across 20K+ merchants.",
+    sdgs: [8, 10],
+    highlights: [
+      { value: "$120M", label: "Cashback disbursed" },
+      { value: "20M+", label: "Consumers reached" },
+      { value: "20K+", label: "Merchant partners" },
+    ],
+  },
+  {
+    id: "patsnap",
+    name: "Patsnap",
+    tagline: "Accelerating innovation through IP intelligence.",
+    aiAngle: "AI-powered analytics engine extracting actionable insights from 115+ patent databases globally.",
+    sdgs: [4, 9],
+    highlights: [
+      { value: "115+", label: "Patent databases" },
+      { value: "~70%", label: "Users in critical innovation" },
+      { value: "1,000", label: "Team globally" },
+    ],
+  },
+  {
+    id: "convosight",
+    name: "Convosight",
+    tagline: "Enabling community creators to generate sustainable income.",
+    aiAngle: "Proprietary AI-powered conversation ranking and fast search algorithms for community insights.",
+    sdgs: [5, 8, 10],
+    highlights: [
+      { value: "100K+", label: "Creators joined" },
+      { value: "$3M+", label: "Paid to creators" },
+      { value: "150+", label: "Brand partners" },
+    ],
+  },
+  {
+    id: "accredify",
+    name: "Accredify",
+    tagline: "Reducing credential fraud and verification costs globally.",
+    aiAngle: "Automated verification processing 99%+ of document checks instantly across 80+ countries.",
+    sdgs: [4, 8],
+    highlights: [
+      { value: "900+", label: "Clients in 9 markets" },
+      { value: "13M+", label: "Verifications done" },
+      { value: "2M+", label: "Documents issued" },
+    ],
+  },
+  {
+    id: "synaxg",
+    name: "SynaXG",
+    tagline: "Democratizing communications technology in developing countries.",
+    aiAngle: "AI-RAN software optimising network performance with 20% energy reduction.",
+    sdgs: [8, 9],
+    highlights: [
+      { value: "7", label: "Countries" },
+      { value: "20%", label: "Energy reduction" },
+      { value: "AI-RAN", label: "Alliance member" },
+    ],
+  },
+];
 
 export const prioritySDGs = [
   {
     number: 4,
     color: "#C5192D",
     title: "Quality Education",
-    description:
-      "Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all.",
-    stats: [
-      { value: "$60M", label: "Tuition fees disbursed (ErudiFi)" },
-      { value: "500K+", label: "Learners reached (Edmicro)" },
-      { value: "800+", label: "Schools integrated (Edmicro)" },
-    ],
-    companies: ["ErudiFi", "Edmicro", "Patsnap"],
+    description: "Ensure inclusive and equitable quality education and promote lifelong learning.",
+    companyIds: ["erudifi", "edmicro", "patsnap", "accredify"],
   },
   {
     number: 5,
     color: "#FF3A21",
     title: "Gender Equality",
     description: "Achieve gender equality and empower all women and girls.",
-    stats: [
-      { value: "10M+", label: "Mothers on Supermom platform" },
-      { value: "30K", label: "Women-led MSMEs financed (Funding Societies)" },
-      { value: "60%", label: "Female borrowers at ErudiFi" },
-    ],
-    companies: ["Supermom", "ErudiFi", "Funding Societies"],
+    companyIds: ["supermom", "erudifi", "funding-societies", "convosight"],
   },
   {
     number: 8,
     color: "#A21942",
     title: "Decent Work & Economic Growth",
-    description:
-      "Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all.",
-    stats: [
-      { value: "350K+", label: "Jobs created (Funding Societies)" },
-      { value: "2M+", label: "MSMEs empowered (Ralali)" },
-      { value: "$1B+", label: "Sales generated for MSMEs (Ralali)" },
-    ],
-    companies: ["Funding Societies", "Ralali", "Supermom"],
+    description: "Promote sustained, inclusive and sustainable economic growth.",
+    companyIds: ["funding-societies", "ralali", "supermom", "shopback", "convosight", "accredify", "synaxg", "edmicro"],
   },
   {
     number: 9,
     color: "#FD6925",
     title: "Industry, Innovation & Infrastructure",
-    description:
-      "Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation.",
-    stats: [
-      { value: "115+", label: "Patent databases on Patsnap" },
-      { value: "100K+", label: "MSMEs with reliable financing (Funding Societies)" },
-      { value: "~70%", label: "Patsnap users in critical innovation areas" },
-    ],
-    companies: ["Patsnap", "Funding Societies", "Ralali"],
+    description: "Build resilient infrastructure and foster innovation.",
+    companyIds: ["patsnap", "funding-societies", "ralali", "edmicro", "synaxg"],
   },
   {
     number: 10,
     color: "#DD1367",
     title: "Reduced Inequalities",
     description: "Reduce inequality within and among countries.",
-    stats: [
-      { value: "71%", label: "First-time formal borrowers (Funding Societies)" },
-      { value: "20M+", label: "Mass consumers reached (ShopBack)" },
-      { value: "80%", label: "ErudiFi borrowers from lower-income families" },
-    ],
-    companies: ["Funding Societies", "ShopBack", "ErudiFi", "Supermom"],
+    companyIds: ["funding-societies", "shopback", "erudifi", "supermom", "convosight"],
   },
 ];
+
+export const methodology = {
+  steps: [
+    { step: "01", title: "Screen", description: "ESG risk assessment during diligence." },
+    { step: "02", title: "Map", description: "Align each company to relevant UN SDGs." },
+    { step: "03", title: "Track", description: "Annual company-reported impact KPIs." },
+    { step: "04", title: "Report", description: "Transparent reporting to LPs." },
+  ],
+  disclaimer:
+    "Portfolio metrics are company-reported and reflect cumulative progress since inception.",
+};
