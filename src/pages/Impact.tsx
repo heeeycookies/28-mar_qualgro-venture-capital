@@ -9,6 +9,13 @@ import {
   ChevronLeft,
   ChevronRight,
   Mail,
+  Check,
+  Users,
+  Award,
+  Briefcase,
+  Link as LinkIcon,
+  Heart,
+  PieChart,
 } from "lucide-react";
 
 import {
@@ -16,6 +23,12 @@ import {
   prioritySDGs,
   featuredSpotlight,
 } from "@/data/impact";
+import { twoXOverview, twoXCriteria, twoXPrerequisites } from "@/data/two-x-data";
+import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
+
+const twoXIcons: Record<string, React.ElementType> = {
+  Users, Award, Briefcase, Link: LinkIcon, Heart, PieChart,
+};
 
 import logoSupermom from "@/assets/impact/logos/supermom.png";
 import logoPatsnap from "@/assets/impact/logos/patsnap.png";
@@ -311,6 +324,112 @@ const Impact = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 4. 2X CHALLENGE ALIGNMENT ───────── */}
+      <section id="two-x-challenge" className="py-24 lg:py-32 bg-card">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto text-center mb-14"
+          >
+            <img
+              src={twoXLogo}
+              alt="2X Challenge — Invest in women. Invest in the world."
+              className="h-14 md:h-16 w-auto mx-auto mb-6 object-contain"
+            />
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
+              {twoXOverview.title}
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground mt-5 leading-relaxed">
+              {twoXOverview.subtitle}
+            </p>
+            <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
+              {twoXOverview.description}
+            </p>
+            <a
+              href={twoXOverview.learnMoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mt-5 font-display font-semibold text-sm text-emerald hover:underline"
+            >
+              Learn more about the 2X Challenge
+              <ArrowRight size={14} />
+            </a>
+          </motion.div>
+
+          {/* Prerequisites */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-14">
+            {twoXPrerequisites.map((p, i) => (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="flex items-start gap-3 p-4 rounded-lg border border-border bg-background"
+              >
+                <div className="flex items-center justify-center w-8 h-8 rounded-full shrink-0 bg-emerald/10">
+                  <Check size={16} className="text-emerald" strokeWidth={3} />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-display font-bold text-sm text-primary">
+                    {p.title}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    {p.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Criteria grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {twoXCriteria.map((c, i) => {
+              const Icon = twoXIcons[c.icon];
+              return (
+                <motion.div
+                  key={c.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="rounded-2xl border border-border bg-background p-6 md:p-7 hover:shadow-lg transition-all duration-300 flex flex-col"
+                >
+                  <div
+                    className="flex items-center justify-center w-12 h-12 rounded-full mb-4 shrink-0"
+                    style={{ backgroundColor: `${c.color}1A` }}
+                  >
+                    {Icon && <Icon size={22} style={{ color: c.color }} />}
+                  </div>
+                  <h3 className="font-display text-lg font-extrabold text-primary leading-snug mb-2">
+                    {c.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                    {c.description}
+                  </p>
+                  <div
+                    className="mt-auto pl-4 py-1 border-l-2"
+                    style={{ borderColor: c.color }}
+                  >
+                    <p
+                      className="font-display text-[10px] uppercase tracking-[0.2em] font-bold mb-1.5"
+                      style={{ color: c.color }}
+                    >
+                      How Qualgro Aligns
+                    </p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {c.qualgroAlignment}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
