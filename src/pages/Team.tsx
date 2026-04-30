@@ -67,6 +67,7 @@ const teamMembers: TeamMember[] = [
     category: "operations",
     bio: "Natasha leads Finance, Operations, and Investor Relations at Qualgro, overseeing fund administration, financial reporting, and LP engagement across the firm's funds.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/DSC07234-scaled-pq1xst1wp8r0j08k7jltdpxufr9695jwvzvgc3wte6.jpg",
+    linkedin: "https://www.linkedin.com/in/natasha-eu-28748384/",
   },
   {
     name: "Carlos Camacho",
@@ -74,6 +75,7 @@ const teamMembers: TeamMember[] = [
     category: "advisory",
     bio: "Carlos is a Venture Partner at Qualgro, bringing deep expertise in building and scaling technology companies. He supports portfolio companies with strategic guidance on growth, partnerships, and international expansion.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/DSC08877-scaled-e1644210058917-plbaqbdimueeohnxr10i59yjptvjfffliozm0ty5zi.jpg",
+    linkedin: "https://www.linkedin.com/in/carlos-camacho-51777197/",
   },
   {
     name: "Badai Tanmizi",
