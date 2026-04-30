@@ -10,6 +10,14 @@ export const twoXOverview = {
   learnMoreUrl: "https://www.2xchallenge.org",
 };
 
+// Compact stat highlights for the supporting section on the Impact page
+export const twoXStats = [
+  { value: "US$33B+", label: "Mobilised globally since 2018" },
+  { value: "US$20B", label: "New DFI commitment 2024–2027" },
+  { value: "6", label: "2X Criteria dimensions" },
+  { value: "30–50%", label: "Qualgro portfolio target" },
+];
+
 export const twoXCriteria = [
   {
     id: 1,
