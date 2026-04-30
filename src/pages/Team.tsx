@@ -21,7 +21,6 @@ const teamMembers: TeamMember[] = [
     category: "leadership",
     bio: "Heang is the Founder and Managing Partner of Qualgro. He has over 25 years of experience in strategy consulting and venture capital across Asia-Pacific. Prior to founding Qualgro, Heang was a Senior Partner at McKinsey & Company, where he led the firm's Southeast Asia practice.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/DSC07239-scaled-e1653907667242-pq1xuoqadbbnqxi98cuyd8v17hzlnd0l5auew14gy6.jpg",
-    linkedin: "https://www.linkedin.com/in/heangchhor/",
   },
   {
     name: "Weisheng Neo",
@@ -29,7 +28,7 @@ const teamMembers: TeamMember[] = [
     category: "leadership",
     bio: "Weisheng is a Partner at Qualgro, leading the firm's investment strategy in Data/AI and enterprise software. He brings deep expertise in technology investing and has been instrumental in sourcing and supporting portfolio companies across Southeast Asia.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/DSC07151-scaled-e1653907405542-pq1xv4pjlhxj8av1n1rm1mtvb1sua7s0vhxo1qgs0e.jpg",
-    linkedin: "https://www.linkedin.com/in/weisheng/",
+    linkedin: "https://www.linkedin.com/in/weisheng-neo/",
   },
   {
     name: "Olivier Sibony",
@@ -37,6 +36,7 @@ const teamMembers: TeamMember[] = [
     category: "advisory",
     bio: "Olivier is an Investment Committee Member and distinguished professor, author, and strategy expert. He brings decades of experience in strategic decision-making and corporate governance to Qualgro's investment process.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/olivier-sibony-hi-res-p8mvfj66pytsjzbkpbkv8001ni3kr93tgy5b8gluxa.jpg",
+    linkedin: "https://www.linkedin.com/in/oliviersibony/",
   },
   {
     name: "Peter Huynh",
@@ -44,6 +44,7 @@ const teamMembers: TeamMember[] = [
     category: "advisory",
     bio: "Peter is a Venture Partner at Qualgro, bringing extensive experience in building and scaling technology companies across Southeast Asia and Australia. He advises portfolio companies on go-to-market strategy and operational excellence.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/DSC07188-scaled-pq1xvkostojepo7u1qo9q0spelm2x2jglp0x7ft32m.jpg",
+    linkedin: "https://www.linkedin.com/in/peterjhuynh/",
   },
   {
     name: "Olivier Carnohan",
@@ -51,6 +52,7 @@ const teamMembers: TeamMember[] = [
     category: "advisory",
     bio: "Olivier serves as Senior Technology and Business Advisor, providing strategic guidance on technology trends, product development, and business model innovation to Qualgro and its portfolio companies.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/Olivier-edited-2-scaled-pm8f1a6xhcpfg1nrrpt1stcrro18q2my7nmtx3mymm.jpg",
+    linkedin: "https://www.linkedin.com/in/carnohan/",
   },
   {
     name: "Chi Tran",
@@ -65,7 +67,6 @@ const teamMembers: TeamMember[] = [
     category: "operations",
     bio: "Natasha leads Finance, Operations, and Investor Relations at Qualgro, overseeing fund administration, financial reporting, and LP engagement across the firm's funds.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/DSC07234-scaled-pq1xst1wp8r0j08k7jltdpxufr9695jwvzvgc3wte6.jpg",
-    linkedin: "https://www.linkedin.com/in/natasha-eu/",
   },
   {
     name: "Carlos Camacho",
@@ -80,6 +81,7 @@ const teamMembers: TeamMember[] = [
     category: "investment",
     bio: "Badai is a Principal with deep expertise in the Indonesian and broader Southeast Asian tech ecosystem. He focuses on identifying and supporting high-growth B2B and fintech companies.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/DSC07147-scaled-e1653908537196-pq1xtqw3ja1c4yvepy8dvheftmmdy9a90ncxm2in66.jpg",
+    linkedin: "https://www.linkedin.com/in/badai-tanmizi/",
   },
   {
     name: "Anqi Chen",
@@ -87,6 +89,7 @@ const teamMembers: TeamMember[] = [
     category: "investment",
     bio: "Anqi is a Manager at Qualgro, supporting the investment team across deal sourcing, market research, and due diligence in enterprise software and AI-driven solutions.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/anqi-pee0vr4rc5kzo491uoqohh9iv6eqi2c1f9q76q3l5a.jpeg",
+    linkedin: "https://www.linkedin.com/in/anqi-chen-36324314a/",
   },
   {
     name: "Mellissa Ng",
@@ -94,6 +97,7 @@ const teamMembers: TeamMember[] = [
     category: "investment",
     bio: "Mellissa is an Investment Manager at Qualgro, contributing to deal sourcing, due diligence, and portfolio management across the firm's focus sectors in Southeast Asia.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/Tem-Members-Mellisa-Ng-rl0lxfz306843jtvak7cji8echyycgoeg1153qywni.jpg",
+    linkedin: "https://www.linkedin.com/in/mellissangyh/",
   },
   {
     name: "Goh Ze Tian",
@@ -101,6 +105,7 @@ const teamMembers: TeamMember[] = [
     category: "investment",
     bio: "Ze Tian is an Investment Analyst contributing to Qualgro's research and analysis efforts, with a focus on market mapping and competitive landscape assessment across Southeast Asia's tech sector.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/qualgro_team_img_ze_tian_goh-min-qe308zq9swpt5izv1dclcxetfx4px6qhpb23bjz4cu.jpg",
+    linkedin: "https://www.linkedin.com/in/ze-tian-goh-757494152/",
   },
   {
     name: "Ryan Lim",
@@ -108,6 +113,7 @@ const teamMembers: TeamMember[] = [
     category: "investment",
     bio: "Ryan supports Qualgro's investment activities as an Analyst, conducting in-depth research and financial analysis on potential investment opportunities and existing portfolio companies.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/qualgro_team_img_ryan_lim-min-qe3090o3zqr3h4yhvvr7xf6a1b034vu81fpkstxq6m.jpg",
+    linkedin: "https://www.linkedin.com/in/ryanlimfengsheng/",
   },
   {
     name: "Ray Chin",
@@ -115,6 +121,7 @@ const teamMembers: TeamMember[] = [
     category: "operations",
     bio: "Ray supports the Finance and Operations functions at Qualgro, contributing to fund administration, reporting, and operational workflows.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/Team-Members-Ray-Chin-rl0m1ilwmbsuepwvibl5ch8b0lw7p8uj06svywxhou.jpg",
+    linkedin: "https://www.linkedin.com/in/ray-chin-b0b6b4188/",
   },
   {
     name: "Sean Leong",
@@ -122,6 +129,7 @@ const teamMembers: TeamMember[] = [
     category: "operations",
     bio: "Sean supports the Finance and Operations functions at Qualgro, contributing to fund administration, reporting, and operational workflows.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/qualgro_team_img_sean_leong-min-qe3091ly6ksdsqx4qe5uhwxqmovgckxydkd2a3wc0e.jpg",
+    linkedin: "https://www.linkedin.com/in/sean-leong-644906120/",
   },
   {
     name: "Wen En Lim",
@@ -129,6 +137,7 @@ const teamMembers: TeamMember[] = [
     category: "operations",
     bio: "Wen En is an Operations Analyst at Qualgro, focused on market intelligence and supporting the team's investment decision-making process across the firm's core sectors.",
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/qualgro_team_img_wen_en_lim-min-qe308zq9swpt5izv1dclcxetfx4px6qhpb23bjz4cu.jpg",
+    linkedin: "https://www.linkedin.com/in/wenenlim/",
   },
   {
     name: "Laetitia Chia",
@@ -136,6 +145,7 @@ const teamMembers: TeamMember[] = [
     category: "operations",
     bio: "Laetitia is a Finance and Operations Analyst at Qualgro, helping ensure smooth day-to-day operations and investor reporting across the firm's funds.",
     photo: "/images/team/laetitia-chia.png",
+    linkedin: "https://www.linkedin.com/in/laetitiachia/",
   },
   {
     name: "Shimin Cai",
@@ -143,6 +153,7 @@ const teamMembers: TeamMember[] = [
     category: "investment",
     bio: "Shimin is an Investment Analyst at Qualgro, supporting the team with research, financial modeling, and due diligence across the firm's focus sectors.",
     photo: "/placeholder.svg",
+    linkedin: "https://www.linkedin.com/in/shimin-cai-8a4693232/",
   },
 ];
 const categories = [
