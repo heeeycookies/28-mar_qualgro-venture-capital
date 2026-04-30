@@ -21,6 +21,7 @@ export const impactHero = {
 export const portfolioCompanies = [
   {
     id: "supermom",
+    logo: supermomLogo,
     name: "Supermom",
     tagline: "Empowering mothers across Southeast Asia to earn income and raise children with confidence.",
     aiAngle: "AI-powered companion bot with 1.6M+ personalised conversations to date.",
@@ -33,6 +34,7 @@ export const portfolioCompanies = [
   },
   {
     id: "erudifi",
+    logo: erudifiLogo,
     name: "ErudiFi",
     tagline: "Enabling students in Southeast Asia to access quality education through affordable financing.",
     aiAngle: "Data-driven credit scoring model improving repayment rates and extending to new loan products.",
@@ -45,6 +47,7 @@ export const portfolioCompanies = [
   },
   {
     id: "ralali",
+    logo: ralaliLogo,
     name: "Ralali",
     tagline: "Empowering Indonesia's MSMEs to grow through a B2B marketplace.",
     aiAngle: "AI-powered procurement with automated supplier matching and logistics optimisation.",
@@ -57,6 +60,7 @@ export const portfolioCompanies = [
   },
   {
     id: "edmicro",
+    logo: edmicroLogo,
     name: "Edmicro",
     tagline: "Making quality education accessible to every student in Vietnam.",
     aiAngle: "Machine learning-driven personalised practice and real-time mastery tracking for K-12.",
@@ -69,6 +73,7 @@ export const portfolioCompanies = [
   },
   {
     id: "funding-societies",
+    logo: fundingSocietiesLogo,
     name: "Funding Societies",
     tagline: "Unlocking financing for underserved MSMEs across Southeast Asia.",
     aiAngle: "AI-driven risk assessment maintaining ~2% cumulative default rates.",
@@ -81,6 +86,7 @@ export const portfolioCompanies = [
   },
   {
     id: "shopback",
+    logo: shopbackLogo,
     name: "ShopBack",
     tagline: "Helping consumers maximise savings and shop smarter online.",
     aiAngle: "AI-powered product discovery connecting consumers with personalised deals across 20K+ merchants.",
@@ -93,6 +99,7 @@ export const portfolioCompanies = [
   },
   {
     id: "patsnap",
+    logo: patsnapLogo,
     name: "Patsnap",
     tagline: "Accelerating innovation through IP intelligence.",
     aiAngle: "AI-powered analytics engine extracting actionable insights from 115+ patent databases globally.",
@@ -105,6 +112,7 @@ export const portfolioCompanies = [
   },
   {
     id: "convosight",
+    logo: convosightLogo,
     name: "Convosight",
     tagline: "Enabling community creators to generate sustainable income.",
     aiAngle: "Proprietary AI-powered conversation ranking and fast search algorithms for community insights.",
@@ -117,6 +125,7 @@ export const portfolioCompanies = [
   },
   {
     id: "accredify",
+    logo: accredifyLogo,
     name: "Accredify",
     tagline: "Reducing credential fraud and verification costs globally.",
     aiAngle: "Automated verification processing 99%+ of document checks instantly across 80+ countries.",
@@ -129,6 +138,7 @@ export const portfolioCompanies = [
   },
   {
     id: "synaxg",
+    logo: synaxgLogo,
     name: "SynaXG",
     tagline: "Democratizing communications technology in developing countries.",
     aiAngle: "AI-RAN software optimising network performance with 20% energy reduction.",
