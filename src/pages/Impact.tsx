@@ -23,7 +23,7 @@ import {
   prioritySDGs,
   featuredSpotlight,
 } from "@/data/impact";
-import { twoXOverview, twoXCriteria, twoXPrerequisites } from "@/data/two-x-data";
+import { twoXOverview, twoXCriteria, twoXPrerequisites, twoXStats } from "@/data/two-x-data";
 import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
 
 const twoXIcons: Record<string, React.ElementType> = {
@@ -215,6 +215,69 @@ const Impact = () => {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ───────── 2.5 2X CHALLENGE ALIGNED (compact) ───────── */}
+      <section className="py-16 lg:py-20 bg-background border-y border-border">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5 }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-10">
+              <div className="max-w-xl">
+                <p
+                  className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3"
+                  style={{ color: "hsl(140 45% 35%)" }}
+                >
+                  Gender-Lens Investing
+                </p>
+                <h2 className="font-display text-2xl md:text-3xl font-extrabold text-primary leading-tight">
+                  {twoXOverview.title}
+                </h2>
+                <p className="text-sm md:text-base text-muted-foreground mt-4 leading-relaxed">
+                  {twoXOverview.description}
+                </p>
+                <a
+                  href={twoXOverview.learnMoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mt-4 font-display font-semibold text-sm text-emerald hover:underline"
+                >
+                  Learn more about the 2X Challenge
+                  <ArrowRight size={14} />
+                </a>
+              </div>
+              <img
+                src={twoXLogo}
+                alt="2X Challenge"
+                className="h-10 md:h-12 w-auto object-contain shrink-0"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pt-8 border-t border-border">
+              {twoXStats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                >
+                  <p className="font-display text-3xl md:text-4xl font-extrabold text-primary leading-none">
+                    {s.value}
+                  </p>
+                  <p className="text-xs md:text-sm text-muted-foreground mt-2 leading-snug">
+                    {s.label}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
