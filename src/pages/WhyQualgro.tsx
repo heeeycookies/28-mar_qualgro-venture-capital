@@ -114,9 +114,10 @@ const WhyQualgro = () => {
           className="absolute inset-0 -z-10"
           aria-hidden
         >
-          <div className="absolute inset-0" style={{ background: "linear-gradient(170deg, hsl(200 30% 95%) 0%, hsl(24 33% 97.6%) 50%, hsl(160 20% 94%) 100%)" }} />
-          <div className="absolute top-[15%] right-[10%] w-[500px] h-[500px] rounded-full blur-[140px] opacity-40" style={{ background: "hsl(204 63% 85%)" }} />
-          <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full blur-[120px] opacity-30" style={{ background: "hsl(163 59% 80%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, hsl(204 55% 18%) 0%, hsl(204 50% 28%) 45%, hsl(163 45% 28%) 100%)" }} />
+          <div className="absolute top-[10%] right-[8%] w-[560px] h-[560px] rounded-full blur-[160px] opacity-50" style={{ background: "hsl(163 70% 45%)" }} />
+          <div className="absolute bottom-[5%] left-[0%] w-[420px] h-[420px] rounded-full blur-[140px] opacity-40" style={{ background: "hsl(204 80% 50%)" }} />
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(hsl(0 0% 100%) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
         </motion.div>
 
         <div className="relative z-10 container mx-auto px-6">
@@ -127,19 +128,20 @@ const WhyQualgro = () => {
             style={{ y: heroTextY, opacity: heroOpacity }}
             className="max-w-3xl"
           >
-            <p className="text-emerald font-display font-bold text-xs sm:text-sm uppercase tracking-[0.25em] mb-4">
+            <p className="font-display font-bold text-xs sm:text-sm uppercase tracking-[0.25em] mb-4" style={{ color: "hsl(163 70% 70%)" }}>
               Investment Thesis
             </p>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-primary leading-[1.05]">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05]" style={{ color: "hsl(0 0% 100%)" }}>
               AI & Data ·{" "}
-              <span className="text-gradient-emerald">Impact</span>
+              <span style={{ color: "hsl(163 70% 65%)" }}>Impact</span>
             </h1>
-            <p className="mt-6 sm:mt-8 text-muted-foreground text-sm sm:text-lg leading-relaxed max-w-2xl">
+            <p className="mt-6 sm:mt-8 text-sm sm:text-lg leading-relaxed max-w-2xl" style={{ color: "hsl(210 30% 88%)" }}>
               Qualgro invests at the intersection of artificial intelligence, data infrastructure, and measurable impact. We back Series A founders in Southeast Asia building technology that scales globally.
             </p>
             <button
               onClick={() => setContactOpen(true)}
-              className="mt-8 sm:mt-10 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-lg bg-investment-blue text-primary-foreground font-display font-semibold text-sm hover:bg-investment-blue/90 transition-all hover:translate-y-[-1px] hover:shadow-lg"
+              className="mt-8 sm:mt-10 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-lg font-display font-semibold text-sm transition-all hover:translate-y-[-1px] hover:shadow-lg"
+              style={{ background: "hsl(163 70% 45%)", color: "hsl(0 0% 100%)" }}
             >
               Get in Touch <ArrowRight size={16} />
             </button>
