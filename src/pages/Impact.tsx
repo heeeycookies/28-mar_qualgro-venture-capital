@@ -23,7 +23,7 @@ import {
   prioritySDGs,
   featuredSpotlight,
 } from "@/data/impact";
-import { twoXOverview, twoXCriteria, twoXPrerequisites } from "@/data/two-x-data";
+import { twoXOverview, twoXCriteria, twoXPrerequisites, twoXStats } from "@/data/two-x-data";
 import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
 
 const twoXIcons: Record<string, React.ElementType> = {
