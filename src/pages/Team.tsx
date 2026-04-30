@@ -347,7 +347,12 @@ const Team = () => {
                         href={selectedMember.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-display font-semibold text-investment-blue hover:text-primary transition-colors"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          window.open(selectedMember.linkedin, "_blank", "noopener,noreferrer");
+                        }}
+                        className="inline-flex items-center gap-2 text-sm font-display font-semibold text-investment-blue hover:text-primary transition-colors cursor-pointer"
                       >
                         <Linkedin size={16} />
                         Connect on LinkedIn
