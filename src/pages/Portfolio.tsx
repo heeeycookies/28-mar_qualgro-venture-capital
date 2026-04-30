@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Filter, X, Search } from "lucide-react";
 
 type BusinessModel = "B2B" | "B2B2C" | "B2C";
