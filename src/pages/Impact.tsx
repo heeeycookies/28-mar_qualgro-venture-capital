@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ChevronDown,
@@ -15,7 +16,6 @@ import {
   prioritySDGs,
   featuredSpotlight,
 } from "@/data/impact";
-import CommitmentsSection from "@/components/impact/CommitmentsSection";
 
 import logoSupermom from "@/assets/impact/logos/supermom.png";
 import logoPatsnap from "@/assets/impact/logos/patsnap.png";
