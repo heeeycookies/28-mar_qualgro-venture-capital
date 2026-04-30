@@ -9,6 +9,13 @@ import {
   ChevronLeft,
   ChevronRight,
   Mail,
+  Check,
+  Users,
+  Award,
+  Briefcase,
+  Link as LinkIcon,
+  Heart,
+  PieChart,
 } from "lucide-react";
 
 import {
@@ -16,6 +23,12 @@ import {
   prioritySDGs,
   featuredSpotlight,
 } from "@/data/impact";
+import { twoXOverview, twoXCriteria, twoXPrerequisites } from "@/data/two-x-data";
+import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
+
+const twoXIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  Users, Award, Briefcase, Link: LinkIcon, Heart, PieChart,
+};
 
 import logoSupermom from "@/assets/impact/logos/supermom.png";
 import logoPatsnap from "@/assets/impact/logos/patsnap.png";
