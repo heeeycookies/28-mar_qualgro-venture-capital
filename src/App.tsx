@@ -10,6 +10,7 @@ import Impact from "./pages/Impact.tsx";
 import News from "./pages/News.tsx";
 import WhyQualgro from "./pages/WhyQualgro.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -18,6 +19,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/portfolio" element={<Portfolio />} />
