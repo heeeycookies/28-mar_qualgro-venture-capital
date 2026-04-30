@@ -307,13 +307,19 @@ const Portfolio = () => {
 
           {/* Company grid — fixed 3 columns */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filtered.map((company, i) => (
-              <motion.div
+            {filtered.map((company, i) => {
+              const CardTag: any = company.website ? motion.a : motion.div;
+              const linkProps = company.website
+                ? { href: company.website, target: "_blank", rel: "noopener noreferrer", "aria-label": `Visit ${company.name} website` }
+                : {};
+              return (
+              <CardTag
                 key={company.name}
+                {...linkProps}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.03 }}
-                className="group relative rounded-xl border bg-card p-6 hover:shadow-lg transition-all duration-300 overflow-hidden border-border hover:border-investment-blue/30"
+                className={`group relative block rounded-xl border bg-card p-6 hover:shadow-lg transition-all duration-300 overflow-hidden border-border hover:border-investment-blue/30 ${company.website ? "cursor-pointer hover:-translate-y-1" : ""}`}
               >
                 {/* Top accent */}
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-investment-blue to-emerald" />
@@ -362,8 +368,9 @@ const Portfolio = () => {
                     </span>
                   )}
                 </div>
-              </motion.div>
-            ))}
+              </CardTag>
+              );
+            })}
           </div>
 
           {filtered.length === 0 && (
