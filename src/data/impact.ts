@@ -1,3 +1,14 @@
+import supermomLogo from "@/assets/portfolio/supermom.png";
+import erudifiLogo from "@/assets/portfolio/erudifi.png";
+import ralaliLogo from "@/assets/portfolio/ralali.png";
+import edmicroLogo from "@/assets/portfolio/edmicro.png";
+import fundingSocietiesLogo from "@/assets/portfolio/funding-societies.jpg";
+import shopbackLogo from "@/assets/portfolio/shopback.jpg";
+import patsnapLogo from "@/assets/portfolio/patsnap.jpg";
+import convosightLogo from "@/assets/portfolio/convosight.png";
+import accredifyLogo from "@/assets/portfolio/accredify.png";
+import synaxgLogo from "@/assets/portfolio/synaxg.svg";
+
 export const impactHero = {
   eyebrow: "ENVIRONMENTAL · SOCIAL · GOVERNANCE",
   titleLine1: "Investing for",
