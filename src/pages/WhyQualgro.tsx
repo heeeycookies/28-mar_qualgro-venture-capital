@@ -128,19 +128,20 @@ const WhyQualgro = () => {
             style={{ y: heroTextY, opacity: heroOpacity }}
             className="max-w-3xl"
           >
-            <p className="text-emerald font-display font-bold text-xs sm:text-sm uppercase tracking-[0.25em] mb-4">
+            <p className="font-display font-bold text-xs sm:text-sm uppercase tracking-[0.25em] mb-4" style={{ color: "hsl(163 70% 70%)" }}>
               Investment Thesis
             </p>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-primary leading-[1.05]">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05]" style={{ color: "hsl(0 0% 100%)" }}>
               AI & Data ·{" "}
-              <span className="text-gradient-emerald">Impact</span>
+              <span style={{ color: "hsl(163 70% 65%)" }}>Impact</span>
             </h1>
-            <p className="mt-6 sm:mt-8 text-muted-foreground text-sm sm:text-lg leading-relaxed max-w-2xl">
+            <p className="mt-6 sm:mt-8 text-sm sm:text-lg leading-relaxed max-w-2xl" style={{ color: "hsl(210 30% 88%)" }}>
               Qualgro invests at the intersection of artificial intelligence, data infrastructure, and measurable impact. We back Series A founders in Southeast Asia building technology that scales globally.
             </p>
             <button
               onClick={() => setContactOpen(true)}
-              className="mt-8 sm:mt-10 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-lg bg-investment-blue text-primary-foreground font-display font-semibold text-sm hover:bg-investment-blue/90 transition-all hover:translate-y-[-1px] hover:shadow-lg"
+              className="mt-8 sm:mt-10 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-lg font-display font-semibold text-sm transition-all hover:translate-y-[-1px] hover:shadow-lg"
+              style={{ background: "hsl(163 70% 45%)", color: "hsl(0 0% 100%)" }}
             >
               Get in Touch <ArrowRight size={16} />
             </button>
