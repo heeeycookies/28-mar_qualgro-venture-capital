@@ -114,9 +114,10 @@ const WhyQualgro = () => {
           className="absolute inset-0 -z-10"
           aria-hidden
         >
-          <div className="absolute inset-0" style={{ background: "linear-gradient(170deg, hsl(200 30% 95%) 0%, hsl(24 33% 97.6%) 50%, hsl(160 20% 94%) 100%)" }} />
-          <div className="absolute top-[15%] right-[10%] w-[500px] h-[500px] rounded-full blur-[140px] opacity-40" style={{ background: "hsl(204 63% 85%)" }} />
-          <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full blur-[120px] opacity-30" style={{ background: "hsl(163 59% 80%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, hsl(204 55% 18%) 0%, hsl(204 50% 28%) 45%, hsl(163 45% 28%) 100%)" }} />
+          <div className="absolute top-[10%] right-[8%] w-[560px] h-[560px] rounded-full blur-[160px] opacity-50" style={{ background: "hsl(163 70% 45%)" }} />
+          <div className="absolute bottom-[5%] left-[0%] w-[420px] h-[420px] rounded-full blur-[140px] opacity-40" style={{ background: "hsl(204 80% 50%)" }} />
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(hsl(0 0% 100%) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
         </motion.div>
 
         <div className="relative z-10 container mx-auto px-6">
