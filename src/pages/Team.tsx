@@ -212,38 +212,44 @@ const Team = () => {
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"
           >
             <AnimatePresence mode="popLayout">
-              {filtered.map((member, i) => (
-                <motion.div
-                  key={member.name}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3, delay: i * 0.04 }}
-                  onClick={() => setSelectedMember(member)}
-                  className="group cursor-pointer"
-                >
-                  <div className="relative rounded-xl overflow-hidden aspect-[3/4] mb-3">
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <span className="text-xs font-display font-semibold text-emerald uppercase tracking-wider">
-                        View Profile
-                      </span>
+              {filtered.map((member, i) => {
+                const Tag: any = member.linkedin ? motion.a : motion.div;
+                const linkProps = member.linkedin
+                  ? { href: member.linkedin, target: "_blank", rel: "noopener noreferrer", "aria-label": `${member.name} on LinkedIn` }
+                  : { onClick: () => setSelectedMember(member) };
+                return (
+                  <Tag
+                    key={member.name}
+                    {...linkProps}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3, delay: i * 0.04 }}
+                    className="group cursor-pointer block"
+                  >
+                    <div className="relative rounded-xl overflow-hidden aspect-[3/4] mb-3">
+                      <img
+                        src={member.photo}
+                        alt={member.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="text-xs font-display font-semibold text-emerald uppercase tracking-wider">
+                          {member.linkedin ? "View on LinkedIn" : "View Profile"}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="font-display text-sm font-bold text-primary group-hover:text-investment-blue transition-colors">
-                    {member.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">
-                    {member.role}
-                  </p>
-                </motion.div>
-              ))}
+                    <h3 className="font-display text-sm font-bold text-primary group-hover:text-investment-blue transition-colors">
+                      {member.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      {member.role}
+                    </p>
+                  </Tag>
+                );
+              })}
             </AnimatePresence>
           </motion.div>
         </div>
