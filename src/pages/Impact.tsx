@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { useState, useRef, useEffect, useCallback } from "react";
 import {
   ArrowRight,
   ChevronDown,
@@ -73,27 +73,101 @@ const AiBlock = ({ text }: { text: string }) => (
 
 const Impact = () => {
   const [spotlightIndex, setSpotlightIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
   const [activeCompanyId, setActiveCompanyId] = useState<string | null>(null);
 
-  const currentCompany = portfolioCompanies[spotlightIndex];
   const activeCompany = activeCompanyId ? companyById[activeCompanyId] : null;
+
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const isDownRef = useRef(false);
+  const movedRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollRef = useRef(0);
 
   const scrollToNext = () => {
     document.getElementById("sdg-framework")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToIndex = useCallback((i: number) => {
+    const el = cardRefs.current[i];
+    const scroller = scrollerRef.current;
+    if (!el || !scroller) return;
+    const left =
+      el.offsetLeft - (scroller.clientWidth - el.clientWidth) / 2;
+    scroller.scrollTo({ left, behavior: "smooth" });
+  }, []);
+
   const goNext = () => {
-    setDirection(1);
-    setSpotlightIndex((i) => (i + 1) % portfolioCompanies.length);
+    const i = (spotlightIndex + 1) % portfolioCompanies.length;
+    setSpotlightIndex(i);
+    scrollToIndex(i);
   };
   const goPrev = () => {
-    setDirection(-1);
-    setSpotlightIndex((i) => (i - 1 + portfolioCompanies.length) % portfolioCompanies.length);
+    const i = (spotlightIndex - 1 + portfolioCompanies.length) % portfolioCompanies.length;
+    setSpotlightIndex(i);
+    scrollToIndex(i);
   };
   const goTo = (i: number) => {
-    setDirection(i > spotlightIndex ? 1 : -1);
     setSpotlightIndex(i);
+    scrollToIndex(i);
+  };
+
+  // Track the centered card on scroll to sync dots
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const center = scroller.scrollLeft + scroller.clientWidth / 2;
+        let bestIdx = 0;
+        let bestDist = Infinity;
+        cardRefs.current.forEach((el, i) => {
+          if (!el) return;
+          const c = el.offsetLeft + el.clientWidth / 2;
+          const d = Math.abs(c - center);
+          if (d < bestDist) {
+            bestDist = d;
+            bestIdx = i;
+          }
+        });
+        setSpotlightIndex(bestIdx);
+      });
+    };
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      scroller.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Mouse drag-to-scroll (touch is native)
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === "touch") return;
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    isDownRef.current = true;
+    movedRef.current = false;
+    startXRef.current = e.clientX;
+    startScrollRef.current = scroller.scrollLeft;
+    scroller.setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDownRef.current) return;
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    const dx = e.clientX - startXRef.current;
+    if (Math.abs(dx) > 4) movedRef.current = true;
+    scroller.scrollLeft = startScrollRef.current - dx;
+  };
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDownRef.current) return;
+    isDownRef.current = false;
+    const scroller = scrollerRef.current;
+    if (scroller && scroller.hasPointerCapture(e.pointerId)) {
+      scroller.releasePointerCapture(e.pointerId);
+    }
   };
 
   return (
@@ -483,54 +557,74 @@ const Impact = () => {
             </p>
           </motion.div>
 
-          <div className="relative max-w-5xl mx-auto">
+          <div className="relative max-w-6xl mx-auto">
             {/* Arrows */}
             <button
               onClick={goPrev}
               aria-label="Previous"
-              className="absolute -left-3 md:-left-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-card border border-border flex items-center justify-center shadow-md hover:bg-muted hover:-translate-y-[55%] transition-all"
+              className="hidden md:flex absolute -left-3 lg:-left-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-card border border-border items-center justify-center shadow-md hover:bg-muted hover:-translate-y-[55%] transition-all"
             >
               <ChevronLeft size={18} className="text-primary" />
             </button>
             <button
               onClick={goNext}
               aria-label="Next"
-              className="absolute -right-3 md:-right-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-card border border-border flex items-center justify-center shadow-md hover:bg-muted hover:-translate-y-[55%] transition-all"
+              className="hidden md:flex absolute -right-3 lg:-right-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-card border border-border items-center justify-center shadow-md hover:bg-muted hover:-translate-y-[55%] transition-all"
             >
               <ChevronRight size={18} className="text-primary" />
             </button>
 
-            <div className="relative overflow-hidden rounded-2xl">
-              <AnimatePresence mode="wait" custom={direction}>
+            {/* Edge fades */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-10 z-10 bg-gradient-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-10 z-10 bg-gradient-to-l from-background to-transparent" />
+
+            <div
+              ref={scrollerRef}
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={endDrag}
+              onPointerCancel={endDrag}
+              onPointerLeave={endDrag}
+              onClickCapture={(e) => {
+                if (movedRef.current) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  movedRef.current = false;
+                }
+              }}
+              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-2 cursor-grab active:cursor-grabbing select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              style={{ touchAction: "pan-y" }}
+            >
+              {portfolioCompanies.map((c, i) => (
                 <motion.div
-                  key={spotlightIndex}
-                  custom={direction}
-                  initial={{ opacity: 0, x: direction > 0 ? 60 : -60 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: direction > 0 ? -60 : 60 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="relative rounded-2xl border border-border bg-card overflow-hidden"
+                  key={c.id}
+                  ref={(el) => (cardRefs.current[i] = el)}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: Math.min(i, 4) * 0.05 }}
+                  className="snap-center shrink-0 w-[88%] sm:w-[78%] md:w-[68%] lg:w-[62%] relative rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
                 >
                   <div className="absolute top-0 left-0 w-1 h-full bg-emerald" />
-                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 h-full">
                     {/* LEFT */}
-                    <div className="lg:col-span-3 p-8 md:p-10 lg:p-12">
-                      <h3 className="font-display text-3xl md:text-4xl font-extrabold text-primary leading-tight">
-                        {currentCompany.name}
+                    <div className="lg:col-span-3 p-8 md:p-10">
+                      <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-extrabold text-primary leading-tight">
+                        {c.name}
                       </h3>
                       <p className="font-display text-sm font-semibold mt-2 text-emerald">
-                        {currentCompany.tagline}
+                        {c.tagline}
                       </p>
                       <div className="mt-6">
-                        <AiBlock text={currentCompany.aiAngle} />
+                        <AiBlock text={c.aiAngle} />
                       </div>
                     </div>
                     {/* RIGHT */}
-                    <div className="lg:col-span-2 bg-muted/30 p-8 md:p-10 lg:p-12 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-border">
+                    <div className="lg:col-span-2 bg-muted/30 p-8 md:p-10 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-border">
                       <div className="grid grid-cols-1 gap-6">
-                        {currentCompany.highlights.map((h) => (
+                        {c.highlights.map((h) => (
                           <div key={h.label}>
-                            <p className="font-display text-3xl md:text-4xl font-extrabold text-primary leading-none">
+                            <p className="font-display text-2xl md:text-3xl font-extrabold text-primary leading-none">
                               {h.value}
                             </p>
                             <p className="text-muted-foreground text-xs mt-1.5">{h.label}</p>
@@ -542,13 +636,14 @@ const Impact = () => {
                           SDG Alignment
                         </p>
                         <div className="flex gap-2">
-                          {currentCompany.sdgs.map((n) =>
+                          {c.sdgs.map((n) =>
                             sdgImages[n] ? (
                               <img
                                 key={n}
                                 src={sdgImages[n]}
                                 alt={`SDG ${n}`}
-                                className="w-10 h-10 rounded object-cover"
+                                className="w-10 h-10 rounded object-cover pointer-events-none"
+                                draggable={false}
                               />
                             ) : null
                           )}
@@ -557,23 +652,28 @@ const Impact = () => {
                     </div>
                   </div>
                 </motion.div>
-              </AnimatePresence>
+              ))}
             </div>
 
-            {/* Dots */}
-            <div className="flex items-center justify-center gap-2 mt-8">
-              {portfolioCompanies.map((c, i) => (
-                <button
-                  key={c.id}
-                  onClick={() => goTo(i)}
-                  aria-label={`Go to ${c.name}`}
-                  className={`transition-all rounded-full ${
-                    i === spotlightIndex
-                      ? "w-8 h-2.5 bg-emerald"
-                      : "w-2.5 h-2.5 border border-muted-foreground/40 hover:border-muted-foreground"
-                  }`}
-                />
-              ))}
+            {/* Hint + Dots */}
+            <div className="flex flex-col items-center gap-3 mt-6">
+              <p className="text-[11px] font-display uppercase tracking-[0.25em] text-muted-foreground">
+                Drag or swipe to explore
+              </p>
+              <div className="flex items-center justify-center gap-2">
+                {portfolioCompanies.map((c, i) => (
+                  <button
+                    key={c.id}
+                    onClick={() => goTo(i)}
+                    aria-label={`Go to ${c.name}`}
+                    className={`transition-all rounded-full ${
+                      i === spotlightIndex
+                        ? "w-8 h-2.5 bg-emerald"
+                        : "w-2.5 h-2.5 border border-muted-foreground/40 hover:border-muted-foreground"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
