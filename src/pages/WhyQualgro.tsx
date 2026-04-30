@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import FounderTestimonials from "@/components/FounderTestimonials";
 import ContactModal from "@/components/ContactModal";
 import { motion, useScroll, useTransform } from "framer-motion";
