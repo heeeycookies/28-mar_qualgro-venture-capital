@@ -323,16 +323,16 @@ const WhyQualgro = () => {
               className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
               style={{ color: "hsl(var(--emerald))" }}
             >
-              {methodology.sectionEyebrow}
+              How We Measure
             </p>
             <h2
               className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight"
               style={{ color: "hsl(210 40% 98%)" }}
             >
-              {methodology.sectionTitle}
+              A Framework Built on Rigour
             </h2>
             <p className="max-w-2xl mx-auto mt-4" style={{ color: "hsl(215 20% 65%)" }}>
-              {methodology.sectionSubtitle}
+              We measure what matters — and we're transparent about how we do it.
             </p>
           </motion.div>
 

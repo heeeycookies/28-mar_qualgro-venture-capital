@@ -2,32 +2,28 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   Mail,
+  Sparkles,
 } from "lucide-react";
 
 import {
   impactHero,
   prioritySDGs,
-  featuredSpotlight,
+  portfolioCompanies,
+  methodology,
 } from "@/data/impact";
 import { twoXOverview, twoXStats } from "@/data/two-x-data";
 import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
-
-import logoSupermom from "@/assets/impact/logos/supermom.png";
-import logoPatsnap from "@/assets/impact/logos/patsnap.png";
-import logoFundingSocieties from "@/assets/impact/logos/funding-societies.png";
-
-const spotlightLogos: Record<string, string> = {
-  "Supermom": logoSupermom,
-  "Patsnap": logoPatsnap,
-  "Funding Societies": logoFundingSocieties,
-};
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 import sdg4 from "@/assets/impact/sdg-icons/sdg-4.png";
 import sdg5 from "@/assets/impact/sdg-icons/sdg-5.png";
@@ -49,48 +45,134 @@ const sdgPhotos: Record<number, string> = {
   4: photoSdg4, 5: photoSdg5, 8: photoSdg8, 9: photoSdg9, 10: photoSdg10,
 };
 
+const companyById = Object.fromEntries(portfolioCompanies.map((c) => [c.id, c]));
+const companyByName = Object.fromEntries(portfolioCompanies.map((c) => [c.name, c]));
+
+const AiBlock = ({ text }: { text: string }) => (
+  <div
+    className="flex items-start gap-3 rounded-xl p-4"
+    style={{
+      backgroundColor: "hsl(163 60% 45% / 0.08)",
+      border: "1px solid hsl(163 60% 45% / 0.18)",
+    }}
+  >
+    <div
+      className="shrink-0 flex items-center justify-center w-8 h-8 rounded-lg"
+      style={{ backgroundColor: "hsl(163 60% 45% / 0.15)", color: "hsl(163 70% 32%)" }}
+    >
+      <Sparkles size={15} />
+    </div>
+    <div className="min-w-0">
+      <p className="text-[10px] font-display font-bold uppercase tracking-[0.2em] mb-1" style={{ color: "hsl(163 70% 30%)" }}>
+        AI / Tech
+      </p>
+      <p className="text-sm leading-relaxed text-foreground/85">{text}</p>
+    </div>
+  </div>
+);
 
 const Impact = () => {
   const [spotlightIndex, setSpotlightIndex] = useState(0);
-  const currentCompany = featuredSpotlight.companies[spotlightIndex];
+  const [direction, setDirection] = useState(0);
+  const [activeCompanyId, setActiveCompanyId] = useState<string | null>(null);
+
+  const currentCompany = portfolioCompanies[spotlightIndex];
+  const activeCompany = activeCompanyId ? companyById[activeCompanyId] : null;
 
   const scrollToNext = () => {
-    document.getElementById("spotlight")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("sdg-framework")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const nextSpotlight = () =>
-    setSpotlightIndex((i) => (i + 1) % featuredSpotlight.companies.length);
-  const prevSpotlight = () =>
-    setSpotlightIndex((i) => (i - 1 + featuredSpotlight.companies.length) % featuredSpotlight.companies.length);
+  const goNext = () => {
+    setDirection(1);
+    setSpotlightIndex((i) => (i + 1) % portfolioCompanies.length);
+  };
+  const goPrev = () => {
+    setDirection(-1);
+    setSpotlightIndex((i) => (i - 1 + portfolioCompanies.length) % portfolioCompanies.length);
+  };
+  const goTo = (i: number) => {
+    setDirection(i > spotlightIndex ? 1 : -1);
+    setSpotlightIndex(i);
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
       {/* ───────── 1. HERO ───────── */}
-      <section className="relative min-h-[75vh] flex flex-col justify-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+        {/* Layered radial gradient mesh */}
         <div
           className="absolute inset-0"
           style={{
-            background:
-              "linear-gradient(160deg, hsl(160 20% 95%) 0%, hsl(150 15% 92%) 40%, hsl(200 15% 94%) 100%)",
+            background: `
+              radial-gradient(ellipse 80% 60% at 20% 20%, hsl(163 55% 88% / 0.9) 0%, transparent 60%),
+              radial-gradient(ellipse 70% 50% at 80% 30%, hsl(180 40% 90% / 0.8) 0%, transparent 55%),
+              radial-gradient(ellipse 90% 60% at 50% 100%, hsl(160 45% 92% / 0.7) 0%, transparent 60%),
+              linear-gradient(180deg, hsl(160 25% 96%) 0%, hsl(170 20% 94%) 100%)
+            `,
           }}
         />
-        <div className="relative z-10 container mx-auto px-6 pt-28 pb-14">
+        {/* Drifting emerald orb */}
+        <motion.div
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: 720,
+            height: 720,
+            background: "hsl(163 70% 45%)",
+            opacity: 0.15,
+            filter: "blur(80px)",
+            top: "10%",
+            left: "30%",
+          }}
+          animate={{
+            x: [0, 80, -40, 0],
+            y: [0, -60, 40, 0],
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: 520,
+            height: 520,
+            background: "hsl(190 70% 50%)",
+            opacity: 0.1,
+            filter: "blur(100px)",
+            bottom: "5%",
+            right: "10%",
+          }}
+          animate={{
+            x: [0, -60, 30, 0],
+            y: [0, 40, -50, 0],
+          }}
+          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Subtle grain */}
+        <div
+          className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
+          }}
+        />
+
+        <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
+            transition={{ duration: 0.7 }}
+            className="max-w-4xl"
           >
             <p
-              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-5"
-              style={{ color: "hsl(140 45% 35%)" }}
+              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-6"
+              style={{ color: "hsl(163 70% 30%)" }}
             >
               {impactHero.eyebrow}
             </p>
             <h1
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08]"
+              className="font-display text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.02] tracking-tight"
               style={{ color: "hsl(217 91% 11%)" }}
             >
               {impactHero.titleLine1}
@@ -98,13 +180,14 @@ const Impact = () => {
               <span className="text-gradient-emerald">{impactHero.titleLine2}</span>
             </h1>
             <p
-              className="mt-7 max-w-2xl text-base md:text-lg leading-relaxed"
-              style={{ color: "hsl(217 25% 40%)" }}
+              className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed"
+              style={{ color: "hsl(217 25% 35%)" }}
             >
               {impactHero.description}
             </p>
           </motion.div>
         </div>
+
         <motion.button
           onClick={scrollToNext}
           initial={{ opacity: 0 }}
@@ -115,14 +198,17 @@ const Impact = () => {
           <span className="text-xs tracking-wider uppercase text-muted-foreground group-hover:text-primary transition-colors">
             {impactHero.scrollCue}
           </span>
-          <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-            <ChevronDown size={18} className="text-muted-foreground" />
+          <motion.div
+            animate={{ y: [0, 8, 0], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 1.8, repeat: Infinity }}
+          >
+            <ChevronDown size={20} className="text-emerald" />
           </motion.div>
         </motion.button>
       </section>
 
-      {/* ───────── 2. IMPACT FRAMEWORK (SDGs) ───────── */}
-      <section id="sdg-framework" className="py-24 lg:py-32 bg-card">
+      {/* ───────── 2. SDG FRAMEWORK ───────── */}
+      <section id="sdg-framework" className="py-28 lg:py-32 bg-card">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -154,7 +240,7 @@ const Impact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className={`group relative rounded-2xl overflow-hidden cursor-default h-[340px] ${colSpan}`}
+                  className={`group relative rounded-2xl overflow-hidden h-[360px] ${colSpan}`}
                 >
                   <img
                     src={sdgPhotos[sdg.number]}
@@ -164,7 +250,7 @@ const Impact = () => {
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)`,
+                      background: `linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)`,
                     }}
                   />
                   <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-7">
@@ -172,7 +258,7 @@ const Impact = () => {
                       <img
                         src={sdgImages[sdg.number]}
                         alt={`SDG ${sdg.number}`}
-                        className="w-11 h-11 rounded-lg shadow-lg"
+                        className="w-12 h-12 rounded-lg shadow-lg"
                       />
                     </div>
                     <div>
@@ -183,20 +269,24 @@ const Impact = () => {
                         {sdg.description}
                       </p>
                       <div className="flex flex-wrap gap-1.5">
-                        {sdg.companies.map((c) => (
-                          <Link
-                            key={c}
-                            to={`/portfolio?search=${encodeURIComponent(c)}`}
-                            className="text-[10px] font-display font-semibold tracking-wide px-2.5 py-1 rounded-full backdrop-blur-md transition-all hover:bg-white/30 hover:-translate-y-0.5"
-                            style={{
-                              backgroundColor: "rgba(255,255,255,0.2)",
-                              color: "rgba(255,255,255,0.95)",
-                              border: "1px solid rgba(255,255,255,0.25)",
-                            }}
-                          >
-                            {c}
-                          </Link>
-                        ))}
+                        {sdg.companyIds.map((cid) => {
+                          const c = companyById[cid];
+                          if (!c) return null;
+                          return (
+                            <button
+                              key={cid}
+                              onClick={() => setActiveCompanyId(cid)}
+                              className="text-[10px] font-display font-semibold tracking-wide px-2.5 py-1 rounded-full backdrop-blur-md transition-all hover:bg-white/35 hover:scale-105"
+                              style={{
+                                backgroundColor: "rgba(255,255,255,0.2)",
+                                color: "rgba(255,255,255,0.95)",
+                                border: "1px solid rgba(255,255,255,0.3)",
+                              }}
+                            >
+                              {c.name}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -207,7 +297,33 @@ const Impact = () => {
         </div>
       </section>
 
-      {/* ───────── 2.5 2X CHALLENGE ALIGNED (compact) ───────── */}
+      {/* Company Modal */}
+      <Dialog open={!!activeCompany} onOpenChange={(open) => !open && setActiveCompanyId(null)}>
+        <DialogContent className="max-w-lg">
+          {activeCompany && (
+            <div className="space-y-5">
+              <div>
+                <DialogTitle className="font-display text-2xl md:text-3xl font-extrabold text-primary">
+                  {activeCompany.name}
+                </DialogTitle>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                  {activeCompany.tagline}
+                </p>
+              </div>
+              <AiBlock text={activeCompany.aiAngle} />
+              <div className="flex gap-2 pt-2">
+                {activeCompany.sdgs.map((n) =>
+                  sdgImages[n] ? (
+                    <img key={n} src={sdgImages[n]} alt={`SDG ${n}`} className="w-10 h-10 rounded object-cover" />
+                  ) : null
+                )}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* ───────── 3. 2X CHALLENGE (unchanged) ───────── */}
       <section className="py-16 lg:py-20 bg-background border-y border-border">
         <div className="container mx-auto px-6">
           <motion.div
@@ -270,8 +386,82 @@ const Impact = () => {
         </div>
       </section>
 
-      {/* ───────── 3. PORTFOLIO SPOTLIGHT ───────── */}
-      <section id="spotlight" className="py-24 lg:py-32 bg-background">
+      {/* ───────── 4. METHODOLOGY ───────── */}
+      <section
+        className="py-28 lg:py-32 relative overflow-hidden"
+        style={{ backgroundColor: "hsl(217 91% 11%)" }}
+      >
+        <div className="absolute inset-0 opacity-30 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 50% 0%, hsl(163 70% 45% / 0.25) 0%, transparent 70%)",
+          }}
+        />
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4 text-emerald">
+              How We Measure
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+              Built on Rigour
+            </h2>
+          </motion.div>
+
+          <div className="relative max-w-5xl mx-auto">
+            {/* Connecting line — desktop */}
+            <div
+              className="hidden md:block absolute top-7 left-[8%] right-[8%] h-px"
+              style={{ background: "linear-gradient(to right, transparent, hsl(163 70% 45% / 0.6), transparent)" }}
+            />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6 relative">
+              {methodology.steps.map((s, i) => (
+                <motion.div
+                  key={s.step}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: i * 0.12 }}
+                  className="text-center md:text-left flex md:flex-col items-center md:items-start gap-4 md:gap-5"
+                >
+                  <div
+                    className="shrink-0 flex items-center justify-center w-14 h-14 rounded-full font-display font-extrabold text-base relative z-10"
+                    style={{
+                      backgroundColor: "hsl(163 70% 45%)",
+                      color: "hsl(217 91% 11%)",
+                      boxShadow: "0 0 0 6px hsl(217 91% 11%), 0 0 30px hsl(163 70% 45% / 0.4)",
+                    }}
+                  >
+                    {s.step}
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-display text-xl font-extrabold text-white">{s.title}</h3>
+                    <p className="text-sm text-white/65 mt-1.5 leading-relaxed max-w-[220px]">
+                      {s.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center text-xs italic text-white/50 mt-16 max-w-2xl mx-auto leading-relaxed"
+          >
+            {methodology.disclaimer}
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ───────── 5. PORTFOLIO SPOTLIGHT ───────── */}
+      <section className="py-28 lg:py-36 bg-background">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -283,109 +473,138 @@ const Impact = () => {
               className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
               style={{ color: "hsl(140 45% 35%)" }}
             >
-              {featuredSpotlight.sectionEyebrow}
+              Portfolio Spotlight
             </p>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
-              {featuredSpotlight.sectionTitle}
+              Impact in Action
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
-              {featuredSpotlight.sectionSubtitle}
+              How our portfolio companies create change through AI and technology.
             </p>
           </motion.div>
 
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={spotlightIndex}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.35 }}
-                className="relative rounded-xl border border-border bg-card overflow-hidden"
-              >
-                <div className="absolute top-0 left-0 w-1 h-full bg-emerald" />
-                <div className="grid grid-cols-1 lg:grid-cols-5">
-                  <div className="lg:col-span-3 p-8 md:p-10 lg:p-12">
-                    <div className="flex items-center gap-4">
-                      {spotlightLogos[currentCompany.name] && (
-                        <img src={spotlightLogos[currentCompany.name]} alt={currentCompany.name} className="h-10 object-contain" />
-                      )}
-                      <h3 className="font-display text-2xl md:text-3xl font-extrabold text-primary">
+          <div className="relative max-w-5xl mx-auto">
+            {/* Arrows */}
+            <button
+              onClick={goPrev}
+              aria-label="Previous"
+              className="absolute -left-3 md:-left-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-card border border-border flex items-center justify-center shadow-md hover:bg-muted hover:-translate-y-[55%] transition-all"
+            >
+              <ChevronLeft size={18} className="text-primary" />
+            </button>
+            <button
+              onClick={goNext}
+              aria-label="Next"
+              className="absolute -right-3 md:-right-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-card border border-border flex items-center justify-center shadow-md hover:bg-muted hover:-translate-y-[55%] transition-all"
+            >
+              <ChevronRight size={18} className="text-primary" />
+            </button>
+
+            <div className="relative overflow-hidden rounded-2xl">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={spotlightIndex}
+                  custom={direction}
+                  initial={{ opacity: 0, x: direction > 0 ? 60 : -60 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: direction > 0 ? -60 : 60 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="relative rounded-2xl border border-border bg-card overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 w-1 h-full bg-emerald" />
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                    {/* LEFT */}
+                    <div className="lg:col-span-3 p-8 md:p-10 lg:p-12">
+                      <h3 className="font-display text-3xl md:text-4xl font-extrabold text-primary leading-tight">
                         {currentCompany.name}
                       </h3>
-                    </div>
-                    <p className="font-display text-sm font-semibold mt-2" style={{ color: "hsl(140 45% 35%)" }}>
-                      {currentCompany.tagline}
-                    </p>
-                    <p className="text-muted-foreground text-sm mt-5 leading-relaxed">
-                      {currentCompany.description}
-                    </p>
-                    <div className="mt-6 pt-5 border-t border-border">
-                      <p className="font-display text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
-                        Qualgro's Support
+                      <p className="font-display text-sm font-semibold mt-2 text-emerald">
+                        {currentCompany.tagline}
                       </p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {currentCompany.qualgroSupport}
-                      </p>
+                      <div className="mt-6">
+                        <AiBlock text={currentCompany.aiAngle} />
+                      </div>
                     </div>
-                  </div>
-                  <div className="lg:col-span-2 bg-muted/30 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-                    <div className="grid grid-cols-1 gap-6">
-                      {currentCompany.highlights.map((h) => (
-                        <div key={h.label}>
-                          <p className="font-display text-3xl md:text-4xl font-extrabold text-primary">{h.value}</p>
-                          <p className="text-muted-foreground text-xs mt-1">{h.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-8 pt-5 border-t border-border">
-                      <p className="font-display text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">SDG Alignment</p>
-                      <div className="flex gap-2">
-                        {currentCompany.sdgs.map((n) => (
-                          <img key={n} src={sdgImages[n]} alt={`SDG ${n}`} className="w-10 h-10 rounded object-cover" />
+                    {/* RIGHT */}
+                    <div className="lg:col-span-2 bg-muted/30 p-8 md:p-10 lg:p-12 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-border">
+                      <div className="grid grid-cols-1 gap-6">
+                        {currentCompany.highlights.map((h) => (
+                          <div key={h.label}>
+                            <p className="font-display text-3xl md:text-4xl font-extrabold text-primary leading-none">
+                              {h.value}
+                            </p>
+                            <p className="text-muted-foreground text-xs mt-1.5">{h.label}</p>
+                          </div>
                         ))}
+                      </div>
+                      <div className="mt-8 pt-5 border-t border-border">
+                        <p className="font-display text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2.5">
+                          SDG Alignment
+                        </p>
+                        <div className="flex gap-2">
+                          {currentCompany.sdgs.map((n) =>
+                            sdgImages[n] ? (
+                              <img
+                                key={n}
+                                src={sdgImages[n]}
+                                alt={`SDG ${n}`}
+                                className="w-10 h-10 rounded object-cover"
+                              />
+                            ) : null
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-            <div className="flex items-center justify-between mt-6">
-              <div className="flex gap-2 flex-wrap">
-                {featuredSpotlight.companies.map((c, i) => (
-                  <button
-                    key={c.name}
-                    onClick={() => setSpotlightIndex(i)}
-                    className={`px-4 py-1.5 rounded-full text-xs font-display font-semibold transition-all ${
-                      i === spotlightIndex
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-muted-foreground hover:bg-muted/80"
-                    }`}
-                  >
-                    {c.name}
-                  </button>
-                ))}
-              </div>
-              <div className="flex gap-2">
-                <button onClick={prevSpotlight} className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors">
-                  <ChevronLeft size={16} className="text-muted-foreground" />
-                </button>
-                <button onClick={nextSpotlight} className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors">
-                  <ChevronRight size={16} className="text-muted-foreground" />
-                </button>
-              </div>
+            {/* Dots */}
+            <div className="flex items-center justify-center gap-2 mt-8">
+              {portfolioCompanies.map((c, i) => (
+                <button
+                  key={c.id}
+                  onClick={() => goTo(i)}
+                  aria-label={`Go to ${c.name}`}
+                  className={`transition-all rounded-full ${
+                    i === spotlightIndex
+                      ? "w-8 h-2.5 bg-emerald"
+                      : "w-2.5 h-2.5 border border-muted-foreground/40 hover:border-muted-foreground"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
       </section>
-      {/* ───────── 5. CTA ───────── */}
+
+      {/* ───────── 6. CTA ───────── */}
       <section
-        className="relative py-24 lg:py-32 overflow-hidden"
+        className="relative py-28 lg:py-32 overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, hsl(217 91% 11%) 0%, hsl(217 80% 18%) 100%)",
+          background:
+            "linear-gradient(135deg, hsl(217 91% 11%) 0%, hsl(217 60% 18%) 50%, hsl(163 50% 22%) 100%)",
         }}
       >
+        {/* Decorative orbs */}
+        <div
+          className="absolute -top-32 -right-24 w-[480px] h-[480px] rounded-full pointer-events-none"
+          style={{ background: "hsl(163 70% 45%)", opacity: 0.18, filter: "blur(100px)" }}
+        />
+        <div
+          className="absolute -bottom-32 -left-24 w-[420px] h-[420px] rounded-full pointer-events-none"
+          style={{ background: "hsl(190 70% 50%)", opacity: 0.12, filter: "blur(110px)" }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(hsl(0 0% 100%) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+
         <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -393,26 +612,26 @@ const Impact = () => {
             viewport={{ once: true }}
           >
             <h2
-              className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold mb-5"
+              className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold mb-5 max-w-3xl mx-auto leading-tight"
               style={{ color: "hsl(210 40% 98%)" }}
             >
               Building the future is a collaborative effort.
             </h2>
-            <p className="max-w-xl mx-auto mb-8" style={{ color: "hsl(215 20% 65%)" }}>
+            <p className="max-w-xl mx-auto mb-8" style={{ color: "hsl(215 25% 75%)" }}>
               Download our full ESG & Impact Report 2024 to learn more about our methodology and performance metrics.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href="#"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-emerald text-emerald-foreground font-display font-semibold text-sm hover:bg-emerald/90 transition-colors"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-emerald text-emerald-foreground font-display font-semibold text-sm hover:bg-emerald/90 transition-colors shadow-lg"
               >
                 Download Report
                 <ArrowRight size={15} />
               </a>
               <a
                 href="#"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg border font-display font-semibold text-sm transition-colors"
-                style={{ borderColor: "hsl(215 20% 30%)", color: "hsl(210 40% 98%)" }}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg border-2 font-display font-semibold text-sm transition-colors hover:bg-white/5"
+                style={{ borderColor: "hsl(210 40% 98% / 0.4)", color: "hsl(210 40% 98%)" }}
               >
                 <Mail size={15} />
                 Contact Us
