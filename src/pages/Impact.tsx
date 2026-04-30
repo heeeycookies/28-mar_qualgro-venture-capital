@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ChevronDown,
@@ -15,7 +16,6 @@ import {
   prioritySDGs,
   featuredSpotlight,
 } from "@/data/impact";
-import CommitmentsSection from "@/components/impact/CommitmentsSection";
 
 import logoSupermom from "@/assets/impact/logos/supermom.png";
 import logoPatsnap from "@/assets/impact/logos/patsnap.png";
@@ -119,8 +119,94 @@ const Impact = () => {
         </motion.button>
       </section>
 
-      {/* ───────── 2. PORTFOLIO SPOTLIGHT ───────── */}
-      <section id="spotlight" className="py-24 lg:py-32 bg-card">
+      {/* ───────── 2. IMPACT FRAMEWORK (SDGs) ───────── */}
+      <section id="sdg-framework" className="py-24 lg:py-32 bg-card">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p
+              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
+              style={{ color: "hsl(140 45% 35%)" }}
+            >
+              Impact Framework
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
+              Aligned with the{" "}
+              <span className="text-gradient-emerald">
+                UN Sustainable Development Goals
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
+            {prioritySDGs.map((sdg, i) => {
+              const colSpan = i < 3 ? "md:col-span-2" : "md:col-span-3";
+              return (
+                <motion.div
+                  key={sdg.number}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className={`group relative rounded-2xl overflow-hidden cursor-default h-[340px] ${colSpan}`}
+                >
+                  <img
+                    src={sdgPhotos[sdg.number]}
+                    alt={sdg.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)`,
+                    }}
+                  />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-7">
+                    <div className="absolute top-5 right-5">
+                      <img
+                        src={sdgImages[sdg.number]}
+                        alt={`SDG ${sdg.number}`}
+                        className="w-11 h-11 rounded-lg shadow-lg"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg sm:text-xl font-extrabold text-white leading-snug mb-1.5 drop-shadow-sm">
+                        {sdg.title}
+                      </h3>
+                      <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-4 max-w-md line-clamp-2">
+                        {sdg.description}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {sdg.companies.map((c) => (
+                          <Link
+                            key={c}
+                            to={`/portfolio?search=${encodeURIComponent(c)}`}
+                            className="text-[10px] font-display font-semibold tracking-wide px-2.5 py-1 rounded-full backdrop-blur-md transition-all hover:bg-white/30 hover:-translate-y-0.5"
+                            style={{
+                              backgroundColor: "rgba(255,255,255,0.2)",
+                              color: "rgba(255,255,255,0.95)",
+                              border: "1px solid rgba(255,255,255,0.25)",
+                            }}
+                          >
+                            {c}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 3. PORTFOLIO SPOTLIGHT ───────── */}
+      <section id="spotlight" className="py-24 lg:py-32 bg-background">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -225,94 +311,6 @@ const Impact = () => {
                 </button>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── 3. OUR COMMITMENTS ───────── */}
-      <CommitmentsSection />
-
-      {/* ───────── 4. IMPACT FRAMEWORK (SDGs) ───────── */}
-      <section className="py-24 lg:py-32 bg-card">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <p
-              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
-              style={{ color: "hsl(140 45% 35%)" }}
-            >
-              Impact Framework
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
-              Aligned with the{" "}
-              <span className="text-gradient-emerald">
-                UN Sustainable Development Goals
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
-            {prioritySDGs.map((sdg, i) => {
-              const colSpan = i < 3 ? "md:col-span-2" : "md:col-span-3";
-              return (
-                <motion.div
-                  key={sdg.number}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className={`group relative rounded-2xl overflow-hidden cursor-default h-[340px] ${colSpan}`}
-                >
-                  <img
-                    src={sdgPhotos[sdg.number]}
-                    alt={sdg.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)`,
-                    }}
-                  />
-                  <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-7">
-                    <div className="absolute top-5 right-5">
-                      <img
-                        src={sdgImages[sdg.number]}
-                        alt={`SDG ${sdg.number}`}
-                        className="w-11 h-11 rounded-lg shadow-lg"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg sm:text-xl font-extrabold text-white leading-snug mb-1.5 drop-shadow-sm">
-                        {sdg.title}
-                      </h3>
-                      <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-4 max-w-md line-clamp-2">
-                        {sdg.description}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {sdg.companies.map((c) => (
-                          <span
-                            key={c}
-                            className="text-[10px] font-display font-semibold tracking-wide px-2.5 py-1 rounded-full backdrop-blur-md"
-                            style={{
-                              backgroundColor: "rgba(255,255,255,0.2)",
-                              color: "rgba(255,255,255,0.95)",
-                              border: "1px solid rgba(255,255,255,0.25)",
-                            }}
-                          >
-                            {c}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
           </div>
         </div>
       </section>

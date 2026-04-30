@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Filter, X, Search } from "lucide-react";
 
 type BusinessModel = "B2B" | "B2B2C" | "B2C";
@@ -77,6 +78,7 @@ const modelColors: Record<BusinessModel, string> = {
 };
 
 const Portfolio = () => {
+  const [searchParams] = useSearchParams();
   const [activeFund, setActiveFund] = useState<Fund | "All">("All");
   const [activeSector, setActiveSector] = useState<Sector | "All">("All");
   const [activeStatus, setActiveStatus] = useState<Status | "All">("All");
@@ -84,6 +86,14 @@ const Portfolio = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const q = searchParams.get("search");
+    if (q) {
+      setSearchQuery(q);
+      setSearchOpen(true);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (searchOpen && searchInputRef.current) {
