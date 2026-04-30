@@ -73,27 +73,101 @@ const AiBlock = ({ text }: { text: string }) => (
 
 const Impact = () => {
   const [spotlightIndex, setSpotlightIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
   const [activeCompanyId, setActiveCompanyId] = useState<string | null>(null);
 
-  const currentCompany = portfolioCompanies[spotlightIndex];
   const activeCompany = activeCompanyId ? companyById[activeCompanyId] : null;
+
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const isDownRef = useRef(false);
+  const movedRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollRef = useRef(0);
 
   const scrollToNext = () => {
     document.getElementById("sdg-framework")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToIndex = useCallback((i: number) => {
+    const el = cardRefs.current[i];
+    const scroller = scrollerRef.current;
+    if (!el || !scroller) return;
+    const left =
+      el.offsetLeft - (scroller.clientWidth - el.clientWidth) / 2;
+    scroller.scrollTo({ left, behavior: "smooth" });
+  }, []);
+
   const goNext = () => {
-    setDirection(1);
-    setSpotlightIndex((i) => (i + 1) % portfolioCompanies.length);
+    const i = (spotlightIndex + 1) % portfolioCompanies.length;
+    setSpotlightIndex(i);
+    scrollToIndex(i);
   };
   const goPrev = () => {
-    setDirection(-1);
-    setSpotlightIndex((i) => (i - 1 + portfolioCompanies.length) % portfolioCompanies.length);
+    const i = (spotlightIndex - 1 + portfolioCompanies.length) % portfolioCompanies.length;
+    setSpotlightIndex(i);
+    scrollToIndex(i);
   };
   const goTo = (i: number) => {
-    setDirection(i > spotlightIndex ? 1 : -1);
     setSpotlightIndex(i);
+    scrollToIndex(i);
+  };
+
+  // Track the centered card on scroll to sync dots
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const center = scroller.scrollLeft + scroller.clientWidth / 2;
+        let bestIdx = 0;
+        let bestDist = Infinity;
+        cardRefs.current.forEach((el, i) => {
+          if (!el) return;
+          const c = el.offsetLeft + el.clientWidth / 2;
+          const d = Math.abs(c - center);
+          if (d < bestDist) {
+            bestDist = d;
+            bestIdx = i;
+          }
+        });
+        setSpotlightIndex(bestIdx);
+      });
+    };
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      scroller.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Mouse drag-to-scroll (touch is native)
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === "touch") return;
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    isDownRef.current = true;
+    movedRef.current = false;
+    startXRef.current = e.clientX;
+    startScrollRef.current = scroller.scrollLeft;
+    scroller.setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDownRef.current) return;
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    const dx = e.clientX - startXRef.current;
+    if (Math.abs(dx) > 4) movedRef.current = true;
+    scroller.scrollLeft = startScrollRef.current - dx;
+  };
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDownRef.current) return;
+    isDownRef.current = false;
+    const scroller = scrollerRef.current;
+    if (scroller && scroller.hasPointerCapture(e.pointerId)) {
+      scroller.releasePointerCapture(e.pointerId);
+    }
   };
 
   return (
