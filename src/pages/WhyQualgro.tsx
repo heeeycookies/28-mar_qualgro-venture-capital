@@ -283,81 +283,74 @@ const WhyQualgro = () => {
         </div>
       </section>
 
-      {/* How We Measure */}
+      {/* ───────── METHODOLOGY ───────── */}
       <section
-        className="py-24 lg:py-32 relative overflow-hidden"
-        style={{ background: "hsl(217 91% 11%)" }}
+        className="py-28 lg:py-32 relative overflow-hidden"
+        style={{ backgroundColor: "hsl(217 91% 11%)" }}
       >
-        <div className="container mx-auto px-6">
+        <div className="absolute inset-0 opacity-30 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 50% 0%, hsl(163 70% 45% / 0.25) 0%, transparent 70%)",
+          }}
+        />
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p
-              className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4"
-              style={{ color: "hsl(var(--emerald))" }}
-            >
+            <p className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4 text-emerald">
               How We Measure
             </p>
-            <h2
-              className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight"
-              style={{ color: "hsl(210 40% 98%)" }}
-            >
-              A Framework Built on Rigour
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+              Built on Rigour
             </h2>
-            <p className="max-w-2xl mx-auto mt-4" style={{ color: "hsl(215 20% 65%)" }}>
-              We measure what matters — and we're transparent about how we do it.
-            </p>
           </motion.div>
 
-          <motion.div
-            className="relative grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
-          >
+          <div className="relative max-w-5xl mx-auto">
+            {/* Connecting line — desktop */}
             <div
-              className="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-px"
-              style={{ backgroundColor: "hsl(var(--emerald) / 0.25)" }}
+              className="hidden md:block absolute top-7 left-[8%] right-[8%] h-px"
+              style={{ background: "linear-gradient(to right, transparent, hsl(163 70% 45% / 0.6), transparent)" }}
             />
-            {methodology.steps.map((s) => (
-              <motion.div
-                key={s.step}
-                variants={{
-                  hidden: { opacity: 0, y: 24 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-                }}
-                className="flex flex-col items-center text-center relative"
-              >
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center font-display text-sm font-extrabold mb-4 relative z-10"
-                  style={{
-                    backgroundColor: "hsl(var(--emerald))",
-                    color: "hsl(var(--emerald-foreground))",
-                  }}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6 relative">
+              {methodology.steps.map((s, i) => (
+                <motion.div
+                  key={s.step}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: i * 0.12 }}
+                  className="text-center md:text-left flex md:flex-col items-center md:items-start gap-4 md:gap-5"
                 >
-                  {s.step}
-                </div>
-                <h3 className="font-display text-lg font-extrabold mb-2" style={{ color: "hsl(210 40% 98%)" }}>
-                  {s.title}
-                </h3>
-                <p className="text-sm leading-relaxed max-w-[260px]" style={{ color: "hsl(215 20% 65%)" }}>
-                  {s.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+                  <div
+                    className="shrink-0 flex items-center justify-center w-14 h-14 rounded-full font-display font-extrabold text-base relative z-10"
+                    style={{
+                      backgroundColor: "hsl(163 70% 45%)",
+                      color: "hsl(217 91% 11%)",
+                      boxShadow: "0 0 0 6px hsl(217 91% 11%), 0 0 30px hsl(163 70% 45% / 0.4)",
+                    }}
+                  >
+                    {s.step}
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-display text-xl font-extrabold text-white">{s.title}</h3>
+                    <p className="text-sm text-white/65 mt-1.5 leading-relaxed max-w-[220px]">
+                      {s.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="mt-16 text-center text-xs italic max-w-3xl mx-auto"
-            style={{ color: "hsl(215 20% 45%)" }}
+            className="text-center text-xs italic text-white/50 mt-16 max-w-2xl mx-auto leading-relaxed"
           >
             {methodology.disclaimer}
           </motion.p>

@@ -15,7 +15,7 @@ import {
   impactHero,
   prioritySDGs,
   portfolioCompanies,
-  methodology,
+  
 } from "@/data/impact";
 import { twoXOverview, twoXStats } from "@/data/two-x-data";
 import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
@@ -457,80 +457,6 @@ const Impact = () => {
               ))}
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* ───────── 4. METHODOLOGY ───────── */}
-      <section
-        className="py-28 lg:py-32 relative overflow-hidden"
-        style={{ backgroundColor: "hsl(217 91% 11%)" }}
-      >
-        <div className="absolute inset-0 opacity-30 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 0%, hsl(163 70% 45% / 0.25) 0%, transparent 70%)",
-          }}
-        />
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <p className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4 text-emerald">
-              How We Measure
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-              Built on Rigour
-            </h2>
-          </motion.div>
-
-          <div className="relative max-w-5xl mx-auto">
-            {/* Connecting line — desktop */}
-            <div
-              className="hidden md:block absolute top-7 left-[8%] right-[8%] h-px"
-              style={{ background: "linear-gradient(to right, transparent, hsl(163 70% 45% / 0.6), transparent)" }}
-            />
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6 relative">
-              {methodology.steps.map((s, i) => (
-                <motion.div
-                  key={s.step}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: i * 0.12 }}
-                  className="text-center md:text-left flex md:flex-col items-center md:items-start gap-4 md:gap-5"
-                >
-                  <div
-                    className="shrink-0 flex items-center justify-center w-14 h-14 rounded-full font-display font-extrabold text-base relative z-10"
-                    style={{
-                      backgroundColor: "hsl(163 70% 45%)",
-                      color: "hsl(217 91% 11%)",
-                      boxShadow: "0 0 0 6px hsl(217 91% 11%), 0 0 30px hsl(163 70% 45% / 0.4)",
-                    }}
-                  >
-                    {s.step}
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="font-display text-xl font-extrabold text-white">{s.title}</h3>
-                    <p className="text-sm text-white/65 mt-1.5 leading-relaxed max-w-[220px]">
-                      {s.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-xs italic text-white/50 mt-16 max-w-2xl mx-auto leading-relaxed"
-          >
-            {methodology.disclaimer}
-          </motion.p>
         </div>
       </section>
 
