@@ -14,20 +14,17 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <div className="relative overflow-hidden bg-background">
-        {/* Animated grid background spanning Hero + Stats */}
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          <Boxes className="pointer-events-auto opacity-100" />
-          {/* Soft wash so content stays readable but grid remains visible */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <Boxes className="opacity-100" />
           <div
-            className="absolute inset-0"
+            className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse at 50% 30%, hsl(var(--background) / 0.15) 0%, hsl(var(--background) / 0.45) 55%, hsl(var(--background) / 0.75) 100%)",
+                "radial-gradient(ellipse at 50% 28%, hsl(var(--background) / 0.04) 0%, hsl(var(--background) / 0.26) 54%, hsl(var(--background) / 0.62) 100%)",
             }}
           />
-          {/* Seamless fade into the next section */}
           <div
-            className="absolute inset-x-0 bottom-0 h-56"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-40"
             style={{
               background:
                 "linear-gradient(to bottom, hsl(var(--background) / 0), hsl(var(--background)) 100%)",
@@ -37,9 +34,9 @@ const Index = () => {
         <div className="relative z-10">
           <HeroSection />
           <PortfolioSection />
-          <StatsSection />
         </div>
       </div>
+      <StatsSection />
       <ThesisSection />
       <ImpactSection />
       <FounderTestimonials />
