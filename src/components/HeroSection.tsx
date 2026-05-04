@@ -18,7 +18,7 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14 lg:pb-16 bg-background overflow-hidden"
+      className="relative pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14 lg:pb-16 overflow-hidden"
     >
       {/* Parallax background orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
