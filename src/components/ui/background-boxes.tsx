@@ -7,16 +7,13 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
   const rows = new Array(150).fill(1);
   const cols = new Array(100).fill(1);
 
+  // Brand-aligned palette: navy / deep blue / emerald tints
   const colors = [
-    "rgb(125 211 252)", // sky-300
-    "rgb(249 168 212)", // pink-300
-    "rgb(134 239 172)", // green-300
-    "rgb(253 224 71)",  // yellow-300
-    "rgb(252 165 165)", // red-300
-    "rgb(216 180 254)", // purple-300
-    "rgb(147 197 253)", // blue-300
-    "rgb(165 180 252)", // indigo-300
-    "rgb(196 181 253)", // violet-300
+    "rgb(14 58 93)",    // navy
+    "rgb(0 73 113)",    // deep blue
+    "rgb(0 109 78)",    // emerald
+    "rgb(56 122 154)",  // navy-light
+    "rgb(94 167 138)",  // emerald-light
   ];
 
   const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
@@ -35,7 +32,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
       {rows.map((_, i) => (
         <motion.div
           key={`row` + i}
-          className="relative h-8 w-16 border-l border-slate-700"
+          className="relative h-8 w-16 border-l border-slate-300/40"
         >
           {cols.map((_, j) => (
             <motion.div
@@ -47,7 +44,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
                 transition: { duration: 2 },
               }}
               key={`col` + j}
-              className="relative h-8 w-16 border-r border-t border-slate-700"
+              className="relative h-8 w-16 border-r border-t border-slate-300/40"
             >
               {j % 2 === 0 && i % 2 === 0 ? (
                 <svg
@@ -56,7 +53,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="pointer-events-none absolute -left-[22px] -top-[14px] h-6 w-10 stroke-[1px] text-slate-700"
+                  className="pointer-events-none absolute -left-[22px] -top-[14px] h-6 w-10 stroke-[1px] text-slate-300/50"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
                 </svg>
