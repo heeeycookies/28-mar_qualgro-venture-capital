@@ -15,7 +15,7 @@ import {
   impactHero,
   prioritySDGs,
   portfolioCompanies,
-  methodology,
+  
 } from "@/data/impact";
 import { twoXOverview, twoXStats } from "@/data/two-x-data";
 import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
