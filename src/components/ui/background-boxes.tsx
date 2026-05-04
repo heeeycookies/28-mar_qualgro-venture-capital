@@ -1,67 +1,80 @@
 "use client";
-import React from "react";
+import React, { HTMLAttributes, useMemo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
-  const rows = new Array(150).fill(1);
-  const cols = new Array(100).fill(1);
+type BoxesProps = HTMLAttributes<HTMLDivElement> & {
+  className?: string;
+};
 
-  // Brand-aligned palette: navy / deep blue / emerald tints
-  const colors = [
-    "rgb(14 58 93)",    // navy
-    "rgb(0 73 113)",    // deep blue
-    "rgb(0 109 78)",    // emerald
-    "rgb(56 122 154)",  // navy-light
-    "rgb(94 167 138)",  // emerald-light
-  ];
+export const BoxesCore = ({ className, ...rest }: BoxesProps) => {
+  const rowCount = 24;
+  const colCount = 18;
 
-  const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
+  const rows = useMemo(() => Array.from({ length: rowCount }), []);
+  const cols = useMemo(() => Array.from({ length: colCount }), []);
+  const colors = useMemo(
+    () => [
+      "hsl(var(--investment-blue) / 0.22)",
+      "hsl(var(--navy-light) / 0.22)",
+      "hsl(var(--emerald) / 0.2)",
+      "hsl(var(--hero-highlight-green) / 0.24)",
+      "hsl(var(--foreground) / 0.16)",
+    ],
+    []
+  );
 
   return (
     <div
-      style={{
-        transform: `translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675) rotate(0deg) translateZ(0)`,
-      }}
-      className={cn(
-        "absolute -top-1/4 left-1/4 z-0 flex h-full w-full -translate-x-1/2 -translate-y-1/2 p-4",
-        className
-      )}
+      className={cn("absolute inset-0 overflow-hidden", className)}
       {...rest}
     >
-      {rows.map((_, i) => (
-        <motion.div
-          key={`row` + i}
-          className="relative h-8 w-16 border-l border-slate-300/40"
-        >
-          {cols.map((_, j) => (
-            <motion.div
-              whileHover={{
-                backgroundColor: getRandomColor(),
-                transition: { duration: 0 },
-              }}
-              animate={{
-                transition: { duration: 2 },
-              }}
-              key={`col` + j}
-              className="relative h-8 w-16 border-r border-t border-slate-300/40"
-            >
-              {j % 2 === 0 && i % 2 === 0 ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="pointer-events-none absolute -left-[22px] -top-[14px] h-6 w-10 stroke-[1px] text-slate-300/50"
+      <div
+        className="absolute left-1/2 top-1/2 flex min-h-[140%] min-w-[140%] -translate-x-1/2 -translate-y-1/2"
+        style={{
+          transform:
+            "translate(-50%, -50%) skewX(-22deg) skewY(8deg) scale(1.05) translateZ(0)",
+        }}
+      >
+        {rows.map((_, i) => (
+          <div
+            key={`row-${i}`}
+            className="relative flex border-l"
+            style={{ borderColor: "hsl(var(--border) / 0.32)" }}
+          >
+            {cols.map((_, j) => {
+              const color = colors[(i + j) % colors.length];
+
+              return (
+                <motion.div
+                  key={`cell-${i}-${j}`}
+                  whileHover={{
+                    backgroundColor: color,
+                    boxShadow: `0 0 24px ${color}`,
+                    transition: { duration: 0.12, ease: "easeOut" },
+                  }}
+                  className="relative h-14 w-14 shrink-0 border-r border-t bg-transparent"
+                  style={{ borderColor: "hsl(var(--border) / 0.32)" }}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-                </svg>
-              ) : null}
-            </motion.div>
-          ))}
-        </motion.div>
-      ))}
+                  {j % 2 === 0 && i % 2 === 0 ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.25"
+                      stroke="currentColor"
+                      className="pointer-events-none absolute -left-[18px] -top-[12px] h-5 w-8 stroke-[1.25px]"
+                      style={{ color: "hsl(var(--border) / 0.55)" }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
+                    </svg>
+                  ) : null}
+                </motion.div>
+              );
+            })}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
