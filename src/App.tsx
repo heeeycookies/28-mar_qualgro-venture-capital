@@ -11,7 +11,6 @@ import News from "./pages/News.tsx";
 import WhyQualgro from "./pages/WhyQualgro.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
-import ScrollProgressLine from "./components/ScrollProgressLine.tsx";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -21,7 +20,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <ScrollProgressLine />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/portfolio" element={<Portfolio />} />
