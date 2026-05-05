@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Boxes } from "@/components/ui/background-boxes";
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
