@@ -120,6 +120,7 @@ const PortfolioSection = () => {
   };
 
   const handleCardClick = (index: number) => {
+    if (dragState.current.moved > 5) return;
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
