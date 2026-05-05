@@ -125,46 +125,48 @@ const WhyQualgro = () => {
         </button>
       </PageHero>
 
-      {/* Thesis Themes */}
-      <section ref={thesisRef} className="py-24 sm:py-32 bg-background">
-        <div className="container mx-auto px-6">
+      {/* Thesis Themes — editorial cards */}
+      <section ref={thesisRef} className="relative py-24 sm:py-32 bg-background overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
+          backgroundImage:
+            "linear-gradient(hsl(var(--investment-blue)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--investment-blue)) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+        }} aria-hidden />
+        <div className="container mx-auto px-6 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             style={{ y: thesisHeadY }}
-            className="text-center mb-16 sm:mb-20"
+            className="max-w-2xl mb-16 sm:mb-20"
           >
-            <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3">
+            <p className="text-emerald font-display font-bold text-xs uppercase tracking-[0.25em] mb-4">
               Where We Invest
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-black text-primary">
-              Our Thesis Pillars
+            <h2 className="font-display text-4xl md:text-6xl font-black text-primary leading-[0.95]">
+              Our thesis<br />pillars.
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-14 max-w-5xl">
             {thesisThemes.map((theme, i) => (
               <motion.div
                 key={theme.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="group bg-card rounded-2xl border border-border p-7 sm:p-8 hover:shadow-xl hover:border-investment-blue/20 hover:-translate-y-1 transition-all duration-300"
+                transition={{ delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="group relative pl-6 border-l-2 border-border hover:border-emerald transition-colors"
               >
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-11 h-11 rounded-xl bg-investment-blue/8 flex items-center justify-center group-hover:bg-investment-blue/15 transition-colors">
-                    <theme.icon className="text-investment-blue" size={20} />
-                  </div>
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-investment-blue">
-                    {theme.label}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="font-display text-[11px] font-extrabold tracking-[0.25em] uppercase text-emerald">
+                    0{i + 1} · {theme.label}
                   </span>
                 </div>
-                <h3 className="font-display text-lg font-bold text-primary mb-3">
+                <h3 className="font-display text-2xl md:text-3xl font-extrabold text-primary mb-3 leading-tight">
                   {theme.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-md">
                   {theme.desc}
                 </p>
               </motion.div>
@@ -173,45 +175,56 @@ const WhyQualgro = () => {
         </div>
       </section>
 
-      {/* What We Look For */}
-      <section ref={criteriaRef} className="py-24 sm:py-32 bg-surface-alt">
+      {/* What We Look For — sticky storytelling */}
+      <section ref={criteriaRef} className="relative py-24 sm:py-32 bg-surface-alt overflow-hidden">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            style={{ y: criteriaHeadY }}
-            className="text-center mb-16 sm:mb-20"
-          >
-            <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3">
-              Investment Criteria
-            </p>
-            <h2 className="font-display text-3xl md:text-5xl font-black text-primary">
-              What We Look For
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 max-w-4xl mx-auto">
-            {criteria.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="group relative bg-card rounded-2xl border border-border p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-              >
-                {/* Accent line on hover */}
-                <div className="absolute top-0 left-0 w-full h-[3px] bg-emerald scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
-                <item.icon className="text-investment-blue mb-5" size={26} />
-                <h3 className="font-display text-lg font-bold text-primary mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {item.desc}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <motion.div
+              style={{ y: criteriaHeadY }}
+              className="lg:col-span-4"
+            >
+              <div className="lg:sticky lg:top-32">
+                <p className="text-emerald font-display font-bold text-xs uppercase tracking-[0.25em] mb-4">
+                  Investment Criteria
                 </p>
-              </motion.div>
-            ))}
+                <h2 className="font-display text-4xl md:text-5xl font-black text-primary leading-[0.95] mb-5">
+                  What we<br />look for.
+                </h2>
+                <p className="text-muted-foreground text-base leading-relaxed max-w-[420px]">
+                  A focused lens on Series A founders building enterprise-grade companies with cross-border ambition.
+                </p>
+              </div>
+            </motion.div>
+
+            <div className="lg:col-span-8 space-y-4">
+              {criteria.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ delay: i * 0.06, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative bg-card rounded-2xl border border-border p-7 sm:p-9 hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="flex items-start gap-5">
+                    <span className="font-display text-3xl font-black text-emerald/30 group-hover:text-emerald/70 transition-colors leading-none w-12 shrink-0">
+                      0{i + 1}
+                    </span>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <item.icon className="text-investment-blue" size={18} />
+                        <h3 className="font-display text-lg sm:text-xl font-extrabold text-primary">
+                          {item.title}
+                        </h3>
+                      </div>
+                      <p className="text-muted-foreground text-sm leading-relaxed max-w-[520px]">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
