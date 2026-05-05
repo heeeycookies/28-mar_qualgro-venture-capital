@@ -176,23 +176,23 @@ interface CardProps {
   i: number;
 }
 
-const ArticleCard = ({ item, i }: CardProps) => (
+const ArticleCard = ({ item, i, featured = false }: CardProps & { featured?: boolean }) => (
   <motion.a
     href={item.url}
     target="_blank"
     rel="noopener noreferrer"
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: i * 0.06 }}
-    className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-investment-blue/30 transition-all"
+    viewport={{ once: true, margin: "-60px" }}
+    transition={{ duration: 0.55, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+    className={`group block ${featured ? "" : ""}`}
   >
-    <div className="h-48 overflow-hidden bg-muted">
+    <div className={`relative overflow-hidden rounded-2xl bg-muted ${featured ? "aspect-[16/10]" : "aspect-[4/3]"} mb-5`}>
       {item.image ? (
         <img
           src={item.image}
           alt={item.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700"
         />
       ) : (
         <div className="w-full h-full bg-gradient-to-br from-navy/80 to-investment-blue/40 flex items-center justify-center p-6">
@@ -201,16 +201,15 @@ const ArticleCard = ({ item, i }: CardProps) => (
           </span>
         </div>
       )}
+      <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
     </div>
-    <div className="p-6">
-      <span className="text-xs font-semibold text-emerald uppercase tracking-wide">
-        {item.category}
-      </span>
-      <h3 className="mt-2 font-display text-base font-bold text-primary group-hover:text-investment-blue transition-colors leading-snug line-clamp-2">
-        {item.title}
-      </h3>
-      <p className="mt-2 text-xs text-muted-foreground">{item.date}</p>
-    </div>
+    <span className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-emerald">
+      {item.category}
+    </span>
+    <h3 className={`mt-2 font-display font-extrabold text-primary group-hover:text-investment-blue transition-colors leading-snug line-clamp-3 ${featured ? "text-2xl md:text-3xl" : "text-base md:text-lg"}`}>
+      {item.title}
+    </h3>
+    <p className="mt-2 text-xs text-muted-foreground tracking-wide">{item.date}</p>
   </motion.a>
 );
 
@@ -219,37 +218,63 @@ const News = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero */}
       <PageHero
+        variant="navy"
         tagline="Latest"
-        title={<>Qualgro News & <span className="text-gradient-page">Resources</span></>}
+        title={<>Qualgro news<br /><span className="text-emerald">&amp; resources.</span></>}
         description="Stay updated with the latest from Qualgro Partners — venture capital insights, portfolio company news, and thought leadership from Southeast Asia and Australia."
       />
 
-      {/* Tabbed Content */}
-      <section className="py-16 bg-background">
+      <section className="py-20 sm:py-24 bg-background">
         <div className="container mx-auto px-6">
           <Tabs defaultValue="news" className="w-full">
-            <TabsList className="mb-10 bg-muted/50 p-1 rounded-lg">
-              <TabsTrigger value="news" className="px-6 py-2.5 font-display font-semibold text-sm data-[state=active]:bg-investment-blue data-[state=active]:text-white">
-                News & Events
+            <TabsList className="mb-12 bg-transparent p-0 gap-2 border-b border-border rounded-none w-full justify-start h-auto">
+              <TabsTrigger
+                value="news"
+                className="px-1 pb-4 mr-6 font-display font-semibold text-base bg-transparent rounded-none border-b-2 border-transparent data-[state=active]:border-emerald data-[state=active]:text-primary data-[state=active]:bg-transparent text-muted-foreground"
+              >
+                News &amp; Events
               </TabsTrigger>
-              <TabsTrigger value="resources" className="px-6 py-2.5 font-display font-semibold text-sm data-[state=active]:bg-investment-blue data-[state=active]:text-white">
-                Resources & Insights
+              <TabsTrigger
+                value="resources"
+                className="px-1 pb-4 font-display font-semibold text-base bg-transparent rounded-none border-b-2 border-transparent data-[state=active]:border-emerald data-[state=active]:text-primary data-[state=active]:bg-transparent text-muted-foreground"
+              >
+                Resources &amp; Insights
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="news">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {newsItems.map((item, i) => (
+              {/* Featured + grid editorial */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14 mb-16">
+                <div className="lg:col-span-7">
+                  <ArticleCard item={newsItems[0]} i={0} featured />
+                </div>
+                <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
+                  {newsItems.slice(1, 3).map((item, i) => (
+                    <ArticleCard key={item.title} item={item} i={i + 1} />
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
+                {newsItems.slice(3).map((item, i) => (
                   <ArticleCard key={item.title} item={item} i={i} />
                 ))}
               </div>
             </TabsContent>
 
             <TabsContent value="resources">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {resourceItems.map((item, i) => (
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14 mb-16">
+                <div className="lg:col-span-7">
+                  <ArticleCard item={resourceItems[0]} i={0} featured />
+                </div>
+                <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
+                  {resourceItems.slice(1, 3).map((item, i) => (
+                    <ArticleCard key={item.title} item={item} i={i + 1} />
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
+                {resourceItems.slice(3).map((item, i) => (
                   <ArticleCard key={item.title} item={item} i={i} />
                 ))}
               </div>

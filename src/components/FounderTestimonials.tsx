@@ -44,20 +44,25 @@ const FounderTestimonials = () => {
   const headingY = useTransform(scrollYProgress, [0, 1], [30, -15]);
 
   return (
-    <section ref={sectionRef} className="py-20 sm:py-[120px] bg-surface-alt overflow-hidden">
-      <div className="container mx-auto px-6 mb-12">
+    <section ref={sectionRef} className="relative py-20 sm:py-[120px] bg-surface-alt overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
+        backgroundImage:
+          "linear-gradient(hsl(var(--investment-blue)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--investment-blue)) 1px, transparent 1px)",
+        backgroundSize: "72px 72px",
+      }} aria-hidden />
+      <div className="container mx-auto px-6 mb-12 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           style={{ y: headingY }}
-          className="text-center"
+          className="max-w-2xl"
         >
-          <p className="text-emerald font-display font-semibold text-xs uppercase tracking-[0.3em] mb-4">
+          <p className="text-emerald font-display font-bold text-xs uppercase tracking-[0.25em] mb-4">
             Testimonials
           </p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-primary">
-            Why Founders Partner With Us
+          <h2 className="font-display text-4xl md:text-6xl font-black text-primary leading-[0.95]">
+            Why founders<br />partner with us.
           </h2>
         </motion.div>
       </div>
