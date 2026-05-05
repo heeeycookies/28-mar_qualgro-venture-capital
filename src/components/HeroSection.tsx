@@ -48,7 +48,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      <div className="relative z-10 mx-auto px-6 sm:px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
+      <div className="relative z-30 mx-auto px-6 sm:px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
           {/* Left column — headline */}
           <div className="lg:col-span-8">
