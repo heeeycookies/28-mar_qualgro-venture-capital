@@ -159,7 +159,7 @@ const PortfolioSection = () => {
           onPointerCancel={endDrag}
           onPointerLeave={endDrag}
           className="overflow-x-auto overflow-y-visible scrollbar-hide py-4 bg-background cursor-grab active:cursor-grabbing select-none touch-pan-x"
-          style={{ paddingLeft: "5vw", paddingRight: "5vw" }}
+          style={{ paddingLeft: "10vw", paddingRight: "10vw" }}
         >
           <div className="flex gap-3 sm:gap-4 pb-4" style={{ width: "max-content" }}>
             {companies.map((company, i) => {
@@ -181,7 +181,7 @@ const PortfolioSection = () => {
                   onClick={() => handleCardClick(i)}
                   className="group relative flex-shrink-0 overflow-hidden cursor-pointer rounded-2xl bg-neutral-900 border border-white/10 shadow-lg hover:shadow-2xl transition-shadow duration-500 ease-out"
                   style={{
-                    width: isExpanded ? "min(32rem, 88vw)" : "clamp(170px, 18vw, 220px)",
+                    width: isExpanded ? "min(32rem, 88vw)" : "clamp(180px, 22vw, 240px)",
                     height: "clamp(360px, 56vh, 580px)",
                   }}
                 >
