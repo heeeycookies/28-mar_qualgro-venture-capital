@@ -181,88 +181,128 @@ const Team = () => {
 
       {/* Hero */}
       <PageHero
+        variant="cool"
         tagline="Our People"
-        title={<>Diverse Experience &<br /><span className="text-gradient-page">Global Network</span></>}
+        title={<>Diverse experience.<br /><span className="text-emerald">Global network.</span></>}
         description="Qualgro's team combines startup, business, technology, investment and strategy experience to help startups accelerate growth and build international companies across Southeast Asia and Australia."
       />
 
-      {/* Filters + Team Grid */}
-      <section className="py-20 bg-background">
+      {/* Sticky filter rail + grouped grid */}
+      <section className="py-20 sm:py-28 bg-background relative">
         <div className="container mx-auto px-6">
-          {/* Filter tabs */}
-          <div className="flex flex-wrap gap-2 mb-12 justify-center">
-            {categories.map((cat) => (
-              <button
-                key={cat.key}
-                onClick={() => setActiveFilter(cat.key)}
-                className={`px-5 py-2 rounded-full text-sm font-display font-semibold transition-all duration-300 ${
-                  activeFilter === cat.key
-                    ? "bg-primary text-primary-foreground shadow-lg"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"
-          >
-            <AnimatePresence mode="popLayout">
-              {filtered.map((member, i) => (
-                <motion.div
-                  key={member.name}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3, delay: i * 0.04 }}
-                  onClick={() => setSelectedMember(member)}
-                  className="group cursor-pointer"
-                >
-                  <div className="relative rounded-xl overflow-hidden aspect-[3/4] mb-3">
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <span className="text-xs font-display font-semibold text-emerald uppercase tracking-wider">
-                        View Profile
-                      </span>
-                    </div>
-                  </div>
-                  <h3 className="font-display text-sm font-bold text-primary group-hover:text-investment-blue transition-colors">
-                    {member.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">
-                    {member.role}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            {/* Sticky filter sidebar */}
+            <aside className="lg:col-span-3">
+              <div className="lg:sticky lg:top-32">
+                <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald mb-5">
+                  Browse
+                </p>
+                <ul className="flex lg:flex-col gap-2 lg:gap-1 flex-wrap">
+                  {categories.map((cat) => {
+                    const count = cat.key === "all" ? teamMembers.length : teamMembers.filter(m => m.category === cat.key).length;
+                    const active = activeFilter === cat.key;
+                    return (
+                      <li key={cat.key}>
+                        <button
+                          onClick={() => setActiveFilter(cat.key)}
+                          className={`group flex items-center justify-between gap-4 w-full px-4 py-2.5 rounded-lg text-left text-sm font-display font-semibold transition-all ${
+                            active
+                              ? "bg-primary text-primary-foreground"
+                              : "text-muted-foreground hover:bg-muted hover:text-primary"
+                          }`}
+                        >
+                          <span>{cat.label}</span>
+                          <span className={`text-[11px] tabular-nums ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
+                            {String(count).padStart(2, "0")}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="hidden lg:block mt-10 pt-6 border-t border-border">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Click any portrait to read their full biography and connect on LinkedIn.
                   </p>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+                </div>
+              </div>
+            </aside>
+
+            {/* Grid */}
+            <div className="lg:col-span-9">
+              <motion.div
+                layout
+                className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10"
+              >
+                <AnimatePresence mode="popLayout">
+                  {filtered.map((member, i) => (
+                    <motion.div
+                      key={member.name}
+                      layout
+                      initial={{ opacity: 0, y: 24 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.45, delay: i * 0.035, ease: [0.22, 1, 0.36, 1] }}
+                      onClick={() => setSelectedMember(member)}
+                      className="group cursor-pointer"
+                    >
+                      <div className="relative rounded-2xl overflow-hidden aspect-[3/4] mb-4 bg-muted">
+                        <img
+                          src={member.photo}
+                          alt={member.name}
+                          style={member.name === "Laetitia Chia" ? { transform: "scale(1.3)", transformOrigin: "center 30%" } : undefined}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-x-4 bottom-4 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                          <span className="text-[10px] font-display font-extrabold text-emerald uppercase tracking-[0.25em]">
+                            View profile →
+                          </span>
+                        </div>
+                      </div>
+                      <h3 className="font-display text-base font-bold text-primary group-hover:text-investment-blue transition-colors leading-tight">
+                        {member.name}
+                      </h3>
+                      <p className="text-xs text-muted-foreground mt-1 leading-snug">
+                        {member.role}
+                      </p>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-surface-alt">
-        <div className="container mx-auto px-6 text-center">
+      <section className="py-24 sm:py-32 bg-surface-alt relative overflow-hidden">
+        <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end max-w-5xl mx-auto"
           >
-            <h2 className="font-display text-3xl md:text-5xl font-extrabold text-primary mb-6">
-              Want to join the mission?
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              We are always looking for exceptional talent to join our investment and platform teams. Reach out to us at <a href="mailto:info@qualgro.com" className="text-emerald hover:underline">info@qualgro.com</a>.
-            </p>
+            <div className="lg:col-span-7">
+              <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald mb-4">
+                Careers at Qualgro
+              </p>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-primary leading-[0.95]">
+                Want to join<br />the mission?
+              </h2>
+            </div>
+            <div className="lg:col-span-5">
+              <p className="text-muted-foreground text-base leading-relaxed">
+                We're always looking for exceptional talent to join our investment and platform teams.
+              </p>
+              <a
+                href="mailto:info@qualgro.com"
+                className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald text-emerald-foreground font-display font-semibold text-sm hover:translate-y-[-1px] transition-transform"
+              >
+                info@qualgro.com
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
