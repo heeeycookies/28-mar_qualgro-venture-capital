@@ -19,8 +19,11 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14 lg:pb-16 overflow-hidden"
+      className="relative pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14 lg:pb-16 overflow-hidden bg-slate-900"
     >
+      <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+      <Boxes />
+
       {/* Parallax background orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
