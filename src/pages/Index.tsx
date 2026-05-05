@@ -13,25 +13,10 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <div className="relative overflow-hidden bg-background">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <Boxes className="opacity-100" />
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse at 50% 28%, hsl(var(--background) / 0.04) 0%, hsl(var(--background) / 0.26) 54%, hsl(var(--background) / 0.62) 100%)",
-            }}
-          />
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-40"
-            style={{
-              background:
-                "linear-gradient(to bottom, hsl(var(--background) / 0), hsl(var(--background)) 100%)",
-            }}
-          />
-        </div>
-        <div className="relative z-10">
+      <div className="h-auto relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center">
+        <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+        <Boxes />
+        <div className="relative z-30 w-full">
           <HeroSection />
           <PortfolioSection />
         </div>
