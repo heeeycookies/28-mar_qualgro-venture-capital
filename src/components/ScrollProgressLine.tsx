@@ -2,27 +2,42 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 const ScrollProgressLine = () => {
   const { scrollYProgress } = useScroll();
-  const scaleY = useSpring(scrollYProgress, {
+  const pathLength = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
-  const dotTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  // Reverse for the dasharray trick (used in dashOffset alt). We use pathLength directly.
 
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed left-6 top-0 z-40 hidden h-screen w-[2px] md:block"
+      className="pointer-events-none fixed inset-y-0 left-0 z-0 hidden h-screen w-[180px] md:block"
     >
-      <div className="absolute inset-0 bg-foreground/10" />
-      <motion.div
-        style={{ scaleY, transformOrigin: "top" }}
-        className="absolute inset-0 bg-[#004971]"
-      />
-      <motion.div
-        style={{ top: dotTop }}
-        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 h-3 w-3 rounded-full bg-[#004971] shadow-[0_0_0_4px_hsl(var(--background))]"
-      />
+      <svg
+        viewBox="0 0 180 1000"
+        preserveAspectRatio="none"
+        className="h-full w-full"
+        fill="none"
+      >
+        {/* Faint guide */}
+        <path
+          d="M 90 0 C 20 200, 160 350, 90 500 S 20 800, 90 1000"
+          stroke="#004971"
+          strokeOpacity="0.08"
+          strokeWidth="6"
+          strokeLinecap="round"
+        />
+        {/* Animated curvy progress */}
+        <motion.path
+          d="M 90 0 C 20 200, 160 350, 90 500 S 20 800, 90 1000"
+          stroke="#004971"
+          strokeOpacity="0.55"
+          strokeWidth="6"
+          strokeLinecap="round"
+          style={{ pathLength }}
+        />
+      </svg>
     </div>
   );
 };
