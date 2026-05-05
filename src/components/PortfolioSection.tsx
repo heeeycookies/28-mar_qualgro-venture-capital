@@ -152,7 +152,12 @@ const PortfolioSection = () => {
 
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-visible scrollbar-hide py-4 bg-background"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onPointerLeave={endDrag}
+          className="overflow-x-auto overflow-y-visible scrollbar-hide py-4 bg-background cursor-grab active:cursor-grabbing select-none touch-pan-x"
           style={{ paddingLeft: "10vw", paddingRight: "10vw" }}
         >
           <div className="flex gap-3 sm:gap-4 pb-4" style={{ width: "max-content" }}>
