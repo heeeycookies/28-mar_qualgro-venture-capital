@@ -1,7 +1,9 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import AnimatedBackdrop from "./motion/AnimatedBackdrop";
+import Reveal from "./motion/Reveal";
 
 const news = [
   {
@@ -28,78 +30,95 @@ const news = [
 ];
 
 const NewsSection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const headingY = useTransform(scrollYProgress, [0, 1], [25, -10]);
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const featImgY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+
+  const [feature, ...rest] = news;
 
   return (
-    <section id="news" className="py-20 sm:py-[120px] bg-surface-alt" ref={ref}>
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          style={{ y: headingY }}
-          className="text-center mb-16"
-        >
-          <p className="text-emerald font-display font-semibold text-sm uppercase tracking-[0.2em] mb-3">
-            Latest
-          </p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-primary">
-            News & Insights
-          </h2>
-        </motion.div>
+    <section ref={ref} id="news" className="relative py-24 sm:py-32 bg-background overflow-hidden">
+      <AnimatedBackdrop variant="cool" intensity="subtle" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {news.map((item, i) => (
-            <motion.a
-              key={i}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all"
+      <div className="relative mx-auto px-6 sm:px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
+        {/* Editorial heading row */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-end gap-6 mb-14 sm:mb-16">
+          <Reveal className="lg:col-span-8">
+            <p className="text-emerald font-display font-bold text-xs uppercase tracking-[0.25em] mb-4">
+              Latest from Qualgro
+            </p>
+            <h2 className="font-display text-4xl md:text-6xl font-black text-primary leading-[0.95]">
+              News &amp; Insights
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1} className="lg:col-span-4 lg:text-right">
+            <Link
+              to="/news"
+              className="group inline-flex items-center gap-2 font-display font-semibold text-sm text-investment-blue hover:text-emerald transition-colors"
             >
-              <div className="h-48 overflow-hidden bg-muted">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <span className="text-xs font-semibold text-emerald uppercase tracking-wide">
-                  {item.category}
-                </span>
-                <h3 className="mt-2 font-display text-base font-bold text-primary group-hover:text-investment-blue transition-colors leading-snug">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-xs text-muted-foreground">{item.date}</p>
-              </div>
-            </motion.a>
-          ))}
+              View all
+              <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </Reveal>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center mt-12"
-        >
-          <Link
-            to="/news"
-            className="inline-flex items-center gap-2 font-display font-semibold text-sm text-investment-blue hover:text-primary transition-colors"
-          >
-            View All News & Resources
-            <ArrowRight size={16} />
-          </Link>
-        </motion.div>
+        {/* Editorial layout: feature + stack */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <Reveal className="lg:col-span-7">
+            <a
+              href={feature.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block"
+            >
+              <div className="relative overflow-hidden rounded-2xl bg-muted aspect-[16/10] mb-6">
+                <motion.img
+                  src={feature.image}
+                  alt={feature.title}
+                  style={{ y: featImgY }}
+                  className="absolute inset-0 w-full h-[120%] object-cover group-hover:scale-[1.04] transition-transform duration-700"
+                />
+              </div>
+              <span className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-emerald">
+                {feature.category}
+              </span>
+              <h3 className="mt-3 font-display text-2xl md:text-3xl font-extrabold text-primary leading-tight group-hover:text-investment-blue transition-colors max-w-xl">
+                {feature.title}
+              </h3>
+              <p className="mt-3 text-xs text-muted-foreground tracking-wide">{feature.date}</p>
+            </a>
+          </Reveal>
+
+          <div className="lg:col-span-5 flex flex-col divide-y divide-border">
+            {rest.map((item, i) => (
+              <Reveal key={item.title} delay={0.1 + i * 0.08}>
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex gap-5 py-6 first:pt-0"
+                >
+                  <div className="shrink-0 w-28 h-28 rounded-xl overflow-hidden bg-muted">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-[10px] font-extrabold tracking-[0.2em] uppercase text-emerald">
+                      {item.category}
+                    </span>
+                    <h4 className="mt-1.5 font-display text-base font-bold text-primary group-hover:text-investment-blue transition-colors leading-snug">
+                      {item.title}
+                    </h4>
+                    <p className="mt-2 text-[11px] text-muted-foreground">{item.date}</p>
+                  </div>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
