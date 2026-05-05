@@ -75,6 +75,33 @@ const PortfolioSection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0, moved: 0 });
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    dragState.current = {
+      isDown: true,
+      startX: e.pageX - el.offsetLeft,
+      scrollLeft: el.scrollLeft,
+      moved: 0,
+    };
+    el.setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scrollContainerRef.current;
+    if (!el || !dragState.current.isDown) return;
+    const x = e.pageX - el.offsetLeft;
+    const walk = x - dragState.current.startX;
+    dragState.current.moved = Math.abs(walk);
+    el.scrollLeft = dragState.current.scrollLeft - walk;
+  };
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+    dragState.current.isDown = false;
+  };
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -93,6 +120,7 @@ const PortfolioSection = () => {
   };
 
   const handleCardClick = (index: number) => {
+    if (dragState.current.moved > 5) return;
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
@@ -125,7 +153,12 @@ const PortfolioSection = () => {
 
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-visible scrollbar-hide py-4 bg-background"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onPointerLeave={endDrag}
+          className="overflow-x-auto overflow-y-visible scrollbar-hide py-4 bg-background cursor-grab active:cursor-grabbing select-none touch-pan-x"
           style={{ paddingLeft: "10vw", paddingRight: "10vw" }}
         >
           <div className="flex gap-3 sm:gap-4 pb-4" style={{ width: "max-content" }}>
