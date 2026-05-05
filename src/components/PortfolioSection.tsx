@@ -100,7 +100,7 @@ const PortfolioSection = () => {
     <motion.section
       ref={sectionRef}
       id="portfolio"
-      className="relative z-30 pt-2 pb-12"
+      className="relative z-30 pt-2 pb-12 bg-background"
       style={{ scale: sectionScale, opacity: sectionOpacity }}
     >
       <div className="relative">
@@ -125,7 +125,7 @@ const PortfolioSection = () => {
 
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-visible scrollbar-hide py-4"
+          className="overflow-x-auto overflow-y-visible scrollbar-hide py-4 bg-background"
           style={{ paddingLeft: "10vw", paddingRight: "10vw" }}
         >
           <div className="flex gap-3 sm:gap-4 pb-4" style={{ width: "max-content" }}>

@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Boxes } from "@/components/ui/background-boxes";
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -19,11 +18,8 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14 lg:pb-16 overflow-hidden bg-slate-900"
+      className="relative pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14 lg:pb-16 overflow-hidden"
     >
-      <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
-      <Boxes />
-
       {/* Parallax background orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
@@ -48,7 +44,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      <div className="relative z-30 mx-auto px-6 sm:px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
+      <div className="relative z-10 mx-auto px-6 sm:px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
           {/* Left column — headline */}
           <div className="lg:col-span-8">
