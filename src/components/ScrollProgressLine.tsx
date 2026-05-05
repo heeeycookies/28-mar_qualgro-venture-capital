@@ -1,33 +1,41 @@
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 const ScrollProgressLine = () => {
   const { scrollYProgress } = useScroll();
   const pathLength = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
+    stiffness: 90,
+    damping: 28,
     restDelta: 0.001,
   });
 
-  // A long, flowing curve that spans the full viewport height continuously.
-  // Using a tall viewBox so the curve has natural undulations down the page.
+  // Subtle horizontal sway tied to scroll for an extra "alive" feel
+  const sway = useTransform(scrollYProgress, [0, 0.5, 1], [-6, 6, -4]);
+
+  // A tighter, more frequent squiggle that snakes down the page.
+  // Tall viewBox lets the wave repeat naturally over a long page.
   const path =
     "M 90 0 \
-     C 30 120, 150 240, 90 360 \
-     S 30 600, 90 720 \
-     S 150 960, 90 1080 \
-     S 30 1320, 90 1440 \
-     S 150 1680, 90 1800 \
-     S 30 2040, 90 2160 \
-     S 150 2400, 90 2520 \
-     S 30 2760, 90 2880 \
-     S 150 3120, 90 3240 \
-     S 30 3480, 90 3600";
+     C 40 80, 140 160, 90 240 \
+     S 40 400, 90 480 \
+     S 140 640, 90 720 \
+     S 40 880, 90 960 \
+     S 140 1120, 90 1200 \
+     S 40 1360, 90 1440 \
+     S 140 1600, 90 1680 \
+     S 40 1840, 90 1920 \
+     S 140 2080, 90 2160 \
+     S 40 2320, 90 2400 \
+     S 140 2560, 90 2640 \
+     S 40 2800, 90 2880 \
+     S 140 3040, 90 3120 \
+     S 40 3280, 90 3360 \
+     S 140 3520, 90 3600";
 
   return (
-    <div
+    <motion.div
       aria-hidden
-      className="pointer-events-none fixed inset-y-0 left-0 z-0 hidden h-screen w-[180px] md:block"
-      style={{ mixBlendMode: "multiply" }}
+      style={{ x: sway }}
+      className="pointer-events-none fixed inset-y-0 left-0 z-[5] hidden h-screen w-[180px] md:block"
     >
       <svg
         viewBox="0 0 180 3600"
@@ -39,21 +47,21 @@ const ScrollProgressLine = () => {
         <path
           d={path}
           stroke="#004971"
-          strokeOpacity="0.18"
-          strokeWidth="10"
+          strokeOpacity="0.22"
+          strokeWidth="12"
           strokeLinecap="round"
         />
-        {/* Animated progress overlay */}
+        {/* Animated progress overlay — draws itself as the user scrolls */}
         <motion.path
           d={path}
           stroke="#004971"
-          strokeOpacity="0.45"
-          strokeWidth="10"
+          strokeOpacity="0.6"
+          strokeWidth="12"
           strokeLinecap="round"
           style={{ pathLength }}
         />
       </svg>
-    </div>
+    </motion.div>
   );
 };
 
