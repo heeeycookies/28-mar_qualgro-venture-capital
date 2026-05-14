@@ -17,7 +17,7 @@ import {
   portfolioCompanies,
   
 } from "@/data/impact";
-import { twoXOverview, twoXStats } from "@/data/two-x-data";
+import { twoXSection } from "@/data/two-x-data";
 import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
 import {
   Dialog,
@@ -413,21 +413,21 @@ const Impact = () => {
                   className="font-display font-semibold text-xs uppercase tracking-[0.3em] mb-3"
                   style={{ color: "hsl(140 45% 35%)" }}
                 >
-                  Gender-Lens Investing
+                  {twoXSection.eyebrow}
                 </p>
                 <h2 className="font-display text-2xl md:text-3xl font-extrabold text-primary leading-tight">
-                  {twoXOverview.title}
+                  {twoXSection.title}
                 </h2>
                 <p className="text-sm md:text-base text-muted-foreground mt-4 leading-relaxed">
-                  {twoXOverview.description}
+                  {twoXSection.description}
                 </p>
                 <a
-                  href={twoXOverview.learnMoreUrl}
+                  href={twoXSection.learnMoreUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 mt-4 font-display font-semibold text-sm text-emerald hover:underline"
                 >
-                  Learn more about the 2X Challenge
+                  {twoXSection.learnMoreText}
                   <ArrowRight size={14} />
                 </a>
               </div>
@@ -439,7 +439,7 @@ const Impact = () => {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pt-8 border-t border-border">
-              {twoXStats.map((s, i) => (
+              {twoXSection.stats.map((s, i) => (
                 <motion.div
                   key={s.label}
                   initial={{ opacity: 0, y: 12 }}
@@ -448,7 +448,7 @@ const Impact = () => {
                   transition={{ duration: 0.4, delay: i * 0.08 }}
                 >
                   <p className="font-display text-3xl md:text-4xl font-extrabold text-primary leading-none">
-                    {s.value}
+                    {s.stat}
                   </p>
                   <p className="text-xs md:text-sm text-muted-foreground mt-2 leading-snug">
                     {s.label}

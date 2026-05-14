@@ -1,22 +1,20 @@
 // two-x-data.ts — drop into src/data/
 // Source: Qualgro 2X Criteria deck (Oct 2025) + ESG Policy (Dec 2025)
 
-export const twoXOverview = {
+export const twoXSection = {
+  eyebrow: "GENDER-LENS INVESTING",
   title: "Aligned with the 2X Challenge",
-  subtitle:
-    "Qualgro is aligned with the 2X Criteria, the global standard for gender-lens investing established by Development Finance Institutions at the G7.",
   description:
-    "The 2X Challenge was launched at the G7 Summit in 2018 as a commitment by DFIs to mobilise capital for investments that advance women's economic participation. Since inception, the initiative has mobilised over US$33 billion globally. At the 2024 G7 Leaders' Summit, DFIs and multilateral institutions committed a further US$20 billion from 2024–2027 to advance women's empowerment.",
+    "Qualgro integrates gender-lens criteria throughout our investment process. We back companies whose products and services directly improve outcomes for women and girls across Southeast Asia, and we track gender-related metrics across our portfolio as part of our annual ESG reporting.",
   learnMoreUrl: "https://www.2xchallenge.org",
+  learnMoreText: "Learn more about the 2X Challenge",
+  stats: [
+    { stat: "60%", label: "of ErudiFi's education loan borrowers are women" },
+    { stat: "10M+", label: "mothers earning income and accessing support via Supermom" },
+    { stat: "~30K", label: "women-led MSMEs financed through Funding Societies" },
+    { stat: "2M+", label: "mothers in women-led communities on Convosight" },
+  ],
 };
-
-// Compact stat highlights for the supporting section on the Impact page
-export const twoXStats = [
-  { value: "US$33B+", label: "Mobilised globally since 2018" },
-  { value: "US$20B", label: "New DFI commitment 2024–2027" },
-  { value: "6", label: "2X Criteria dimensions" },
-  { value: "30–50%", label: "Qualgro portfolio target" },
-];
 
 export const twoXCriteria = [
   {
