@@ -36,6 +36,7 @@ const NewsSection = () => {
   const featImgY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
 
   const [feature, ...rest] = news;
+  const [active, setActive] = useState<ArticleData | null>(null);
 
   return (
     <section ref={ref} id="news" className="relative py-24 sm:py-32 bg-background overflow-hidden">
