@@ -1,9 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import AnimatedBackdrop from "./motion/AnimatedBackdrop";
 import Reveal from "./motion/Reveal";
+import ArticleModal, { ArticleData } from "./ArticleModal";
 
 const news = [
   {
