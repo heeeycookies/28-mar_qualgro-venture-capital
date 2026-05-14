@@ -1,5 +1,5 @@
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import shopbackImg from "@/assets/portfolio/shopback.jpg";
 import patsnapImg from "@/assets/portfolio/patsnap.jpg";
@@ -75,18 +75,45 @@ const PortfolioSection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [autoScrollActive, setAutoScrollActive] = useState(true);
   const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0, moved: 0 });
+
+  // Gentle auto-scroll hint until the user interacts
+  useEffect(() => {
+    if (!autoScrollActive) return;
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    let raf = 0;
+    let last = performance.now();
+    const speed = 18; // px per second
+    const tick = (now: number) => {
+      const dt = (now - last) / 1000;
+      last = now;
+      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
+        setAutoScrollActive(false);
+        return;
+      }
+      el.scrollLeft += speed * dt;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [autoScrollActive]);
+
+  const stopAutoScroll = () => {
+    if (autoScrollActive) setAutoScrollActive(false);
+  };
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = scrollContainerRef.current;
     if (!el) return;
+    stopAutoScroll();
     dragState.current = {
       isDown: true,
       startX: e.pageX - el.offsetLeft,
       scrollLeft: el.scrollLeft,
       moved: 0,
     };
-    el.setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = scrollContainerRef.current;
@@ -94,17 +121,17 @@ const PortfolioSection = () => {
     const x = e.pageX - el.offsetLeft;
     const walk = x - dragState.current.startX;
     dragState.current.moved = Math.abs(walk);
-    el.scrollLeft = dragState.current.scrollLeft - walk;
+    if (dragState.current.moved > 5) {
+      el.scrollLeft = dragState.current.scrollLeft - walk;
+    }
   };
-  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-    if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+  const endDrag = () => {
     dragState.current.isDown = false;
   };
 
 
   const scroll = (direction: "left" | "right") => {
+    stopAutoScroll();
     if (!scrollContainerRef.current) return;
     const amount = 360;
     scrollContainerRef.current.scrollBy({
@@ -115,6 +142,7 @@ const PortfolioSection = () => {
 
   const handleCardClick = (index: number) => {
     if (dragState.current.moved > 5) return;
+    stopAutoScroll();
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
@@ -151,6 +179,8 @@ const PortfolioSection = () => {
           onPointerUp={endDrag}
           onPointerCancel={endDrag}
           onPointerLeave={endDrag}
+          onWheel={stopAutoScroll}
+          onTouchStart={stopAutoScroll}
           className="overflow-x-auto overflow-y-visible scrollbar-hide py-4 bg-background cursor-grab active:cursor-grabbing select-none touch-pan-x"
           style={{ paddingLeft: "38vw", paddingRight: "10vw" }}
         >
