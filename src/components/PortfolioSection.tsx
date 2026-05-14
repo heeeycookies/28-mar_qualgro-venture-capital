@@ -103,12 +103,6 @@ const PortfolioSection = () => {
     dragState.current.isDown = false;
   };
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const sectionScale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 0.98]);
-  const sectionOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.7]);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollContainerRef.current) return;
@@ -125,11 +119,10 @@ const PortfolioSection = () => {
   };
 
   return (
-    <motion.section
+    <section
       ref={sectionRef}
       id="portfolio"
       className="relative z-30 pt-2 pb-12 bg-background"
-      style={{ scale: sectionScale, opacity: sectionOpacity }}
     >
       <div className="relative">
         <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-20 bg-gradient-to-r from-background to-transparent pointer-events-none" />
@@ -159,7 +152,7 @@ const PortfolioSection = () => {
           onPointerCancel={endDrag}
           onPointerLeave={endDrag}
           className="overflow-x-auto overflow-y-visible scrollbar-hide py-4 bg-background cursor-grab active:cursor-grabbing select-none touch-pan-x"
-          style={{ paddingLeft: "10vw", paddingRight: "10vw" }}
+          style={{ paddingLeft: "38vw", paddingRight: "10vw" }}
         >
           <div className="flex gap-3 sm:gap-4 pb-4" style={{ width: "max-content" }}>
             {companies.map((company, i) => {
@@ -296,7 +289,7 @@ const PortfolioSection = () => {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
