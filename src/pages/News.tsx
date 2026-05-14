@@ -286,28 +286,6 @@ const News = () => {
                 ))}
               </div>
             </TabsContent>
-
-            <TabsContent value="resources">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-10 mb-12">
-                <div className="lg:col-span-7">
-                  <ArticleCard item={resourceItems[0]} i={0} featured onOpen={setActive} />
-                </div>
-                <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
-                  <ArticleCard item={resourceItems[1]} i={1} onOpen={setActive} />
-                  <ArticleCard item={resourceItems[2]} i={2} onOpen={setActive} />
-                </div>
-              </div>
-              <div className="mb-12">
-                <div className="lg:max-w-[58.333%]">
-                  <ArticleCard item={resourceItems[3]} i={0} featured onOpen={setActive} />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-                {resourceItems.slice(4).map((item, i) => (
-                  <ArticleCard key={item.title} item={item} i={i} onOpen={setActive} />
-                ))}
-              </div>
-            </TabsContent>
           </Tabs>
         </div>
       </section>
