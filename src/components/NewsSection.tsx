@@ -67,11 +67,10 @@ const NewsSection = () => {
         {/* Editorial layout: feature + stack */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           <Reveal className="lg:col-span-7">
-            <a
-              href={feature.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block"
+            <button
+              type="button"
+              onClick={() => setActive(feature)}
+              className="group block text-left w-full"
             >
               <div className="relative overflow-hidden rounded-2xl bg-muted aspect-[16/10] mb-6">
                 <motion.img
@@ -88,7 +87,7 @@ const NewsSection = () => {
                 {feature.title}
               </h3>
               <p className="mt-3 text-xs text-muted-foreground tracking-wide">{feature.date}</p>
-            </a>
+            </button>
           </Reveal>
 
           <div className="lg:col-span-5 flex flex-col divide-y divide-border">
