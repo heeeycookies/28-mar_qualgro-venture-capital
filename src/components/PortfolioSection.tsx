@@ -85,7 +85,7 @@ const PortfolioSection = () => {
     if (!el) return;
     let raf = 0;
     let last = performance.now();
-    const speed = 18; // px per second
+    const speed = 65; // px per second
     const tick = (now: number) => {
       const dt = (now - last) / 1000;
       last = now;

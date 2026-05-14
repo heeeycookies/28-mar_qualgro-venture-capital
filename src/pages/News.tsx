@@ -225,10 +225,10 @@ const News = () => {
         description="Stay updated with the latest from Qualgro Partners — venture capital insights, portfolio company news, and thought leadership from Southeast Asia and Australia."
       />
 
-      <section className="py-20 sm:py-24 bg-background">
+      <section className="py-16 sm:py-20 bg-background">
         <div className="container mx-auto px-6">
           <Tabs defaultValue="news" className="w-full">
-            <TabsList className="mb-12 bg-transparent p-0 gap-2 border-b border-border rounded-none w-full justify-start h-auto">
+            <TabsList className="mb-10 bg-transparent p-0 gap-2 border-b border-border rounded-none w-full justify-start h-auto">
               <TabsTrigger
                 value="news"
                 className="px-1 pb-4 mr-6 font-display font-semibold text-base bg-transparent rounded-none border-b-2 border-transparent data-[state=active]:border-emerald data-[state=active]:text-primary data-[state=active]:bg-transparent text-muted-foreground"
@@ -244,36 +244,34 @@ const News = () => {
             </TabsList>
 
             <TabsContent value="news">
-              {/* Featured + grid editorial */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14 mb-16">
-                <div className="lg:col-span-7">
+              {/* Top editorial: featured + 2 secondary-featured */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-8 mb-10">
+                <div className="lg:col-span-6">
                   <ArticleCard item={newsItems[0]} i={0} featured />
                 </div>
-                <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
-                  {newsItems.slice(1, 3).map((item, i) => (
-                    <ArticleCard key={item.title} item={item} i={i + 1} />
-                  ))}
+                <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
+                  <ArticleCard item={newsItems[2]} i={1} featured />
+                  <ArticleCard item={newsItems[3]} i={2} featured />
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-                {newsItems.slice(3).map((item, i) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+                {[newsItems[1], ...newsItems.slice(4)].map((item, i) => (
                   <ArticleCard key={item.title} item={item} i={i} />
                 ))}
               </div>
             </TabsContent>
 
             <TabsContent value="resources">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14 mb-16">
-                <div className="lg:col-span-7">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-8 mb-10">
+                <div className="lg:col-span-6">
                   <ArticleCard item={resourceItems[0]} i={0} featured />
                 </div>
-                <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
-                  {resourceItems.slice(1, 3).map((item, i) => (
-                    <ArticleCard key={item.title} item={item} i={i + 1} />
-                  ))}
+                <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
+                  <ArticleCard item={resourceItems[1]} i={1} featured />
+                  <ArticleCard item={resourceItems[2]} i={2} featured />
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
                 {resourceItems.slice(3).map((item, i) => (
                   <ArticleCard key={item.title} item={item} i={i} />
                 ))}
