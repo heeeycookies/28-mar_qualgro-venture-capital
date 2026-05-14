@@ -93,11 +93,10 @@ const NewsSection = () => {
           <div className="lg:col-span-5 flex flex-col divide-y divide-border">
             {rest.map((item, i) => (
               <Reveal key={item.title} delay={0.1 + i * 0.08}>
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex gap-5 py-6 first:pt-0"
+                <button
+                  type="button"
+                  onClick={() => setActive(item)}
+                  className="group flex gap-5 py-6 first:pt-0 text-left w-full"
                 >
                   <div className="shrink-0 w-28 h-28 rounded-xl overflow-hidden bg-muted">
                     <img
@@ -115,7 +114,7 @@ const NewsSection = () => {
                     </h4>
                     <p className="mt-2 text-[11px] text-muted-foreground">{item.date}</p>
                   </div>
-                </a>
+                </button>
               </Reveal>
             ))}
           </div>
