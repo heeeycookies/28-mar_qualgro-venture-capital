@@ -173,10 +173,7 @@ const resourceItems = [
   },
 ];
 
-interface CardProps {
-  item: { title: string; category: string; date: string; image?: string; url: string };
-  i: number;
-}
+
 
 interface ArticleCardProps {
   item: { title: string; category: string; date: string; image?: string; url: string };
