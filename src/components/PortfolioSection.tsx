@@ -179,6 +179,8 @@ const PortfolioSection = () => {
           onPointerUp={endDrag}
           onPointerCancel={endDrag}
           onPointerLeave={endDrag}
+          onWheel={stopAutoScroll}
+          onTouchStart={stopAutoScroll}
           className="overflow-x-auto overflow-y-visible scrollbar-hide py-4 bg-background cursor-grab active:cursor-grabbing select-none touch-pan-x"
           style={{ paddingLeft: "38vw", paddingRight: "10vw" }}
         >
