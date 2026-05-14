@@ -289,7 +289,7 @@ const PortfolioSection = () => {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
