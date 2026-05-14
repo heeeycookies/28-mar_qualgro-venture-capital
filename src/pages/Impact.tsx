@@ -17,7 +17,7 @@ import {
   portfolioCompanies,
   
 } from "@/data/impact";
-import { twoXOverview, twoXStats } from "@/data/two-x-data";
+import { twoXSection } from "@/data/two-x-data";
 import twoXLogo from "@/assets/impact/2x-challenge-logo.png";
 import {
   Dialog,
