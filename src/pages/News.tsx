@@ -251,24 +251,37 @@ const News = () => {
             </TabsList>
 
             <TabsContent value="news">
-              {/* Top: featured (col-7) + 2 stacked (col-5) */}
+              {/* Top: featured + secondary on left (col-7), 2 stacked on right (col-5) */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-10 mb-12">
-                <div className="lg:col-span-7">
+                <div className="lg:col-span-7 flex flex-col gap-10">
                   <ArticleCard item={newsItems[0]} i={0} featured onOpen={setActive} />
+                  <ArticleCard item={newsItems[3]} i={1} onOpen={setActive} />
                 </div>
                 <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
                   <ArticleCard item={newsItems[1]} i={1} onOpen={setActive} />
                   <ArticleCard item={newsItems[2]} i={2} onOpen={setActive} />
                 </div>
               </div>
-              {/* One more bigger item under the featured */}
-              <div className="mb-12">
-                <div className="lg:max-w-[58.333%]">
-                  <ArticleCard item={newsItems[3]} i={0} featured onOpen={setActive} />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                {newsItems.slice(4).map((item, i) => (
+                  <ArticleCard key={item.title} item={item} i={i} onOpen={setActive} />
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="resources">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-10 mb-12">
+                <div className="lg:col-span-7 flex flex-col gap-10">
+                  <ArticleCard item={resourceItems[0]} i={0} featured onOpen={setActive} />
+                  <ArticleCard item={resourceItems[3]} i={1} onOpen={setActive} />
+                </div>
+                <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
+                  <ArticleCard item={resourceItems[1]} i={1} onOpen={setActive} />
+                  <ArticleCard item={resourceItems[2]} i={2} onOpen={setActive} />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-                {newsItems.slice(4).map((item, i) => (
+                {resourceItems.slice(4).map((item, i) => (
                   <ArticleCard key={item.title} item={item} i={i} onOpen={setActive} />
                 ))}
               </div>
