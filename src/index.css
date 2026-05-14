@@ -110,6 +110,21 @@
     transform: translateY(-6px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   }
+
+  .article-prose p { margin: 1em 0; }
+  .article-prose h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.5rem; color: hsl(var(--primary)); margin: 1.6em 0 0.6em; line-height: 1.2; }
+  .article-prose h3 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.2rem; color: hsl(var(--primary)); margin: 1.4em 0 0.5em; }
+  .article-prose a { color: hsl(var(--investment-blue, var(--primary))); text-decoration: underline; text-underline-offset: 3px; }
+  .article-prose a:hover { color: hsl(var(--emerald, var(--primary))); }
+  .article-prose strong { font-weight: 700; color: hsl(var(--primary)); }
+  .article-prose ul, .article-prose ol { margin: 1em 0; padding-left: 1.5em; }
+  .article-prose ul li { list-style: disc; margin: 0.4em 0; }
+  .article-prose ol li { list-style: decimal; margin: 0.4em 0; }
+  .article-prose img { width: 100%; height: auto; border-radius: 0.75rem; margin: 1.5em 0; }
+  .article-prose blockquote { border-left: 3px solid hsl(var(--emerald, var(--primary))); padding-left: 1.25em; margin: 1.5em 0; font-style: italic; color: hsl(var(--muted-foreground)); }
+  .article-prose iframe { width: 100%; aspect-ratio: 16/9; border-radius: 0.75rem; margin: 1.5em 0; border: 0; }
+  .article-prose figure { margin: 1.5em 0; }
+  .article-prose figcaption { font-size: 0.8rem; color: hsl(var(--muted-foreground)); text-align: center; margin-top: 0.5em; }
 }
 
 @layer utilities {

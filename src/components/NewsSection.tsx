@@ -1,9 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import AnimatedBackdrop from "./motion/AnimatedBackdrop";
 import Reveal from "./motion/Reveal";
+import ArticleModal, { ArticleData } from "./ArticleModal";
 
 const news = [
   {
@@ -35,6 +36,7 @@ const NewsSection = () => {
   const featImgY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
 
   const [feature, ...rest] = news;
+  const [active, setActive] = useState<ArticleData | null>(null);
 
   return (
     <section ref={ref} id="news" className="relative py-24 sm:py-32 bg-background overflow-hidden">
@@ -65,11 +67,10 @@ const NewsSection = () => {
         {/* Editorial layout: feature + stack */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           <Reveal className="lg:col-span-7">
-            <a
-              href={feature.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block"
+            <button
+              type="button"
+              onClick={() => setActive(feature)}
+              className="group block text-left w-full"
             >
               <div className="relative overflow-hidden rounded-2xl bg-muted aspect-[16/10] mb-6">
                 <motion.img
@@ -86,17 +87,16 @@ const NewsSection = () => {
                 {feature.title}
               </h3>
               <p className="mt-3 text-xs text-muted-foreground tracking-wide">{feature.date}</p>
-            </a>
+            </button>
           </Reveal>
 
           <div className="lg:col-span-5 flex flex-col divide-y divide-border">
             {rest.map((item, i) => (
               <Reveal key={item.title} delay={0.1 + i * 0.08}>
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex gap-5 py-6 first:pt-0"
+                <button
+                  type="button"
+                  onClick={() => setActive(item)}
+                  className="group flex gap-5 py-6 first:pt-0 text-left w-full"
                 >
                   <div className="shrink-0 w-28 h-28 rounded-xl overflow-hidden bg-muted">
                     <img
@@ -114,12 +114,13 @@ const NewsSection = () => {
                     </h4>
                     <p className="mt-2 text-[11px] text-muted-foreground">{item.date}</p>
                   </div>
-                </a>
+                </button>
               </Reveal>
             ))}
           </div>
         </div>
       </div>
+      <ArticleModal article={active} onClose={() => setActive(null)} />
     </section>
   );
 };
