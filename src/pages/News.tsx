@@ -178,16 +178,22 @@ interface CardProps {
   i: number;
 }
 
-const ArticleCard = ({ item, i, featured = false }: CardProps & { featured?: boolean }) => (
-  <motion.a
-    href={item.url}
-    target="_blank"
-    rel="noopener noreferrer"
+interface ArticleCardProps {
+  item: { title: string; category: string; date: string; image?: string; url: string };
+  i: number;
+  featured?: boolean;
+  onOpen: (item: ArticleData) => void;
+}
+
+const ArticleCard = ({ item, i, featured = false, onOpen }: ArticleCardProps) => (
+  <motion.button
+    type="button"
+    onClick={() => onOpen(item)}
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-60px" }}
     transition={{ duration: 0.55, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-    className={`group block ${featured ? "" : ""}`}
+    className="group block text-left w-full"
   >
     <div className={`relative overflow-hidden rounded-2xl bg-muted ${featured ? "aspect-[16/10]" : "aspect-[4/3]"} mb-5`}>
       {item.image ? (
@@ -208,11 +214,11 @@ const ArticleCard = ({ item, i, featured = false }: CardProps & { featured?: boo
     <span className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-emerald">
       {item.category}
     </span>
-    <h3 className={`mt-2 font-display font-extrabold text-primary group-hover:text-investment-blue transition-colors leading-snug line-clamp-3 ${featured ? "text-2xl md:text-3xl" : "text-base md:text-lg"}`}>
+    <h3 className={`mt-2 font-display font-extrabold text-primary group-hover:text-investment-blue transition-colors leading-snug ${featured ? "text-2xl md:text-3xl" : "text-base md:text-lg"}`}>
       {item.title}
     </h3>
     <p className="mt-2 text-xs text-muted-foreground tracking-wide">{item.date}</p>
-  </motion.a>
+  </motion.button>
 );
 
 const News = () => {
