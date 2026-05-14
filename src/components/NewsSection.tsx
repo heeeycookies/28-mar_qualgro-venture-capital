@@ -120,6 +120,7 @@ const NewsSection = () => {
           </div>
         </div>
       </div>
+      <ArticleModal article={active} onClose={() => setActive(null)} />
     </section>
   );
 };
