@@ -1,5 +1,5 @@
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import shopbackImg from "@/assets/portfolio/shopback.jpg";
 import patsnapImg from "@/assets/portfolio/patsnap.jpg";
