@@ -1,8 +1,10 @@
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { motion } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import ArticleModal, { ArticleData } from "@/components/ArticleModal";
 
 const newsItems = [
   {
