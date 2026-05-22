@@ -66,7 +66,7 @@ const StatsSection = () => {
             className="stat-card-dark rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col justify-between min-h-[260px] sm:min-h-[340px] md:min-h-[380px]"
           >
             <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#4ECBA0" }}>
-              Portfolio
+              OUR PERFORMANCE
             </p>
             <div>
               <p className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[96px] font-extrabold text-white leading-none mt-4 sm:mt-6 mb-2 sm:mb-3">
@@ -90,13 +90,13 @@ const StatsSection = () => {
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
             className="stat-card rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12"
-            style={{ background: "#F8F3F2" }}
+            style={{ background: "#EAE8E7" }}
           >
             <p className="font-display text-3xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
-              85%
+              9 Full Exits
             </p>
             <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-              Follow-on rate from top-tier co-investors across portfolio rounds.
+              Among the highest for any SEA-focused fund.
             </p>
           </motion.div>
 
@@ -126,13 +126,13 @@ const StatsSection = () => {
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
             className="stat-card rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12"
-            style={{ background: "#EAE8E7" }}
+            style={{ background: "#F8F3F2" }}
           >
             <p className="font-display text-3xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
-              9 Full Exits
+              85%
             </p>
             <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-              Among the highest for any SEA-focused fund.
+              Follow-on rate from top-tier co-investors across portfolio rounds.
             </p>
           </motion.div>
         </div>
