@@ -266,11 +266,46 @@ const Team = () => {
                     );
                   })}
                 </ul>
+
+                <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald mb-3 mt-8">
+                  Nationality
+                </p>
+                <p className="text-[11px] text-muted-foreground leading-relaxed mb-4">
+                  Explore the diverse nationality backgrounds of our team.
+                </p>
+                <ul className="flex lg:flex-col gap-2 lg:gap-1 flex-wrap">
+                  {nationalities.map((nat) => {
+                    const count =
+                      nat.key === "all"
+                        ? teamMembers.length
+                        : teamMembers.filter((m) => m.nationalities.includes(nat.key as Nationality)).length;
+                    const active = activeNationality === nat.key;
+                    return (
+                      <li key={nat.key}>
+                        <button
+                          onClick={() => setActiveNationality(nat.key)}
+                          className={`group flex items-center justify-between gap-4 w-full px-4 py-2.5 rounded-lg text-left text-sm font-display font-semibold transition-all ${
+                            active
+                              ? "bg-primary text-primary-foreground"
+                              : "text-muted-foreground hover:bg-muted hover:text-primary"
+                          }`}
+                        >
+                          <span>{nat.label}</span>
+                          <span className={`text-[11px] tabular-nums ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
+                            {String(count).padStart(2, "0")}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+
                 <div className="hidden lg:block mt-10 pt-6 border-t border-border">
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     Click any portrait to read their full biography and connect on LinkedIn.
                   </p>
                 </div>
+
               </div>
             </aside>
 
