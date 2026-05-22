@@ -48,6 +48,7 @@ const companies = [
     image: appierImg,
     brand: "#5A4FCF", // indigo
     objectPosition: "44% 30%",
+    exitDetail: "IPO · Tokyo Stock Exchange",
   },
   {
     name: "Sirion",
@@ -58,6 +59,7 @@ const companies = [
     image: sirionImg,
     brand: "#13A370", // emerald
     objectPosition: "center 35%",
+    exitDetail: "Exited for ~US$ 1 Bil",
   },
   {
     name: "Wavecell",
@@ -68,6 +70,7 @@ const companies = [
     image: wavecellImg,
     brand: "#0EA5E9", // cyan blue
     objectPosition: "center 40%",
+    exitDetail: "Exited for ~US$ 125 Mil",
   },
 ];
 
