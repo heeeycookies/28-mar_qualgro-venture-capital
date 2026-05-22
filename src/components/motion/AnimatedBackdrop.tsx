@@ -12,10 +12,10 @@ interface Props {
  */
 const AnimatedBackdrop = ({ variant = "emerald", className = "", intensity = "subtle" }: Props) => {
   const palettes: Record<string, [string, string]> = {
-    emerald: ["hsl(163 70% 45%)", "hsl(200 75% 35%)"],
-    navy: ["hsl(202 73% 21%)", "hsl(200 75% 35%)"],
-    warm: ["hsl(28 70% 70%)", "hsl(163 50% 60%)"],
-    cool: ["hsl(200 75% 60%)", "hsl(220 60% 70%)"],
+    emerald: ["hsl(163 70% 45%)", "hsl(42 78% 68%)"],
+    navy: ["hsl(202 73% 21%)", "hsl(42 78% 68%)"],
+    warm: ["hsl(42 85% 72%)", "hsl(28 70% 75%)"],
+    cool: ["hsl(42 78% 68%)", "hsl(163 50% 60%)"],
   };
   const [c1, c2] = palettes[variant];
   const op = intensity === "subtle" ? 0.10 : 0.18;
