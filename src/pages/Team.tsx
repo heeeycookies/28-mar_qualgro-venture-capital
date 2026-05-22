@@ -341,8 +341,20 @@ const Team = () => {
                           src={member.photo}
                           alt={member.name}
                           style={member.name === "Laetitia Chia" ? { transform: "scale(1.3)", transformOrigin: "center 30%" } : undefined}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                          className="w-full h-full object-cover"
                         />
+                        {/* Nationality flag chip */}
+                        <div className="absolute top-3 left-3 flex gap-1">
+                          {member.nationalities.map((n) => (
+                            <span
+                              key={n}
+                              title={labelOf(n)}
+                              className="text-base leading-none px-1.5 py-1 rounded-md bg-background/85 backdrop-blur-sm shadow-sm"
+                            >
+                              {flagOf(n)}
+                            </span>
+                          ))}
+                        </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="absolute inset-x-4 bottom-4 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                           <span className="text-[10px] font-display font-extrabold text-emerald uppercase tracking-[0.25em]">
