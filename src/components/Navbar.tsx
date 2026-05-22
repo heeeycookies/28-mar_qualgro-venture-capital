@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Team", href: "/team" },
   { label: "Impact", href: "/impact" },
   { label: "News", href: "/news" },
-  { label: "Why Qualgro", href: "/why-qualgro" },
+  { label: "Qualgro's Value Add", href: "/why-qualgro" },
 ];
 
 const Navbar = () => {
