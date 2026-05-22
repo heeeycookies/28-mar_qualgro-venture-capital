@@ -202,18 +202,21 @@ const categories = [
   { key: "operations", label: "Operations" },
 ];
 
-const nationalities: { key: "all" | Nationality; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "singapore", label: "Singapore" },
-  { key: "indonesia", label: "Indonesia" },
-  { key: "philippines", label: "Philippines" },
-  { key: "malaysia", label: "Malaysia" },
-  { key: "vietnam", label: "Vietnam" },
-  { key: "cambodia", label: "Cambodia" },
-  { key: "china", label: "China" },
-  { key: "australia", label: "Australia" },
-  { key: "france", label: "France" },
+const nationalities: { key: "all" | Nationality; label: string; flag: string }[] = [
+  { key: "all", label: "All", flag: "🌏" },
+  { key: "singapore", label: "Singapore", flag: "🇸🇬" },
+  { key: "indonesia", label: "Indonesia", flag: "🇮🇩" },
+  { key: "philippines", label: "Philippines", flag: "🇵🇭" },
+  { key: "malaysia", label: "Malaysia", flag: "🇲🇾" },
+  { key: "vietnam", label: "Vietnam", flag: "🇻🇳" },
+  { key: "cambodia", label: "Cambodia", flag: "🇰🇭" },
+  { key: "china", label: "China", flag: "🇨🇳" },
+  { key: "australia", label: "Australia", flag: "🇦🇺" },
+  { key: "france", label: "France", flag: "🇫🇷" },
 ];
+
+const flagOf = (n: Nationality) => nationalities.find((x) => x.key === n)?.flag ?? "";
+const labelOf = (n: Nationality) => nationalities.find((x) => x.key === n)?.label ?? "";
 
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
