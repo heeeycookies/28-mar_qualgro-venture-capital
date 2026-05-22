@@ -196,14 +196,30 @@ const categories = [
   { key: "operations", label: "Operations" },
 ];
 
+const nationalities: { key: "all" | Nationality; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "singapore", label: "Singapore" },
+  { key: "indonesia", label: "Indonesia" },
+  { key: "philippines", label: "Philippines" },
+  { key: "malaysia", label: "Malaysia" },
+  { key: "vietnam", label: "Vietnam" },
+  { key: "cambodia", label: "Cambodia" },
+  { key: "china", label: "China" },
+  { key: "australia", label: "Australia" },
+  { key: "france", label: "France" },
+];
+
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [activeFilter, setActiveFilter] = useState("all");
+  const [activeNationality, setActiveNationality] = useState<"all" | Nationality>("all");
 
-  const filtered =
-    activeFilter === "all"
-      ? teamMembers
-      : teamMembers.filter((m) => m.category === activeFilter);
+  const filtered = teamMembers.filter((m) => {
+    const catOk = activeFilter === "all" || m.category === activeFilter;
+    const natOk = activeNationality === "all" || m.nationalities.includes(activeNationality);
+    return catOk && natOk;
+  });
+
 
   return (
     <div className="min-h-screen bg-background">
