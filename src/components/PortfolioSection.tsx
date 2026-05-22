@@ -220,7 +220,9 @@ const PortfolioSection = () => {
                   <img
                     src={company.image}
                     alt={company.name}
-                    loading="lazy"
+                    loading={i < 2 ? "eager" : "lazy"}
+                    decoding="async"
+                    fetchPriority={i === 0 ? "high" : "auto"}
                     style={{ objectPosition: company.objectPosition }}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
