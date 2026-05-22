@@ -9,6 +9,7 @@ import Team from "./pages/Team.tsx";
 import Impact from "./pages/Impact.tsx";
 import News from "./pages/News.tsx";
 import WhyQualgro from "./pages/WhyQualgro.tsx";
+import LPPortal from "./pages/LPPortal.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import ScrollProgressBar from "./components/motion/ScrollProgressBar.tsx";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/impact" element={<Impact />} />
           <Route path="/news" element={<News />} />
           <Route path="/why-qualgro" element={<WhyQualgro />} />
+          <Route path="/lp" element={<LPPortal />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
