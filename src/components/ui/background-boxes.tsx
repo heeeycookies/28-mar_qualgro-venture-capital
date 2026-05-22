@@ -12,7 +12,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
           "linear-gradient(to right, hsl(var(--border) / 0.34) 1px, transparent 1px)",
           "linear-gradient(to bottom, hsl(var(--border) / 0.34) 1px, transparent 1px)",
           "radial-gradient(circle at 18% 22%, hsl(var(--emerald) / 0.12) 0, transparent 18%)",
-          "radial-gradient(circle at 78% 38%, hsl(var(--investment-blue) / 0.12) 0, transparent 20%)",
+          "radial-gradient(circle at 78% 38%, hsl(var(--warm-gold) / 0.18) 0, transparent 20%)",
         ].join(", "),
         backgroundSize: "96px 56px, 96px 56px, 620px 620px, 520px 520px",
         backgroundPosition: "0 0, 0 0, 0 0, 100% 0",
