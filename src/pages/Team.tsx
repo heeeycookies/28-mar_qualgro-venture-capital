@@ -242,6 +242,51 @@ const Team = () => {
         description="Qualgro's team combines startup, business, technology, investment and strategy experience to help startups accelerate growth and build international companies across Southeast Asia and Australia."
       />
 
+      {/* Nationality diversity strip */}
+      <section className="bg-background border-y border-border/60">
+        <div className="container mx-auto px-6 py-8">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+            <div className="flex items-baseline gap-3">
+              <span className="font-display text-5xl font-black text-primary tabular-nums leading-none">
+                {nationalities.length - 1}
+              </span>
+              <div>
+                <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald">
+                  Nationalities
+                </p>
+                <p className="text-xs text-muted-foreground leading-snug">
+                  One team, many passports.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {nationalities.filter((n) => n.key !== "all").map((n) => {
+                const count = teamMembers.filter((m) => m.nationalities.includes(n.key as Nationality)).length;
+                const active = activeNationality === n.key;
+                return (
+                  <button
+                    key={n.key}
+                    onClick={() => setActiveNationality(active ? "all" : (n.key as Nationality))}
+                    className={`group inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-display font-semibold transition-all hover:-translate-y-[2px] ${
+                      active
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-background text-muted-foreground border-border hover:border-emerald hover:text-primary"
+                    }`}
+                    title={n.label}
+                  >
+                    <span className="text-sm leading-none">{n.flag}</span>
+                    <span>{n.label}</span>
+                    <span className={`tabular-nums text-[10px] ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Sticky filter rail + grouped grid */}
       <section className="py-20 sm:py-28 bg-background relative">
         <div className="container mx-auto px-6">
