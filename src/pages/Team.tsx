@@ -436,16 +436,28 @@ const Team = () => {
                 className="bg-card rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden border border-border flex flex-col sm:flex-row"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Photo side */}
-                <div className="relative w-full sm:w-2/5 min-h-[240px] sm:min-h-0 shrink-0">
-                  <motion.img
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    src={selectedMember.photo}
-                    alt={selectedMember.name}
-                    className="w-full h-full object-cover object-top"
-                  />
+                {/* Photo side — fixed 3:4 frame so every portrait sits at native size */}
+                <div className="relative w-full sm:w-2/5 shrink-0 bg-muted">
+                  <div className="relative w-full aspect-[3/4] overflow-hidden">
+                    <img
+                      src={selectedMember.photo}
+                      alt={selectedMember.name}
+                      style={selectedMember.name === "Laetitia Chia" ? { transform: "scale(1.3)", transformOrigin: "center 30%" } : undefined}
+                      className="w-full h-full object-cover object-top"
+                    />
+                    {/* Flag chips on modal photo */}
+                    <div className="absolute top-3 left-3 flex gap-1">
+                      {selectedMember.nationalities.map((n) => (
+                        <span
+                          key={n}
+                          title={labelOf(n)}
+                          className="text-base leading-none px-1.5 py-1 rounded-md bg-background/85 backdrop-blur-sm shadow-sm"
+                        >
+                          {flagOf(n)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                   <button
                     onClick={() => setSelectedMember(null)}
                     className="absolute top-4 right-4 sm:hidden p-2 rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors"
