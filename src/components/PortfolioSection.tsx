@@ -268,6 +268,11 @@ const PortfolioSection = () => {
                           {company.latestStage.includes("Exited") || company.latestStage === "IPO" ? "Exited" : "Portfolio"}
                         </span>
                       </div>
+                      {company.exitDetail && (
+                        <p className="mt-1.5 text-[11px] sm:text-xs font-semibold text-white/85 leading-snug">
+                          {company.exitDetail}
+                        </p>
+                      )}
                     </div>
 
                     {/* Middle — description on expand */}
