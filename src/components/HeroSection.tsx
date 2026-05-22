@@ -39,7 +39,7 @@ const HeroSection = () => {
         >
           <div
             className="w-full h-full rounded-full"
-            style={{ background: "hsl(var(--investment-blue) / 0.2)" }}
+            style={{ background: "hsl(var(--warm-gold) / 0.35)" }}
           />
         </motion.div>
       </div>
