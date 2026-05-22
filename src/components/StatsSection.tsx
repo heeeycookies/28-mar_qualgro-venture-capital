@@ -90,13 +90,13 @@ const StatsSection = () => {
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
             className="stat-card rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12"
-            style={{ background: "#F8F3F2" }}
+            style={{ background: "#EAE8E7" }}
           >
             <p className="font-display text-3xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
-              85%
+              9 Full Exits
             </p>
             <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-              Follow-on rate from top-tier co-investors across portfolio rounds.
+              Among the highest for any SEA-focused fund.
             </p>
           </motion.div>
 
@@ -126,13 +126,13 @@ const StatsSection = () => {
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
             className="stat-card rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12"
-            style={{ background: "#EAE8E7" }}
+            style={{ background: "#F8F3F2" }}
           >
             <p className="font-display text-3xl sm:text-5xl md:text-[64px] font-extrabold leading-none mb-2 sm:mb-3" style={{ color: "#004971" }}>
-              9 Full Exits
+              85%
             </p>
             <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-              Among the highest for any SEA-focused fund.
+              Follow-on rate from top-tier co-investors across portfolio rounds.
             </p>
           </motion.div>
         </div>
