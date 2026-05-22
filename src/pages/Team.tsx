@@ -236,7 +236,7 @@ const Team = () => {
 
       {/* Hero */}
       <PageHero
-        variant="cool"
+        variant="warm"
         tagline="Our People"
         title={<>Diverse experience.<br /><span className="text-emerald">Global network.</span></>}
         description="Qualgro's team combines startup, business, technology, investment and strategy experience to help startups accelerate growth and build international companies across Southeast Asia and Australia."
