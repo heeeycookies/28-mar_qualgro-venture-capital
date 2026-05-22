@@ -30,7 +30,7 @@ const StatsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
-          className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px] mb-6 sm:mb-8"
+          className="text-lg sm:text-xl md:text-2xl font-extrabold uppercase tracking-[1.5px] mb-8 sm:mb-10 md:mb-12"
           style={{ color: "#006D4E" }}
         >
           Our Performance
