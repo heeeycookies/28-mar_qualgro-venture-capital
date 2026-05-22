@@ -299,7 +299,7 @@ const Team = () => {
                               : "text-muted-foreground hover:bg-muted hover:text-primary"
                           }`}
                         >
-                          <span>{nat.label}</span>
+                          <span className="flex items-center gap-2"><span className="text-base leading-none">{nat.flag}</span>{nat.label}</span>
                           <span className={`text-[11px] tabular-nums ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
                             {String(count).padStart(2, "0")}
                           </span>
