@@ -519,7 +519,7 @@ const Impact = () => {
                 }
               }}
               className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-2 cursor-grab active:cursor-grabbing select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-              style={{ touchAction: "pan-y" }}
+              style={{ touchAction: "pan-x pan-y" }}
             >
               {portfolioCompanies.map((c, i) => (
                 <motion.div
