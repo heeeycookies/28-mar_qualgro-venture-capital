@@ -20,7 +20,7 @@ const PageHero = ({ tagline, title, description, children, variant = "warm" }: P
   const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.3]);
 
   return (
-    <section ref={ref} className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 bg-surface-alt overflow-hidden">
+    <section ref={ref} className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 bg-background overflow-hidden">
       <AnimatedBackdrop variant={variant} intensity="subtle" />
       {/* faint grid */}
       <div
