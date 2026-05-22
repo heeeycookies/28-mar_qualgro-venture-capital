@@ -202,18 +202,21 @@ const categories = [
   { key: "operations", label: "Operations" },
 ];
 
-const nationalities: { key: "all" | Nationality; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "singapore", label: "Singapore" },
-  { key: "indonesia", label: "Indonesia" },
-  { key: "philippines", label: "Philippines" },
-  { key: "malaysia", label: "Malaysia" },
-  { key: "vietnam", label: "Vietnam" },
-  { key: "cambodia", label: "Cambodia" },
-  { key: "china", label: "China" },
-  { key: "australia", label: "Australia" },
-  { key: "france", label: "France" },
+const nationalities: { key: "all" | Nationality; label: string; flag: string }[] = [
+  { key: "all", label: "All", flag: "🌏" },
+  { key: "singapore", label: "Singapore", flag: "🇸🇬" },
+  { key: "indonesia", label: "Indonesia", flag: "🇮🇩" },
+  { key: "philippines", label: "Philippines", flag: "🇵🇭" },
+  { key: "malaysia", label: "Malaysia", flag: "🇲🇾" },
+  { key: "vietnam", label: "Vietnam", flag: "🇻🇳" },
+  { key: "cambodia", label: "Cambodia", flag: "🇰🇭" },
+  { key: "china", label: "China", flag: "🇨🇳" },
+  { key: "australia", label: "Australia", flag: "🇦🇺" },
+  { key: "france", label: "France", flag: "🇫🇷" },
 ];
+
+const flagOf = (n: Nationality) => nationalities.find((x) => x.key === n)?.flag ?? "";
+const labelOf = (n: Nationality) => nationalities.find((x) => x.key === n)?.label ?? "";
 
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
@@ -238,6 +241,51 @@ const Team = () => {
         title={<>Diverse experience.<br /><span className="text-emerald">Global network.</span></>}
         description="Qualgro's team combines startup, business, technology, investment and strategy experience to help startups accelerate growth and build international companies across Southeast Asia and Australia."
       />
+
+      {/* Nationality diversity strip */}
+      <section className="bg-background border-y border-border/60">
+        <div className="container mx-auto px-6 py-8">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+            <div className="flex items-baseline gap-3">
+              <span className="font-display text-5xl font-black text-primary tabular-nums leading-none">
+                {nationalities.length - 1}
+              </span>
+              <div>
+                <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald">
+                  Nationalities
+                </p>
+                <p className="text-xs text-muted-foreground leading-snug">
+                  One team, many passports.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {nationalities.filter((n) => n.key !== "all").map((n) => {
+                const count = teamMembers.filter((m) => m.nationalities.includes(n.key as Nationality)).length;
+                const active = activeNationality === n.key;
+                return (
+                  <button
+                    key={n.key}
+                    onClick={() => setActiveNationality(active ? "all" : (n.key as Nationality))}
+                    className={`group inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-display font-semibold transition-all hover:-translate-y-[2px] ${
+                      active
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-background text-muted-foreground border-border hover:border-emerald hover:text-primary"
+                    }`}
+                    title={n.label}
+                  >
+                    <span className="text-sm leading-none">{n.flag}</span>
+                    <span>{n.label}</span>
+                    <span className={`tabular-nums text-[10px] ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Sticky filter rail + grouped grid */}
       <section className="py-20 sm:py-28 bg-background relative">
@@ -296,7 +344,7 @@ const Team = () => {
                               : "text-muted-foreground hover:bg-muted hover:text-primary"
                           }`}
                         >
-                          <span>{nat.label}</span>
+                          <span className="flex items-center gap-2"><span className="text-base leading-none">{nat.flag}</span>{nat.label}</span>
                           <span className={`text-[11px] tabular-nums ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
                             {String(count).padStart(2, "0")}
                           </span>
@@ -338,8 +386,20 @@ const Team = () => {
                           src={member.photo}
                           alt={member.name}
                           style={member.name === "Laetitia Chia" ? { transform: "scale(1.3)", transformOrigin: "center 30%" } : undefined}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                          className="w-full h-full object-cover"
                         />
+                        {/* Nationality flag chip */}
+                        <div className="absolute top-3 left-3 flex gap-1">
+                          {member.nationalities.map((n) => (
+                            <span
+                              key={n}
+                              title={labelOf(n)}
+                              className="text-base leading-none px-1.5 py-1 rounded-md bg-background/85 backdrop-blur-sm shadow-sm"
+                            >
+                              {flagOf(n)}
+                            </span>
+                          ))}
+                        </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="absolute inset-x-4 bottom-4 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                           <span className="text-[10px] font-display font-extrabold text-emerald uppercase tracking-[0.25em]">
@@ -421,16 +481,28 @@ const Team = () => {
                 className="bg-card rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden border border-border flex flex-col sm:flex-row"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Photo side */}
-                <div className="relative w-full sm:w-2/5 min-h-[240px] sm:min-h-0 shrink-0">
-                  <motion.img
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    src={selectedMember.photo}
-                    alt={selectedMember.name}
-                    className="w-full h-full object-cover object-top"
-                  />
+                {/* Photo side — fixed 3:4 frame so every portrait sits at native size */}
+                <div className="relative w-full sm:w-2/5 shrink-0 bg-muted">
+                  <div className="relative w-full aspect-[3/4] overflow-hidden">
+                    <img
+                      src={selectedMember.photo}
+                      alt={selectedMember.name}
+                      style={selectedMember.name === "Laetitia Chia" ? { transform: "scale(1.3)", transformOrigin: "center 30%" } : undefined}
+                      className="w-full h-full object-cover object-top"
+                    />
+                    {/* Flag chips on modal photo */}
+                    <div className="absolute top-3 left-3 flex gap-1">
+                      {selectedMember.nationalities.map((n) => (
+                        <span
+                          key={n}
+                          title={labelOf(n)}
+                          className="text-base leading-none px-1.5 py-1 rounded-md bg-background/85 backdrop-blur-sm shadow-sm"
+                        >
+                          {flagOf(n)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                   <button
                     onClick={() => setSelectedMember(null)}
                     className="absolute top-4 right-4 sm:hidden p-2 rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors"
@@ -465,7 +537,7 @@ const Team = () => {
                         .join(" · ")}
                     </p>
 
-                    {selectedMember.quote && (
+                    {selectedMember.quote ? (
                       <motion.figure
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -481,6 +553,15 @@ const Team = () => {
                           "{selectedMember.quote}"
                         </blockquote>
                       </motion.figure>
+                    ) : (
+                      <div className="relative mb-6 pl-5 border-l-2 border-dashed border-muted-foreground/25">
+                        <p className="text-[10px] font-display font-extrabold uppercase tracking-[0.25em] text-muted-foreground/50 mb-2">
+                          Personal note
+                        </p>
+                        <p className="font-display text-[14px] leading-relaxed text-muted-foreground/60 italic">
+                          A personal reflection from {selectedMember.name.split(" ")[0]} is coming soon.
+                        </p>
+                      </div>
                     )}
 
                     <div className="text-muted-foreground text-sm leading-relaxed space-y-3">
