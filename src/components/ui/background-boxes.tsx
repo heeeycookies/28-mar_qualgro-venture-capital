@@ -9,8 +9,8 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
       style={{
         transform: "translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675) translateZ(0)",
         backgroundImage: [
-          "linear-gradient(to right, hsl(var(--border) / 0.34) 1px, transparent 1px)",
-          "linear-gradient(to bottom, hsl(var(--border) / 0.34) 1px, transparent 1px)",
+          "linear-gradient(to right, hsl(var(--investment-blue) / 0.10) 1px, transparent 1px)",
+          "linear-gradient(to bottom, hsl(var(--investment-blue) / 0.10) 1px, transparent 1px)",
           "radial-gradient(circle at 18% 22%, hsl(var(--emerald) / 0.12) 0, transparent 18%)",
           "radial-gradient(circle at 78% 38%, hsl(var(--warm-gold) / 0.18) 0, transparent 20%)",
         ].join(", "),
