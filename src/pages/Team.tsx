@@ -5,10 +5,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X, Linkedin } from "lucide-react";
 
+type Nationality =
+  | "indonesia"
+  | "philippines"
+  | "china"
+  | "malaysia"
+  | "cambodia"
+  | "australia"
+  | "vietnam"
+  | "singapore"
+  | "france";
+
 type TeamMember = {
   name: string;
   role: string;
   category: "leadership" | "advisory" | "investment" | "operations";
+  nationalities: Nationality[];
   bio: string;
   photo: string;
   linkedin?: string;
