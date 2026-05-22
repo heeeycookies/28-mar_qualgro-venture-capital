@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Impact", href: "/impact" },
   { label: "News", href: "/news" },
   { label: "Qualgro's Value Add", href: "/why-qualgro" },
+  { label: "For LPs", href: "/lp" },
 ];
 
 const Navbar = () => {
