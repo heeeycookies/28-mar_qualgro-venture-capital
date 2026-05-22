@@ -66,7 +66,7 @@ const StatsSection = () => {
             className="stat-card-dark rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col justify-between min-h-[260px] sm:min-h-[340px] md:min-h-[380px]"
           >
             <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#4ECBA0" }}>
-              Portfolio
+              OUR PERFORMANCE
             </p>
             <div>
               <p className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[96px] font-extrabold text-white leading-none mt-4 sm:mt-6 mb-2 sm:mb-3">
