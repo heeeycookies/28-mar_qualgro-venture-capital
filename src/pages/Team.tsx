@@ -24,6 +24,9 @@ type TeamMember = {
   bio: string;
   photo: string;
   linkedin?: string;
+  quote?: string;
+  quoteTheme?: string;
+  tags?: string[];
 };
 
 const teamMembers: TeamMember[] = [
@@ -129,7 +132,10 @@ const teamMembers: TeamMember[] = [
     role: "Investment Analyst",
     category: "investment",
     nationalities: ["singapore"],
-    bio: "Ze Tian is an Investment Analyst contributing to Qualgro's research and analysis efforts, with a focus on market mapping and competitive landscape assessment across Southeast Asia's tech sector.",
+    bio: "Ze Tian covers a broad range of software and technology businesses across Southeast Asia and Korea. He believes in taking partnership with founders beyond just capital — tapping on proprietary networks to bridge relevant industry connections, brainstorm strategic ideas, and supporting them through fundraises. He sees his role as being a thoughtful and dependable partner throughout a company's growth journey.\n\nPrior to joining Qualgro, Ze Tian worked in M&A, supporting both buy-and-sell side transactions involving technology businesses, and has completed a Bachelor in Business Management from Singapore Management University (SMU).",
+    quote: "Competing in sports taught me that excellence compounds through many little consistent efforts, much like great startups are built through a series of thoughtful decisions, built upon one another. Having worked with a wide range of startups, I aim to partner with founders in making those choices with clarity and conviction.",
+    quoteTheme: "Harmonizing personal life with tech, startups & investing",
+    tags: ["Software", "AI", "Southeast Asia", "Korea"],
     photo: "https://qualgro.com/wp-content/uploads/elementor/thumbs/qualgro_team_img_ze_tian_goh-min-qe308zq9swpt5izv1dclcxetfx4px6qhpb23bjz4cu.jpg",
     linkedin: "https://www.linkedin.com/in/ze-tian-goh-757494152/",
   },
@@ -449,12 +455,52 @@ const Team = () => {
                     <p className="text-emerald font-display text-xs font-semibold uppercase tracking-[0.2em] mb-1">
                       {selectedMember.role}
                     </p>
-                    <h2 className="font-display text-2xl font-bold text-primary mb-4">
+                    <h2 className="font-display text-2xl font-bold text-primary mb-1">
                       {selectedMember.name}
                     </h2>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {selectedMember.bio}
+                    <p className="text-[11px] font-display uppercase tracking-[0.18em] text-muted-foreground/70 mb-5">
+                      {selectedMember.nationalities
+                        .map((n) => nationalities.find((x) => x.key === n)?.label)
+                        .filter(Boolean)
+                        .join(" · ")}
                     </p>
+
+                    {selectedMember.quote && (
+                      <motion.figure
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="relative mb-6 pl-5 border-l-2 border-emerald/60"
+                      >
+                        {selectedMember.quoteTheme && (
+                          <figcaption className="text-[10px] font-display font-extrabold uppercase tracking-[0.25em] text-emerald mb-2">
+                            {selectedMember.quoteTheme}
+                          </figcaption>
+                        )}
+                        <blockquote className="font-display text-[15px] leading-relaxed text-primary italic">
+                          "{selectedMember.quote}"
+                        </blockquote>
+                      </motion.figure>
+                    )}
+
+                    <div className="text-muted-foreground text-sm leading-relaxed space-y-3">
+                      {selectedMember.bio.split("\n\n").map((para, idx) => (
+                        <p key={idx}>{para}</p>
+                      ))}
+                    </div>
+
+                    {selectedMember.tags && selectedMember.tags.length > 0 && (
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {selectedMember.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="px-2.5 py-1 rounded-full bg-emerald/10 text-emerald text-[11px] font-display font-semibold uppercase tracking-[0.12em]"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
 
                   {selectedMember.linkedin && (
