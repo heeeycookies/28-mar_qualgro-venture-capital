@@ -492,7 +492,7 @@ const Team = () => {
                         .join(" · ")}
                     </p>
 
-                    {selectedMember.quote && (
+                    {selectedMember.quote ? (
                       <motion.figure
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -508,6 +508,15 @@ const Team = () => {
                           "{selectedMember.quote}"
                         </blockquote>
                       </motion.figure>
+                    ) : (
+                      <div className="relative mb-6 pl-5 border-l-2 border-dashed border-muted-foreground/25">
+                        <p className="text-[10px] font-display font-extrabold uppercase tracking-[0.25em] text-muted-foreground/50 mb-2">
+                          Personal note
+                        </p>
+                        <p className="font-display text-[14px] leading-relaxed text-muted-foreground/60 italic">
+                          A personal reflection from {selectedMember.name.split(" ")[0]} is coming soon.
+                        </p>
+                      </div>
                     )}
 
                     <div className="text-muted-foreground text-sm leading-relaxed space-y-3">
