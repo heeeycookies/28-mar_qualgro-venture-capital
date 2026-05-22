@@ -226,7 +226,7 @@ const News = () => {
       <Navbar />
 
       <PageHero
-        variant="navy"
+        variant="warm"
         tagline="Latest"
         title={<>Qualgro news<br /><span className="text-emerald">&amp; resources.</span></>}
         description="Stay updated with the latest from Qualgro Partners — venture capital insights, portfolio company news, and thought leadership from Southeast Asia and Australia."
