@@ -24,6 +24,9 @@ type TeamMember = {
   bio: string;
   photo: string;
   linkedin?: string;
+  quote?: string;
+  quoteTheme?: string;
+  tags?: string[];
 };
 
 const teamMembers: TeamMember[] = [
