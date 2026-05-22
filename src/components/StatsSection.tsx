@@ -25,6 +25,17 @@ const StatsSection = () => {
   return (
     <motion.section id="about" className="py-20 sm:py-[120px]" ref={ref} style={{ scale: sectionScale }}>
       <div className="mx-auto px-6 sm:px-10 xl:px-14" style={{ maxWidth: "1120px" }}>
+        {/* Section eyebrow */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+          className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px] mb-6 sm:mb-8"
+          style={{ color: "#006D4E" }}
+        >
+          Our Performance
+        </motion.p>
+
         {/* Top row: 2 cards */}
         <div className="grid grid-cols-1 sm:grid-cols-[2.2fr_1fr] gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6 md:mb-8">
           <motion.div
@@ -35,9 +46,6 @@ const StatsSection = () => {
             style={{ background: "#F8F3F2", y: y1 }}
             className="stat-card rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col justify-between min-h-[260px] sm:min-h-[340px] md:min-h-[380px]"
           >
-            <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#006D4E" }}>
-              OUR PERFORMANCE
-            </p>
             <div>
               <p className="font-display text-base sm:text-xl md:text-2xl lg:text-[28px] font-bold text-primary leading-snug mt-4 sm:mt-6">
                 Proven track record of<br />
@@ -65,9 +73,6 @@ const StatsSection = () => {
             style={{ background: "#004971", y: y2 }}
             className="stat-card-dark rounded-[14px] sm:rounded-2xl p-6 sm:p-10 md:p-12 flex flex-col justify-between min-h-[260px] sm:min-h-[340px] md:min-h-[380px]"
           >
-            <p className="text-[11px] sm:text-[13px] font-semibold uppercase tracking-[1.8px]" style={{ color: "#4ECBA0" }}>
-              OUR PERFORMANCE
-            </p>
             <div>
               <p className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[96px] font-extrabold text-white leading-none mt-4 sm:mt-6 mb-2 sm:mb-3">
                 US<br />$7B+
