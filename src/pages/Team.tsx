@@ -260,6 +260,14 @@ const Team = () => {
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-2">
+              {activeNationality !== "all" && (
+                <button
+                  onClick={() => setActiveNationality("all")}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-border text-[11px] font-display font-semibold text-muted-foreground hover:text-primary hover:border-emerald transition-all"
+                >
+                  Clear
+                </button>
+              )}
               {nationalities.filter((n) => n.key !== "all").map((n) => {
                 const count = teamMembers.filter((m) => m.nationalities.includes(n.key as Nationality)).length;
                 const active = activeNationality === n.key;
@@ -267,16 +275,16 @@ const Team = () => {
                   <button
                     key={n.key}
                     onClick={() => setActiveNationality(active ? "all" : (n.key as Nationality))}
-                    className={`group inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-display font-semibold transition-all hover:-translate-y-[2px] ${
+                    className={`group inline-flex items-center gap-1.5 px-3 py-2 rounded-full border transition-all hover:-translate-y-[2px] ${
                       active
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "bg-background text-muted-foreground border-border hover:border-emerald hover:text-primary"
+                        ? "bg-primary border-primary"
+                        : "bg-background border-border hover:border-emerald"
                     }`}
-                    title={n.label}
+                    title={`${n.label} · ${count}`}
+                    aria-label={`Filter by ${n.label}`}
                   >
-                    <span className="text-sm leading-none">{n.flag}</span>
-                    <span>{n.label}</span>
-                    <span className={`tabular-nums text-[10px] ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
+                    <span className="text-lg leading-none">{n.flag}</span>
+                    <span className={`tabular-nums text-[10px] font-display font-semibold ${active ? "text-primary-foreground/80" : "text-muted-foreground/70"}`}>
                       {count}
                     </span>
                   </button>
@@ -321,38 +329,8 @@ const Team = () => {
                   })}
                 </ul>
 
-                <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald mb-3 mt-8">
-                  Nationality
-                </p>
-                <p className="text-[11px] text-muted-foreground leading-relaxed mb-4">
-                  Explore the diverse nationality backgrounds of our team.
-                </p>
-                <ul className="flex lg:flex-col gap-2 lg:gap-1 flex-wrap">
-                  {nationalities.map((nat) => {
-                    const count =
-                      nat.key === "all"
-                        ? teamMembers.length
-                        : teamMembers.filter((m) => m.nationalities.includes(nat.key as Nationality)).length;
-                    const active = activeNationality === nat.key;
-                    return (
-                      <li key={nat.key}>
-                        <button
-                          onClick={() => setActiveNationality(nat.key)}
-                          className={`group flex items-center justify-between gap-4 w-full px-4 py-2.5 rounded-lg text-left text-sm font-display font-semibold transition-all ${
-                            active
-                              ? "bg-primary text-primary-foreground"
-                              : "text-muted-foreground hover:bg-muted hover:text-primary"
-                          }`}
-                        >
-                          <span className="flex items-center gap-2"><span className="text-base leading-none">{nat.flag}</span>{nat.label}</span>
-                          <span className={`text-[11px] tabular-nums ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
-                            {String(count).padStart(2, "0")}
-                          </span>
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
+
+
 
                 <div className="hidden lg:block mt-10 pt-6 border-t border-border">
                   <p className="text-xs text-muted-foreground leading-relaxed">
