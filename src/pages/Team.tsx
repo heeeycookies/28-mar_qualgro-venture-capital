@@ -37,7 +37,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Weisheng Neo",
-    role: "Partner",
+    role: "General Partner",
     category: "leadership",
     nationalities: ["singapore"],
     bio: "Weisheng is a Partner at Qualgro, leading the firm's investment strategy in Data/AI and enterprise software. He brings deep expertise in technology investing and has been instrumental in sourcing and supporting portfolio companies across Southeast Asia.",
@@ -99,7 +99,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Badai Tanmizi",
-    role: "Principal",
+    role: "Investment Principal",
     category: "investment",
     nationalities: ["indonesia"],
     bio: "Badai is a Principal with deep expertise in the Indonesian and broader Southeast Asian tech ecosystem. He focuses on identifying and supporting high-growth B2B and fintech companies.",
@@ -108,7 +108,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Anqi Chen",
-    role: "Manager",
+    role: "Investment Manager",
     category: "investment",
     nationalities: ["china"],
     bio: "Anqi is a Manager at Qualgro, supporting the investment team across deal sourcing, market research, and due diligence in enterprise software and AI-driven solutions.",
