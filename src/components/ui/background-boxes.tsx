@@ -1,68 +1,31 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
-  const rows = new Array(150).fill(1);
-  const cols = new Array(100).fill(1);
-
-  // Brand-aligned palette: navy / deep blue / emerald tints
-  const colors = [
-    "rgb(14 58 93)",    // navy
-    "rgb(0 73 113)",    // deep blue
-    "rgb(0 109 78)",    // emerald
-    "rgb(56 122 154)",  // navy-light
-    "rgb(94 167 138)",  // emerald-light
-  ];
-
-  const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
-
   return (
     <div
+      aria-hidden
       style={{
-        transform: `translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675) rotate(0deg) translateZ(0)`,
+        transform: "translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675) translateZ(0)",
+        backgroundImage: [
+          "linear-gradient(to right, hsl(var(--border) / 0.34) 1px, transparent 1px)",
+          "linear-gradient(to bottom, hsl(var(--border) / 0.34) 1px, transparent 1px)",
+          "radial-gradient(circle at 18% 22%, hsl(var(--emerald) / 0.12) 0, transparent 18%)",
+          "radial-gradient(circle at 78% 38%, hsl(var(--investment-blue) / 0.12) 0, transparent 20%)",
+        ].join(", "),
+        backgroundSize: "96px 56px, 96px 56px, 620px 620px, 520px 520px",
+        backgroundPosition: "0 0, 0 0, 0 0, 100% 0",
+        maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 72%, transparent)",
+        WebkitMaskImage:
+          "linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 72%, transparent)",
       }}
       className={cn(
-        "absolute -top-1/4 left-1/4 z-0 flex h-full w-full -translate-x-1/2 -translate-y-1/2 p-4",
+        "absolute -top-1/4 left-1/4 z-0 h-full w-full -translate-x-1/2 -translate-y-1/2 p-4 will-change-transform",
         className
       )}
       {...rest}
-    >
-      {rows.map((_, i) => (
-        <motion.div
-          key={`row` + i}
-          className="relative h-8 w-16 border-l border-slate-300/40"
-        >
-          {cols.map((_, j) => (
-            <motion.div
-              whileHover={{
-                backgroundColor: getRandomColor(),
-                transition: { duration: 0 },
-              }}
-              animate={{
-                transition: { duration: 2 },
-              }}
-              key={`col` + j}
-              className="relative h-8 w-16 border-r border-t border-slate-300/40"
-            >
-              {j % 2 === 0 && i % 2 === 0 ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="pointer-events-none absolute -left-[22px] -top-[14px] h-6 w-10 stroke-[1px] text-slate-300/50"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-                </svg>
-              ) : null}
-            </motion.div>
-          ))}
-        </motion.div>
-      ))}
-    </div>
+    />
   );
 };
 

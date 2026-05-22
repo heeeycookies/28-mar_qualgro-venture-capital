@@ -2,12 +2,14 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import StatsSection from "@/components/StatsSection";
 import PortfolioSection from "@/components/PortfolioSection";
-import ThesisSection from "@/components/ThesisSection";
-import ImpactSection from "@/components/ImpactSection";
-import FounderTestimonials from "@/components/FounderTestimonials";
-import NewsSection from "@/components/NewsSection";
 import Footer from "@/components/Footer";
 import { Boxes } from "@/components/ui/background-boxes";
+import { lazy, Suspense } from "react";
+
+const DeferredThesisSection = lazy(() => import("@/components/ThesisSection"));
+const DeferredImpactSection = lazy(() => import("@/components/ImpactSection"));
+const DeferredFounderTestimonials = lazy(() => import("@/components/FounderTestimonials"));
+const DeferredNewsSection = lazy(() => import("@/components/NewsSection"));
 
 const Index = () => {
   return (
@@ -40,10 +42,12 @@ const Index = () => {
           <StatsSection />
         </div>
       </div>
-      <ThesisSection />
-      <ImpactSection />
-      <FounderTestimonials />
-      <NewsSection />
+      <Suspense fallback={null}>
+        <DeferredThesisSection />
+        <DeferredImpactSection />
+        <DeferredFounderTestimonials />
+        <DeferredNewsSection />
+      </Suspense>
       <Footer />
     </div>
   );
