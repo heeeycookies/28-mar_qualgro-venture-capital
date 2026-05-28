@@ -105,7 +105,7 @@ const StatsSection = () => {
               9 Full Exits
             </p>
             <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-              Among the highest for any SEA-focused fund.
+              Among the highest for any Southeast Asia-focused fund.
             </p>
           </motion.div>
 
