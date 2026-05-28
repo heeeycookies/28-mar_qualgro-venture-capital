@@ -386,46 +386,6 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Nationality diversity strip — decorative */}
-      <section className="bg-background border-y border-border/60">
-        <div className="container mx-auto px-6 py-6">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div className="flex items-baseline gap-3">
-              <span className="font-display text-5xl font-black text-primary tabular-nums leading-none">
-                {nationalities.length - 1}
-              </span>
-              <div>
-                <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald">
-                  Nationalities
-                </p>
-                <p className="text-xs text-muted-foreground leading-snug">
-                  One team, many passports.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              {nationalities.filter((n) => n.key !== "all").map((n) => {
-                const count = teamMembers.filter((m) =>
-                  m.nationalities.includes(n.key as Nationality)
-                ).length;
-                return (
-                  <div
-                    key={n.key}
-                    title={`${n.label} · ${count}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-background"
-                  >
-                    <span className="text-base leading-none">{n.flag}</span>
-                    <span className="tabular-nums text-[10px] font-display font-semibold text-muted-foreground/70">
-                      {count}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Filter bar + Grid */}
       <section className="py-10 sm:py-14 bg-background">
         <div className="container mx-auto px-6">

@@ -9,6 +9,49 @@ import { useState, useRef } from "react";
 import { methodology } from "@/data/impact";
 import { capabilities, quoteCardPalette, type FounderQuote } from "@/data/value-add";
 
+/* ── Founder photos ── */
+import lukeLimFounder from "@/assets/portfolio/Luke Lim_Supermom_Founder.jpeg";
+import chihFounder from "@/assets/portfolio/Chih_Appier_Founder.jpeg";
+import manishFounder from "@/assets/portfolio/Manish_Hevo_Founder.jpeg";
+import amitFounder from "@/assets/portfolio/Amit_Nobroker_Founder.jpeg";
+import henryFounder from "@/assets/portfolio/Henry_chan_Founder.jpeg";
+import kelvinFounder from "@/assets/portfolio/Kelvin Teo_Funding Societies_Founder.jpeg";
+import jeffreyFounder from "@/assets/portfolio/Jeffrey T_Patsnap_Founder.jpeg";
+import ajayFounder from "@/assets/portfolio/Ajay_Sirion_Founder.jpeg";
+import olivierFounder from "@/assets/portfolio/Olivier_Wavecell_Founder.jpeg";
+
+/* ── Company logos ── */
+import supermomLogo from "@/assets/portfolio/supermom.png";
+import appierLogo from "@/assets/portfolio/appier.avif";
+import shopbackLogo from "@/assets/portfolio/shopback.png";
+import fundingSocietiesLogo from "@/assets/portfolio/funding-societies.png";
+import patsnapLogo from "@/assets/portfolio/patsnap.png";
+import sirionLogo from "@/assets/portfolio/sirion.jpg";
+import wavecellLogo from "@/assets/portfolio/wavecell.jpg";
+
+/* ── Lookup maps ── */
+const founderImageMap: Record<string, string> = {
+  "Luke": lukeLimFounder,
+  "Chih-Han": chihFounder,
+  "Manish": manishFounder,
+  "Amit": amitFounder,
+  "Henry": henryFounder,
+  "Kelvin": kelvinFounder,
+  "Jeffrey": jeffreyFounder,
+  "Ajay": ajayFounder,
+  "Olivier Gerhardt": olivierFounder,
+};
+
+const companyLogoMap: Record<string, string> = {
+  "Supermom": supermomLogo,
+  "Appier": appierLogo,
+  "ShopBack": shopbackLogo,
+  "Funding Societies": fundingSocietiesLogo,
+  "Patsnap": patsnapLogo,
+  "Sirion": sirionLogo,
+  "Wavecell": wavecellLogo,
+};
+
 /* ─────────────── Quote Card ─────────────── */
 const QuoteCard = ({
   quote,
@@ -20,9 +63,10 @@ const QuoteCard = ({
   capNumber: string;
 }) => {
   const palette = quoteCardPalette[quote.color];
-  // Alternate tilt & vertical offset for stacked look
   const rotate = index % 2 === 0 ? -2.5 : 2;
   const offsetClass = index === 0 ? "" : "lg:-mt-10 lg:ml-12";
+  const founderImg = founderImageMap[quote.founder];
+  const companyLogo = companyLogoMap[quote.company];
 
   return (
     <motion.figure
@@ -44,20 +88,56 @@ const QuoteCard = ({
       >
         &ldquo;{quote.text}&rdquo;
       </blockquote>
-      <figcaption
-        className="mt-7 flex items-center gap-3 font-display text-[11px] font-extrabold tracking-[0.18em] uppercase"
-        style={{ color: palette.meta }}
-      >
-        <span
-          className="inline-flex h-7 w-7 items-center justify-center rounded-full text-[11px] font-black"
-          style={{ backgroundColor: palette.text, color: palette.bg }}
-        >
-          {quote.founder.charAt(0)}
-        </span>
-        <span>
-          {quote.founder} · {quote.company}
-        </span>
+
+      <figcaption className="mt-7 flex items-center gap-4">
+        {/* Founder photo */}
+        {founderImg ? (
+          <img
+            src={founderImg}
+            alt={quote.founder}
+            className="h-12 w-12 rounded-full object-cover object-top shrink-0"
+            style={{ boxShadow: `0 0 0 2.5px ${palette.text}50, 0 4px 12px rgba(0,0,0,0.2)` }}
+          />
+        ) : (
+          <span
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full text-[14px] font-black shrink-0"
+            style={{ backgroundColor: palette.text, color: palette.bg }}
+          >
+            {quote.founder.charAt(0)}
+          </span>
+        )}
+
+        <div className="flex-1 min-w-0">
+          <p
+            className="font-display text-[11px] font-extrabold tracking-[0.18em] uppercase leading-tight"
+            style={{ color: palette.meta }}
+          >
+            {quote.founder}
+          </p>
+          {/* Company logo */}
+          {companyLogo ? (
+            <div
+              className="mt-2 inline-flex items-center justify-center rounded-lg px-3 py-1.5"
+              style={{ backgroundColor: "rgba(255,255,255,0.92)" }}
+            >
+              <img
+                src={companyLogo}
+                alt={quote.company}
+                className="h-[22px] w-auto object-contain"
+                style={{ maxWidth: "96px" }}
+              />
+            </div>
+          ) : (
+            <p
+              className="font-display text-[10px] font-semibold tracking-[0.14em] uppercase mt-1"
+              style={{ color: palette.meta, opacity: 0.65 }}
+            >
+              {quote.company}
+            </p>
+          )}
+        </div>
       </figcaption>
+
       <span
         aria-hidden
         className="absolute bottom-4 right-5 font-display font-black leading-none opacity-50"
@@ -214,48 +294,49 @@ const WhyQualgro = () => {
                         capNumber={cap.number}
                       />
                     ))}
-                    {/* Footnote for capability #05 */}
-                    {cap.number === "05" && (
-                      <motion.aside
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="w-full max-w-[440px] rounded-2xl border border-white/10 px-6 py-5"
-                        style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
-                      >
-                        <p className="text-[11px] font-display font-extrabold uppercase tracking-[0.2em] mb-2" style={{ color: "hsl(163 70% 55%)" }}>
-                          Interested in Qualgro?
-                        </p>
-                        <p className="text-white/65 text-sm leading-relaxed">
-                          If you&apos;re building something exciting, drop a copy of your pitch deck to{" "}
-                          <a
-                            href="mailto:ops@qualgro.com"
-                            className="underline underline-offset-2 hover:text-white transition-colors"
-                            style={{ color: "hsl(163 70% 65%)" }}
-                          >
-                            ops@qualgro.com
-                          </a>
-                          , or use the{" "}
-                          <button
-                            onClick={() => {
-                              const btn = document.querySelector<HTMLButtonElement>("[data-contact-trigger]");
-                              btn?.click();
-                            }}
-                            className="underline underline-offset-2 hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0"
-                            style={{ color: "hsl(163 70% 65%)" }}
-                          >
-                            Contact button
-                          </button>
-                          {" "}if you&apos;d like to include a personalised message.
-                        </p>
-                      </motion.aside>
-                    )}
                   </div>
                 </div>
               );
             })}
           </div>
+
+          {/* ─── INTERESTED IN QUALGRO — centred footer of dark band ─── */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-32 lg:mt-40 pt-16 border-t border-white/10 text-center"
+          >
+            <p
+              className="font-display text-[11px] font-extrabold uppercase tracking-[0.28em] mb-5"
+              style={{ color: "hsl(163 70% 55%)" }}
+            >
+              Interested in Qualgro?
+            </p>
+            <p className="text-white/65 text-base sm:text-lg leading-relaxed max-w-[560px] mx-auto">
+              If you&apos;re building something exciting, drop a copy of your pitch deck to{" "}
+              <a
+                href="mailto:ops@qualgro.com"
+                className="underline underline-offset-2 hover:text-white transition-colors font-semibold"
+                style={{ color: "hsl(163 70% 65%)" }}
+              >
+                ops@qualgro.com
+              </a>
+              , or use the{" "}
+              <button
+                onClick={() => {
+                  const btn = document.querySelector<HTMLButtonElement>("[data-contact-trigger]");
+                  btn?.click();
+                }}
+                className="underline underline-offset-2 hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 font-semibold"
+                style={{ color: "hsl(163 70% 65%)" }}
+              >
+                Contact button
+              </button>
+              {" "}if you&apos;d like to include a personalised message.
+            </p>
+          </motion.div>
         </div>
       </section>
 
