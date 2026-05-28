@@ -1,13 +1,13 @@
-import supermomLogo from "@/assets/portfolio/supermom.png";
-import erudifiLogo from "@/assets/portfolio/erudifi.png";
-import ralaliLogo from "@/assets/portfolio/ralali.png";
-import edmicroLogo from "@/assets/portfolio/edmicro.png";
-import fundingSocietiesLogo from "@/assets/portfolio/funding-societies.png";
-import shopbackLogo from "@/assets/portfolio/shopback.png";
-import patsnapLogo from "@/assets/portfolio/patsnap.png";
-import convosightLogo from "@/assets/portfolio/convosight.png";
-import accredifyLogo from "@/assets/portfolio/accredify.png";
-import synaxgLogo from "@/assets/portfolio/synaxg.svg";
+import supermomLogo from "@/assets/portfolio/supermom_logo.png";
+import erudifiLogo from "@/assets/portfolio/erudifi_logo.png";
+import ralaliLogo from "@/assets/portfolio/ralali_logo.png";
+import edmicroLogo from "@/assets/portfolio/edmicro_logo.png";
+import fundingSocietiesLogo from "@/assets/portfolio/funding-societies_logo.png";
+import shopbackLogo from "@/assets/portfolio/shopback_logo.png";
+import patsnapLogo from "@/assets/portfolio/patsnap_logo.png";
+import convosightLogo from "@/assets/portfolio/convosight_logo.png";
+import accredifyLogo from "@/assets/portfolio/accredify_logo.png";
+import synaxgLogo from "@/assets/portfolio/synaxg_logo.svg";
 
 export const impactHero = {
   eyebrow: "ENVIRONMENTAL · SOCIAL · GOVERNANCE",

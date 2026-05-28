@@ -20,14 +20,11 @@ import jeffreyFounder from "@/assets/portfolio/Jeffrey T_Patsnap_Founder.jpeg";
 import ajayFounder from "@/assets/portfolio/Ajay_Sirion_Founder.jpeg";
 import olivierFounder from "@/assets/portfolio/Olivier_Wavecell_Founder.jpeg";
 
-/* ── Company logos ── */
-import supermomLogo from "@/assets/portfolio/supermom.png";
-import appierLogo from "@/assets/portfolio/appier.avif";
-import shopbackLogo from "@/assets/portfolio/shopback.png";
-import fundingSocietiesLogo from "@/assets/portfolio/funding-societies.png";
-import patsnapLogo from "@/assets/portfolio/patsnap.png";
-import sirionLogo from "@/assets/portfolio/sirion.jpg";
-import wavecellLogo from "@/assets/portfolio/wavecell.jpg";
+/* ── Company logos (correct _logo files) ── */
+import supermomLogo from "@/assets/portfolio/supermom_logo.png";
+import shopbackLogo from "@/assets/portfolio/shopback_logo.png";
+import fundingSocietiesLogo from "@/assets/portfolio/funding-societies_logo.png";
+import patsnapLogo from "@/assets/portfolio/patsnap_logo.png";
 
 /* ── Lookup maps ── */
 const founderImageMap: Record<string, string> = {
@@ -44,12 +41,9 @@ const founderImageMap: Record<string, string> = {
 
 const companyLogoMap: Record<string, string> = {
   "Supermom": supermomLogo,
-  "Appier": appierLogo,
   "ShopBack": shopbackLogo,
   "Funding Societies": fundingSocietiesLogo,
   "Patsnap": patsnapLogo,
-  "Sirion": sirionLogo,
-  "Wavecell": wavecellLogo,
 };
 
 /* ─────────────── Quote Card ─────────────── */
@@ -171,11 +165,12 @@ const WhyQualgro = () => {
           tagline="Qualgro's Value Add"
           title={
             <>
-              More than a decade investing in{" "}
-              <span className="text-emerald">Southeast Asia</span> &amp; globally.
+              More than a decade partnering with founders and building across{" "}
+              <span className="text-emerald">Southeast Asia</span> and globally.
             </>
           }
-          description="Alongside 50+ founders on their building journey — from early traction all the way through to full exit."
+          description="Partnering alongside 50+ founders on their building journey with an exit-driven mindset, shaped by a rich history of understanding B2B Software, Data, and AI companies. Our conviction is grounded in selecting strong businesses and collaboratively building towards durable, strategic outcomes and eventual exit pathways."
+          descriptionClassName="mt-5 sm:mt-7 text-muted-foreground max-w-3xl text-lg sm:text-xl leading-relaxed"
         />
       </div>
 

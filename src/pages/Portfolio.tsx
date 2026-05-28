@@ -325,12 +325,12 @@ const Portfolio = () => {
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-investment-blue to-emerald" />
 
                 {/* Logo area */}
-                <div className="h-12 flex items-center mb-4">
+                <div className="h-20 flex items-center mb-4">
                   {company.logoUrl ? (
                     <img
                       src={company.logoUrl}
                       alt={company.name}
-                      className="max-h-10 max-w-[140px] object-contain"
+                      className="max-h-16 max-w-[200px] w-auto object-contain"
                     />
                   ) : (
                     <h3 className="font-display text-lg font-bold text-primary">

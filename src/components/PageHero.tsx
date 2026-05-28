@@ -8,9 +8,10 @@ interface PageHeroProps {
   description: string;
   children?: ReactNode;
   variant?: "emerald" | "navy" | "warm" | "cool";
+  descriptionClassName?: string;
 }
 
-const PageHero = ({ tagline, title, description, children, variant = "warm" }: PageHeroProps) => {
+const PageHero = ({ tagline, title, description, children, variant = "warm", descriptionClassName }: PageHeroProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -45,7 +46,7 @@ const PageHero = ({ tagline, title, description, children, variant = "warm" }: P
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-primary leading-[0.95] max-w-3xl">
             {title}
           </h1>
-          <p className="mt-5 sm:mt-7 text-muted-foreground max-w-2xl text-base sm:text-lg leading-relaxed">
+          <p className={descriptionClassName ?? "mt-5 sm:mt-7 text-muted-foreground max-w-2xl text-base sm:text-lg leading-relaxed"}>
             {description}
           </p>
           {children}
