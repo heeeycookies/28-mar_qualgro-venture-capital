@@ -58,9 +58,13 @@ const StatsSection = () => {
                 <p className="font-display text-xl sm:text-3xl md:text-4xl lg:text-[46px] font-extrabold text-primary leading-tight mt-1">
                   Unicorn Hit Rate
                 </p>
+                <p className="font-display text-sm sm:text-base md:text-lg font-semibold text-primary/70 leading-tight mt-2">
+                  (4 out of 35 companies)
+                </p>
               </div>
               <p className="text-muted-foreground text-xs sm:text-base leading-relaxed max-w-md mt-3">
-                Top decile performance across early-stage venture portfolios.
+                Disciplined investment approach rooted in first-principles thinking
+                and extraordinary founder selection to achieve repeatable results.
               </p>
             </div>
           </motion.div>
@@ -101,7 +105,7 @@ const StatsSection = () => {
               9 Full Exits
             </p>
             <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-              Among the highest for any SEA-focused fund.
+              Among the highest for any Southeast Asia-focused fund.
             </p>
           </motion.div>
 
@@ -121,7 +125,7 @@ const StatsSection = () => {
               <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl ml-2">Regional</span>
             </p>
             <p className="text-xs sm:text-base text-white/80 leading-relaxed">
-              High-conviction investments across Southeast Asia's most promising ventures.
+              Strong expertise and history helping companies scale into new markets.
             </p>
           </motion.div>
 

@@ -305,15 +305,15 @@ const PortfolioSection = () => {
                       <div className="w-8 h-[2px] bg-white/30 group-hover:w-14 group-hover:bg-white/70 transition-all duration-500" />
                       <div className="space-y-1.5 pt-1">
                         <div className="flex items-baseline gap-2">
-                          <span className="text-[9px] sm:text-[10px] font-semibold text-white/55 uppercase tracking-[0.12em] min-w-[58px]">
-                            Latest
+                          <span className="text-[9px] sm:text-[10px] font-semibold text-white/55 uppercase tracking-[0.12em] min-w-[78px]">
+                            Latest Stage
                           </span>
                           <span className="text-xs sm:text-sm font-bold text-white leading-snug">
                             {company.latestStage}
                           </span>
                         </div>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-[9px] sm:text-[10px] font-semibold text-white/55 uppercase tracking-[0.12em] min-w-[58px]">
+                          <span className="text-[9px] sm:text-[10px] font-semibold text-white/55 uppercase tracking-[0.12em] min-w-[78px]">
                             Invested
                           </span>
                           <span className="text-xs sm:text-sm font-bold text-white leading-snug">

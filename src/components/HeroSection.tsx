@@ -55,7 +55,7 @@ const HeroSection = () => {
               style={{ y: textY }}
               className="font-display font-black tracking-tight leading-[0.85] text-navy text-[44px] sm:text-6xl md:text-7xl lg:text-8xl"
             >
-              BUILDING
+              BACKING
               <span className="block mt-2 sm:mt-3 text-muted-foreground/40 font-black text-[20px] sm:text-3xl md:text-4xl lg:text-5xl leading-[1]">
                 REGIONAL AND GLOBAL
                 <br />
@@ -74,9 +74,8 @@ const HeroSection = () => {
           >
             <div className="border-l-[3px] border-emerald pl-5 sm:pl-6">
               <p className="text-foreground/70 text-sm sm:text-base leading-relaxed font-medium max-w-[420px]">
-                We support exceptional founders with conviction capital and deep
-                expertise in scaling across Southeast Asia and global markets,
-                building category leaders together.
+                Leading venture capital fund in Southeast Asia focusing on B2B,
+                Data/AI, and Software investments.
               </p>
             </div>
           </motion.div>
