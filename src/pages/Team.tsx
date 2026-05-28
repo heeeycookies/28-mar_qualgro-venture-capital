@@ -346,6 +346,46 @@ const Team = () => {
         description="Qualgro's team combines startup, business, technology, investment and strategy experience to help startups accelerate growth and build international companies across Southeast Asia and Australia."
       />
 
+      {/* ─── Our Story ─── */}
+      <section className="py-20 sm:py-24 bg-background border-b border-border/60">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 max-w-[1120px] mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-5"
+            >
+              <p className="text-emerald font-display font-bold text-xs uppercase tracking-[0.25em] mb-4">
+                Our Story
+              </p>
+              <h2 className="font-display text-3xl md:text-4xl font-black text-primary leading-[1.05] mb-6">
+                Built by operators &amp; investors,<br />for founders.
+              </h2>
+              <p className="text-muted-foreground text-base leading-relaxed max-w-[460px]">
+                Qualgro was founded with one conviction: Southeast Asia would produce world-class technology companies, and the founders building them deserved investors who would stand shoulder-to-shoulder with them through every inflection point.
+              </p>
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-[460px] mt-4 italic">
+                A decade later, we&apos;ve backed 30+ companies across the region — through bull markets and headwinds, expansion plays and pivots, and a growing portfolio of unicorns and exits.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+              className="lg:col-span-7 lg:pl-10 lg:border-l border-border/60 flex items-center"
+            >
+              <p className="font-display text-2xl md:text-3xl font-extrabold text-primary leading-[1.25] max-w-[560px]">
+                &ldquo;Building a company is hard. The path from early traction to a scaled business is rarely linear — key decisions and inflection points happen when they are least expected.
+                <span className="text-emerald"> That is where we support founders.</span>&rdquo;
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Nationality diversity strip — decorative */}
       <section className="bg-background border-y border-border/60">
         <div className="container mx-auto px-6 py-6">

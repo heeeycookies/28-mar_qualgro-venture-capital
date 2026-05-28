@@ -14,7 +14,7 @@ const navLinks = [
   { label: "For LPs", href: "/lp" },
 ];
 
-const Navbar = () => {
+const Navbar = ({ variant = "light" }: { variant?: "light" | "dark" }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -25,6 +25,8 @@ const Navbar = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const isDark = variant === "dark" && !scrolled;
 
   return (
     <>
@@ -48,9 +50,11 @@ const Navbar = () => {
               <Link
                 key={link.label}
                 to={link.href}
-                className={`text-sm transition-colors font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full text-foreground/80 hover:text-foreground after:bg-foreground ${
-                  location.pathname === link.href ? "after:w-full" : ""
-                }`}
+                className={`text-sm transition-colors font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full ${
+                  isDark
+                    ? "text-white/80 hover:text-white after:bg-white"
+                    : "text-foreground/80 hover:text-foreground after:bg-foreground"
+                } ${location.pathname === link.href ? "after:w-full" : ""}`}
               >
                 {link.label}
               </Link>
@@ -58,8 +62,13 @@ const Navbar = () => {
           </div>
 
           <button
+            data-contact-trigger
             onClick={() => setContactOpen(true)}
-            className="hidden md:inline-flex items-center justify-center px-5 py-2 rounded text-sm font-semibold transition-colors bg-primary text-primary-foreground hover:bg-primary/90"
+            className={`hidden md:inline-flex items-center justify-center px-5 py-2 rounded text-sm font-semibold transition-colors ${
+              isDark
+                ? "bg-white/15 text-white border border-white/30 hover:bg-white/25"
+                : "bg-primary text-primary-foreground hover:bg-primary/90"
+            }`}
           >
             Contact
           </button>

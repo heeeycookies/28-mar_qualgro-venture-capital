@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import FounderTestimonials from "@/components/FounderTestimonials";
-import ContactModal from "@/components/ContactModal";
+import PortfolioContactModal from "@/components/PortfolioContactModal";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useState, useRef } from "react";
@@ -71,7 +71,7 @@ const QuoteCard = ({
 
 /* ─────────────── Page ─────────────── */
 const WhyQualgro = () => {
-  const [contactOpen, setContactOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const valueRef = useRef<HTMLDivElement>(null);
 
@@ -96,58 +96,10 @@ const WhyQualgro = () => {
             </>
           }
           description="Alongside 50+ founders on their building journey — from early traction all the way through to full exit."
-        >
-          <button
-            onClick={() => setContactOpen(true)}
-            className="mt-8 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-lg font-display font-semibold text-sm transition-all hover:translate-y-[-1px] hover:shadow-lg bg-emerald text-emerald-foreground hover:bg-emerald/90"
-          >
-            Partner with Qualgro <ArrowRight size={16} />
-          </button>
-        </PageHero>
+        />
       </div>
 
-      {/* ─── ORIGIN / NARRATIVE ─── */}
-      <section className="py-24 sm:py-28 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 max-w-[1120px] mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-5"
-            >
-              <p className="text-emerald font-display font-bold text-xs uppercase tracking-[0.25em] mb-4">
-                Our Story
-              </p>
-              <h2 className="font-display text-3xl md:text-4xl font-black text-primary leading-[1.05] mb-6">
-                Built by operators &amp; investors,<br />for founders.
-              </h2>
-              <p className="text-muted-foreground text-base leading-relaxed max-w-[460px]">
-                Qualgro was founded with one conviction: Southeast Asia would produce world-class technology companies, and the founders building them deserved investors who would stand shoulder-to-shoulder with them through every inflection point.
-              </p>
-              <p className="text-muted-foreground text-sm leading-relaxed max-w-[460px] mt-4 italic">
-                {/* TODO: Replace with client-provided founding story. */}
-                A decade later, we&apos;ve backed 30+ companies across the region — through bull markets and headwinds, expansion plays and pivots, and a growing portfolio of unicorns and exits.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.15 }}
-              className="lg:col-span-7 lg:pl-10 lg:border-l border-border/60"
-            >
-              <p className="font-display text-2xl md:text-3xl font-extrabold text-primary leading-[1.25] max-w-[560px]">
-                &ldquo;Building a company is hard. The path from early traction to a scaled business is rarely linear — key decisions and inflection points happen when they are least expected.
-                <span className="text-emerald"> That is where we support founders.</span>&rdquo;
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── POST-INVESTMENT STATS STRIP (kept, moved up) ─── */}
+      {/* ─── POST-INVESTMENT STATS STRIP ─── */}
       <section className="py-16 sm:py-20 bg-surface-alt border-y border-border/60">
         <div className="container mx-auto px-6">
           <div className="max-w-[1120px] mx-auto">
@@ -177,6 +129,16 @@ const WhyQualgro = () => {
                   </div>
                 ))}
               </div>
+            </div>
+            {/* CTA */}
+            <div className="mt-10 pt-8 border-t border-border/60">
+              <button
+                onClick={() => setModalOpen(true)}
+                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-lg font-display font-semibold text-sm transition-all hover:translate-y-[-1px] hover:shadow-lg bg-emerald text-emerald-foreground hover:bg-emerald/90 cursor-pointer"
+              >
+                Learn how Qualgro supported our portfolio companies&apos; exits
+                <ArrowRight size={16} />
+              </button>
             </div>
           </div>
         </div>
@@ -252,6 +214,43 @@ const WhyQualgro = () => {
                         capNumber={cap.number}
                       />
                     ))}
+                    {/* Footnote for capability #05 */}
+                    {cap.number === "05" && (
+                      <motion.aside
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="w-full max-w-[440px] rounded-2xl border border-white/10 px-6 py-5"
+                        style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+                      >
+                        <p className="text-[11px] font-display font-extrabold uppercase tracking-[0.2em] mb-2" style={{ color: "hsl(163 70% 55%)" }}>
+                          Interested in Qualgro?
+                        </p>
+                        <p className="text-white/65 text-sm leading-relaxed">
+                          If you&apos;re building something exciting, drop a copy of your pitch deck to{" "}
+                          <a
+                            href="mailto:ops@qualgro.com"
+                            className="underline underline-offset-2 hover:text-white transition-colors"
+                            style={{ color: "hsl(163 70% 65%)" }}
+                          >
+                            ops@qualgro.com
+                          </a>
+                          , or use the{" "}
+                          <button
+                            onClick={() => {
+                              const btn = document.querySelector<HTMLButtonElement>("[data-contact-trigger]");
+                              btn?.click();
+                            }}
+                            className="underline underline-offset-2 hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0"
+                            style={{ color: "hsl(163 70% 65%)" }}
+                          >
+                            Contact button
+                          </button>
+                          {" "}if you&apos;d like to include a personalised message.
+                        </p>
+                      </motion.aside>
+                    )}
                   </div>
                 </div>
               );
@@ -328,7 +327,7 @@ const WhyQualgro = () => {
       <FounderTestimonials />
 
       <Footer />
-      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+      <PortfolioContactModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 };
