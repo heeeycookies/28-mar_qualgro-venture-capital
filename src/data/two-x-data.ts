@@ -3,7 +3,7 @@
 
 export const twoXSection = {
   eyebrow: "GENDER-LENS INVESTING",
-  title: "Aligned with the 2X Challenge",
+  title: "Pushing for equality benchmarked against the 2x challenge",
   description:
     "Qualgro integrates gender-lens criteria throughout our investment process. We back companies whose products and services directly improve outcomes for women and girls across Southeast Asia, and we track gender-related metrics across our portfolio as part of our annual ESG reporting.",
   learnMoreUrl: "https://www.2xchallenge.org",

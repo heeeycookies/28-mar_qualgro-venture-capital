@@ -49,14 +49,6 @@ type Card = { num: string; label: string; title: string; desc: string };
 const ThesisCard = ({ card, i }: { card: Card; i: number }) => (
   <Reveal delay={i * 0.05} y={28}>
     <div className="group relative h-full bg-background border border-border rounded-2xl p-7 sm:p-8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_-12px_rgba(14,58,93,0.18)] hover:border-emerald/40">
-      <div className="flex items-center justify-between mb-6">
-        <span className="font-display text-[11px] font-extrabold uppercase tracking-[0.22em] text-emerald">
-          {card.label}
-        </span>
-        <span className="font-display text-xs font-black text-muted-foreground/60 tabular-nums">
-          {card.num}
-        </span>
-      </div>
       <h3 className="font-display text-2xl sm:text-[26px] font-extrabold text-primary leading-tight mb-3">
         {card.title}
       </h3>
@@ -93,13 +85,10 @@ const ThesisSection = () => {
         {/* Bucket 1: Sectors */}
         <div className="mb-16 sm:mb-20">
           <Reveal>
-            <div className="flex items-baseline justify-between flex-wrap gap-3 mb-8 pb-5 border-b border-border">
+            <div className="mb-8 pb-5 border-b border-border">
               <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-investment-blue">
                 The types of businesses we back
               </h3>
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">
-                Sectors & categories
-              </p>
             </div>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
@@ -112,13 +101,10 @@ const ThesisSection = () => {
         {/* Bucket 2: Qualities */}
         <div>
           <Reveal>
-            <div className="flex items-baseline justify-between flex-wrap gap-3 mb-8 pb-5 border-b border-border">
+            <div className="mb-8 pb-5 border-b border-border">
               <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-investment-blue">
                 The qualities of companies we like to back
               </h3>
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">
-                Signals of conviction
-              </p>
             </div>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">

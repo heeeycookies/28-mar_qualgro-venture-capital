@@ -219,13 +219,17 @@ const nationalities: { key: "all" | Nationality; label: string; flag: string }[]
 const flagOf = (n: Nationality) => nationalities.find((x) => x.key === n)?.flag ?? "";
 const labelOf = (n: Nationality) => nationalities.find((x) => x.key === n)?.label ?? "";
 
-/* ─── Category Dropdown ─── */
-const CategoryDropdown = ({
-  activeFilter,
-  setActiveFilter,
+/* ─── Generic Filter Dropdown ─── */
+type DropdownOption = { key: string; label: string; count: number; icon?: string };
+
+const FilterDropdown = ({
+  active,
+  setActive,
+  options,
 }: {
-  activeFilter: string;
-  setActiveFilter: (v: string) => void;
+  active: string;
+  setActive: (v: string) => void;
+  options: DropdownOption[];
 }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -238,7 +242,7 @@ const CategoryDropdown = ({
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const current = categories.find((c) => c.key === activeFilter) ?? categories[0];
+  const current = options.find((o) => o.key === active) ?? options[0];
 
   return (
     <div ref={ref} className="relative">
@@ -248,7 +252,10 @@ const CategoryDropdown = ({
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <span>{current.label}</span>
+        <span className="flex items-center gap-1.5">
+          {current.icon && <span className="text-base leading-none">{current.icon}</span>}
+          {current.label}
+        </span>
         <ChevronDown
           size={15}
           className={`text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
@@ -263,30 +270,29 @@ const CategoryDropdown = ({
             exit={{ opacity: 0, y: -6, scale: 0.97 }}
             transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
             role="listbox"
-            className="absolute top-[calc(100%+6px)] left-0 z-30 min-w-[180px] rounded-xl border border-border bg-card shadow-xl overflow-hidden"
+            className="absolute top-[calc(100%+6px)] left-0 z-30 min-w-[200px] rounded-xl border border-border bg-card shadow-xl overflow-hidden"
           >
-            {categories.map((cat) => {
-              const count =
-                cat.key === "all"
-                  ? teamMembers.length
-                  : teamMembers.filter((m) => m.category === cat.key).length;
-              const active = activeFilter === cat.key;
+            {options.map((opt) => {
+              const isActive = active === opt.key;
               return (
-                <li key={cat.key} role="option" aria-selected={active}>
+                <li key={opt.key} role="option" aria-selected={isActive}>
                   <button
-                    onClick={() => { setActiveFilter(cat.key); setOpen(false); }}
+                    onClick={() => { setActive(opt.key); setOpen(false); }}
                     className={`flex items-center justify-between w-full px-4 py-2.5 text-sm font-display font-semibold transition-colors cursor-pointer ${
-                      active
+                      isActive
                         ? "bg-primary text-primary-foreground"
                         : "text-primary hover:bg-muted"
                     }`}
                   >
-                    <span>{cat.label}</span>
                     <span className="flex items-center gap-2">
-                      <span className={`tabular-nums text-[11px] ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
-                        {String(count).padStart(2, "0")}
+                      {opt.icon && <span className="text-base leading-none">{opt.icon}</span>}
+                      {opt.label}
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <span className={`tabular-nums text-[11px] ${isActive ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
+                        {String(opt.count).padStart(2, "0")}
                       </span>
-                      {active && <Check size={13} />}
+                      {isActive && <Check size={13} />}
                     </span>
                   </button>
                 </li>
@@ -299,14 +305,32 @@ const CategoryDropdown = ({
   );
 };
 
+const categoryOptions: DropdownOption[] = categories.map((cat) => ({
+  key: cat.key,
+  label: cat.label,
+  count: cat.key === "all" ? teamMembers.length : teamMembers.filter((m) => m.category === cat.key).length,
+}));
+
+const nationalityOptions: DropdownOption[] = [
+  { key: "all", label: "All", count: teamMembers.length },
+  ...nationalities
+    .filter((n) => n.key !== "all")
+    .map((n) => ({
+      key: n.key,
+      label: n.label,
+      count: teamMembers.filter((m) => m.nationalities.includes(n.key as Nationality)).length,
+      icon: n.flag,
+    })),
+];
+
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [activeFilter, setActiveFilter] = useState("all");
-  const [activeNationality, setActiveNationality] = useState<"all" | Nationality>("all");
+  const [activeNationality, setActiveNationality] = useState("all");
 
   const filtered = teamMembers.filter((m) => {
     const catOk = activeFilter === "all" || m.category === activeFilter;
-    const natOk = activeNationality === "all" || m.nationalities.includes(activeNationality);
+    const natOk = activeNationality === "all" || m.nationalities.includes(activeNationality as Nationality);
     return catOk && natOk;
   });
 
@@ -322,7 +346,7 @@ const Team = () => {
         description="Qualgro's team combines startup, business, technology, investment and strategy experience to help startups accelerate growth and build international companies across Southeast Asia and Australia."
       />
 
-      {/* Nationality diversity strip */}
+      {/* Nationality diversity strip — decorative */}
       <section className="bg-background border-y border-border/60">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -340,36 +364,21 @@ const Team = () => {
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              {activeNationality !== "all" && (
-                <button
-                  onClick={() => setActiveNationality("all")}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-[11px] font-display font-semibold text-muted-foreground hover:text-primary hover:border-emerald transition-all cursor-pointer"
-                >
-                  Clear
-                </button>
-              )}
               {nationalities.filter((n) => n.key !== "all").map((n) => {
                 const count = teamMembers.filter((m) =>
                   m.nationalities.includes(n.key as Nationality)
                 ).length;
-                const active = activeNationality === n.key;
                 return (
-                  <button
+                  <div
                     key={n.key}
-                    onClick={() => setActiveNationality(active ? "all" : (n.key as Nationality))}
-                    className={`group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all hover:-translate-y-[2px] cursor-pointer ${
-                      active
-                        ? "bg-primary border-primary"
-                        : "bg-background border-border hover:border-emerald"
-                    }`}
                     title={`${n.label} · ${count}`}
-                    aria-label={`Filter by ${n.label}`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-background"
                   >
                     <span className="text-base leading-none">{n.flag}</span>
-                    <span className={`tabular-nums text-[10px] font-display font-semibold ${active ? "text-primary-foreground/80" : "text-muted-foreground/70"}`}>
+                    <span className="tabular-nums text-[10px] font-display font-semibold text-muted-foreground/70">
                       {count}
                     </span>
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -382,11 +391,27 @@ const Team = () => {
         <div className="container mx-auto px-6">
 
           {/* Filter bar */}
-          <div className="flex items-center gap-4 mb-8">
-            <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald">
-              Browse
-            </p>
-            <CategoryDropdown activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+          <div className="flex flex-wrap items-center gap-4 mb-8">
+            <div className="flex items-center gap-2.5">
+              <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald">
+                Function
+              </p>
+              <FilterDropdown
+                active={activeFilter}
+                setActive={setActiveFilter}
+                options={categoryOptions}
+              />
+            </div>
+            <div className="flex items-center gap-2.5">
+              <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald">
+                Nationality
+              </p>
+              <FilterDropdown
+                active={activeNationality}
+                setActive={setActiveNationality}
+                options={nationalityOptions}
+              />
+            </div>
             <span className="text-sm text-muted-foreground tabular-nums">
               {filtered.length} {filtered.length === 1 ? "person" : "people"}
             </span>
