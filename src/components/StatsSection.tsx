@@ -125,7 +125,7 @@ const StatsSection = () => {
               <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl ml-2">Regional</span>
             </p>
             <p className="text-xs sm:text-base text-white/80 leading-relaxed">
-              High-conviction investments across Southeast Asia's most promising ventures.
+              Strong expertise and history helping companies scale into new markets.
             </p>
           </motion.div>
 
