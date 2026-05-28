@@ -313,7 +313,7 @@ const PortfolioSection = () => {
                           </span>
                         </div>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-[9px] sm:text-[10px] font-semibold text-white/55 uppercase tracking-[0.12em] min-w-[58px]">
+                          <span className="text-[9px] sm:text-[10px] font-semibold text-white/55 uppercase tracking-[0.12em] min-w-[78px]">
                             Invested
                           </span>
                           <span className="text-xs sm:text-sm font-bold text-white leading-snug">
