@@ -2,8 +2,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { X, Linkedin } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { X, Linkedin, ChevronDown, Check } from "lucide-react";
 
 type Nationality =
   | "indonesia"
@@ -194,6 +194,7 @@ const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/shimin-cai-8a4693232/",
   },
 ];
+
 const categories = [
   { key: "all", label: "All" },
   { key: "leadership", label: "Leadership" },
@@ -218,6 +219,86 @@ const nationalities: { key: "all" | Nationality; label: string; flag: string }[]
 const flagOf = (n: Nationality) => nationalities.find((x) => x.key === n)?.flag ?? "";
 const labelOf = (n: Nationality) => nationalities.find((x) => x.key === n)?.label ?? "";
 
+/* ─── Category Dropdown ─── */
+const CategoryDropdown = ({
+  activeFilter,
+  setActiveFilter,
+}: {
+  activeFilter: string;
+  setActiveFilter: (v: string) => void;
+}) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const current = categories.find((c) => c.key === activeFilter) ?? categories[0];
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="inline-flex items-center gap-2.5 h-10 px-4 rounded-lg border border-border bg-card text-sm font-display font-semibold text-primary hover:border-emerald transition-colors cursor-pointer"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <span>{current.label}</span>
+        <ChevronDown
+          size={15}
+          className={`text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+            transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            role="listbox"
+            className="absolute top-[calc(100%+6px)] left-0 z-30 min-w-[180px] rounded-xl border border-border bg-card shadow-xl overflow-hidden"
+          >
+            {categories.map((cat) => {
+              const count =
+                cat.key === "all"
+                  ? teamMembers.length
+                  : teamMembers.filter((m) => m.category === cat.key).length;
+              const active = activeFilter === cat.key;
+              return (
+                <li key={cat.key} role="option" aria-selected={active}>
+                  <button
+                    onClick={() => { setActiveFilter(cat.key); setOpen(false); }}
+                    className={`flex items-center justify-between w-full px-4 py-2.5 text-sm font-display font-semibold transition-colors cursor-pointer ${
+                      active
+                        ? "bg-primary text-primary-foreground"
+                        : "text-primary hover:bg-muted"
+                    }`}
+                  >
+                    <span>{cat.label}</span>
+                    <span className="flex items-center gap-2">
+                      <span className={`tabular-nums text-[11px] ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
+                        {String(count).padStart(2, "0")}
+                      </span>
+                      {active && <Check size={13} />}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [activeFilter, setActiveFilter] = useState("all");
@@ -228,7 +309,6 @@ const Team = () => {
     const natOk = activeNationality === "all" || m.nationalities.includes(activeNationality);
     return catOk && natOk;
   });
-
 
   return (
     <div className="min-h-screen bg-background">
@@ -244,8 +324,8 @@ const Team = () => {
 
       {/* Nationality diversity strip */}
       <section className="bg-background border-y border-border/60">
-        <div className="container mx-auto px-6 py-8">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+        <div className="container mx-auto px-6 py-6">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="flex items-baseline gap-3">
               <span className="font-display text-5xl font-black text-primary tabular-nums leading-none">
                 {nationalities.length - 1}
@@ -263,19 +343,21 @@ const Team = () => {
               {activeNationality !== "all" && (
                 <button
                   onClick={() => setActiveNationality("all")}
-                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-border text-[11px] font-display font-semibold text-muted-foreground hover:text-primary hover:border-emerald transition-all"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-[11px] font-display font-semibold text-muted-foreground hover:text-primary hover:border-emerald transition-all cursor-pointer"
                 >
                   Clear
                 </button>
               )}
               {nationalities.filter((n) => n.key !== "all").map((n) => {
-                const count = teamMembers.filter((m) => m.nationalities.includes(n.key as Nationality)).length;
+                const count = teamMembers.filter((m) =>
+                  m.nationalities.includes(n.key as Nationality)
+                ).length;
                 const active = activeNationality === n.key;
                 return (
                   <button
                     key={n.key}
                     onClick={() => setActiveNationality(active ? "all" : (n.key as Nationality))}
-                    className={`group inline-flex items-center gap-1.5 px-3 py-2 rounded-full border transition-all hover:-translate-y-[2px] ${
+                    className={`group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all hover:-translate-y-[2px] cursor-pointer ${
                       active
                         ? "bg-primary border-primary"
                         : "bg-background border-border hover:border-emerald"
@@ -283,7 +365,7 @@ const Team = () => {
                     title={`${n.label} · ${count}`}
                     aria-label={`Filter by ${n.label}`}
                   >
-                    <span className="text-lg leading-none">{n.flag}</span>
+                    <span className="text-base leading-none">{n.flag}</span>
                     <span className={`tabular-nums text-[10px] font-display font-semibold ${active ? "text-primary-foreground/80" : "text-muted-foreground/70"}`}>
                       {count}
                     </span>
@@ -295,113 +377,87 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Sticky filter rail + grouped grid */}
-      <section className="py-20 sm:py-28 bg-background relative">
+      {/* Filter bar + Grid */}
+      <section className="py-10 sm:py-14 bg-background">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Sticky filter sidebar */}
-            <aside className="lg:col-span-3">
-              <div className="lg:sticky lg:top-32">
-                <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald mb-5">
-                  Browse
-                </p>
-                <ul className="flex lg:flex-col gap-2 lg:gap-1 flex-wrap">
-                  {categories.map((cat) => {
-                    const count = cat.key === "all" ? teamMembers.length : teamMembers.filter(m => m.category === cat.key).length;
-                    const active = activeFilter === cat.key;
-                    return (
-                      <li key={cat.key}>
-                        <button
-                          onClick={() => setActiveFilter(cat.key)}
-                          className={`group flex items-center justify-between gap-4 w-full px-4 py-2.5 rounded-lg text-left text-sm font-display font-semibold transition-all ${
-                            active
-                              ? "bg-primary text-primary-foreground"
-                              : "text-muted-foreground hover:bg-muted hover:text-primary"
-                          }`}
-                        >
-                          <span>{cat.label}</span>
-                          <span className={`text-[11px] tabular-nums ${active ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
-                            {String(count).padStart(2, "0")}
-                          </span>
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
 
-
-
-
-                <div className="hidden lg:block mt-10 pt-6 border-t border-border">
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    Click any portrait to read their full biography and connect on LinkedIn.
-                  </p>
-                </div>
-
-              </div>
-            </aside>
-
-            {/* Grid */}
-            <div className="lg:col-span-9">
-              <motion.div
-                layout
-                className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10"
-              >
-                <AnimatePresence mode="popLayout">
-                  {filtered.map((member, i) => (
-                    <motion.div
-                      key={member.name}
-                      layout
-                      initial={{ opacity: 0, y: 24 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.45, delay: i * 0.035, ease: [0.22, 1, 0.36, 1] }}
-                      onClick={() => setSelectedMember(member)}
-                      className="group cursor-pointer"
-                    >
-                      <div className="relative rounded-2xl overflow-hidden aspect-[3/4] mb-4 bg-muted">
-                        <img
-                          src={member.photo}
-                          alt={member.name}
-                          style={member.name === "Laetitia Chia" ? { transform: "scale(1.3)", transformOrigin: "center 30%" } : undefined}
-                          className="w-full h-full object-cover"
-                        />
-                        {/* Nationality flag chip */}
-                        <div className="absolute top-3 left-3 flex gap-1">
-                          {member.nationalities.map((n) => (
-                            <span
-                              key={n}
-                              title={labelOf(n)}
-                              className="text-base leading-none px-1.5 py-1 rounded-md bg-background/85 backdrop-blur-sm shadow-sm"
-                            >
-                              {flagOf(n)}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="absolute inset-x-4 bottom-4 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                          <span className="text-[10px] font-display font-extrabold text-emerald uppercase tracking-[0.25em]">
-                            View profile →
-                          </span>
-                        </div>
-                      </div>
-                      <h3 className="font-display text-base font-bold text-primary group-hover:text-investment-blue transition-colors leading-tight">
-                        {member.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground mt-1 leading-snug">
-                        {member.role}
-                      </p>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </motion.div>
-            </div>
+          {/* Filter bar */}
+          <div className="flex items-center gap-4 mb-8">
+            <p className="font-display text-[11px] font-extrabold uppercase tracking-[0.25em] text-emerald">
+              Browse
+            </p>
+            <CategoryDropdown activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+            <span className="text-sm text-muted-foreground tabular-nums">
+              {filtered.length} {filtered.length === 1 ? "person" : "people"}
+            </span>
           </div>
+
+          {/* Grid — full width, 3 cols on desktop for larger cards */}
+          <motion.div
+            layout
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-6 gap-y-10"
+          >
+            <AnimatePresence mode="popLayout">
+              {filtered.map((member, i) => (
+                <motion.div
+                  key={member.name}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                  onClick={() => setSelectedMember(member)}
+                  className="group cursor-pointer"
+                >
+                  {/* Photo */}
+                  <div className="relative rounded-2xl overflow-hidden aspect-[3/4] mb-4 bg-muted">
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      style={
+                        member.name === "Laetitia Chia"
+                          ? { transform: "scale(1.3)", transformOrigin: "center 30%" }
+                          : undefined
+                      }
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                    {/* Nationality flags */}
+                    <div className="absolute top-3 left-3 flex gap-1">
+                      {member.nationalities.map((n) => (
+                        <span
+                          key={n}
+                          title={labelOf(n)}
+                          className="text-base leading-none px-1.5 py-1 rounded-md bg-background/85 backdrop-blur-sm shadow-sm"
+                        >
+                          {flagOf(n)}
+                        </span>
+                      ))}
+                    </div>
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                    <div className="absolute inset-x-5 bottom-5 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400">
+                      <span className="text-[11px] font-display font-extrabold text-emerald uppercase tracking-[0.25em]">
+                        View profile →
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Name + Role */}
+                  <h3 className="font-display text-lg font-bold text-primary group-hover:text-investment-blue transition-colors leading-tight">
+                    {member.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1 leading-snug">
+                    {member.role}
+                  </p>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-24 sm:py-32 bg-surface-alt relative overflow-hidden">
+      <section className="py-20 sm:py-28 bg-surface-alt relative overflow-hidden">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -423,7 +479,7 @@ const Team = () => {
               </p>
               <a
                 href="mailto:info@qualgro.com"
-                className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald text-emerald-foreground font-display font-semibold text-sm hover:translate-y-[-1px] transition-transform"
+                className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald text-emerald-foreground font-display font-semibold text-sm hover:translate-y-[-1px] transition-transform cursor-pointer"
               >
                 info@qualgro.com
               </a>
@@ -434,11 +490,10 @@ const Team = () => {
 
       <Footer />
 
-      {/* Member Popup Modal */}
+      {/* Member Modal */}
       <AnimatePresence>
         {selectedMember && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -446,7 +501,6 @@ const Team = () => {
               onClick={() => setSelectedMember(null)}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
             />
-            {/* Modal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -459,16 +513,19 @@ const Team = () => {
                 className="bg-card rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden border border-border flex flex-col sm:flex-row"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Photo side — fixed 3:4 frame so every portrait sits at native size */}
+                {/* Photo */}
                 <div className="relative w-full sm:w-2/5 shrink-0 bg-muted">
                   <div className="relative w-full aspect-[3/4] overflow-hidden">
                     <img
                       src={selectedMember.photo}
                       alt={selectedMember.name}
-                      style={selectedMember.name === "Laetitia Chia" ? { transform: "scale(1.3)", transformOrigin: "center 30%" } : undefined}
+                      style={
+                        selectedMember.name === "Laetitia Chia"
+                          ? { transform: "scale(1.3)", transformOrigin: "center 30%" }
+                          : undefined
+                      }
                       className="w-full h-full object-cover object-top"
                     />
-                    {/* Flag chips on modal photo */}
                     <div className="absolute top-3 left-3 flex gap-1">
                       {selectedMember.nationalities.map((n) => (
                         <span
@@ -483,17 +540,19 @@ const Team = () => {
                   </div>
                   <button
                     onClick={() => setSelectedMember(null)}
-                    className="absolute top-4 right-4 sm:hidden p-2 rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors"
+                    className="absolute top-4 right-4 sm:hidden p-2 rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors cursor-pointer"
+                    aria-label="Close"
                   >
                     <X size={18} />
                   </button>
                 </div>
 
-                {/* Content side */}
+                {/* Content */}
                 <div className="relative flex-1 p-8 overflow-y-auto max-h-[60vh] sm:max-h-[90vh]">
                   <button
                     onClick={() => setSelectedMember(null)}
-                    className="hidden sm:flex absolute top-4 right-4 p-2 rounded-full hover:bg-muted text-muted-foreground transition-colors"
+                    className="hidden sm:flex absolute top-4 right-4 p-2 rounded-full hover:bg-muted text-muted-foreground transition-colors cursor-pointer"
+                    aria-label="Close"
                   >
                     <X size={18} />
                   </button>
