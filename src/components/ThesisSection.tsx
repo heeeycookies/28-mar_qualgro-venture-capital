@@ -95,10 +95,10 @@ const ThesisSection = () => {
           <Reveal>
             <div className="flex items-baseline justify-between flex-wrap gap-3 mb-8 pb-5 border-b border-border">
               <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-investment-blue">
-                Where we invest
+                The types of businesses we back
               </h3>
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">
-                Categories of business
+                Sectors & categories
               </p>
             </div>
           </Reveal>
