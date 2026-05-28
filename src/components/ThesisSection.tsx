@@ -28,19 +28,19 @@ const qualities = [
     num: "01",
     label: "Founders",
     title: "Visionary Builders",
-    desc: "We look for bold founders who dream and build towards regional and global scale from day one. They pair technological advantage with fast execution to test and iterate. They relentlessly innovate on ways to navigate obstacles, intelligently challenge conventional methods, and solve problems that others can't.",
+    desc: "We back bold founding teams that build towards regional and global scale from day one — pairing technological advantage with fast execution, and relentlessly innovating to navigate obstacles and solve problems others can't.",
   },
   {
     num: "02",
     label: "Traction",
-    title: "Early-form Product-Market Fit",
-    desc: "Our partnership tends to be best suited for companies showing early signs of strong product-market fit, particularly where customer adoption is translating into retention and progressively deeper usage.",
+    title: "Early Product-Market Fit",
+    desc: "We partner best with companies showing early signs of strong product-market fit, where customer adoption is translating into retention and progressively deeper usage.",
   },
   {
     num: "03",
     label: "Outcomes",
     title: "Measurable Impact",
-    desc: "We look to create lasting value in our investments for founders, communities, and the broader ecosystem beyond financial returns.",
+    desc: "We back companies that create lasting value for founders, communities, and the broader ecosystem — beyond financial returns alone.",
   },
 ];
 
