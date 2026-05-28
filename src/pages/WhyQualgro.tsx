@@ -127,7 +127,7 @@ const WhyQualgro = () => {
               </p>
               <p className="text-muted-foreground text-sm leading-relaxed max-w-[460px] mt-4 italic">
                 {/* TODO: Replace with client-provided founding story. */}
-                A decade later, we&apos;ve backed 50+ companies across the region — through bull markets and headwinds, expansion plays and pivots, and a growing portfolio of unicorns and exits.
+                A decade later, we&apos;ve backed 30+ companies across the region — through bull markets and headwinds, expansion plays and pivots, and a growing portfolio of unicorns and exits.
               </p>
             </motion.div>
 
