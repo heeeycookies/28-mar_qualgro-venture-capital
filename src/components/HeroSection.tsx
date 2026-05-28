@@ -55,7 +55,7 @@ const HeroSection = () => {
               style={{ y: textY }}
               className="font-display font-black tracking-tight leading-[0.85] text-navy text-[44px] sm:text-6xl md:text-7xl lg:text-8xl"
             >
-              BUILDING
+              BACKING
               <span className="block mt-2 sm:mt-3 text-muted-foreground/40 font-black text-[20px] sm:text-3xl md:text-4xl lg:text-5xl leading-[1]">
                 REGIONAL AND GLOBAL
                 <br />
