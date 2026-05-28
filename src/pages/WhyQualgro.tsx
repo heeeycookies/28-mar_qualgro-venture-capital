@@ -209,7 +209,7 @@ const WhyQualgro = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-3xl mb-20 sm:mb-24"
+            className="max-w-[1120px] mb-20 sm:mb-24"
           >
             <p
               className="font-display font-bold text-xs uppercase tracking-[0.3em] mb-4"
@@ -218,11 +218,60 @@ const WhyQualgro = () => {
               What You Get
             </p>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[0.95]">
-              Partnering with Qualgro.
+              Qualgro&apos;s value to LPs.
             </h2>
             <p className="mt-6 text-white/65 text-base sm:text-lg leading-relaxed max-w-[560px]">
-              Five things every founder gets when they bring us into the cap table. Don&apos;t take it from us — hear what our founders have to say.
+              Five things our LPs consistently point to when describing what makes the Qualgro partnership different.
             </p>
+
+            {/* LP value groups */}
+            <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
+              {[
+                {
+                  heading: "Returns & Business",
+                  items: [
+                    "Returns and DPI — ahead of most comparable VCs",
+                    "Socio-economic and ESG impact",
+                    "Co-investment opportunities for LPs, where relevant",
+                    "Advisory on Southeast Asia landscape, trends and dynamics",
+                    "Relationships and connections across the region",
+                  ],
+                },
+                {
+                  heading: "Processes & Operations",
+                  items: [
+                    "Close LP relationships — regular interactions beyond Annual Meetings",
+                    "Open-book policy — full transparency, any information, any time",
+                    "ILPA-aligned reporting, IFRS/SFRS, yearly external audit by a Big 4",
+                    "MAS-compliant operations with yearly internal audit by a reputable provider",
+                  ],
+                },
+              ].map((group) => (
+                <div key={group.heading}>
+                  <h3
+                    className="font-display text-[11px] font-bold uppercase tracking-[0.25em] mb-5"
+                    style={{ color: "hsl(163 70% 55%)" }}
+                  >
+                    {group.heading}
+                  </h3>
+                  <ul className="space-y-3.5">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="flex gap-3 text-white/80 text-[15px] leading-relaxed"
+                      >
+                        <span
+                          aria-hidden
+                          className="mt-2 h-1.5 w-1.5 rounded-full shrink-0"
+                          style={{ backgroundColor: "hsl(163 70% 55%)" }}
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
           {/* Capability rows */}
