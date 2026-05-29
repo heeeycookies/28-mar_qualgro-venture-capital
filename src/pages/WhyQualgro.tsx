@@ -25,6 +25,10 @@ import supermomLogo from "@/assets/portfolio/supermom_logo.png";
 import shopbackLogo from "@/assets/portfolio/shopback_logo.png";
 import fundingSocietiesLogo from "@/assets/portfolio/funding-societies_logo.png";
 import patsnapLogo from "@/assets/portfolio/patsnap_logo.png";
+import appierLogo from "@/assets/portfolio/Appier_Logo.jpg";
+import nobrokerLogo from "@/assets/portfolio/Nobroker_logo.png";
+import brighteLogo from "@/assets/portfolio/brighte_logo.png";
+import sirionLogo from "@/assets/portfolio/Sirion_Logo.png";
 
 /* ── Lookup maps ── */
 const founderImageMap: Record<string, string> = {
@@ -44,6 +48,10 @@ const companyLogoMap: Record<string, string> = {
   "ShopBack": shopbackLogo,
   "Funding Societies": fundingSocietiesLogo,
   "Patsnap": patsnapLogo,
+  "Appier": appierLogo,
+  "NoBroker": nobrokerLogo,
+  "Brighte": brighteLogo,
+  "Sirion": sirionLogo,
 };
 
 /* ─────────────── Quote Card ─────────────── */
