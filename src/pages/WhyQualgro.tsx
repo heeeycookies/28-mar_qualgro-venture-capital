@@ -29,6 +29,8 @@ import appierLogo from "@/assets/portfolio/Appier_Logo.jpg";
 import nobrokerLogo from "@/assets/portfolio/Nobroker_logo.png";
 import brighteLogo from "@/assets/portfolio/brighte_logo.png";
 import sirionLogo from "@/assets/portfolio/Sirion_Logo.png";
+import hevoLogo from "@/assets/portfolio/Hevo_logo.jpg";
+import wavecellLogo from "@/assets/portfolio/wavecell_logo.png";
 
 /* ── Lookup maps ── */
 const founderImageMap: Record<string, string> = {
@@ -52,6 +54,8 @@ const companyLogoMap: Record<string, string> = {
   "NoBroker": nobrokerLogo,
   "Brighte": brighteLogo,
   "Sirion": sirionLogo,
+  "Hevo": hevoLogo,
+  "Wavecell": wavecellLogo,
 };
 
 /* ─────────────── Quote Card ─────────────── */
