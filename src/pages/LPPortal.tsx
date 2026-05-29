@@ -29,10 +29,10 @@ const LPValueAdd = ({ onOpenModal }: { onOpenModal: () => void }) => (
           className="font-display font-bold text-xs uppercase tracking-[0.3em] mb-4"
           style={{ color: "hsl(163 70% 55%)" }}
         >
-          Our commitment to our LPs:
+          What You Get
         </p>
         <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[0.95]">
-          Qualgro&apos;s value to LPs.
+          Our commitment to our LPs.
         </h2>
         <p className="mt-6 text-white/65 text-base sm:text-lg leading-relaxed max-w-[680px]">
           Among the top Southeast Asian VC funds that have generated real liquidity and exit performance on par with top quartile global VCs, achieved through our unique assessment lens and dedicated value creation support to scale companies regional and global.
@@ -146,11 +146,12 @@ const LPPortal = () => {
               For Limited Partners
             </p>
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95]">
-              A decade of compounding,<br />
-              <span style={{ color: "hsl(163 70% 60%)" }}>for our LPs.</span>
+              Exit-driven investing, with{" "}
+              <span style={{ color: "hsl(163 70% 60%)" }}>proven and delivered</span>{" "}
+              track record.
             </h1>
-            <p className="mt-7 text-white/70 text-lg leading-relaxed max-w-[520px]">
-              Exit-driven investing, with proven and delivered track record.
+            <p className="mt-7 text-white/70 text-lg leading-relaxed max-w-[580px]">
+              Among the top Southeast Asian VC funds that have generated real liquidity and exit performance on par with top quartile global VCs, achieved through our unique assessment lens and dedicated value creation support to scale companies regional and global.
             </p>
             <button
               onClick={() => setModalOpen(true)}
