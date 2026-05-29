@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useState, useRef } from "react";
 import { methodology } from "@/data/impact";
-import { capabilities, quoteCardPalette, type FounderQuote } from "@/data/value-add";
+import { capabilities, type Capability, type FounderQuote } from "@/data/value-add";
 
 /* ── Founder photos ── */
 import lukeLimFounder from "@/assets/portfolio/Luke Lim_Supermom_Founder.jpeg";
@@ -46,100 +46,126 @@ const companyLogoMap: Record<string, string> = {
   "Patsnap": patsnapLogo,
 };
 
-/* ─────────────── Quote Card ─────────────── */
+/* ─────────────── Quote Card (alt: clean dark-glass) ─────────────── */
 const QuoteCard = ({
   quote,
   index,
-  capNumber,
 }: {
   quote: FounderQuote;
   index: number;
-  capNumber: string;
 }) => {
-  const palette = quoteCardPalette[quote.color];
-  const rotate = index % 2 === 0 ? -2.5 : 2;
-  const offsetClass = index === 0 ? "" : "lg:-mt-10 lg:ml-12";
   const founderImg = founderImageMap[quote.founder];
   const companyLogo = companyLogoMap[quote.company];
 
   return (
     <motion.figure
-      initial={{ opacity: 0, y: 30, rotate: 0 }}
-      whileInView={{ opacity: 1, y: 0, rotate }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: -6, rotate: rotate * 0.4 }}
-      className={`relative w-full max-w-[440px] rounded-[22px] p-9 sm:p-10 ${offsetClass}`}
-      style={{
-        backgroundColor: palette.bg,
-        color: palette.text,
-        boxShadow: "0 24px 60px -24px rgba(0,0,0,0.5), 0 8px 20px -10px rgba(0,0,0,0.3)",
-      }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="relative rounded-2xl border border-white/10 p-8 bg-white/[0.04] backdrop-blur-sm w-full"
+      style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.25)" }}
     >
-      <blockquote
-        className="font-display text-[17px] sm:text-[18px] leading-[1.45] font-medium"
-        style={{ color: palette.text }}
+      {/* decorative quote mark */}
+      <span
+        aria-hidden
+        className="absolute top-5 right-6 font-display font-black leading-none select-none"
+        style={{ fontSize: "72px", color: "hsl(163 70% 55%)", opacity: 0.15 }}
       >
+        "
+      </span>
+
+      <blockquote className="text-white/80 text-[15px] sm:text-[16px] leading-[1.65] font-medium pr-10">
         &ldquo;{quote.text}&rdquo;
       </blockquote>
 
-      <figcaption className="mt-7 flex items-center gap-4">
+      <figcaption className="mt-6 pt-5 border-t border-white/10 flex items-center gap-3">
         {/* Founder photo */}
         {founderImg ? (
           <img
             src={founderImg}
             alt={quote.founder}
-            className="h-12 w-12 rounded-full object-cover object-top shrink-0"
-            style={{ boxShadow: `0 0 0 2.5px ${palette.text}50, 0 4px 12px rgba(0,0,0,0.2)` }}
+            className="h-11 w-11 rounded-full object-cover object-top shrink-0 ring-1 ring-white/20"
           />
         ) : (
-          <span
-            className="inline-flex h-12 w-12 items-center justify-center rounded-full text-[14px] font-black shrink-0"
-            style={{ backgroundColor: palette.text, color: palette.bg }}
-          >
+          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full shrink-0 bg-white/10 text-white text-[13px] font-black">
             {quote.founder.charAt(0)}
           </span>
         )}
 
-        <div className="flex-1 min-w-0">
-          <p
-            className="font-display text-[11px] font-extrabold tracking-[0.18em] uppercase leading-tight"
-            style={{ color: palette.meta }}
-          >
-            {quote.founder}
-          </p>
+        <div className="flex-1 min-w-0 flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            <p className="text-white text-[13px] font-semibold leading-tight truncate">
+              {quote.founder}
+            </p>
+            <p className="text-white/45 text-[11px] uppercase tracking-[0.14em] mt-0.5">
+              Founder
+            </p>
+          </div>
+
           {/* Company logo */}
           {companyLogo ? (
-            <div
-              className="mt-2 inline-flex items-center justify-center rounded-lg px-3 py-1.5"
-              style={{ backgroundColor: "rgba(255,255,255,0.92)" }}
-            >
+            <div className="shrink-0 inline-flex items-center justify-center rounded-md px-3 py-1.5 bg-white/90">
               <img
                 src={companyLogo}
                 alt={quote.company}
-                className="h-[22px] w-auto object-contain"
-                style={{ maxWidth: "96px" }}
+                className="h-[20px] w-auto object-contain"
+                style={{ maxWidth: "88px" }}
               />
             </div>
           ) : (
-            <p
-              className="font-display text-[10px] font-semibold tracking-[0.14em] uppercase mt-1"
-              style={{ color: palette.meta, opacity: 0.65 }}
-            >
+            <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/40">
               {quote.company}
-            </p>
+            </span>
           )}
         </div>
       </figcaption>
-
-      <span
-        aria-hidden
-        className="absolute bottom-4 right-5 font-display font-black leading-none opacity-50"
-        style={{ fontSize: "28px", color: palette.text }}
-      >
-        {capNumber}
-      </span>
     </motion.figure>
+  );
+};
+
+/* ─────────────── Capability Row (text left, cards right, per-row parallax) ─────────────── */
+const CapabilityRow = ({ cap }: { cap: Capability }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  // Left text moves slower, right cards move faster → parallax depth
+  const textY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], [80, -40]);
+
+  return (
+    <div ref={ref} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start pt-20 lg:pt-28 border-t border-white/10 first:border-t-0 first:pt-0">
+      {/* LEFT: number + title + description — always on left */}
+      <motion.div style={{ y: textY }} className="lg:col-span-5 lg:sticky lg:top-32">
+        <p
+          className="font-display font-black leading-none mb-5 select-none"
+          style={{
+            fontSize: "clamp(80px, 10vw, 140px)",
+            color: "hsl(163 70% 55%)",
+            opacity: 0.9,
+            letterSpacing: "-0.04em",
+            lineHeight: 1,
+          }}
+        >
+          {cap.number}
+        </p>
+        <h3 className="font-display text-2xl md:text-3xl lg:text-[32px] font-extrabold text-white leading-[1.1] mb-5 max-w-[420px]">
+          {cap.title}
+        </h3>
+        <p className="text-white/60 text-[15px] sm:text-base leading-relaxed max-w-[440px]">
+          {cap.description}
+        </p>
+      </motion.div>
+
+      {/* RIGHT: quote cards stacked, moving faster on scroll */}
+      <motion.div style={{ y: cardsY }} className="lg:col-span-7 flex flex-col gap-4">
+        {cap.quotes.map((q, qi) => (
+          <QuoteCard key={q.company} quote={q} index={qi} />
+        ))}
+      </motion.div>
+    </div>
   );
 };
 
@@ -241,58 +267,11 @@ const WhyQualgro = () => {
         </motion.div>
 
         <div className="container mx-auto px-6 relative z-10">
-          {/* Capability rows */}
-          <div className="max-w-[1320px] mx-auto space-y-28 lg:space-y-36">
-            {capabilities.map((cap, idx) => {
-              const reversed = idx % 2 === 1;
-              return (
-                <div
-                  key={cap.number}
-                  className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start ${
-                    reversed ? "lg:[&>*:first-child]:order-2" : ""
-                  }`}
-                >
-                  {/* Left: numeral on top + title + desc */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className="lg:col-span-5"
-                  >
-                    <p
-                      className="font-display font-black leading-none mb-6"
-                      style={{
-                        fontSize: "clamp(72px, 9vw, 132px)",
-                        color: "hsl(163 70% 55%)",
-                        opacity: 0.95,
-                        letterSpacing: "-0.04em",
-                      }}
-                    >
-                      {cap.number}
-                    </p>
-                    <h3 className="font-display text-2xl md:text-3xl lg:text-[34px] font-extrabold text-white leading-[1.1] mb-5 max-w-[460px]">
-                      {cap.title}
-                    </h3>
-                    <p className="text-white/70 text-[15px] sm:text-base leading-relaxed max-w-[520px]">
-                      {cap.description}
-                    </p>
-                  </motion.div>
-
-                  {/* Right: tilted quote cards */}
-                  <div className="lg:col-span-7 flex flex-col items-start lg:items-end gap-8 lg:gap-4">
-                    {cap.quotes.map((q, qi) => (
-                      <QuoteCard
-                        key={q.company}
-                        quote={q}
-                        index={qi}
-                        capNumber={cap.number}
-                      />
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+          {/* Capability rows — text always left, cards right, per-row parallax */}
+          <div className="max-w-[1280px] mx-auto">
+            {capabilities.map((cap) => (
+              <CapabilityRow key={cap.number} cap={cap} />
+            ))}
           </div>
 
           {/* ─── INTERESTED IN QUALGRO — centred footer of dark band ─── */}
