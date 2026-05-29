@@ -347,41 +347,53 @@ const Team = () => {
       />
 
       {/* ─── Our Story ─── */}
-      <section className="py-20 sm:py-24 bg-background border-b border-border/60">
+      <section className="py-20 sm:py-28 bg-background border-b border-border/60">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 max-w-[1120px] mx-auto">
+          <div className="max-w-[880px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="lg:col-span-5"
             >
               <p className="text-emerald font-display font-bold text-xs uppercase tracking-[0.25em] mb-4">
                 Our Story
               </p>
-              <h2 className="font-display text-3xl md:text-4xl font-black text-primary leading-[1.05] mb-6">
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black text-primary leading-[1.05] mb-10">
                 Built by operators &amp; investors,<br />for founders.
               </h2>
-              <p className="text-muted-foreground text-base leading-relaxed max-w-[460px]">
-                Qualgro was founded with one conviction: Southeast Asia would produce world-class technology companies, and the founders building them deserved investors who would stand shoulder-to-shoulder with them through every inflection point.
-              </p>
-              <p className="text-muted-foreground text-sm leading-relaxed max-w-[460px] mt-4 italic">
-                A decade later, we&apos;ve backed 30+ companies across the region — through bull markets and headwinds, expansion plays and pivots, and a growing portfolio of unicorns and exits.
-              </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.15 }}
-              className="lg:col-span-7 lg:pl-10 lg:border-l border-border/60 flex items-center"
-            >
-              <p className="font-display text-2xl md:text-3xl font-extrabold text-primary leading-[1.25] max-w-[560px]">
-                &ldquo;Building a company is hard. The path from early traction to a scaled business is rarely linear — key decisions and inflection points happen when they are least expected.
-                <span className="text-emerald"> That is where we support founders.</span>&rdquo;
-              </p>
-            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="space-y-5"
+              >
+                <p className="text-foreground/80 text-base leading-relaxed">
+                  Qualgro was founded with a single conviction: Southeast Asia would produce world-class technology companies, and the founders building them deserved investors who would stand shoulder-to-shoulder through every inflection point — not just write a cheque and attend board meetings.
+                </p>
+                <p className="text-muted-foreground text-base leading-relaxed">
+                  That belief shaped everything from day one. The founding team came not from finance, but from the trenches of McKinsey strategy consulting, enterprise software, and hands-on company building across Asia-Pacific. We understood what it took to take a product from zero to regional scale, how hard it is to navigate multi-market complexity, and what founders actually need beyond capital.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="space-y-5"
+              >
+                <p className="text-muted-foreground text-base leading-relaxed">
+                  So we built Qualgro around a different model — one where partners stay deeply engaged post-investment, working alongside teams on go-to-market strategy, product decisions, fundraising narratives, and the hiring choices that shape a company&apos;s next decade. Our focus on B2B software, data, and AI isn&apos;t just a thesis. It is the lens through which we assess every investment and add genuine, specific value.
+                </p>
+                <p className="text-muted-foreground text-base leading-relaxed">
+                  A decade on, the portfolio speaks for itself: 30+ companies backed, 4 unicorns built, 9 full exits delivered — Appier on the Tokyo Stock Exchange, Sirion at a billion-dollar valuation, ShopBack powering commerce across 12 countries. But what we are most proud of is simpler: founders consistently telling us that Qualgro showed up at the moments that mattered, with connections, with candour, and with a genuine stake in their success.
+                </p>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
