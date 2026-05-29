@@ -111,7 +111,7 @@ const LPWhyPartners = ({ onOpenModal }: { onOpenModal: () => void }) => (
 );
 
 /* ─── LP Commitment (dark charcoal band) ─── */
-const LPValueAdd = ({ onOpenModal }: { onOpenModal: () => void }) => (
+const LPValueAdd = () => (
   <section
     className="py-28 lg:py-32 relative overflow-hidden"
     style={{ backgroundColor: "hsl(220 28% 10%)" }}
@@ -198,17 +198,6 @@ const LPValueAdd = ({ onOpenModal }: { onOpenModal: () => void }) => (
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 pt-10 border-t border-white/10">
-          <button
-            onClick={onOpenModal}
-            className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-lg font-display font-semibold text-sm text-white transition-all hover:-translate-y-[1px] hover:shadow-lg cursor-pointer"
-            style={{ backgroundColor: "hsl(163 70% 45%)" }}
-          >
-            Learn how Qualgro supported our portfolio companies&apos; exits
-            <ArrowRight size={16} />
-          </button>
-        </div>
       </motion.div>
     </div>
   </section>
@@ -249,7 +238,7 @@ const LPPortal = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-[680px]"
+            className="max-w-[900px]"
           >
             <p
               className="font-display font-bold text-xs uppercase tracking-[0.3em] mb-5"
@@ -257,12 +246,12 @@ const LPPortal = () => {
             >
               For Limited Partners
             </p>
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95]">
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] max-w-[700px]">
               Exit-driven investing, with{" "}
               <span style={{ color: "hsl(163 70% 60%)" }}>proven and delivered</span>{" "}
               track record.
             </h1>
-            <p className="mt-7 text-white/65 text-lg leading-relaxed max-w-[560px]">
+            <p className="mt-7 text-white/65 text-lg leading-relaxed max-w-[820px]">
               Among the top Southeast Asian VC funds that have generated real liquidity and exit performance on par with top quartile global VCs, achieved through our unique assessment lens and dedicated value creation support.
             </p>
 
@@ -287,15 +276,6 @@ const LPPortal = () => {
                 </div>
               ))}
             </div>
-
-            <button
-              onClick={() => setModalOpen(true)}
-              className="mt-8 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-lg font-display font-semibold text-sm text-white transition-all hover:-translate-y-[1px] hover:shadow-lg hover:shadow-emerald/20 cursor-pointer"
-              style={{ backgroundColor: "hsl(163 70% 45%)" }}
-            >
-              Learn how Qualgro supported our portfolio companies&apos; exits
-              <ArrowRight size={16} />
-            </button>
           </motion.div>
         </div>
       </section>
@@ -304,7 +284,7 @@ const LPPortal = () => {
       <LPWhyPartners onOpenModal={() => setModalOpen(true)} />
 
       {/* ─── Our commitment — dark charcoal ─── */}
-      <LPValueAdd onOpenModal={() => setModalOpen(true)} />
+      <LPValueAdd />
 
       <div style={{ backgroundColor: "hsl(217 91% 11%)" }}>
         <Footer />
