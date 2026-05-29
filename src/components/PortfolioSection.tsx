@@ -81,26 +81,32 @@ const PortfolioSection = () => {
   const [autoScrollActive, setAutoScrollActive] = useState(true);
   const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0, moved: 0 });
 
-  // Gentle auto-scroll hint until the user interacts
+  // Gentle auto-scroll hint until the user interacts — delayed so it doesn't
+  // compete with initial paint (rAF starts after 600ms)
   useEffect(() => {
     if (!autoScrollActive) return;
     const el = scrollContainerRef.current;
     if (!el) return;
     let raf = 0;
-    let last = performance.now();
     const speed = 65; // px per second
-    const tick = (now: number) => {
-      const dt = (now - last) / 1000;
-      last = now;
-      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
-        setAutoScrollActive(false);
-        return;
-      }
-      el.scrollLeft += speed * dt;
+
+    const start = () => {
+      let last = performance.now();
+      const tick = (now: number) => {
+        const dt = (now - last) / 1000;
+        last = now;
+        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
+          setAutoScrollActive(false);
+          return;
+        }
+        el.scrollLeft += speed * dt;
+        raf = requestAnimationFrame(tick);
+      };
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+
+    const timer = setTimeout(start, 600);
+    return () => { clearTimeout(timer); cancelAnimationFrame(raf); };
   }, [autoScrollActive]);
 
   const stopAutoScroll = () => {

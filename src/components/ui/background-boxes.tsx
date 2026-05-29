@@ -21,7 +21,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
           "linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 72%, transparent)",
       }}
       className={cn(
-        "absolute -top-1/4 left-1/4 z-0 h-full w-full -translate-x-1/2 -translate-y-1/2 p-4 will-change-transform",
+        "absolute -top-1/4 left-1/4 z-0 h-full w-full -translate-x-1/2 -translate-y-1/2 p-4",
         className
       )}
       {...rest}

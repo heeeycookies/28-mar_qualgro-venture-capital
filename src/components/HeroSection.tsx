@@ -10,36 +10,35 @@ const HeroSection = () => {
   const textY = useTransform(scrollYProgress, [0, 1], [0, 60]);
   const descY = useTransform(scrollYProgress, [0, 1], [0, 30]);
   const bgOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const orbOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.15, 0.3, 0]);
+  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const orbOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.18, 0.28, 0]);
 
   return (
     <section
       ref={ref}
       className="relative pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14 lg:pb-16 overflow-hidden"
     >
-      {/* Parallax background orbs */}
+      {/* Parallax background orbs — blur on static inner div, only y+opacity animated */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          style={{ y: orbY1, opacity: orbOpacity, scale: bgScale }}
-          className="absolute -top-20 right-[10%] w-[500px] h-[500px] rounded-full blur-[140px]"
+          style={{ y: orbY1, opacity: orbOpacity }}
+          className="absolute -top-20 right-[10%] w-[500px] h-[500px]"
           aria-hidden
         >
           <div
-            className="w-full h-full rounded-full"
-            style={{ background: "hsl(var(--emerald) / 0.3)" }}
+            className="w-full h-full rounded-full blur-[80px]"
+            style={{ background: "hsl(var(--emerald) / 0.28)" }}
           />
         </motion.div>
         <motion.div
-          style={{ y: orbY2, opacity: orbOpacity, scale: bgScale }}
-          className="absolute top-40 left-[5%] w-[400px] h-[400px] rounded-full blur-[120px]"
+          style={{ y: orbY2, opacity: orbOpacity }}
+          className="absolute top-40 left-[5%] w-[400px] h-[400px]"
           aria-hidden
         >
           <div
-            className="w-full h-full rounded-full"
-            style={{ background: "hsl(var(--warm-gold) / 0.35)" }}
+            className="w-full h-full rounded-full blur-[70px]"
+            style={{ background: "hsl(var(--warm-gold) / 0.32)" }}
           />
         </motion.div>
       </div>
